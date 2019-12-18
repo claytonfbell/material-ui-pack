@@ -54,16 +54,18 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const TextEditor = ({
-  name,
-  label = undefined,
-  required = false,
-  placedOnWhite = false,
-}) => {
+export interface TextEditorProps {
+  name: string
+  label?: string
+  required?: boolean
+  placedOnWhite?: boolean
+}
+const TextEditor = (props: TextEditorProps) => {
   const { getValue, setValue } = useForm()
-  let value = getValue(name)
+  let value = getValue(props.name)
   value = value === undefined ? "" : value
-  label = label === undefined ? _.startCase(name) : label
+  const label =
+    props.label === undefined ? _.startCase(props.name) : props.label
   const classes = useStyles()
   const [hasFocus, setHasFocus] = useState(false)
   const [editorState, setEditorState] = useState(
@@ -73,13 +75,14 @@ const TextEditor = ({
   useEffect(() => {
     setEditorState(getEditorStateWithMarkdown(value))
   }, [value])
-  function getEditorStateWithMarkdown(md) {
+
+  function getEditorStateWithMarkdown(md: string) {
     md = md === null ? "" : md
     const contentState = stateFromMarkdown(md)
     const editorState = EditorState.createWithContent(contentState)
     return editorState
   }
-  function onEditorStateChange(es) {
+  function onEditorStateChange(es: EditorState) {
     setCharLength(stateToMarkdown(editorState.getCurrentContent()).length)
     setEditorState(es)
   }
@@ -89,7 +92,7 @@ const TextEditor = ({
   function handleBlur() {
     setHasFocus(false)
     const md = stateToMarkdown(editorState.getCurrentContent())
-    setValue(name, md)
+    setValue(props.name, md)
   }
   let focusCss = hasFocus ? " focus" : ""
 
@@ -97,10 +100,10 @@ const TextEditor = ({
     <div className={classes.root}>
       <Typography
         className={classes.label + focusCss}
-        style={{ backgroundColor: placedOnWhite ? "white" : undefined }}
+        style={{ backgroundColor: props.placedOnWhite ? "white" : undefined }}
         variant="caption"
       >
-        {label} {required && "*"}
+        {label} {props.required && "*"}
         {charLength > 1000 ? ` (${charLength} characters)` : ""}
       </Typography>
       <Typography component="div">

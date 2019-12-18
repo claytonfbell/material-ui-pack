@@ -17,7 +17,8 @@
     "outDir": "dist",
     "noEmit": true,
     "emitDeclarationOnly": false,
-    "declarationDir": "dist"
+    "declarationDir": "dist",
+    "typeRoots": ["./types", "./node_modules/@types"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
