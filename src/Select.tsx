@@ -13,6 +13,7 @@ export interface SelectProps {
   label?: string
   fullWidth?: boolean
   disabled?: boolean
+  isNumeric?: boolean
 }
 export default function Select(props: SelectProps) {
   const {
@@ -23,7 +24,12 @@ export default function Select(props: SelectProps) {
 
   const label = props.label === undefined ? startCase(props.name) : props.label
   const value = getValue(props.name)
-  const [isNumeric] = useState(typeof value === "number")
+  const [isNumeric, setIsNumeric] = useState(typeof value === "number")
+  useEffect(() => {
+    if (props.isNumeric !== undefined) {
+      setIsNumeric(props.isNumeric)
+    }
+  }, [props.isNumeric])
 
   const disabled = busy || props.disabled
 
