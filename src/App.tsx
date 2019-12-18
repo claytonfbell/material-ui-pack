@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, CssBaseline } from "@material-ui/core";
+import React, { useState } from "react"
+import { Container, CssBaseline } from "@material-ui/core"
 
 import {
   Form,
@@ -8,8 +8,9 @@ import {
   SelectCombo,
   SelectCountry,
   SelectRegion,
-  SelectTimeZone
-} from "./lib";
+  SelectTimeZone,
+  TextEditor,
+} from "./lib"
 
 function App() {
   const [formState, setFormState] = useState({
@@ -22,11 +23,12 @@ function App() {
     capitalizedWords: "",
     favoriteColor: "",
     yourCountry: "",
-    stateOrProvince: ""
-  });
+    stateOrProvince: "",
+    markdownContent: "",
+  })
 
   function handleSubmit() {
-    alert(JSON.stringify(formState));
+    alert(JSON.stringify(formState))
   }
 
   return (
@@ -50,20 +52,21 @@ function App() {
         <SelectCombo
           options={[
             { value: "blue", label: "Blue" },
-            { value: "red", label: "Red" }
+            { value: "red", label: "Red" },
           ]}
           name="favoriteColor"
         />
         <SelectCountry name="yourCountry" />
         <SelectRegion country={formState.yourCountry} name="stateOrProvince" />
         <SelectTimeZone name="timeZone" />
+        <TextEditor name="markdownContent" />
 
         <br />
         <br />
         <SubmitButton>Submit</SubmitButton>
       </Form>
     </Container>
-  );
+  )
 }
 
-export default App;
+export default App
