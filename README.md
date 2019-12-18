@@ -1,10 +1,13 @@
 # material-ui-pack
 
+[![npm version](https://badge.fury.io/js/material-ui-pack.svg)](https://badge.fury.io/js/material-ui-pack)
+[![Build Status](https://travis-ci.org/claytonfbell/material-ui-pack.svg?branch=master)](https://travis-ci.org/claytonfbell/material-ui-pack)
+
 Why? I have a few React / Material UI projects, and find it very verbose to create forms so I created this reusable package of components.
 
 ```javascript
-import React, { useState } from "react";
-import { Container, CssBaseline } from "@material-ui/core";
+import React, { useState } from "react"
+import { Container, CssBaseline } from "@material-ui/core"
 
 import {
   Form,
@@ -13,8 +16,8 @@ import {
   SelectCombo,
   SelectCountry,
   SelectRegion,
-  SelectTimeZone
-} from "material-ui-pack";
+  SelectTimeZone,
+} from "material-ui-pack"
 
 function App() {
   const [formState, setFormState] = useState({
@@ -27,11 +30,11 @@ function App() {
     capitalizedWords: "",
     favoriteColor: "",
     yourCountry: "",
-    stateOrProvince: ""
-  });
+    stateOrProvince: "",
+  })
 
   function handleSubmit() {
-    alert(JSON.stringify(formState));
+    alert(JSON.stringify(formState))
   }
 
   return (
@@ -55,7 +58,7 @@ function App() {
         <SelectCombo
           options={[
             { value: "blue", label: "Blue" },
-            { value: "red", label: "Red" }
+            { value: "red", label: "Red" },
           ]}
           name="favoriteColor"
         />
@@ -68,8 +71,8 @@ function App() {
         <SubmitButton>Submit</SubmitButton>
       </Form>
     </Container>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
