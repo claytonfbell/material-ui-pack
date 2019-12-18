@@ -33,8 +33,7 @@ function DatePicker(props: DatePickerProps) {
         value={value}
         format={"M/D/YYYY"}
         onChange={e => {
-          const newValue = e?.format("YYYY-MM-DD") || null
-          setValue(props.name, newValue)
+          setValue(props.name, e === null ? null : e.format("YYYY-MM-DD"))
         }}
       />
     </MuiPickersUtilsProvider>

@@ -33,8 +33,7 @@ function DateTimePicker(props: DateTimePickerProps) {
         value={value}
         format={"M/D/YYYY h:mm A"}
         onChange={e => {
-          const newValue = e?.toISOString() || null
-          setValue(props.name, newValue)
+          setValue(props.name, e === null ? null : e.toISOString())
         }}
       />
     </MuiPickersUtilsProvider>

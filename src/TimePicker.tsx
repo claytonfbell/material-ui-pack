@@ -38,8 +38,7 @@ function TimePicker(props: TimePickerProps) {
         value={value}
         format={"h:mm A"}
         onChange={e => {
-          const newValue = e?.format("HH:mm:00") || null
-          setValue(props.name, newValue)
+          setValue(props.name, e === null ? null : e.format("HH:mm:00"))
         }}
       />
     </MuiPickersUtilsProvider>
