@@ -1,4 +1,5 @@
 import Form from "./Form"
+import Checkbox from "./Checkbox"
 import TextField from "./TextField"
 import TextEditor from "./TextEditor"
 import SelectCombo from "./SelectCombo"
@@ -10,6 +11,7 @@ import FormProvider, { useForm } from "./FormProvider"
 
 export {
   Form,
+  Checkbox,
   TextField,
   TextEditor,
   SelectCombo,
@@ -22,6 +24,7 @@ export {
 }
 export default {
   Form,
+  Checkbox,
   TextField,
   TextEditor,
   SelectCombo,

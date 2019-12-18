@@ -62,7 +62,7 @@ export interface TextEditorProps {
 }
 const TextEditor = (props: TextEditorProps) => {
   const { getValue, setValue } = useForm()
-  let value = getValue(props.name)
+  let value = getValue(props.name) as string
   value = value === undefined ? "" : value
   const label =
     props.label === undefined ? _.startCase(props.name) : props.label

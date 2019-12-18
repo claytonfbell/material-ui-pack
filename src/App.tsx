@@ -3,6 +3,7 @@ import { Container, CssBaseline } from "@material-ui/core"
 
 import {
   Form,
+  Checkbox,
   SubmitButton,
   TextField,
   SelectCombo,
@@ -60,6 +61,7 @@ function App() {
         <SelectRegion country={formState.yourCountry} name="stateOrProvince" />
         <SelectTimeZone name="timeZone" />
         <TextEditor name="markdownContent" />
+        <Checkbox name="aCheckbox" />
 
         <br />
         <br />
