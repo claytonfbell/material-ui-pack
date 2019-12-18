@@ -4,10 +4,12 @@ import { FormProps } from "./Form"
 
 export type FieldSizeType = "small" | "medium" | undefined
 
+export type FormValue = string | number | boolean | null
+
 type FormContextType = {
   formProps: FormProps
-  getValue: (name: string) => string | number | boolean
-  setValue: (name: string, value: string | number | boolean) => void
+  getValue: (name: string) => FormValue
+  setValue: (name: string, value: FormValue) => void
 }
 
 const FormContext = createContext<FormContextType | undefined>(undefined)
@@ -21,7 +23,7 @@ export function useForm() {
 
 export default function FormProvider(formProps: FormProps) {
   const setValue = useCallback(
-    (name: string, value: string | number | boolean) => {
+    (name: string, value: FormValue) => {
       var newState = { ...formProps.state }
       _.set(newState, name as string, value)
       formProps.setState(newState)
