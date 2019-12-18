@@ -8,6 +8,8 @@ export interface TextEditorProps {
   name: string
   label?: string
   defaultRichEditor?: boolean
+  required?: boolean
+  placedOnWhite?: boolean
 }
 export default function TextEditor(props: TextEditorProps) {
   const [richEdit, setRichEdit] = React.useState(props.defaultRichEditor)
@@ -16,10 +18,16 @@ export default function TextEditor(props: TextEditorProps) {
     <Box>
       <Box style={{ minHeight: 175 }}>
         <Collapse in={richEdit}>
-          <RichTextEditor name={props.name} label={props.label} />
+          <RichTextEditor
+            required={props.required}
+            name={props.name}
+            label={props.label}
+            placedOnWhite={props.placedOnWhite}
+          />
         </Collapse>
         <Collapse in={!richEdit}>
           <TextField
+            required={props.required}
             rows={7}
             rowsMax={10}
             multiline
