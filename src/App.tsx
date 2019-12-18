@@ -1,8 +1,3 @@
-# material-ui-pack
-
-Why? I have a few React / Material UI projects, and find it very verbose to create forms so I created this reusable package of components.
-
-```javascript
 import React, { useState } from "react";
 import { Container, CssBaseline } from "@material-ui/core";
 
@@ -14,7 +9,7 @@ import {
   SelectCountry,
   SelectRegion,
   SelectTimeZone
-} from "material-ui-pack";
+} from "./lib";
 
 function App() {
   const [formState, setFormState] = useState({
@@ -72,4 +67,3 @@ function App() {
 }
 
 export default App;
-```

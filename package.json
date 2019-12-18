@@ -1,20 +1,31 @@
 {
   "name": "material-ui-pack",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0"
+  "version": "0.1.5",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claytonfbell/material-ui-pack.git"
   },
+  "author": "Clayton Bell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/claytonfbell/material-ui-pack/issues"
+  },
+  "homepage": "https://github.com/claytonfbell/material-ui-pack#readme",
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      "@babel/preset-typescript"
+    ]
+  },
+  "types": "dist/lib.d.ts",
+  "main": "dist/lib.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "publish:npm": "rm -rf dist && mkdir dist && tsc --noEmit false --emitDeclarationOnly &&  babel src --extensions \".ts,.tsx\" -d dist --copy-files"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +41,39 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "country-region-data": "^1.5.1",
+    "i18n-iso-countries": "^4.3.1",
+    "lodash": "^4.17.15",
+    "moment-timezone": "^0.5.27"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "@material-ui/core": "^4.8.0",
+    "@material-ui/icons": "^4.5.1",
+    "@material-ui/lab": "^4.0.0-alpha.36"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.4",
+    "@material-ui/core": "^4.8.0",
+    "@material-ui/icons": "^4.5.1",
+    "@material-ui/lab": "^4.0.0-alpha.36",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.23",
+    "@types/lodash": "^4.14.149",
+    "@types/moment-timezone": "^0.5.12",
+    "@types/node": "^12.12.20",
+    "@types/react": "^16.9.16",
+    "@types/react-dom": "^16.9.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.3.0",
+    "typescript": "^3.7.3"
   }
 }
