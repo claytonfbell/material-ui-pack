@@ -6,7 +6,7 @@ import startCase from "lodash/startCase"
 import { useForm } from "./FormProvider"
 
 export interface OptionType {
-  value: string
+  value: string | number
   label: string
 }
 

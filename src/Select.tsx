@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import InputLabel from "@material-ui/core/InputLabel"
 import FormControl from "@material-ui/core/FormControl"
 import MUISelect from "@material-ui/core/Select"
@@ -23,6 +23,8 @@ export default function Select(props: SelectProps) {
 
   const label = props.label === undefined ? startCase(props.name) : props.label
   const value = getValue(props.name)
+  const [isNumeric] = useState(typeof value === "number")
+
   const disabled = busy || props.disabled
 
   const [labelWidth, setLabelWidth] = React.useState(0)
@@ -32,6 +34,21 @@ export default function Select(props: SelectProps) {
       inputLabel.current !== null ? inputLabel.current.offsetWidth : 0
     setLabelWidth(width)
   }, [])
+
+  function handleChange(
+    event: React.ChangeEvent<{
+      name?: string | undefined
+      value: unknown
+    }>,
+    child: React.ReactNode
+  ) {
+    let v = event.currentTarget.value as string
+    if (isNumeric) {
+      setValue(props.name, Number(v))
+      return
+    }
+    setValue(props.name, v)
+  }
 
   return (
     <FormControl
@@ -47,7 +64,7 @@ export default function Select(props: SelectProps) {
         fullWidth
         native
         value={value}
-        onChange={e => setValue(props.name, e.currentTarget.value as string)}
+        onChange={handleChange}
         labelWidth={labelWidth}
         inputProps={{
           name: props.name,
