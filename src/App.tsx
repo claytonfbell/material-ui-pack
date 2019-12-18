@@ -4,6 +4,7 @@ import { Container, CssBaseline } from "@material-ui/core"
 import {
   Form,
   Checkbox,
+  Select,
   SubmitButton,
   TextField,
   SelectCombo,
@@ -40,7 +41,7 @@ function App() {
         setState={setFormState}
         onSubmit={handleSubmit}
         margin="dense"
-        size="small"
+        size="medium"
         debug
       >
         <TextField name="normal" />
@@ -62,6 +63,13 @@ function App() {
         <SelectTimeZone name="timeZone" />
         <TextEditor name="markdownContent" />
         <Checkbox name="aCheckbox" />
+        <Select
+          name="color"
+          options={[
+            { value: "blue", label: "Blue" },
+            { value: "red", label: "Red" },
+          ]}
+        />
 
         <br />
         <br />
