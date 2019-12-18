@@ -53,11 +53,11 @@ export default function Select(props: SelectProps) {
           name: props.name,
         }}
       >
-        <option disabled selected={value === null || value === undefined}>
-          SELECT
-        </option>
+        <option disabled>SELECT</option>
         {props.options.map((o, x) => (
-          <option value={o.value}>{o.label}</option>
+          <option key={x} value={o.value}>
+            {o.label}
+          </option>
         ))}
       </MUISelect>
     </FormControl>

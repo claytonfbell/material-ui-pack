@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Container, CssBaseline } from "@material-ui/core"
+import { Container, CssBaseline, Typography } from "@material-ui/core"
 
 import {
   Form,
@@ -35,6 +35,7 @@ function App() {
 
   return (
     <Container maxWidth="xs">
+      <Typography variant="h4">Examples</Typography>
       <CssBaseline />
       <Form
         state={formState}
