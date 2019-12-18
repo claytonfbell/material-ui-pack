@@ -4,7 +4,7 @@ import FormControl from "@material-ui/core/FormControl"
 import MUISelect from "@material-ui/core/Select"
 import startCase from "lodash/startCase"
 
-import { OptionType } from "../dist/SelectCombo"
+import { OptionType } from "./SelectCombo"
 import { useForm } from "./FormProvider"
 
 export interface SelectProps {
