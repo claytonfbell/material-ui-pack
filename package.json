@@ -44,9 +44,13 @@
   },
   "dependencies": {
     "country-region-data": "^1.5.1",
+    "draft-js": "^0.11.3",
+    "draft-js-export-markdown": "^1.4.0",
+    "draft-js-import-markdown": "^1.4.0",
     "i18n-iso-countries": "^4.3.1",
     "lodash": "^4.17.15",
-    "moment-timezone": "^0.5.27"
+    "moment-timezone": "^0.5.27",
+    "react-draft-wysiwyg": "^1.14.1"
   },
   "peerDependencies": {
     "react": "^16.12.0",
