@@ -3,6 +3,7 @@ import DatePicker from "./DatePicker"
 import DateTimePicker from "./DateTimePicker"
 import Form from "./Form"
 import FormProvider, { useForm } from "./FormProvider"
+import RichTextEditor from "./RichTextEditor"
 import Select from "./Select"
 import SelectCombo from "./SelectCombo"
 import SelectRegion from "./SelectRegion"
@@ -19,6 +20,7 @@ export {
   DateTimePicker,
   Form,
   FormProvider,
+  RichTextEditor,
   Select,
   SelectCombo,
   SubmitButton,
@@ -36,6 +38,7 @@ export default {
   DateTimePicker,
   Form,
   FormProvider,
+  RichTextEditor,
   Select,
   SelectCombo,
   SubmitButton,
