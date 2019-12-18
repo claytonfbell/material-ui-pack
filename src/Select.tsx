@@ -38,7 +38,6 @@ export default function Select(props: SelectProps) {
       disabled={disabled}
       fullWidth
       variant="outlined"
-      className={classes.formControl}
       size={size}
       margin={margin}
     >
