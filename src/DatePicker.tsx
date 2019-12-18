@@ -1,17 +1,17 @@
 import React from "react"
-import { DateTimePicker as MUIDateTimePicker } from "@material-ui/pickers"
+import { DatePicker as MUIDatePicker } from "@material-ui/pickers"
 import { MuiPickersUtilsProvider } from "@material-ui/pickers"
 import startCase from "lodash/startCase"
 import MomentUtils from "@date-io/moment"
 
 import { useForm } from "./FormProvider"
 
-interface DateTimePickerProps {
+interface DatePickerProps {
   name: string
   label?: string
   disabled?: boolean
 }
-function DateTimePicker(props: DateTimePickerProps) {
+function DatePicker(props: DatePickerProps) {
   const {
     formProps: { busy, size, margin },
     getValue,
@@ -23,7 +23,7 @@ function DateTimePicker(props: DateTimePickerProps) {
 
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
-      <MUIDateTimePicker
+      <MUIDatePicker
         fullWidth
         label={label}
         size={size}
@@ -31,9 +31,9 @@ function DateTimePicker(props: DateTimePickerProps) {
         disabled={props.disabled || busy}
         inputVariant="outlined"
         value={value}
-        format={"M/D/YYYY h:mm A"}
+        format={"M/D/YYYY"}
         onChange={e => {
-          const newValue = e?.toISOString() || null
+          const newValue = e?.format("YYYY-MM-DD") || null
           setValue(props.name, newValue)
         }}
       />
@@ -41,4 +41,4 @@ function DateTimePicker(props: DateTimePickerProps) {
   )
 }
 
-export default DateTimePicker
+export default DatePicker

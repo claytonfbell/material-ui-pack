@@ -1,29 +1,34 @@
 import React from "react"
-import { DateTimePicker as MUIDateTimePicker } from "@material-ui/pickers"
+import { TimePicker as MUITimePicker } from "@material-ui/pickers"
 import { MuiPickersUtilsProvider } from "@material-ui/pickers"
 import startCase from "lodash/startCase"
 import MomentUtils from "@date-io/moment"
+import moment from "moment"
 
 import { useForm } from "./FormProvider"
 
-interface DateTimePickerProps {
+interface TimePickerProps {
   name: string
   label?: string
   disabled?: boolean
 }
-function DateTimePicker(props: DateTimePickerProps) {
+function TimePicker(props: TimePickerProps) {
   const {
     formProps: { busy, size, margin },
     getValue,
     setValue,
   } = useForm()
-  const value = getValue(props.name) as string | null
+  let value = getValue(props.name) as string | null
+  if (value === undefined || value === null) {
+    value = moment().format("HH:mm:ss")
+  }
+  value = `${moment().format("YYYY-MM-DD")} ${value}`
 
   const label = props.label === undefined ? startCase(props.name) : props.label
 
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
-      <MUIDateTimePicker
+      <MUITimePicker
         fullWidth
         label={label}
         size={size}
@@ -31,9 +36,9 @@ function DateTimePicker(props: DateTimePickerProps) {
         disabled={props.disabled || busy}
         inputVariant="outlined"
         value={value}
-        format={"M/D/YYYY h:mm A"}
+        format={"h:mm A"}
         onChange={e => {
-          const newValue = e?.toISOString() || null
+          const newValue = e?.format("HH:mm:00") || null
           setValue(props.name, newValue)
         }}
       />
@@ -41,4 +46,4 @@ function DateTimePicker(props: DateTimePickerProps) {
   )
 }
 
-export default DateTimePicker
+export default TimePicker

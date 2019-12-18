@@ -12,8 +12,10 @@ import {
   SelectRegion,
   SelectTimeZone,
   TextEditor,
+  DateTimePicker,
+  DatePicker,
+  TimePicker,
 } from "./lib"
-import DateTimePicker from "./DateTimePicker"
 
 function App() {
   const [formState, setFormState] = useState({
@@ -82,6 +84,8 @@ function App() {
           ]}
         />
         <DateTimePicker name="dateAndTime" />
+        <DatePicker name="date" />
+        <TimePicker name="time" />
 
         <br />
         <br />
