@@ -123,12 +123,16 @@ The wrapped `TextField` will default with `variant="outlined"` and you can skip 
 
 ### Checkbox
 
+![example](./src/examples/CheckboxExample.gif)
+
 ```tsx
 // auto labeled "A Checkbox"
 <Checkbox name="aCheckbox" />
 ```
 
 ### SelectCombo
+
+![example](./src/examples/SelectComboExample.gif)
 
 A drop-down/input combo box. User can enter or select options.
 
