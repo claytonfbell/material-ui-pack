@@ -1,6 +1,6 @@
 import React from "react"
-import countries from "i18n-iso-countries"
 
+import countries from "./countries"
 import SelectCombo, { BaseSelectComboProps } from "./SelectCombo"
 
 interface SelectCountryProps extends BaseSelectComboProps {}
@@ -13,5 +13,9 @@ export default function SelectCountry(props: SelectCountryProps) {
     }))
   }
 
-  return <SelectCombo {...props} options={getOptions()} matchValue />
+  return (
+    <>
+      <SelectCombo {...props} options={getOptions()} matchValue />
+    </>
+  )
 }

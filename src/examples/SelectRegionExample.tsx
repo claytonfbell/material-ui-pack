@@ -1,8 +1,8 @@
 import React from "react"
 import Form from "../Form"
-import SelectCombo from "../SelectCombo"
+import SelectRegion from "../SelectRegion"
 
-export default function SelectComboExample() {
+export default function SelectRegionExample() {
   const [state, setState] = React.useState({ myInput: "" })
   const [busy, setBusy] = React.useState(false)
   return (
@@ -13,13 +13,7 @@ export default function SelectComboExample() {
       busy={busy}
       margin="dense"
     >
-      <SelectCombo
-        options={[
-          { value: "blue", label: "Blue" },
-          { value: "red", label: "Red" },
-        ]}
-        name="favoriteColor"
-      />
+      <SelectRegion name="stateOrProvince" country="USA" />
     </Form>
   )
 }

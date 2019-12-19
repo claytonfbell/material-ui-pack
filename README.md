@@ -152,6 +152,8 @@ A drop-down/input combo box. User can enter or select options.
 
 ### SelectCountry
 
+![example](./src/examples/SelectCountryExample.gif)
+
 This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-countries) to build a full list of countries for your address forms. Values are set as [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
 
 ```tsx
@@ -160,6 +162,8 @@ This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-
 
 ### SelectRegion
 
+![example](./src/examples/SelectRegionExample.gif)
+
 This component uses [country-region-data](https://www.npmjs.com/package/country-region-data) to build a full list of states/provinces with the props value `country`.
 
 ```tsx
@@ -167,6 +171,8 @@ This component uses [country-region-data](https://www.npmjs.com/package/country-
 ```
 
 ### SelectTimeZone
+
+![example](./src/examples/SelectTimeZoneExample.gif)
 
 This component uses [moment-timezone](https://momentjs.com/timezone/) to build a full list of time zones.
 
@@ -182,6 +188,8 @@ This component uses [moment-timezone](https://momentjs.com/timezone/) to build a
 ```
 
 ### Select
+
+![example](./src/examples/SelectTimeZoneExample.gif)
 
 This is a simple native drop-down select component.
 
@@ -201,6 +209,8 @@ This is a simple native drop-down select component.
 
 ### RichTextEditor (markdown format)
 
+![example](./src/examples/RichTextEditorExample.gif)
+
 This component uses [react-draft-wysiwyg](https://jpuri.github.io/react-draft-wysiwyg/) and sets value in markdown formatting.
 
 ```tsx
@@ -208,6 +218,8 @@ This component uses [react-draft-wysiwyg](https://jpuri.github.io/react-draft-wy
 ```
 
 ### TextEditor
+
+![example](./src/examples/TextEditorExample.gif)
 
 This component provides user choice to toggle between a `RichTextEditor` or a normal multiline `TextField`.
 
