@@ -26,7 +26,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "publish:npm": "rm -rf dist && mkdir dist && tsc --noEmit false --emitDeclarationOnly &&  babel src --extensions \".ts,.tsx\" -d dist --copy-files",
-    "toc": "markdown-toc README.md"
+    "toc": "markdown-toc --no-firsth1 README.md"
   },
   "eslintConfig": {
     "extends": "react-app"
