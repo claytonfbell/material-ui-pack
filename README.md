@@ -5,22 +5,26 @@
 
 Why? Because I love the [Material UI](https://material-ui.com/) api but `<TextField name="phone" phone>` is nicer than `<TextField variant="outlined" size="medium" value={state.phone} label="Phone" onChange={handlePhoneFormatAndSetState}/>` when you manage a lot of forms and many projects.
 
+<!-- toc -->
+
+- [Install](#install)
 - [Form](#form)
-- [useForm Hook](#useform-hook)
-- [SubmitButton](#submitbutton)
-- [TextField](#textfield)
-- [Boolean props](#boolean-props)
-- [Checkbox](#checkbox)
-- [SelectCombo](#selectcombo)
-- [SelectCountry](#selectcountry)
-- [SelectRegion](#selectregion)
-- [SelectTimeZone](#selecttimezone)
-- [Select](#select)
-- [RichTextEditor](#richtexteditor)
-- [TextEditor](#texteditor)
-- [DateTimePicker](#datetimepicker)
-- [DatePicker](#datepicker)
-- [TimePicker](#timepicker)
+  - [useForm Hook](#useform-hook)
+  - [SubmitButton](#submitbutton)
+  - [TextField](#textfield)
+  - [Checkbox](#checkbox)
+  - [SelectCombo](#selectcombo)
+  - [SelectCountry](#selectcountry)
+  - [SelectRegion](#selectregion)
+  - [SelectTimeZone](#selecttimezone)
+  - [Select](#select)
+  - [RichTextEditor](#richtexteditor)
+  - [TextEditor](#texteditor)
+  - [DateTimePicker](#datetimepicker)
+  - [DatePicker](#datepicker)
+  - [TimePicker](#timepicker)
+
+<!-- tocstop -->
 
 ## Install
 
@@ -108,9 +112,14 @@ No need to set `type="submit"` or an `onClick` action.
 
 The wrapped `TextField` will default with `variant="outlined"` and you can skip properties such as `label`, `value`, and `onChange`. Labels are automtically derived from `lodash.startCase` so that `TextField` with `name="firstName"` will be labeled _First Name_.
 
-| Property | Description                                                                                                                                                                                          |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name     | String key name from your state object, can also be an object path like `address.street1` or `alternateEmails[0].email`. It uses [lodash](https://lodash.com/docs/) to get/set values in your state. |
+| Property    | Description                                                                                                                                                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | String key name from your state object, can also be an object path like `address.street1` or `alternateEmails[0].email`. It uses [lodash](https://lodash.com/docs/) to get/set values in your state. |
+| email       | All lowercase formatting                                                                                                                                                                             |
+| password    | Hidden text with toggle button to view                                                                                                                                                               |
+| newPassword | Display warning if it is too short or does not contain upper, lower, and numeric characters                                                                                                          |
+| phone       | Standard 10 digit phone formatting                                                                                                                                                                   |
+| capitalize  | Auto capitcalize words                                                                                                                                                                               |
 
 ```tsx
 // labeled "First Name"
@@ -118,19 +127,7 @@ The wrapped `TextField` will default with `variant="outlined"` and you can skip 
 
 // supports object paths in the name (uses lodash.get() and lodash.set())
 <TextField name="alternateEmails[0]" label="Alternate Email"/>
-```
 
-#### Boolean props
-
-| Property    | Description                                                                                 |
-| ----------- | ------------------------------------------------------------------------------------------- |
-| email       | All lowercase formatting                                                                    |
-| password    | Hidden text with toggle button to view                                                      |
-| newPassword | Display warning if it is too short or does not contain upper, lower, and numeric characters |
-| phone       | Standard 10 digit phone formatting                                                          |
-| capitalize  | Auto capitcalize words                                                                      |
-
-```tsx
 <TextField name="email" email />
 <TextField name="password" password />
 <TextField name="newPassword" newPassword />
