@@ -1,9 +1,15 @@
 import React from "react"
 
 import SubmitButtonExample from "./examples/SubmitButtonExample"
+import TextFieldExample from "./examples/TextFieldExample"
 
 function App() {
-  return <SubmitButtonExample />
+  return (
+    <>
+      <TextFieldExample />
+      <SubmitButtonExample />
+    </>
+  )
 }
 
 export default App
