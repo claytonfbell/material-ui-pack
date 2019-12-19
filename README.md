@@ -14,13 +14,13 @@ npm i material-ui-pack
 npm i @material-ui/core
 ```
 
-## Quick Form
+## Form
 
-Using hooks, you pass your own `state` and `setState` into the surrounding `Form` component that contains your form values.
+Pass your own `state` and `setState` into the surrounding `Form` component.
 
 | Property | Description                                                                   |
 | -------- | ----------------------------------------------------------------------------- |
-| state    | From React useState to contain all your form values.                          |
+| state    | React useState to contain all your form values.                               |
 | setState | From React useState                                                           |
 | onSubmit | Callback function to fire when form is submitted                              |
 | busy     | Boolean used to disable inputs and submit button after your form is submitted |
@@ -87,10 +87,16 @@ No need to set `type="submit"` or an `onClick` action. It will
 
 The wrapped `TextField` will default with `variant="outlined"` and you can skip properties such as `label`, `value`, and `onChange`. Labels are automtically derived from `lodash.startCase` so that `TextField` with `name="firstName"` will be labeled _First Name_.
 
+| Property | Description                                                                                                                                                                                          |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name     | String key name from your state object, can also be an object path like `address.street1` or `alternateEmails[0].email`. It uses [lodash](https://lodash.com/docs/) to get/set values in your state. |
+
 ```tsx
 // labeled "First Name"
 <TextField name="firstName" />
-<TextField name="overrideLabel" label="My Custom Label" />
+
+// supports object paths in the name (uses lodash.get() and lodash.set())
+<TextField name="alternateEmails[0]" label="Alternate Email"/>
 ```
 
 #### Boolean props
