@@ -31,8 +31,8 @@ Why? Because I love the [Material UI](https://material-ui.com/) api but `<TextFi
 ```bash
 npm i material-ui-pack
 
-# install Material UI peer dependency
-npm i @material-ui/core
+# install Material UI peer dependencies
+npm i @material-ui/core @material-ui/icons @material-ui/pickers @material-ui/lab
 ```
 
 ## Form
