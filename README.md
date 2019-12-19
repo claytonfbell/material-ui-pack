@@ -171,7 +171,7 @@ A drop-down/input combo box. User can enter or select options.
 This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-countries) to build a full list of countries for your address forms. Values are set as [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
 
 ```tsx
-<SelectCountry name="yourCountry" />
+<SelectCountry name="country" />
 ```
 
 ### SelectRegion
@@ -181,7 +181,7 @@ This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-
 This component uses [country-region-data](https://www.npmjs.com/package/country-region-data) to build a full list of states/provinces with the props value `country`.
 
 ```tsx
-<SelectRegion country={state.yourCountry} name="stateOrProvince" />
+<SelectRegion country="USA" name="stateOrProvince" />
 ```
 
 ### SelectTimeZone
@@ -192,13 +192,6 @@ This component uses [moment-timezone](https://momentjs.com/timezone/) to build a
 
 ```tsx
 <SelectTimeZone name="timeZone" />
-<Select
-    name="color"
-    options={[
-    { value: "blue", label: "Blue" },
-    { value: "red", label: "Red" },
-    ]}
-/>
 ```
 
 ### Select
