@@ -25,7 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "publish:npm": "rm -rf dist && mkdir dist && tsc --noEmit false --emitDeclarationOnly &&  babel src --extensions \".ts,.tsx\" -d dist --copy-files"
+    "publish:npm": "rm -rf dist && mkdir dist && tsc --noEmit false --emitDeclarationOnly &&  babel src --extensions \".ts,.tsx\" -d dist --copy-files",
+    "toc": "markdown-toc README.md"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -77,6 +78,7 @@
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
     "@types/react-draft-wysiwyg": "^1.13.0",
+    "markdown-toc": "^1.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
