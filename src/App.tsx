@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Container, CssBaseline, Typography } from "@material-ui/core"
+import CustomFormInput from "./CustomFormInput"
 
 import {
   Form,
@@ -86,6 +87,7 @@ function App() {
         <DateTimePicker name="dateAndTime" />
         <DatePicker name="date" />
         <TimePicker name="time" />
+        <CustomFormInput name="myCustomFormInput" />
 
         <br />
         <br />
