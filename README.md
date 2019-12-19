@@ -110,7 +110,7 @@ No need to set `type="submit"` or an `onClick` action.
 
 ![example](./src/examples/TextFieldExample.gif)
 
-The wrapped `TextField` will default with `variant="outlined"` and you can skip properties such as `label`, `value`, and `onChange`. Labels are automtically derived from `lodash.startCase` so that `TextField` with `name="firstName"` will be labeled _First Name_.
+The wrapped `TextField` will default with `variant="outlined"` and you can skip properties such as `label`, `value`, and `onChange`. Labels are automtically derived from the name property `name="firstName"` will be labeled _First Name_.
 
 | Property    | Description                                                                                                                                                                                          |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
