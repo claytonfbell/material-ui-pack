@@ -77,9 +77,9 @@ export default function CustomFormInput(props) {
 
 ### SubmitButton
 
-No need to set `type="submit"` or an `onClick` action.
-
 ![example](./src/examples/SubmitButtonExample.gif)
+
+No need to set `type="submit"` or an `onClick` action.
 
 ```tsx
 <SubmitButton>Submit</SubmitButton>
