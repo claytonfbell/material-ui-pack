@@ -189,7 +189,7 @@ This component uses [moment-timezone](https://momentjs.com/timezone/) to build a
 
 ### Select
 
-![example](./src/examples/SelectTimeZoneExample.gif)
+![example](./src/examples/SelectExample.gif)
 
 This is a simple native drop-down select component.
 
@@ -207,7 +207,7 @@ This is a simple native drop-down select component.
 />
 ```
 
-### RichTextEditor (markdown format)
+### RichTextEditor
 
 ![example](./src/examples/RichTextEditorExample.gif)
 
@@ -228,6 +228,8 @@ This component provides user choice to toggle between a `RichTextEditor` or a no
 ```
 
 ### DateTimePicker
+
+![example](./src/examples/DateTimePickerExample.gif)
 
 This component uses [@material-ui/pickers](https://material-ui-pickers.dev/) and sets values in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 

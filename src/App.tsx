@@ -11,6 +11,7 @@ import SelectTimeZoneExample from "./examples/SelectTimeZoneExample"
 import SelectExample from "./examples/SelectExample"
 import RichTextEditorExample from "./examples/RichTextEditorExample"
 import TextEditorExample from "./examples/TextEditorExample"
+import DateTimePickerExample from "./examples/DateTimePickerExample"
 
 function App() {
   return (
@@ -26,7 +27,8 @@ function App() {
       <SelectExample />
       <RichTextEditorExample />
       <TextEditorExample />
-      {/* <SubmitButtonExample /> */}
+      <DateTimePickerExample />
+      <SubmitButtonExample />
     </Container>
   )
 }
