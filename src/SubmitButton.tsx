@@ -1,13 +1,13 @@
-import React from "react";
-import Button, { ButtonProps } from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import React from "react"
+import Button, { ButtonProps } from "@material-ui/core/Button"
+import CircularProgress from "@material-ui/core/CircularProgress"
 
-import { useForm } from "./FormProvider";
+import { useForm } from "./FormProvider"
 
 export default function SubmitButton(props: ButtonProps) {
   const {
-    formProps: { busy, size }
-  } = useForm();
+    formProps: { busy, size },
+  } = useForm()
 
   const newProps: ButtonProps = {
     type: "submit",
@@ -28,7 +28,7 @@ export default function SubmitButton(props: ButtonProps) {
       </>
     ) : (
       props.children
-    )
-  };
-  return <Button {...newProps} />;
+    ),
+  }
+  return <Button {...newProps} />
 }
