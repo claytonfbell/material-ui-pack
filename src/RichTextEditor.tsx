@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   editor: {
     paddingLeft: 20,
     paddingRight: 20,
-    borderTop: "1px solid #c4c4c4",
+    borderTop: `1px solid ${theme.palette.background.paper}`,
     minHeight: 100,
   },
   label: {
@@ -53,6 +53,9 @@ const useStyles = makeStyles(theme => ({
       color: theme.palette.primary.main,
     },
   },
+  toolbar: {
+    backgroundColor: theme.palette.background.default,
+  },
 }))
 
 export interface RichTextEditorProps {
@@ -60,14 +63,16 @@ export interface RichTextEditorProps {
   label?: string
   required?: boolean
   placedOnWhite?: boolean
+  darkMode?: boolean
 }
 const RickTextEditor = (props: RichTextEditorProps) => {
+  const classes = useStyles()
+
   const { getValue, setValue } = useForm()
   let value = getValue(props.name) as string
   value = value === undefined ? "" : value
   const label =
     props.label === undefined ? _.startCase(props.name) : props.label
-  const classes = useStyles()
   const [hasFocus, setHasFocus] = useState(false)
   const [editorState, setEditorState] = useState(
     getEditorStateWithMarkdown(value)
@@ -116,6 +121,7 @@ const RickTextEditor = (props: RichTextEditorProps) => {
           onFocus={handleFocus}
           onBlur={handleBlur}
           toolbar={TOOLBAR}
+          toolbarClassName={classes.toolbar}
         />
       </Typography>
     </div>

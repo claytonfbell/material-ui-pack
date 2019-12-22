@@ -13,6 +13,8 @@ import SubmitButton from "./SubmitButton"
 import TextEditor from "./TextEditor"
 import TextField from "./TextField"
 import TimePicker from "./TimePicker"
+import { DarkModeProvider, useDarkMode } from "./DarkModeProvider"
+import DarkModeToggle from "./DarkModeToggle"
 
 export {
   Checkbox,
@@ -31,6 +33,9 @@ export {
   TextField,
   TimePicker,
   useForm,
+  DarkModeProvider,
+  DarkModeToggle,
+  useDarkMode,
 }
 export default {
   Checkbox,
@@ -49,4 +54,7 @@ export default {
   TextField,
   TimePicker,
   useForm,
+  DarkModeProvider,
+  DarkModeToggle,
+  useDarkMode,
 }
