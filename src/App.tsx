@@ -19,6 +19,9 @@ import TextEditorExample from "./examples/TextEditorExample"
 import DateTimePickerExample from "./examples/DateTimePickerExample"
 import { useDarkMode, DarkModeProvider } from "./DarkModeProvider"
 import DarkModeToggle from "./DarkModeToggle"
+import CurrencyFieldExample from "./examples/CurrencyFieldExample"
+import PercentageFieldExample from "./examples/PercentageFieldExample"
+import EmailFieldExample from "./examples/EmailFieldExample"
 
 function App() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -47,6 +50,9 @@ function App() {
         <TextEditorExample />
         <DateTimePickerExample />
         <SubmitButtonExample />
+        <CurrencyFieldExample />
+        <PercentageFieldExample />
+        <EmailFieldExample />
       </Container>
     </ThemeProvider>
   )

@@ -19,7 +19,7 @@ export interface FormTextFieldProps extends BaseTextFieldProps {
   InputProps?: Partial<OutlinedInputProps>
   inputProps?: OutlinedInputProps["inputProps"]
   capitalize?: boolean
-  email?: boolean
+  lowercase?: boolean
   phone?: boolean
   newPassword?: boolean
   password?: boolean
@@ -45,7 +45,7 @@ export default function TextField(props: FormTextFieldProps) {
           .map(s => s.charAt(0).toUpperCase() + s.substring(1))
           .join(" ")
     : fmt
-  fmt = props.email ? (v: string) => v.toLowerCase() : fmt
+  fmt = props.lowercase ? (v: string) => v.toLowerCase() : fmt
   fmt = props.phone
     ? (v: string) =>
         v
@@ -88,7 +88,6 @@ export default function TextField(props: FormTextFieldProps) {
 
   // autoComplete
   let autoComplete: string | undefined = undefined
-  autoComplete = props.email ? "email" : autoComplete
   autoComplete = props.newPassword ? "new-password" : autoComplete
   autoComplete = props.password ? "current-password" : autoComplete
 
@@ -104,7 +103,7 @@ export default function TextField(props: FormTextFieldProps) {
   // reduce props to TextFieldProps
   const {
     capitalize,
-    email,
+    lowercase,
     phone,
     newPassword,
     password,

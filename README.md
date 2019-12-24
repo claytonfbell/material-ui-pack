@@ -9,20 +9,24 @@ Why? Because I love the [Material UI](https://material-ui.com/) api but `<TextFi
 
 - [Install](#install)
 - [Form](#form)
-  - [useForm Hook](#useform-hook)
-  - [SubmitButton](#submitbutton)
-  - [TextField](#textfield)
-  - [Checkbox](#checkbox)
-  - [SelectCombo](#selectcombo)
-  - [SelectCountry](#selectcountry)
-  - [SelectRegion](#selectregion)
-  - [SelectTimeZone](#selecttimezone)
-  - [Select](#select)
-  - [RichTextEditor](#richtexteditor)
-  - [TextEditor](#texteditor)
-  - [DateTimePicker](#datetimepicker)
-  - [DatePicker](#datepicker)
-  - [TimePicker](#timepicker)
+  * [useForm Hook](#useform-hook)
+  * [SubmitButton](#submitbutton)
+  * [TextField](#textfield)
+  * [CurrencyField](#currencyfield)
+  * [PercentageField](#percentagefield)
+  * [EmailField](#emailfield)
+  * [Checkbox](#checkbox)
+  * [SelectCombo](#selectcombo)
+  * [SelectCountry](#selectcountry)
+  * [SelectRegion](#selectregion)
+  * [SelectTimeZone](#selecttimezone)
+  * [Select](#select)
+  * [RichTextEditor](#richtexteditor)
+  * [TextEditor](#texteditor)
+  * [DateTimePicker](#datetimepicker)
+  * [DatePicker](#datepicker)
+  * [TimePicker](#timepicker)
+- [Dark Mode](#dark-mode)
 
 <!-- tocstop -->
 
@@ -116,7 +120,7 @@ The wrapped `TextField` will default with `variant="outlined"` and you can skip 
 | Property    | Description                                                                                                                                                                                          |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name        | String key name from your state object, can also be an object path like `address.street1` or `alternateEmails[0].email`. It uses [lodash](https://lodash.com/docs/) to get/set values in your state. |
-| email       | All lowercase formatting                                                                                                                                                                             |
+| lowercase   | All lowercase formatting                                                                                                                                                                             |
 | password    | Hidden text with toggle button to view                                                                                                                                                               |
 | newPassword | Display warning if it is too short or does not contain upper, lower, and numeric characters                                                                                                          |
 | phone       | Standard 10 digit phone formatting                                                                                                                                                                   |
@@ -129,11 +133,37 @@ The wrapped `TextField` will default with `variant="outlined"` and you can skip 
 // supports object paths in the name (uses lodash.get() and lodash.set())
 <TextField name="alternateEmails[0]" label="Alternate Email"/>
 
-<TextField name="email" email />
+<TextField name="email" lowercase />
 <TextField name="password" password />
 <TextField name="newPassword" newPassword />
 <TextField name="phone" phone />
 <TextField name="capitalizedWords" capitalize />
+```
+
+### CurrencyField
+
+![example](./src/examples/CurrencyFieldExample.gif)
+
+```tsx
+<CurrencyField name="price" />
+```
+
+### PercentageField
+
+![example](./src/examples/PercentageFieldExample.gif)
+
+```tsx
+<PercentageField name="taxRate" decimals={3} />
+```
+
+### EmailField
+
+![example](./src/examples/EmailFieldExample.gif)
+
+Contains an auto-complete with popular mail servers.
+
+```tsx
+<EmailField name="email" />
 ```
 
 ### Checkbox
@@ -259,4 +289,40 @@ This component uses [@material-ui/pickers](https://material-ui-pickers.dev/) and
 
 ```tsx
 <TimePicker name="time" />
+```
+
+## Dark Mode
+
+Allow `useDarkMode` and `DarkModeProvider` to manage dark mode state. User can select dark mode in their operating system OR using the `DarkModeToggle` switch component. It sets a storage property to remember the user's preference.
+
+```tsx
+import React from "react"
+import { ThemeProvider, CssBaseline } from "@material-ui/core"
+import { useDarkMode, DarkModeProvider } from "material-ui-pack/dist/DarkModeProvider"
+import DarkModeToggle from "material-ui-pack/dist/DarkModeToggle"
+
+function ThemedContent() {
+  const { createMuiThemeWithDarkMode } = useDarkMode()
+  const theme = createMuiThemeWithDarkMode({
+    palette: {
+      primary: {
+        main: "#db544c",
+      },
+    },
+  })
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <DarkModeToggle />
+    </ThemeProvider>
+  )
+}
+
+export default function App() {
+  return (
+    <DarkModeProvider>
+      <ThemedContent />
+    </DarkModeProvider>
+  )
+
 ```

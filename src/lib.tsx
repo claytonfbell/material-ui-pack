@@ -15,13 +15,19 @@ import TextField from "./TextField"
 import TimePicker from "./TimePicker"
 import { DarkModeProvider, useDarkMode } from "./DarkModeProvider"
 import DarkModeToggle from "./DarkModeToggle"
+import PercentageField from "./PercentageField"
+import CurrencyField from "./CurrencyField"
+import EmailField from "./EmailField"
 
 export {
   Checkbox,
+  CurrencyField,
   DatePicker,
   DateTimePicker,
+  EmailField,
   Form,
   FormProvider,
+  PercentageField,
   RichTextEditor,
   Select,
   SelectCombo,
@@ -39,10 +45,13 @@ export {
 }
 export default {
   Checkbox,
+  CurrencyField,
   DatePicker,
   DateTimePicker,
+  EmailField,
   Form,
   FormProvider,
+  PercentageField,
   RichTextEditor,
   Select,
   SelectCombo,

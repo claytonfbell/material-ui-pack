@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, ChangeEvent } from "react"
 import Autocomplete from "@material-ui/lab/Autocomplete"
 import TextField from "@material-ui/core/TextField"
 import startCase from "lodash/startCase"
@@ -15,10 +15,14 @@ export interface BaseSelectComboProps {
   label?: string
   disabled?: boolean
   matchValue?: boolean
+  autoComplete?: string
 }
 
 export interface SelectComboProps extends BaseSelectComboProps {
   options: OptionType[]
+  onInputChange?:
+    | ((event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void)
+    | undefined
 }
 export default function SelectCombo(props: SelectComboProps) {
   const {
@@ -65,6 +69,9 @@ export default function SelectCombo(props: SelectComboProps) {
     }
   }, [hasFocus])
 
+  const handleInputChange =
+    props.onInputChange !== undefined ? props.onInputChange : () => {}
+
   return (
     <>
       {selected !== undefined && (
@@ -92,8 +99,9 @@ export default function SelectCombo(props: SelectComboProps) {
               label={label}
               variant="outlined"
               fullWidth
-              onChange={() => {}}
+              onChange={handleInputChange}
               onBlur={() => {}}
+              autoComplete={props.autoComplete}
             />
           )}
         />
