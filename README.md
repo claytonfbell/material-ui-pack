@@ -9,23 +9,23 @@ Why? Because I love the [Material UI](https://material-ui.com/) api but `<TextFi
 
 - [Install](#install)
 - [Form](#form)
-  * [useForm Hook](#useform-hook)
-  * [SubmitButton](#submitbutton)
-  * [TextField](#textfield)
-  * [CurrencyField](#currencyfield)
-  * [PercentageField](#percentagefield)
-  * [EmailField](#emailfield)
-  * [Checkbox](#checkbox)
-  * [SelectCombo](#selectcombo)
-  * [SelectCountry](#selectcountry)
-  * [SelectRegion](#selectregion)
-  * [SelectTimeZone](#selecttimezone)
-  * [Select](#select)
-  * [RichTextEditor](#richtexteditor)
-  * [TextEditor](#texteditor)
-  * [DateTimePicker](#datetimepicker)
-  * [DatePicker](#datepicker)
-  * [TimePicker](#timepicker)
+  - [useForm Hook](#useform-hook)
+  - [SubmitButton](#submitbutton)
+  - [TextField](#textfield)
+  - [CurrencyField](#currencyfield)
+  - [PercentageField](#percentagefield)
+  - [EmailField](#emailfield)
+  - [Checkbox](#checkbox)
+  - [SelectCombo](#selectcombo)
+  - [SelectCountry](#selectcountry)
+  - [SelectRegion](#selectregion)
+  - [SelectTimeZone](#selecttimezone)
+  - [Select](#select)
+  - [RichTextEditor](#richtexteditor)
+  - [TextEditor](#texteditor)
+  - [DateTimePicker](#datetimepicker)
+  - [DatePicker](#datepicker)
+  - [TimePicker](#timepicker)
 - [Dark Mode](#dark-mode)
 
 <!-- tocstop -->
@@ -292,6 +292,8 @@ This component uses [@material-ui/pickers](https://material-ui-pickers.dev/) and
 ```
 
 ## Dark Mode
+
+![example](./src/examples/DarkModeToggleExample.gif)
 
 Allow `useDarkMode` and `DarkModeProvider` to manage dark mode state. User can select dark mode in their operating system OR using the `DarkModeToggle` switch component. It sets a storage property to remember the user's preference.
 
