@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from "react"
+import React, { useState, useEffect } from "react"
 import Autocomplete from "@material-ui/lab/Autocomplete"
 import TextField from "@material-ui/core/TextField"
 import startCase from "lodash/startCase"
@@ -20,9 +20,8 @@ export interface BaseSelectComboProps {
 
 export interface SelectComboProps extends BaseSelectComboProps {
   options: OptionType[]
-  onInputChange?:
-    | ((event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void)
-    | undefined
+  onInputChange?: (str: string) => void
+  formatter?: (str: string) => string
 }
 export default function SelectCombo(props: SelectComboProps) {
   const {
@@ -69,8 +68,9 @@ export default function SelectCombo(props: SelectComboProps) {
     }
   }, [hasFocus])
 
-  const handleInputChange =
-    props.onInputChange !== undefined ? props.onInputChange : () => {}
+  // formatters
+  let fmt = (v: string) => v
+  fmt = props.formatter !== undefined ? props.formatter : fmt
 
   return (
     <>
@@ -87,7 +87,10 @@ export default function SelectCombo(props: SelectComboProps) {
           inputValue={inputText}
           onInputChange={(_, v) => {
             setTouched(true)
-            setInputText(v)
+            setInputText(fmt(v))
+            if (props.onInputChange !== undefined) {
+              props.onInputChange(fmt(v))
+            }
           }}
           onFocus={() => setHasFocus(true)}
           onBlur={() => setHasFocus(false)}
@@ -99,7 +102,7 @@ export default function SelectCombo(props: SelectComboProps) {
               label={label}
               variant="outlined"
               fullWidth
-              onChange={handleInputChange}
+              onChange={() => {}}
               onBlur={() => {}}
               autoComplete={props.autoComplete}
             />

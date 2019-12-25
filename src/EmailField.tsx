@@ -45,7 +45,8 @@ export default function EmailField(props: EmailFieldProps) {
       disabled={props.disabled}
       options={getOptions()}
       autoComplete="email"
-      onInputChange={e => setState(e.currentTarget.value)}
+      formatter={v => v.toLowerCase()}
+      onInputChange={v => setState(v)}
     />
   )
 }
