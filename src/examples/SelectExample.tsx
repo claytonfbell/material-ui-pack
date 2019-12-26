@@ -12,6 +12,7 @@ export default function SelectExample() {
       setState={setState}
       busy={busy}
       margin="dense"
+      debug
     >
       <Select
         name="color"
@@ -19,6 +20,8 @@ export default function SelectExample() {
           { value: "blue", label: "Blue" },
           { value: "red", label: "Red" },
         ]}
+        allowNull
+        nullLabel="No Color"
       />
     </Form>
   )

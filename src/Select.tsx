@@ -14,6 +14,8 @@ export interface SelectProps {
   fullWidth?: boolean
   disabled?: boolean
   isNumeric?: boolean
+  allowNull?: boolean
+  nullLabel?: string
 }
 export default function Select(props: SelectProps) {
   const {
@@ -41,6 +43,13 @@ export default function Select(props: SelectProps) {
     setLabelWidth(width)
   }, [])
 
+  const nullLabel =
+    props.nullLabel !== undefined
+      ? props.nullLabel
+      : props.allowNull
+      ? "NONE"
+      : "SELECT"
+
   function handleChange(
     event: React.ChangeEvent<{
       name?: string | undefined
@@ -48,7 +57,8 @@ export default function Select(props: SelectProps) {
     }>,
     child: React.ReactNode
   ) {
-    let v = event.currentTarget.value as string
+    let v = event.currentTarget.value as string | null
+    v = props.allowNull && v === nullLabel ? null : v
     if (isNumeric) {
       setValue(props.name, Number(v))
       return
@@ -76,7 +86,9 @@ export default function Select(props: SelectProps) {
           name: props.name,
         }}
       >
-        <option disabled={value !== null}>SELECT</option>
+        <option disabled={!props.allowNull && value !== null}>
+          {nullLabel}
+        </option>
         {props.options.map((o, x) => (
           <option key={x} value={o.value}>
             {o.label}
