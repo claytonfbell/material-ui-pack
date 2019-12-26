@@ -76,7 +76,7 @@ export default function Select(props: SelectProps) {
           name: props.name,
         }}
       >
-        <option disabled>SELECT</option>
+        <option disabled={value !== null}>SELECT</option>
         {props.options.map((o, x) => (
           <option key={x} value={o.value}>
             {o.label}
