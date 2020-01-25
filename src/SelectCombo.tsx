@@ -22,6 +22,7 @@ export interface SelectComboProps extends BaseSelectComboProps {
   options: OptionType[]
   onInputChange?: (str: string) => void
   formatter?: (str: string) => string
+  type?: string
 }
 export default function SelectCombo(props: SelectComboProps) {
   const {
@@ -45,7 +46,7 @@ export default function SelectCombo(props: SelectComboProps) {
     setSelected(index === -1 ? null : props.options[index])
   }, [index, props.options])
 
-  function handleChange(_: any, v: OptionType) {
+  function handleChange(_: any, v: OptionType | null) {
     setSelected(v)
     setValue(props.name, v === null ? "" : v.value)
   }
@@ -98,6 +99,7 @@ export default function SelectCombo(props: SelectComboProps) {
           renderInput={params => (
             <TextField
               {...params}
+              type={props.type}
               margin={margin}
               label={label}
               variant="outlined"
