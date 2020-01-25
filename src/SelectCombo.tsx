@@ -46,7 +46,7 @@ export default function SelectCombo(props: SelectComboProps) {
     setSelected(index === -1 ? null : props.options[index])
   }, [index, props.options])
 
-  function handleChange(_: any, v: OptionType) {
+  function handleChange(_: any, v: OptionType | null) {
     setSelected(v)
     setValue(props.name, v === null ? "" : v.value)
   }
