@@ -41,6 +41,7 @@ export default function EmailField(props: EmailFieldProps) {
   return (
     <SelectCombo
       name={props.name}
+      type={"email"}
       label={props.label}
       disabled={props.disabled}
       options={getOptions()}
