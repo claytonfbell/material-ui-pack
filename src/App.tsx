@@ -1,27 +1,25 @@
-import React from "react"
-
-import SubmitButtonExample from "./examples/SubmitButtonExample"
-import TextFieldExample from "./examples/TextFieldExample"
-import CheckboxExample from "./examples/CheckboxExample"
-import SelectComboExample from "./examples/SelectComboExample"
 import {
-  Typography,
   Container,
   CssBaseline,
   ThemeProvider,
+  Typography,
 } from "@material-ui/core"
-import SelectCountryExample from "./examples/SelectCountryExample"
-import SelectRegionExample from "./examples/SelectRegionExample"
-import SelectTimeZoneExample from "./examples/SelectTimeZoneExample"
-import SelectExample from "./examples/SelectExample"
-import RichTextEditorExample from "./examples/RichTextEditorExample"
-import TextEditorExample from "./examples/TextEditorExample"
-import DateTimePickerExample from "./examples/DateTimePickerExample"
-import { useDarkMode, DarkModeProvider } from "./DarkModeProvider"
+import React from "react"
+import { DarkModeProvider, useDarkMode } from "./DarkModeProvider"
 import DarkModeToggle from "./DarkModeToggle"
+import CheckboxExample from "./examples/CheckboxExample"
 import CurrencyFieldExample from "./examples/CurrencyFieldExample"
-import PercentageFieldExample from "./examples/PercentageFieldExample"
+import DateTimePickerExample from "./examples/DateTimePickerExample"
 import EmailFieldExample from "./examples/EmailFieldExample"
+import PercentageFieldExample from "./examples/PercentageFieldExample"
+import RichTextEditorExample from "./examples/RichTextEditorExample"
+import SelectComboExample from "./examples/SelectComboExample"
+import SelectCountryExample from "./examples/SelectCountryExample"
+import SelectExample from "./examples/SelectExample"
+import SelectTimeZoneExample from "./examples/SelectTimeZoneExample"
+import SubmitButtonExample from "./examples/SubmitButtonExample"
+import TextEditorExample from "./examples/TextEditorExample"
+import TextFieldExample from "./examples/TextFieldExample"
 
 function App() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -43,7 +41,6 @@ function App() {
         <CheckboxExample />
         <SelectComboExample />
         <SelectCountryExample />
-        <SelectRegionExample />
         <SelectTimeZoneExample />
         <SelectExample />
         <RichTextEditorExample />
