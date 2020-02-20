@@ -16,7 +16,6 @@ import RichTextEditorExample from "./examples/RichTextEditorExample"
 import SelectComboExample from "./examples/SelectComboExample"
 import SelectCountryExample from "./examples/SelectCountryExample"
 import SelectExample from "./examples/SelectExample"
-import SelectTimeZoneExample from "./examples/SelectTimeZoneExample"
 import SubmitButtonExample from "./examples/SubmitButtonExample"
 import TextEditorExample from "./examples/TextEditorExample"
 import TextFieldExample from "./examples/TextFieldExample"
@@ -41,7 +40,6 @@ function App() {
         <CheckboxExample />
         <SelectComboExample />
         <SelectCountryExample />
-        <SelectTimeZoneExample />
         <SelectExample />
         <RichTextEditorExample />
         <TextEditorExample />
