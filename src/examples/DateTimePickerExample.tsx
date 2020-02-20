@@ -13,7 +13,7 @@ export default function DateTimePickerExample() {
       busy={busy}
       margin="dense"
     >
-      <DateTimePicker name="dateAndTime" />
+      <DateTimePicker name="dateAndTime" timeZone="America/Chicago" />
     </Form>
   )
 }
