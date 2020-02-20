@@ -3,7 +3,7 @@ import Form from "../Form"
 import Select from "../Select"
 
 export default function SelectExample() {
-  const [state, setState] = React.useState({ color: null })
+  const [state, setState] = React.useState({ color: undefined })
   const [busy, setBusy] = React.useState(false)
   return (
     <Form

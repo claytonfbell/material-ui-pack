@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react"
-import startCase from "lodash/startCase"
-import { OutlinedInputProps } from "@material-ui/core/OutlinedInput"
-import InputAdornment from "@material-ui/core/InputAdornment"
-import Visibility from "@material-ui/icons/Visibility"
-import VisibilityOff from "@material-ui/icons/VisibilityOff"
 import IconButton from "@material-ui/core/IconButton"
+import InputAdornment from "@material-ui/core/InputAdornment"
+import { OutlinedInputProps } from "@material-ui/core/OutlinedInput"
 import MUITextField, {
   BaseTextFieldProps,
   TextFieldProps,
 } from "@material-ui/core/TextField"
-
+import PhoneIcon from "@material-ui/icons/Phone"
+import Visibility from "@material-ui/icons/Visibility"
+import VisibilityOff from "@material-ui/icons/VisibilityOff"
+import startCase from "lodash/startCase"
+import React, { useEffect, useState } from "react"
 import { useForm } from "./FormProvider"
 
 export interface FormTextFieldProps extends BaseTextFieldProps {
@@ -141,6 +141,14 @@ export default function TextField(props: FormTextFieldProps) {
                 >
                   {showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
+              </InputAdornment>
+            ),
+          }
+        : props.phone
+        ? {
+            endAdornment: (
+              <InputAdornment position="end">
+                <PhoneIcon fontSize="inherit" />
               </InputAdornment>
             ),
           }
