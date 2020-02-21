@@ -1,16 +1,16 @@
-import React, {
-  useContext,
-  useMemo,
-  createContext,
-  useState,
-  useEffect,
-  useCallback,
-} from "react"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
 import createMuiTheme, {
-  ThemeOptions,
   Theme,
+  ThemeOptions,
 } from "@material-ui/core/styles/createMuiTheme"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 
 export interface DarkModeContextProps {
   darkMode: boolean

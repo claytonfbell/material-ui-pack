@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react"
-import InputLabel from "@material-ui/core/InputLabel"
 import FormControl from "@material-ui/core/FormControl"
+import InputLabel from "@material-ui/core/InputLabel"
 import MUISelect from "@material-ui/core/Select"
 import startCase from "lodash/startCase"
-
-import { OptionType } from "./SelectCombo"
+import React, { useEffect, useState } from "react"
 import { useForm } from "./FormProvider"
+import { OptionType } from "./SelectCombo"
 
 export interface SelectProps {
   name: string

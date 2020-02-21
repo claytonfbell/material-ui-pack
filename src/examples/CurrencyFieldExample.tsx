@@ -1,7 +1,7 @@
-import React from "react"
-import Form from "../Form"
-import CurrencyField from "../CurrencyField"
 import Box from "@material-ui/core/Box"
+import React from "react"
+import CurrencyField from "../CurrencyField"
+import Form from "../Form"
 
 export default function CurrencyFieldExample() {
   const [state, setState] = React.useState({ myInput: "" })

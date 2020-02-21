@@ -1,6 +1,6 @@
 import React from "react"
-import Form from "../Form"
 import EmailField from "../EmailField"
+import Form from "../Form"
 
 export default function EmailFieldExample() {
   const [state, setState] = React.useState({ email: "" })

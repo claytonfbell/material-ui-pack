@@ -1,8 +1,7 @@
-import React from "react"
-import MUICheckbox, { CheckboxProps } from "@material-ui/core/Checkbox"
 import { FormControlLabel } from "@material-ui/core"
+import MUICheckbox, { CheckboxProps } from "@material-ui/core/Checkbox"
 import startCase from "lodash/startCase"
-
+import React from "react"
 import { useForm } from "./FormProvider"
 
 export interface FormCheckboxProps extends CheckboxProps {

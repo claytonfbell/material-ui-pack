@@ -45,42 +45,42 @@
   },
   "dependencies": {
     "@date-io/moment": "^1.3.13",
-    "@material-ui/core": "^4.8.0",
-    "@material-ui/icons": "^4.5.1",
-    "@material-ui/lab": "^4.0.0-alpha.36",
-    "@material-ui/pickers": "^3.2.8",
+    "@material-ui/core": "^4.9.3",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.43",
+    "@material-ui/pickers": "^3.2.10",
     "country-region-data": "^1.5.1",
-    "draft-js": "^0.11.3",
+    "draft-js": "^0.11.4",
     "draft-js-export-markdown": "^1.4.0",
     "draft-js-import-markdown": "^1.4.0",
     "i18n-iso-countries": "^4.3.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "moment-timezone": "git://github.com/moment/moment-timezone.git#develop",
-    "react-draft-wysiwyg": "^1.14.1"
+    "react-draft-wysiwyg": "^1.14.4"
   },
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.5",
-    "@babel/preset-react": "^7.7.4",
-    "@babel/preset-typescript": "^7.7.4",
+    "@babel/cli": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.23",
+    "@types/jest": "^24.9.1",
     "@types/lodash": "^4.14.149",
     "@types/moment-timezone": "^0.5.12",
-    "@types/node": "^12.12.20",
-    "@types/react": "^16.9.16",
-    "@types/react-dom": "^16.9.4",
+    "@types/node": "^12.12.28",
+    "@types/react": "^16.9.21",
+    "@types/react-dom": "^16.9.5",
     "@types/react-draft-wysiwyg": "^1.13.0",
     "markdown-toc": "^1.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
-    "typescript": "^3.7.3"
+    "typescript": "^3.8.2"
   }
 }

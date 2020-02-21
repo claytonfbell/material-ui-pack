@@ -1,7 +1,7 @@
-import React from "react"
-import TextField from "./TextField"
-import { useForm } from "./FormProvider"
 import InputAdornment from "@material-ui/core/InputAdornment"
+import React from "react"
+import { useForm } from "./FormProvider"
+import TextField from "./TextField"
 
 interface PercentageFieldProps {
   name: string

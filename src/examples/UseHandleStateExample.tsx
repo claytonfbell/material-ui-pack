@@ -1,4 +1,5 @@
-import { Button, Collapse } from "@material-ui/core"
+import Button from "@material-ui/core/Button"
+import Collapse from "@material-ui/core/Collapse"
 import React from "react"
 import useHandleState from "../hooks/useHandleState"
 

@@ -1,4 +1,4 @@
-import { Collapse } from "@material-ui/core"
+import Collapse from "@material-ui/core/Collapse"
 import React from "react"
 import useEscapeKey from "../hooks/useEscapeKey"
 

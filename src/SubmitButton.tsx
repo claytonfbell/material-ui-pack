@@ -1,7 +1,6 @@
-import React from "react"
 import Button, { ButtonProps } from "@material-ui/core/Button"
 import CircularProgress from "@material-ui/core/CircularProgress"
-
+import React from "react"
 import { useForm } from "./FormProvider"
 
 export default function SubmitButton(props: ButtonProps) {

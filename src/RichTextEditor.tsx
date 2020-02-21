@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react"
-import { Editor } from "react-draft-wysiwyg"
+import { makeStyles, Typography } from "@material-ui/core"
 import { EditorState } from "draft-js"
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
-import { Typography, makeStyles } from "@material-ui/core"
 import { stateToMarkdown } from "draft-js-export-markdown"
 import { stateFromMarkdown } from "draft-js-import-markdown"
 import _ from "lodash"
-
+import React, { useEffect, useState } from "react"
+import { Editor } from "react-draft-wysiwyg"
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import { useForm } from "./FormProvider"
 
 const TOOLBAR = {

@@ -1,6 +1,6 @@
 import React from "react"
-import Form from "../Form"
 import Checkbox from "../Checkbox"
+import Form from "../Form"
 
 export default function CheckboxExample() {
   const [state, setState] = React.useState({ myInput: "" })

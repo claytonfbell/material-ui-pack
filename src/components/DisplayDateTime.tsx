@@ -1,5 +1,5 @@
-import { Tooltip } from "@material-ui/core"
 import makeStyles from "@material-ui/core/styles/makeStyles"
+import Tooltip from "@material-ui/core/Tooltip"
 import moment from "moment"
 import React from "react"
 import formatDateTime from "../util/formatDateTime"

@@ -1,9 +1,8 @@
-import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
 import { PropTypes } from "@material-ui/core"
-
-import FormProvider, { FieldSizeType } from "./FormProvider"
+import { makeStyles } from "@material-ui/core/styles"
+import React from "react"
 import Debug from "./Debug"
+import FormProvider, { FieldSizeType } from "./FormProvider"
 
 const useStyles = makeStyles(theme => ({
   form: {

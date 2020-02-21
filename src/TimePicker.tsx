@@ -1,10 +1,11 @@
-import React from "react"
-import { TimePicker as MUITimePicker } from "@material-ui/pickers"
-import { MuiPickersUtilsProvider } from "@material-ui/pickers"
-import startCase from "lodash/startCase"
 import MomentUtils from "@date-io/moment"
+import {
+  MuiPickersUtilsProvider,
+  TimePicker as MUITimePicker,
+} from "@material-ui/pickers"
+import startCase from "lodash/startCase"
 import moment from "moment"
-
+import React from "react"
 import { useForm } from "./FormProvider"
 
 interface TimePickerProps {

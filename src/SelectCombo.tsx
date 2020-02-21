@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react"
-import Autocomplete from "@material-ui/lab/Autocomplete"
 import TextField from "@material-ui/core/TextField"
+import Autocomplete from "@material-ui/lab/Autocomplete"
 import startCase from "lodash/startCase"
-
+import React, { useEffect, useState } from "react"
 import { useForm } from "./FormProvider"
 
 export interface OptionType {

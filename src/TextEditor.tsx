@@ -1,6 +1,5 @@
+import { Box, Checkbox, Collapse, FormControlLabel } from "@material-ui/core"
 import React from "react"
-import { Checkbox, FormControlLabel, Box, Collapse } from "@material-ui/core"
-
 import { RichTextEditor } from "./lib"
 import TextField from "./TextField"
 
