@@ -9,6 +9,7 @@ import { DarkModeProvider, useDarkMode } from "./DarkModeProvider"
 import DarkModeToggle from "./DarkModeToggle"
 import CheckboxExample from "./examples/CheckboxExample"
 import CurrencyFieldExample from "./examples/CurrencyFieldExample"
+import DatePickerExample from "./examples/DatePickerExample"
 import DateTimePickerExample from "./examples/DateTimePickerExample"
 import EmailFieldExample from "./examples/EmailFieldExample"
 import PercentageFieldExample from "./examples/PercentageFieldExample"
@@ -44,6 +45,7 @@ function App() {
         <RichTextEditorExample />
         <TextEditorExample />
         <DateTimePickerExample />
+        <DatePickerExample />
         <SubmitButtonExample />
         <CurrencyFieldExample />
         <PercentageFieldExample />

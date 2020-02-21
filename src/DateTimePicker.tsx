@@ -1,11 +1,12 @@
-import React, { useMemo } from "react"
-import { DateTimePicker as MUIDateTimePicker } from "@material-ui/pickers"
-import { MuiPickersUtilsProvider } from "@material-ui/pickers"
-import startCase from "lodash/startCase"
 import MomentUtils from "@date-io/moment"
+import CalendarTodayIcon from "@material-ui/icons/CalendarToday"
+import {
+  DateTimePicker as MUIDateTimePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers"
+import startCase from "lodash/startCase"
 import moment from "moment-timezone"
-import CloseIcon from "@material-ui/icons/CalendarToday"
-
+import React, { useMemo } from "react"
 import { useForm } from "./FormProvider"
 
 interface DateTimePickerProps {
@@ -48,7 +49,7 @@ function DateTimePicker(props: DateTimePickerProps) {
           setValue(props.name, e === null ? null : e.toISOString())
         }}
         InputProps={{
-          endAdornment: <CloseIcon fontSize="inherit" />,
+          endAdornment: <CalendarTodayIcon fontSize="inherit" />,
         }}
       />
     </MuiPickersUtilsProvider>

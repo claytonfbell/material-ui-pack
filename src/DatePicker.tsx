@@ -1,9 +1,12 @@
-import React from "react"
-import { DatePicker as MUIDatePicker } from "@material-ui/pickers"
-import { MuiPickersUtilsProvider } from "@material-ui/pickers"
-import startCase from "lodash/startCase"
 import MomentUtils from "@date-io/moment"
-
+import CalendarTodayIcon from "@material-ui/icons/CalendarToday"
+import {
+  DatePicker as MUIDatePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers"
+import startCase from "lodash/startCase"
+import moment from "moment"
+import React from "react"
 import { useForm } from "./FormProvider"
 
 interface DatePickerProps {
@@ -18,7 +21,7 @@ function DatePicker(props: DatePickerProps) {
     setValue,
   } = useForm()
   const value = getValue(props.name) as string | null
-
+  const mom = React.useMemo(() => moment(value as string), [value])
   const label = props.label === undefined ? startCase(props.name) : props.label
 
   return (
@@ -30,10 +33,13 @@ function DatePicker(props: DatePickerProps) {
         margin={margin}
         disabled={props.disabled || busy}
         inputVariant="outlined"
-        value={value}
-        format={"M/D/YYYY"}
+        value={mom}
+        format={"LL"}
         onChange={e => {
           setValue(props.name, e === null ? null : e.format("YYYY-MM-DD"))
+        }}
+        InputProps={{
+          endAdornment: <CalendarTodayIcon fontSize="inherit" />,
         }}
       />
     </MuiPickersUtilsProvider>
