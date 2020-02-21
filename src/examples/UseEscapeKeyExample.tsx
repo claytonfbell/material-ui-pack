@@ -1,0 +1,21 @@
+import { Collapse } from "@material-ui/core"
+import React from "react"
+import useEscapeKey from "../hooks/useEscapeKey"
+
+function UseEscapeKeyExample() {
+  const [isOpen, setIsOpen] = React.useState(true)
+
+  useEscapeKey(
+    React.useCallback(() => {
+      setIsOpen(false)
+    }, [])
+  )
+
+  return (
+    <Collapse in={isOpen}>
+      <h1>ESC to hide this</h1>
+    </Collapse>
+  )
+}
+
+export default UseEscapeKeyExample

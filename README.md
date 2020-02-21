@@ -27,6 +27,16 @@ Why? Because I love the [Material UI](https://material-ui.com/) api but `<TextFi
   - [DatePicker](#datepicker)
   - [TimePicker](#timepicker)
 - [Dark Mode](#dark-mode)
+- [Date & Time Display](#date--time-display)
+  - [DisplayDateTime](#displaydatetime)
+  - [DisplayDate](#displaydate)
+  - [formatDateTime](#formatdatetime)
+  - [formatDate](#formatdate)
+- [Hooks](#hooks)
+  - [useCounter](#usecounter)
+  - [useEscapeKey](#useescapekey)
+  - [useHandleState](#usehandlestate)
+  - [useStoredState](#usestoredstate)
 
 <!-- tocstop -->
 
@@ -199,7 +209,11 @@ A drop-down/input combo box. User can enter or select options.
 
 ![example](./src/examples/SelectCountryExample.gif)
 
-This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-countries) to build a full list of countries for your address forms. Values are set as [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
+This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-countries) to build a full list of countries for your address forms. Values are set as [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3), but support `alpha-2` also.
+
+| Property | Description                 |
+| -------- | --------------------------- |
+| isoType  | `"isoAlpha2" | "isoAlpha3"` |
 
 ```tsx
 <SelectCountry name="country" />
@@ -211,6 +225,11 @@ This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-
 
 This component uses [country-region-data](https://www.npmjs.com/package/country-region-data) to build a full list of states/provinces with the props value `country`.
 
+| Property       | Description                          |
+| -------------- | ------------------------------------ |
+| country        | To control which regions are loaded. |
+| countryIsoType | `"isoAlpha3" | "isoAlpha2"`          |
+
 ```tsx
 <SelectRegion country="USA" name="stateOrProvince" />
 ```
@@ -220,6 +239,11 @@ This component uses [country-region-data](https://www.npmjs.com/package/country-
 ![example](./src/examples/SelectTimeZoneExample.gif)
 
 This component uses [moment-timezone](https://momentjs.com/timezone/) to build a full list of time zones.
+
+| Property       | Description                    |
+| -------------- | ------------------------------ |
+| country        | To optionall filter the zones. |
+| countryIsoType | `"isoAlpha3" | "isoAlpha2"`    |
 
 ```tsx
 <SelectTimeZone name="timeZone" />
@@ -327,4 +351,134 @@ export default function App() {
     </DarkModeProvider>
   )
 
+```
+
+## Date & Time Display
+
+### DisplayDateTime
+
+```tsx
+<DisplayDateTime
+  iso8601="2020-02-21T06:15:06.149Z"
+  timeZone="America/New_York"
+  fromNow
+/>
+```
+
+### DisplayDate
+
+```tsx
+<DisplayDate ymd="1978-09-22" fromNow />
+```
+
+### formatDateTime
+
+```ts
+formatDateTime("2020-02-21T06:15:06.149Z", "America/Chicago")
+```
+
+### formatDate
+
+```ts
+formatDate("1978-09-22")
+```
+
+## Hooks
+
+### useCounter
+
+```tsx
+import IconButton from "@material-ui/core/IconButton"
+import Add from "@material-ui/icons/Add"
+import Remove from "@material-ui/icons/Remove"
+import React from "react"
+import useCounter from "../hooks/useCounter"
+
+function UseCounterExample() {
+  const [count, increase, decrease] = useCounter(100)
+  return (
+    <>
+      {count}
+      <IconButton onClick={increase}>
+        <Add />
+      </IconButton>
+      <IconButton onClick={decrease}>
+        <Remove />
+      </IconButton>
+    </>
+  )
+}
+
+export default UseCounterExample
+```
+
+### useEscapeKey
+
+```tsx
+import { Collapse } from "@material-ui/core"
+import React from "react"
+import useEscapeKey from "../hooks/useEscapeKey"
+
+function UseEscapeKeyExample() {
+  const [isOpen, setIsOpen] = React.useState(true)
+
+  useEscapeKey(
+    React.useCallback(() => {
+      setIsOpen(false)
+    }, [])
+  )
+
+  return (
+    <Collapse in={isOpen}>
+      <h1>ESC to hide this</h1>
+    </Collapse>
+  )
+}
+
+export default UseEscapeKeyExample
+```
+
+### useHandleState
+
+```tsx
+import { Button, Collapse } from "@material-ui/core"
+import React from "react"
+import useHandleState from "../hooks/useHandleState"
+
+function UseHandleStateExample() {
+  const [isOpen, handleIsOpen, setIsOpen] = useHandleState(true)
+
+  return (
+    <Collapse in={isOpen}>
+      <Button onClick={() => setIsOpen(false)}>Hide with Setter</Button>
+      <Button onClick={handleIsOpen(false)}>Hide with Handler</Button>
+    </Collapse>
+  )
+}
+
+export default UseHandleStateExample
+```
+
+### useStoredState
+
+```tsx
+import React from "react"
+import Form from "../Form"
+import useStoredState from "../hooks/useStoredState"
+import TextField from "../TextField"
+
+function UseStoredStateExample() {
+  const [state, setState] = useStoredState("myValues", {
+    myText: "",
+    myDescrption: "",
+  })
+  return (
+    <Form state={state} setState={setState} margin="normal">
+      <TextField name="myText" />
+      <TextField name="myDescription" />
+    </Form>
+  )
+}
+
+export default UseStoredStateExample
 ```

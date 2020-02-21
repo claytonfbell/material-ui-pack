@@ -11,6 +11,7 @@ import CheckboxExample from "./examples/CheckboxExample"
 import CurrencyFieldExample from "./examples/CurrencyFieldExample"
 import DatePickerExample from "./examples/DatePickerExample"
 import DateTimePickerExample from "./examples/DateTimePickerExample"
+import DisplayDateTimeExamples from "./examples/DisplayDateTimeExamples"
 import EmailFieldExample from "./examples/EmailFieldExample"
 import PercentageFieldExample from "./examples/PercentageFieldExample"
 import RichTextEditorExample from "./examples/RichTextEditorExample"
@@ -20,6 +21,10 @@ import SelectExample from "./examples/SelectExample"
 import SubmitButtonExample from "./examples/SubmitButtonExample"
 import TextEditorExample from "./examples/TextEditorExample"
 import TextFieldExample from "./examples/TextFieldExample"
+import UseCounterExample from "./examples/UseCounterExample"
+import UseEscapeKeyExample from "./examples/UseEscapeKeyExample"
+import UseHandleStateExample from "./examples/UseHandleStateExample"
+import UseStoredStateExample from "./examples/UseStoredStateExample"
 
 function App() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -50,6 +55,13 @@ function App() {
         <CurrencyFieldExample />
         <PercentageFieldExample />
         <EmailFieldExample />
+        <UseStoredStateExample />
+        <UseCounterExample />
+        <UseEscapeKeyExample />
+        <UseHandleStateExample />
+      </Container>
+      <Container maxWidth="md">
+        <DisplayDateTimeExamples />
       </Container>
     </ThemeProvider>
   )
