@@ -21,7 +21,10 @@ function DateTimePicker(props: DateTimePickerProps) {
     getValue,
     setValue,
   } = useForm()
-  const value = getValue(props.name) as string | null
+  const value = React.useMemo(() => getValue(props.name) as string | null, [
+    getValue,
+    props.name,
+  ])
 
   const label = props.label === undefined ? startCase(props.name) : props.label
 

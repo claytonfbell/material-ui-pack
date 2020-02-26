@@ -36,69 +36,95 @@ export default function TextField(props: FormTextFieldProps) {
   const [errorMessage, setErrorMessage] = useState("")
   const [showPassword, setShowPassword] = useState(false)
 
-  // formatters
-  let fmt = (v: string) => v
-  fmt = props.capitalize
-    ? (v: string) =>
-        v
-          .split(" ")
-          .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-          .join(" ")
-    : fmt
-  fmt = props.lowercase ? (v: string) => v.toLowerCase() : fmt
-  fmt = props.phone
-    ? (v: string) =>
-        v
-          .replace(/[^0-9() -]/g, "")
-          .replace(/^[^0-9]*([0-9]{3})[^0-9]*([0-9]{1,2})[^0-9]*$/g, "($1) $2")
-          .replace(/^[^0-9]*([0-9]{3})[^0-9]*([0-9]{1,3})$/g, "($1) $2")
-          .replace(
-            /^[^0-9]*([0-9]{3})[^0-9]*([0-9]{3})[^0-9]*([0-9]{1,4}).*$/g,
-            "($1) $2-$3"
-          )
-    : fmt
-  fmt = props.formatter !== undefined ? props.formatter : fmt
+  const buildProps = React.useCallback(() => {
+    // formatters
+    let fmt = (v: string) => v
+    fmt = props.capitalize
+      ? (v: string) =>
+          v
+            .split(" ")
+            .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+            .join(" ")
+      : fmt
+    fmt = props.lowercase ? (v: string) => v.toLowerCase() : fmt
+    fmt = props.phone
+      ? (v: string) =>
+          v
+            .replace(/[^0-9() -]/g, "")
+            .replace(
+              /^[^0-9]*([0-9]{3})[^0-9]*([0-9]{1,2})[^0-9]*$/g,
+              "($1) $2"
+            )
+            .replace(/^[^0-9]*([0-9]{3})[^0-9]*([0-9]{1,3})$/g, "($1) $2")
+            .replace(
+              /^[^0-9]*([0-9]{3})[^0-9]*([0-9]{3})[^0-9]*([0-9]{1,4}).*$/g,
+              "($1) $2-$3"
+            )
+      : fmt
+    fmt = props.formatter !== undefined ? props.formatter : fmt
 
-  // blur
-  let blur = (v: string) => v
-  blur = props.phone
-    ? (v: string) => {
-        if (v !== null) {
-          v = v.replace(/[^0-9]/g, "")
-          v = v.length > 10 ? v.substr(0, 10) : v
-          v =
-            v.length === 10
-              ? `(${v.substr(0, 3)}) ${v.substr(3, 3)}-${v.substr(6, 4)}`
-              : v
+    // blur
+    let blur = (v: string) => v
+    blur = props.phone
+      ? (v: string) => {
+          if (v !== null) {
+            v = v.replace(/[^0-9]/g, "")
+            v = v.length > 10 ? v.substr(0, 10) : v
+            v =
+              v.length === 10
+                ? `(${v.substr(0, 3)}) ${v.substr(3, 3)}-${v.substr(6, 4)}`
+                : v
+          }
+          return v
         }
-        return v
-      }
-    : blur
+      : blur
 
-  // label
-  let label = props.label
-  label =
-    label === undefined && props.name !== undefined
-      ? startCase(props.name)
-      : label
-  label =
-    label !== undefined && error && errorMessage !== ""
-      ? `${label} - ${errorMessage}`
-      : label
+    // label
+    let label = props.label
+    label =
+      label === undefined && props.name !== undefined
+        ? startCase(props.name)
+        : label
+    label =
+      label !== undefined && error && errorMessage !== ""
+        ? `${label} - ${errorMessage}`
+        : label
 
-  // autoComplete
-  let autoComplete: string | undefined = undefined
-  autoComplete = props.newPassword ? "new-password" : autoComplete
-  autoComplete = props.password ? "current-password" : autoComplete
+    // autoComplete
+    let autoComplete: string | undefined = undefined
+    autoComplete = props.newPassword ? "new-password" : autoComplete
+    autoComplete = props.password ? "current-password" : autoComplete
 
-  // value
-  let value = props.name !== undefined ? getValue(props.name) : props.value
-  value = value === undefined ? "" : value
+    // type
+    let type: string | undefined = undefined
+    type = props.newPassword && !showPassword ? "password" : type
+    type = props.password && !showPassword ? "password" : type
 
-  // type
-  let type: string | undefined = undefined
-  type = props.newPassword && !showPassword ? "password" : type
-  type = props.password && !showPassword ? "password" : type
+    // value
+    let value = props.name !== undefined ? getValue(props.name) : props.value
+    value = value === undefined ? "" : value
+
+    return { fmt, blur, label, autoComplete, value, type }
+  }, [
+    error,
+    errorMessage,
+    getValue,
+    props.capitalize,
+    props.formatter,
+    props.label,
+    props.lowercase,
+    props.name,
+    props.newPassword,
+    props.password,
+    props.phone,
+    props.value,
+    showPassword,
+  ])
+
+  const { fmt, blur, label, autoComplete, value, type } = React.useMemo(
+    () => buildProps(),
+    [buildProps]
+  )
 
   // reduce props to TextFieldProps
   const {

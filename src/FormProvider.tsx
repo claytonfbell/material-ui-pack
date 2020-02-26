@@ -35,7 +35,7 @@ export default function FormProvider(formProps: FormProps) {
     (name: string) => {
       return _.get(formProps.state, name)
     },
-    [formProps]
+    [formProps.state]
   )
 
   const value = useMemo(
