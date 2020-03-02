@@ -89,7 +89,7 @@ export default function Select(props: SelectProps) {
           {nullLabel}
         </option>
         {props.options.map((o, x) => (
-          <option key={x} value={o.value}>
+          <option key={x} value={o.value} disabled={o.disabled}>
             {o.label}
           </option>
         ))}

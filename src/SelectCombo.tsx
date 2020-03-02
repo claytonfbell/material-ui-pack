@@ -7,6 +7,7 @@ import { useForm } from "./FormProvider"
 export interface OptionType {
   value: string | number
   label: string
+  disabled?: boolean
 }
 
 export interface BaseSelectComboProps {

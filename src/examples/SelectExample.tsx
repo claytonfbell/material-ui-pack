@@ -19,6 +19,7 @@ export default function SelectExample() {
         options={[
           { value: "blue", label: "Blue" },
           { value: "red", label: "Red" },
+          { value: "purple", label: "Purple", disabled: true },
         ]}
         allowNull
         nullLabel="No Color"
