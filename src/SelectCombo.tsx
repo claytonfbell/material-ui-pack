@@ -100,6 +100,7 @@ export default function SelectCombo(props: SelectComboProps) {
             <TextField
               {...params}
               type={props.type}
+              name={props.name}
               margin={margin}
               label={label}
               variant="outlined"
