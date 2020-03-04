@@ -37,19 +37,23 @@ function DatePicker(props: DatePickerProps) {
   const [open, handleOpen] = useHandleState(false)
 
   // control open state when clearable
-  const extraProps = props.clearable
-    ? {
-        clearable: true,
-        open,
-        onClose: handleOpen(false),
-        onDoubleClick: handleOpen(true),
-      }
-    : {}
+  const extraProps = React.useMemo(
+    () =>
+      props.clearable
+        ? {
+            open,
+            onClose: handleOpen(false),
+            onDoubleClick: handleOpen(true),
+          }
+        : {},
+    [handleOpen, open, props.clearable]
+  )
 
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <MUIDatePicker
         {...extraProps}
+        clearable={props.clearable}
         fullWidth={true}
         label={label}
         size={size}
@@ -73,7 +77,7 @@ function DatePicker(props: DatePickerProps) {
           ),
           endAdornment: (
             <>
-              {props.clearable && (
+              {props.clearable && mom !== null && (
                 <IconButton size="small" onClick={handleClear}>
                   <CloseIcon fontSize="inherit" />
                 </IconButton>
