@@ -3,7 +3,10 @@ import DatePicker from "../DatePicker"
 import Form from "../Form"
 
 export default function DatePickerExample() {
-  const [state, setState] = React.useState({ myDate: "1978-09-22" })
+  const [state, setState] = React.useState({
+    myDate: "1978-09-22",
+    myClearableDate: null,
+  })
   const [busy, setBusy] = React.useState(false)
   return (
     <Form
@@ -15,6 +18,7 @@ export default function DatePickerExample() {
       debug
     >
       <DatePicker name="myDate" />
+      <DatePicker name="myClearableDate" clearable />
     </Form>
   )
 }
