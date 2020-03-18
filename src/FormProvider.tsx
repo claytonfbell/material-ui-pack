@@ -24,7 +24,8 @@ export function useForm() {
 export default function FormProvider(formProps: FormProps) {
   const setValue = useCallback(
     (name: string, value: FormValue) => {
-      var newState = { ...formProps.state }
+      //   var newState = { ...formProps.state }
+      var newState = _.cloneDeep(formProps.state)
       _.set(newState, name as string, value)
       formProps.setState(newState)
     },
