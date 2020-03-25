@@ -12,6 +12,7 @@ interface TimePickerProps {
   name: string
   label?: string
   disabled?: boolean
+  required?: boolean
 }
 function TimePicker(props: TimePickerProps) {
   const {
@@ -35,6 +36,7 @@ function TimePicker(props: TimePickerProps) {
         size={size}
         margin={margin}
         disabled={props.disabled || busy}
+        required={props.required}
         inputVariant="outlined"
         value={value}
         format={"h:mm A"}

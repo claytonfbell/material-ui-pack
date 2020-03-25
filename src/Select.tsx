@@ -15,6 +15,7 @@ export interface SelectProps {
   isNumeric?: boolean
   allowNull?: boolean
   nullLabel?: string
+  required?: boolean
 }
 export default function Select(props: SelectProps) {
   const {
@@ -84,6 +85,7 @@ export default function Select(props: SelectProps) {
         inputProps={{
           name: props.name,
         }}
+        required={props.required}
       >
         <option disabled={!props.allowNull && value !== null}>
           {nullLabel}

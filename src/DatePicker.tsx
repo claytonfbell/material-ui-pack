@@ -18,6 +18,7 @@ interface DatePickerProps {
   label?: string
   disabled?: boolean
   clearable?: boolean
+  required?: boolean
 }
 function DatePicker(props: DatePickerProps) {
   const {
@@ -59,6 +60,7 @@ function DatePicker(props: DatePickerProps) {
         size={size}
         margin={margin}
         disabled={props.disabled || busy}
+        required={props.required}
         value={mom}
         onChange={(
           e: MaterialUiPickersDate,

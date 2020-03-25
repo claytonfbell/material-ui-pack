@@ -16,6 +16,7 @@ export interface BaseSelectComboProps {
   disabled?: boolean
   matchValue?: boolean
   autoComplete?: string
+  required?: boolean
 }
 
 export interface SelectComboProps extends BaseSelectComboProps {
@@ -108,6 +109,7 @@ export default function SelectCombo(props: SelectComboProps) {
               onChange={() => {}}
               onBlur={() => {}}
               autoComplete={props.autoComplete}
+              required={props.required}
             />
           )}
         />

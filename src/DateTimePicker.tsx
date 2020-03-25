@@ -13,6 +13,7 @@ interface DateTimePickerProps {
   name: string
   label?: string
   disabled?: boolean
+  required?: boolean
   timeZone?: string
 }
 function DateTimePicker(props: DateTimePickerProps) {
@@ -40,6 +41,7 @@ function DateTimePicker(props: DateTimePickerProps) {
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <MUIDateTimePicker
+        required={props.required}
         fullWidth
         label={label}
         size={size}

@@ -20,16 +20,18 @@ export default function SelectCountryExample() {
       margin="dense"
       debug
     >
-      <SelectCountry name="country" isoType="isoAlpha2" />
+      <SelectCountry name="country" isoType="isoAlpha2" required />
       <SelectRegion
         name="stateOrProvince"
         country={state.country}
         countryIsoType="isoAlpha2"
+        required
       />
       <SelectTimeZone
         name="timeZone"
         country={state.country}
         countryIsoType="isoAlpha2"
+        required
       />
     </Form>
   )
