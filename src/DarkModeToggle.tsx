@@ -4,7 +4,13 @@ import Switch from "@material-ui/core/Switch"
 import React from "react"
 import { useDarkMode } from "./DarkModeProvider"
 
-export default function DarkModeToggle() {
+interface Props {
+  labelOn?: string
+  labelOff?: string
+}
+
+export default function DarkModeToggle(props: Props) {
+  const { labelOn = "Dark Mode On", labelOff = "Dark Mode Off" } = props
   const { darkMode, toggleDarkMode } = useDarkMode()
 
   const toggleChecked = () => {
@@ -15,7 +21,7 @@ export default function DarkModeToggle() {
     <FormGroup>
       <FormControlLabel
         control={<Switch checked={darkMode} onChange={toggleChecked} />}
-        label={`Dark Mode ${darkMode ? "On" : "Off"}`}
+        label={darkMode ? labelOn : labelOff}
       />
     </FormGroup>
   )
