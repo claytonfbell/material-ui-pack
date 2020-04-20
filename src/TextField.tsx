@@ -43,7 +43,7 @@ export default function TextField(props: FormTextFieldProps) {
       ? (v: string) =>
           v
             .split(" ")
-            .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+            .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
             .join(" ")
       : fmt
     fmt = props.lowercase ? (v: string) => v.toLowerCase() : fmt
@@ -94,6 +94,9 @@ export default function TextField(props: FormTextFieldProps) {
     let autoComplete: string | undefined = undefined
     autoComplete = props.newPassword ? "new-password" : autoComplete
     autoComplete = props.password ? "current-password" : autoComplete
+    if (props.autoComplete !== undefined) {
+      autoComplete = props.autoComplete
+    }
 
     // type
     let type: string | undefined = undefined
@@ -109,6 +112,7 @@ export default function TextField(props: FormTextFieldProps) {
     error,
     errorMessage,
     getValue,
+    props.autoComplete,
     props.capitalize,
     props.formatter,
     props.label,
@@ -148,11 +152,11 @@ export default function TextField(props: FormTextFieldProps) {
     type,
     error,
     value,
-    onBlur: e =>
+    onBlur: (e) =>
       setValue(props.name as string, blur(fmt(e.currentTarget.value))),
     onChange:
       props.name !== undefined
-        ? e => setValue(props.name as string, fmt(e.currentTarget.value))
+        ? (e) => setValue(props.name as string, fmt(e.currentTarget.value))
         : undefined,
     InputProps:
       props.password || props.newPassword
