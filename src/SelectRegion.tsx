@@ -13,7 +13,7 @@ export default function SelectRegion(props: SelectRegionProps) {
     props.countryIsoType !== undefined ? props.countryIsoType : "isoAlpha3"
 
   function getOptions() {
-    let country = countryRegionData.find(c => {
+    let country = countryRegionData.find((c) => {
       return isoType === "isoAlpha3"
         ? c.countryShortCode === countries.alpha3ToAlpha2(props.country)
         : c.countryShortCode === props.country

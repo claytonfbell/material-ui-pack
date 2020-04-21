@@ -20,9 +20,7 @@ export default function SelectTimeZone(props: SelectTimeZoneProps) {
 
     return (zones === null ? momentTZ.tz.names() : zones).map((v: string) => ({
       value: v,
-      label: `${v} ${momentTZ()
-        .tz(v)
-        .format("(h:mm A) Z")}`,
+      label: `${v} ${momentTZ().tz(v).format("(h:mm A) Z")}`,
     }))
   }, [props.country, props.countryIsoType])
 

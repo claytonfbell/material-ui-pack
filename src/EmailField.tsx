@@ -6,6 +6,7 @@ interface EmailFieldProps {
   name: string
   label?: string
   disabled?: boolean
+  required?: boolean
 }
 export default function EmailField(props: EmailFieldProps) {
   const { getValue } = useForm()
@@ -30,24 +31,25 @@ export default function EmailField(props: EmailFieldProps) {
     return [
       { value: state, label: state },
       ...topProviders
-        .map(provider => {
+        .map((provider) => {
           const email = `${firstPart}@${provider}`
           return { value: email, label: email }
         })
-        .filter(o => o.value !== state),
+        .filter((o) => o.value !== state),
     ]
   }
 
   return (
     <SelectCombo
+      required={props.required}
       name={props.name}
       type={"email"}
       label={props.label}
       disabled={props.disabled}
       options={getOptions()}
       autoComplete="email"
-      formatter={v => v.toLowerCase()}
-      onInputChange={v => setState(v)}
+      formatter={(v) => v.toLowerCase()}
+      onInputChange={(v) => setState(v)}
     />
   )
 }

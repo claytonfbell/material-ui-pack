@@ -23,6 +23,7 @@ export default function SelectExample() {
         ]}
         allowNull
         nullLabel="No Color"
+        required
       />
     </Form>
   )

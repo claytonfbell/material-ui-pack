@@ -73,6 +73,7 @@ export default function Select(props: SelectProps) {
       variant="outlined"
       size={size}
       margin={margin}
+      required={props.required}
     >
       <InputLabel ref={inputLabel}>{label}</InputLabel>
       <MUISelect
@@ -85,7 +86,6 @@ export default function Select(props: SelectProps) {
         inputProps={{
           name: props.name,
         }}
-        required={props.required}
       >
         <option disabled={!props.allowNull && value !== null}>
           {nullLabel}

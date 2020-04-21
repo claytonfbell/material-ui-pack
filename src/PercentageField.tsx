@@ -8,6 +8,7 @@ interface PercentageFieldProps {
   label?: string
   disabled?: boolean
   decimals: 2 | 3 | 4 | 5 | 6
+  required?: boolean
 }
 export default function PercentageField(props: PercentageFieldProps) {
   const { getValue, setValue } = useForm()
@@ -37,12 +38,13 @@ export default function PercentageField(props: PercentageFieldProps) {
 
   return (
     <TextField
+      required={props.required}
       name={props.name}
       label={props.label}
       disabled={props.disabled}
       value={state}
-      onChange={e => setState(fmt(e.currentTarget.value))}
-      onBlur={e => setValue(props.name, toDecimal(e.currentTarget.value))}
+      onChange={(e) => setState(fmt(e.currentTarget.value))}
+      onBlur={(e) => setValue(props.name, toDecimal(e.currentTarget.value))}
       InputProps={{
         endAdornment: <InputAdornment position="end">%</InputAdornment>,
       }}

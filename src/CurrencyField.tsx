@@ -7,6 +7,7 @@ interface CurrencyFieldProps {
   name: string
   label?: string
   disabled?: boolean
+  required?: boolean
 }
 export default function CurrencyField(props: CurrencyFieldProps) {
   const { setValue } = useForm()
@@ -20,11 +21,12 @@ export default function CurrencyField(props: CurrencyFieldProps) {
   }
   return (
     <TextField
+      required={props.required}
       name={props.name}
       label={props.label}
       disabled={props.disabled}
       formatter={fmt}
-      onBlur={e => setValue(props.name, formatBlur(e.currentTarget.value))}
+      onBlur={(e) => setValue(props.name, formatBlur(e.currentTarget.value))}
       InputProps={{
         startAdornment: <InputAdornment position="start">$</InputAdornment>,
       }}
