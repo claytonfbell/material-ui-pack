@@ -7,7 +7,7 @@ import { useForm } from "./FormProvider"
 
 const useStyles = makeStyles({
   txt: {
-    "&:-ms-clear": {
+    "&::-ms-clear": {
       display: "none",
     },
   },
