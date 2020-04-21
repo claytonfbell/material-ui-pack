@@ -7,7 +7,7 @@ import { useForm } from "./FormProvider"
 
 const useStyles = makeStyles({
   txt: {
-    "&::-ms-clear": {
+    "& input::-ms-clear": {
       display: "none",
     },
   },
@@ -110,7 +110,7 @@ export default function SelectCombo(props: SelectComboProps) {
           renderInput={(params) => (
             <TextField
               {...params}
-              InputProps={{ className: classes.txt }}
+              className={classes.txt}
               type={props.type}
               name={props.name}
               margin={margin}
