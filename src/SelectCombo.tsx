@@ -110,7 +110,7 @@ export default function SelectCombo(props: SelectComboProps) {
           renderInput={(params) => (
             <TextField
               {...params}
-              className={classes.txt}
+              InputProps={{ className: classes.txt }}
               type={props.type}
               name={props.name}
               margin={margin}
