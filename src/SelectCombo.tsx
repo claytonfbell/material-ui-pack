@@ -1,8 +1,17 @@
+import { makeStyles } from "@material-ui/core"
 import TextField from "@material-ui/core/TextField"
 import Autocomplete from "@material-ui/lab/Autocomplete"
 import startCase from "lodash/startCase"
 import React, { useEffect, useState } from "react"
 import { useForm } from "./FormProvider"
+
+const useStyles = makeStyles({
+  txt: {
+    "&:-ms-clear": {
+      display: "none",
+    },
+  },
+})
 
 export interface OptionType {
   value: string | number
@@ -26,6 +35,7 @@ export interface SelectComboProps extends BaseSelectComboProps {
   type?: string
 }
 export default function SelectCombo(props: SelectComboProps) {
+  const classes = useStyles()
   const {
     getValue,
     setValue,
@@ -40,7 +50,7 @@ export default function SelectCombo(props: SelectComboProps) {
   const [index, setIndex] = useState(-2)
 
   useEffect(() => {
-    setIndex(props.options.findIndex(x => x.value === value))
+    setIndex(props.options.findIndex((x) => x.value === value))
   }, [value, props.options])
 
   useEffect(() => {
@@ -55,7 +65,7 @@ export default function SelectCombo(props: SelectComboProps) {
   const [inputText, setInputText] = useState("")
   useEffect(() => {
     if (props.matchValue) {
-      const find = props.options.find(x => x.value === inputText)
+      const find = props.options.find((x) => x.value === inputText)
       if (find !== undefined) {
         setInputText(find.label)
       }
@@ -97,9 +107,10 @@ export default function SelectCombo(props: SelectComboProps) {
           onFocus={() => setHasFocus(true)}
           onBlur={() => setHasFocus(false)}
           style={{ width: `100%` }}
-          renderInput={params => (
+          renderInput={(params) => (
             <TextField
               {...params}
+              className={classes.txt}
               type={props.type}
               name={props.name}
               margin={margin}
