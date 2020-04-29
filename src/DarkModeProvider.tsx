@@ -30,10 +30,20 @@ export function useDarkMode() {
 }
 
 export function DarkModeProvider(props: any) {
-  const savedDarkMode = window.localStorage.getItem("DARKMODE")
-  const [darkMode, setDarkMode] = useState<boolean>(savedDarkMode === "1")
+  const [savedDarkMode, setSavedDarkMode] = useState<string | null>(null)
+  const [darkMode, setDarkMode] = useState<boolean>(false)
   const osDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
   const [detectCount, setDetectCount] = useState(0)
+
+  React.useEffect(() => {
+    setSavedDarkMode(window.localStorage.getItem("DARKMODE"))
+    setDarkMode(savedDarkMode === "1")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  React.useEffect(() => {
+    setDarkMode(savedDarkMode === "1")
+  }, [savedDarkMode])
 
   const toggleDarkMode = useCallback((on: boolean) => {
     setDarkMode(on)
