@@ -3,7 +3,7 @@ import Checkbox from "../Checkbox"
 import Form from "../Form"
 
 export default function CheckboxExample() {
-  const [state, setState] = React.useState({ myInput: "" })
+  const [state, setState] = React.useState({ aCheckbox: true })
   const [busy, setBusy] = React.useState(false)
   return (
     <Form
