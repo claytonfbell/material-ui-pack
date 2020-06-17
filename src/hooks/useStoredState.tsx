@@ -29,3 +29,10 @@ export default function useStoredState<T>(
   }, [state, storeKeyName])
   return [state, setState]
 }
+
+export function removeStoredState(storeKeyName: string) {
+  const json = localStorage.getItem(KEY)
+  const obj: any = json === null ? {} : JSON.parse(json)
+  delete obj[storeKeyName]
+  localStorage.setItem(KEY, JSON.stringify(obj))
+}
