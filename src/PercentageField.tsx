@@ -12,7 +12,18 @@ interface PercentageFieldProps {
 }
 export default function PercentageField(props: PercentageFieldProps) {
   const { getValue, setValue } = useForm()
-  const fmt = (s: string) => s.replace(/[^0-9.]/g, "")
+  const fmt = (s: string) => {
+    let str = s.replace(/[^\d.]/g, "")
+    let parts = str.split(".")
+    if (parts.length > 2) {
+      parts = parts.slice(0, 2)
+    }
+    if (parts.length === 2 && parts[1].length > props.decimals - 2) {
+      parts[1] = parts[1].substr(0, props.decimals - 2)
+    }
+    str = parts.join(".")
+    return str
+  }
 
   const toNumber = React.useCallback(
     (v: string | null) => (v === null ? 0 : Number(v)),
@@ -20,7 +31,8 @@ export default function PercentageField(props: PercentageFieldProps) {
   )
 
   const toPercent = React.useCallback(
-    (v: string) => (toNumber(v) * 100).toFixed(props.decimals - 2),
+    (v: string) =>
+      parseFloat((toNumber(v) * 100).toFixed(props.decimals - 2)).toString(),
     [toNumber, props.decimals]
   )
 
@@ -32,6 +44,10 @@ export default function PercentageField(props: PercentageFieldProps) {
   const defaultValue = String(getValue(props.name) as number)
 
   const [state, setState] = React.useState(toPercent(defaultValue))
+  React.useEffect(() => {
+    setState(toPercent(defaultValue))
+  }, [defaultValue, toPercent])
+
   React.useEffect(() => {
     setState(toPercent(defaultValue))
   }, [defaultValue, toPercent])
