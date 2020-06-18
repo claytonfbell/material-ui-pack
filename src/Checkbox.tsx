@@ -8,7 +8,7 @@ export interface FormCheckboxProps extends CheckboxProps {
   name: string
   label?: string
 }
-function Checkbox(props: FormCheckboxProps) {
+const Checkbox = React.forwardRef((props: FormCheckboxProps, ref: any) => {
   const {
     formProps: { busy },
     getValue,
@@ -20,12 +20,17 @@ function Checkbox(props: FormCheckboxProps) {
     ...props,
 
     checked,
-    onChange: e => setValue(props.name, e.currentTarget.checked),
+    onChange: (e) => setValue(props.name, e.currentTarget.checked),
     disabled: busy || props.disabled,
   }
   return (
-    <FormControlLabel label={label} control={<MUICheckbox {...newProps} />} />
+    <FormControlLabel
+      {...(props as any)}
+      ref={ref}
+      label={label}
+      control={<MUICheckbox {...newProps} />}
+    />
   )
-}
+})
 
 export default Checkbox

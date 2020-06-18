@@ -10,7 +10,7 @@ interface PercentageFieldProps {
   decimals: 2 | 3 | 4 | 5 | 6
   required?: boolean
 }
-export default function PercentageField(props: PercentageFieldProps) {
+export default React.forwardRef((props: PercentageFieldProps, ref: any) => {
   const { getValue, setValue } = useForm()
   const fmt = (s: string) => {
     let str = s.replace(/[^\d.]/g, "")
@@ -54,6 +54,8 @@ export default function PercentageField(props: PercentageFieldProps) {
 
   return (
     <TextField
+      {...props}
+      ref={ref}
       required={props.required}
       name={props.name}
       label={props.label}
@@ -66,4 +68,4 @@ export default function PercentageField(props: PercentageFieldProps) {
       }}
     />
   )
-}
+})

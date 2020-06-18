@@ -1,3 +1,4 @@
+import { Tooltip } from "@material-ui/core"
 import React from "react"
 import Checkbox from "../Checkbox"
 import Form from "../Form"
@@ -13,7 +14,9 @@ export default function CheckboxExample() {
       busy={busy}
       margin="dense"
     >
-      <Checkbox name="aCheckbox" />
+      <Tooltip title="checkbox">
+        <Checkbox name="aCheckbox" />
+      </Tooltip>
     </Form>
   )
 }

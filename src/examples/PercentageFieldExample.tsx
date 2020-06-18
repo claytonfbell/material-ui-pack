@@ -1,4 +1,4 @@
-import { Box } from "@material-ui/core"
+import { Box, Tooltip } from "@material-ui/core"
 import React from "react"
 import Form from "../Form"
 import PercentageField from "../PercentageField"
@@ -15,7 +15,9 @@ export default function PercentageFieldExample() {
         busy={busy}
         margin="dense"
       >
-        <PercentageField name="taxRate" decimals={3} />
+        <Tooltip title="it worked">
+          <PercentageField name="taxRate" decimals={3} />
+        </Tooltip>
       </Form>
     </Box>
   )
