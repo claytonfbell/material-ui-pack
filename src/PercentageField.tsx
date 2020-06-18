@@ -3,7 +3,7 @@ import React from "react"
 import { useForm } from "./FormProvider"
 import TextField from "./TextField"
 
-interface PercentageFieldProps {
+export interface PercentageFieldProps {
   name: string
   label?: string
   disabled?: boolean
