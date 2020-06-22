@@ -31,8 +31,15 @@ export default React.forwardRef((props: PercentageFieldProps, ref: any) => {
   )
 
   const toPercent = React.useCallback(
-    (v: string) =>
-      parseFloat((toNumber(v) * 100).toFixed(props.decimals - 2)).toString(),
+    (v: string) => {
+      let newValue = parseFloat(
+        (toNumber(v) * 100).toFixed(props.decimals - 2)
+      ).toString()
+      if (newValue === "0") {
+        newValue = ""
+      }
+      return newValue
+    },
     [toNumber, props.decimals]
   )
 
