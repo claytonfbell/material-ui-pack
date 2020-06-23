@@ -1,9 +1,13 @@
 import React from "react"
 import DateTimePicker from "../DateTimePicker"
 import Form from "../Form"
+import SelectTimeZone from "../SelectTimeZone"
 
 export default function DateTimePickerExample() {
-  const [state, setState] = React.useState({ myInput: "" })
+  const [state, setState] = React.useState({
+    dateAndTime: "2020-06-23T20:36:51.673Z",
+    timeZone: "America/Chicago",
+  })
   const [busy, setBusy] = React.useState(false)
   return (
     <Form
@@ -13,7 +17,8 @@ export default function DateTimePickerExample() {
       busy={busy}
       margin="dense"
     >
-      <DateTimePicker name="dateAndTime" timeZone="America/Chicago" />
+      <SelectTimeZone name="timeZone" />
+      <DateTimePicker name="dateAndTime" timeZone={state.timeZone} />
     </Form>
   )
 }

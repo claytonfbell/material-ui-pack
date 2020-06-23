@@ -36,28 +36,42 @@ function DateTimePicker(props: DateTimePickerProps) {
         : moment(value as string),
     [props.timeZone, value]
   )
-  console.log(props.timeZone)
+
+  // this is a hack to reload the component if the timezone changes
+  // the initial timezone appears to stick to the components state
+  const [show, setShow] = React.useState<boolean>(false)
+  React.useEffect(() => {
+    setShow(false)
+    const timer = setTimeout(() => {
+      setShow(true)
+    }, 1)
+    return () => clearTimeout(timer)
+  }, [mom])
 
   return (
-    <MuiPickersUtilsProvider utils={MomentUtils}>
-      <MUIDateTimePicker
-        required={props.required}
-        fullWidth
-        label={label}
-        size={size}
-        margin={margin}
-        disabled={props.disabled || busy}
-        inputVariant="outlined"
-        value={mom}
-        format={"lll z"}
-        onChange={e => {
-          setValue(props.name, e === null ? null : e.toISOString())
-        }}
-        InputProps={{
-          endAdornment: <CalendarTodayIcon fontSize="inherit" />,
-        }}
-      />
-    </MuiPickersUtilsProvider>
+    <>
+      {show && (
+        <MuiPickersUtilsProvider utils={MomentUtils}>
+          <MUIDateTimePicker
+            required={props.required}
+            fullWidth
+            label={label}
+            size={size}
+            margin={margin}
+            disabled={props.disabled || busy}
+            inputVariant="outlined"
+            value={mom}
+            format={"lll z"}
+            onChange={(e) => {
+              setValue(props.name, e === null ? null : e.toISOString())
+            }}
+            InputProps={{
+              endAdornment: <CalendarTodayIcon fontSize="inherit" />,
+            }}
+          />
+        </MuiPickersUtilsProvider>
+      )}
+    </>
   )
 }
 
