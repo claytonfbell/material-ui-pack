@@ -2,6 +2,7 @@
   "name": "material-ui-pack",
   "version": "0.2.23",
   "private": false,
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/claytonfbell/material-ui-pack.git"
