@@ -24,7 +24,7 @@ export default function DisplayDateTime(props: DisplayDateTimeProps) {
     () =>
       props.iso8601 !== null
         ? formatDateTime(props.iso8601, props.timeZone)
-        : undefined,
+        : "",
     [props.iso8601, props.timeZone]
   )
 
