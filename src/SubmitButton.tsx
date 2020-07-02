@@ -1,5 +1,4 @@
-import Button, { ButtonProps } from "@material-ui/core/Button"
-import CircularProgress from "@material-ui/core/CircularProgress"
+import Button, { ButtonProps } from "material-ui-bootstrap/dist/Button"
 import React from "react"
 import { useForm } from "./FormProvider"
 
@@ -16,18 +15,7 @@ export default function SubmitButton(props: ButtonProps) {
     size: size === "medium" ? "large" : "medium",
     ...props,
     disabled: props.disabled || busy,
-    children: busy ? (
-      <>
-        Please Wait...{" "}
-        <CircularProgress
-          style={{ marginLeft: 14 }}
-          size={14}
-          color="primary"
-        />
-      </>
-    ) : (
-      props.children
-    ),
+    children: busy ? <>Please Wait... </> : props.children,
   }
   return <Button {...newProps} />
 }
