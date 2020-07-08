@@ -4,7 +4,7 @@ import { useForm } from "./FormProvider"
 
 export default function SubmitButton(props: ButtonProps) {
   const {
-    formProps: { busy, size },
+    formProps: { busy },
   } = useForm()
 
   const newProps: ButtonProps = {
@@ -12,7 +12,6 @@ export default function SubmitButton(props: ButtonProps) {
     variant: "contained",
     fullWidth: true,
     color: "primary",
-    size: size === "medium" ? "large" : "medium",
     ...props,
     disabled: props.disabled || busy,
     children: busy ? <>Please Wait... </> : props.children,
