@@ -169,7 +169,7 @@ export default function TextField(props: FormTextFieldProps) {
                   onMouseDown={() => setShowPassword(false)}
                   edge="end"
                 >
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             ),
