@@ -4,18 +4,26 @@ import CurrencyField from "../CurrencyField"
 import Form from "../Form"
 
 export default function CurrencyFieldExample() {
-  const [state, setState] = React.useState({ myInput: "" })
+  const [state, setState] = React.useState({ price: 0.23 })
   const [busy, setBusy] = React.useState(false)
   return (
     <Box style={{ maxWidth: 100 }}>
       <Form
+        debug
         onSubmit={() => setBusy(true)}
         state={state}
         setState={setState}
         busy={busy}
         margin="dense"
       >
-        <CurrencyField name="price" />
+        <CurrencyField
+          name="price"
+          allowNegative
+          numeric
+          inPennies
+          alignRight
+          blankZero
+        />
       </Form>
     </Box>
   )
