@@ -7,7 +7,7 @@ export default function CurrencyFieldExample() {
   const [state, setState] = React.useState({ price: 0.23 })
   const [busy, setBusy] = React.useState(false)
   return (
-    <Box style={{ maxWidth: 100 }}>
+    <Box>
       <Form
         debug
         onSubmit={() => setBusy(true)}
@@ -23,6 +23,7 @@ export default function CurrencyFieldExample() {
           inPennies
           alignRight
           blankZero
+          fulleWidth
         />
       </Form>
     </Box>

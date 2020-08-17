@@ -23,6 +23,7 @@ interface CurrencyFieldProps {
   numeric?: boolean
   blankZero?: boolean
   inPennies?: boolean
+  fulleWidth?: boolean
 }
 export default function CurrencyField(props: CurrencyFieldProps) {
   const classes = useStyles()
@@ -129,6 +130,7 @@ export default function CurrencyField(props: CurrencyFieldProps) {
       InputProps={{
         startAdornment: <InputAdornment position="start">$</InputAdornment>,
       }}
+      fullWidth={props.fulleWidth}
     />
   )
 }
