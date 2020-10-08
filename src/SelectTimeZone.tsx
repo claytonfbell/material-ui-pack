@@ -23,9 +23,13 @@ interface SelectTimeZoneProps extends BaseSelectComboProps {
 export function SelectTimeZone(props: SelectTimeZoneProps) {
   const getOptions = React.useCallback(() => {
     const zones =
-      props.country?.length === 2 && props.countryIsoType === "isoAlpha2"
+      props.country &&
+      props.country.length === 2 &&
+      props.countryIsoType === "isoAlpha2"
         ? getTimeZonesWithCountry(props.country)
-        : props.country?.length === 3 && props.countryIsoType === "isoAlpha3"
+        : props.country &&
+          props.country.length === 3 &&
+          props.countryIsoType === "isoAlpha3"
         ? getTimeZonesWithCountry(countries.alpha3ToAlpha2(props.country))
         : getAllTimezoneNames()
 
