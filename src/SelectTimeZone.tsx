@@ -1,9 +1,20 @@
-import momentTZ from "moment-timezone"
+import {
+  getAllTimezones,
+  getTimezonesForCountry,
+} from "countries-and-timezones"
+import dayjs from "dayjs"
+import "dayjs/locale/en" // import locale
+import relativeTime from "dayjs/plugin/relativeTime"
+import timezone from "dayjs/plugin/timezone"
+import utc from "dayjs/plugin/utc"
 import React from "react"
 import countries from "./countries"
 import SelectCombo, { BaseSelectComboProps } from "./SelectCombo"
 import { CountryIsoType } from "./SelectCountry"
-import zonesFromCountries from "./zonesFromCountries"
+
+dayjs.extend(relativeTime)
+dayjs.extend(timezone)
+dayjs.extend(utc)
 
 interface SelectTimeZoneProps extends BaseSelectComboProps {
   country?: string
@@ -12,17 +23,27 @@ interface SelectTimeZoneProps extends BaseSelectComboProps {
 export default function SelectTimeZone(props: SelectTimeZoneProps) {
   const getOptions = React.useCallback(() => {
     const zones =
-      props.country !== undefined && props.countryIsoType === "isoAlpha2"
-        ? zonesFromCountries(props.country)
-        : props.country !== undefined && props.countryIsoType === "isoAlpha3"
-        ? zonesFromCountries(countries.alpha3ToAlpha2(props.country))
-        : momentTZ.tz.names()
+      props.country?.length === 2 && props.countryIsoType === "isoAlpha2"
+        ? getTimeZonesWithCountry(props.country)
+        : props.country?.length === 3 && props.countryIsoType === "isoAlpha3"
+        ? getTimeZonesWithCountry(countries.alpha3ToAlpha2(props.country))
+        : getAllTimezoneNames()
 
-    return (zones === null ? momentTZ.tz.names() : zones).map((v: string) => ({
-      value: v,
-      label: `${v} ${momentTZ().tz(v).format("(h:mm A) Z")}`,
-    }))
+    return (zones === null ? getAllTimezoneNames() : zones).map(
+      (v: string) => ({
+        value: v,
+        label: `${v} ${dayjs().tz(v).format("(h:mm A) Z")}`,
+      })
+    )
   }, [props.country, props.countryIsoType])
 
   return <SelectCombo {...props} options={getOptions()} />
+}
+
+function getAllTimezoneNames(): string[] {
+  return Object.entries(getAllTimezones()).map((x) => x[1].name)
+}
+
+function getTimeZonesWithCountry(countryIsoCode: string): string[] {
+  return getTimezonesForCountry(countryIsoCode).map((x) => x.name)
 }

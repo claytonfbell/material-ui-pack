@@ -1,6 +1,6 @@
 import makeStyles from "@material-ui/core/styles/makeStyles"
 import Tooltip from "@material-ui/core/Tooltip"
-import moment from "moment"
+import dayjs from "dayjs"
 import React from "react"
 import formatDateTime from "../util/formatDateTime"
 
@@ -27,12 +27,13 @@ export default function DisplayDateTime(props: DisplayDateTimeProps) {
         : "",
     [props.iso8601, props.timeZone]
   )
+  const fromNow = (iso: string) => dayjs(iso).fromNow()
 
   return (
     <span className={classes.root}>
       {props.iso8601 !== null && props.fromNow && (
         <Tooltip arrow title={formatted}>
-          <span>{moment(props.iso8601).fromNow()}</span>
+          <span>{fromNow(props.iso8601)}</span>
         </Tooltip>
       )}
       {props.iso8601 !== null && !props.fromNow && formatted}

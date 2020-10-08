@@ -1,4 +1,4 @@
-import MomentUtils from "@date-io/moment"
+import DayjsUtils from "@date-io/dayjs"
 import IconButton from "@material-ui/core/IconButton"
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday"
 import CloseIcon from "@material-ui/icons/Close"
@@ -7,8 +7,8 @@ import {
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers"
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date"
+import dayjs from "dayjs"
 import startCase from "lodash/startCase"
-import moment from "moment"
 import React from "react"
 import { useForm } from "./FormProvider"
 import useHandleState from "./hooks/useHandleState"
@@ -27,8 +27,8 @@ function DatePicker(props: DatePickerProps) {
     setValue,
   } = useForm()
   const value = getValue(props.name) as string | null
-  const mom = React.useMemo(
-    () => (value === null ? null : moment(value as string)),
+  const dateTime = React.useMemo(
+    () => (value === null ? null : dayjs(value as string)),
     [value]
   )
   const label = props.label === undefined ? startCase(props.name) : props.label
@@ -51,7 +51,7 @@ function DatePicker(props: DatePickerProps) {
   )
 
   return (
-    <MuiPickersUtilsProvider utils={MomentUtils}>
+    <MuiPickersUtilsProvider utils={DayjsUtils}>
       <MUIDatePicker
         {...extraProps}
         clearable={props.clearable}
@@ -61,7 +61,7 @@ function DatePicker(props: DatePickerProps) {
         margin={margin}
         disabled={props.disabled || busy}
         required={props.required}
-        value={mom}
+        value={dateTime}
         onChange={(
           e: MaterialUiPickersDate,
           value?: string | null | undefined
@@ -79,7 +79,7 @@ function DatePicker(props: DatePickerProps) {
           ),
           endAdornment: (
             <>
-              {props.clearable && mom !== null && (
+              {props.clearable && dateTime !== null && (
                 <IconButton size="small" onClick={handleClear}>
                   <CloseIcon fontSize="inherit" />
                 </IconButton>
