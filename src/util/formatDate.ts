@@ -7,6 +7,5 @@ dayjs.extend(timezone)
 dayjs.extend(utc)
 dayjs.extend(LocalizedFormat)
 
-const formatDate = (ymd: string) =>
+export const formatDate = (ymd: string) =>
   dayjs(`${ymd} 00:00:00`).tz(dayjs.tz.guess()).format("LL")
-export default formatDate

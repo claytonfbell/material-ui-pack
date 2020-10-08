@@ -2,7 +2,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles"
 import Tooltip from "@material-ui/core/Tooltip"
 import dayjs from "dayjs"
 import React from "react"
-import formatDateTime from "../util/formatDateTime"
+import { formatDateTime } from "../util/formatDateTime"
 
 const useStyles = makeStyles({
   root: {
@@ -17,7 +17,7 @@ interface DisplayDateTimeProps {
   fromNow?: boolean
   timeZone?: string
 }
-export default function DisplayDateTime(props: DisplayDateTimeProps) {
+export function DisplayDateTime(props: DisplayDateTimeProps) {
   const classes = useStyles()
 
   const formatted = React.useMemo(

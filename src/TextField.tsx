@@ -26,7 +26,7 @@ export interface FormTextFieldProps extends BaseTextFieldProps {
   formatter?: (str: string) => string
 }
 
-export default function TextField(props: FormTextFieldProps) {
+export function TextField(props: FormTextFieldProps) {
   const {
     formProps: { margin, size, busy },
     getValue,

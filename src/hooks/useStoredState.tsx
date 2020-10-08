@@ -8,7 +8,7 @@ import React from "react"
 
 const KEY = "stored-state"
 
-export default function useStoredState<T>(
+export function useStoredState<T>(
   storeKeyName: string,
   defaultValue: T
 ): [T, React.Dispatch<React.SetStateAction<T>>] {

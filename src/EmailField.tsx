@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useForm } from "./FormProvider"
-import SelectCombo from "./SelectCombo"
+import { SelectCombo } from "./SelectCombo"
 
 interface EmailFieldProps {
   name: string
@@ -8,7 +8,7 @@ interface EmailFieldProps {
   disabled?: boolean
   required?: boolean
 }
-export default function EmailField(props: EmailFieldProps) {
+export function EmailField(props: EmailFieldProps) {
   const { getValue } = useForm()
   const value = getValue(props.name) as string
   const [state, setState] = useState(value)

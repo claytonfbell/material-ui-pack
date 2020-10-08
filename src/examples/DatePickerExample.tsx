@@ -1,6 +1,5 @@
 import React from "react"
-import DatePicker from "../DatePicker"
-import Form from "../Form"
+import { DatePicker, Form } from "../lib"
 
 export default function DatePickerExample() {
   const [state, setState] = React.useState({

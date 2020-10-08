@@ -1,14 +1,14 @@
 import countryRegionData from "country-region-data"
 import React from "react"
 import countries from "./countries"
-import SelectCombo, { BaseSelectComboProps } from "./SelectCombo"
+import { BaseSelectComboProps, SelectCombo } from "./SelectCombo"
 import { CountryIsoType } from "./SelectCountry"
 
 interface SelectRegionProps extends BaseSelectComboProps {
   country: string
   countryIsoType?: CountryIsoType
 }
-export default function SelectRegion(props: SelectRegionProps) {
+export function SelectRegion(props: SelectRegionProps) {
   const isoType: CountryIsoType =
     props.countryIsoType !== undefined ? props.countryIsoType : "isoAlpha3"
 

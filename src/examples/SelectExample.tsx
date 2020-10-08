@@ -1,6 +1,5 @@
 import React from "react"
-import Form from "../Form"
-import Select from "../Select"
+import { Form, Select } from "../lib"
 
 export default function SelectExample() {
   const [state, setState] = React.useState({ color: undefined })

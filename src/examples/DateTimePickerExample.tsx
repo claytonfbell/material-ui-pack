@@ -1,7 +1,5 @@
 import React from "react"
-import DateTimePicker from "../DateTimePicker"
-import Form from "../Form"
-import SelectTimeZone from "../SelectTimeZone"
+import { DateTimePicker, Form, SelectTimeZone } from "../lib"
 
 export default function DateTimePickerExample() {
   const [state, setState] = React.useState({

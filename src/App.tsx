@@ -6,7 +6,6 @@ import {
 } from "@material-ui/core"
 import React from "react"
 import { DarkModeProvider, useDarkMode } from "./DarkModeProvider"
-import DarkModeToggle from "./DarkModeToggle"
 import CheckboxExample from "./examples/CheckboxExample"
 import CurrencyFieldExample from "./examples/CurrencyFieldExample"
 import DatePickerExample from "./examples/DatePickerExample"
@@ -25,6 +24,7 @@ import UseCounterExample from "./examples/UseCounterExample"
 import UseEscapeKeyExample from "./examples/UseEscapeKeyExample"
 import UseHandleStateExample from "./examples/UseHandleStateExample"
 import UseStoredStateExample from "./examples/UseStoredStateExample"
+import { DarkModeToggle } from "./lib"
 
 function App() {
   const { createMuiThemeWithDarkMode } = useDarkMode()

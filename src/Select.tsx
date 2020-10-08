@@ -17,7 +17,7 @@ export interface SelectProps {
   nullLabel?: string
   required?: boolean
 }
-export default function Select(props: SelectProps) {
+export function Select(props: SelectProps) {
   const {
     formProps: { busy, size, margin },
     getValue,

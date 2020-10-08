@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function useCounter(
+export function useCounter(
   start: number = 0
 ): [number, () => void, () => void] {
   const [count, setCount] = React.useState<number>(start)

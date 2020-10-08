@@ -1,8 +1,8 @@
 import { Button } from "@material-ui/core"
 import React from "react"
-import Form from "../Form"
-import useStoredState, { removeStoredState } from "../hooks/useStoredState"
-import TextField from "../TextField"
+import { removeStoredState, useStoredState } from "../hooks/useStoredState"
+import { Form } from "../lib"
+import { TextField } from "../TextField"
 
 function UseStoredStateExample() {
   const [state, setState] = useStoredState("myValues", {

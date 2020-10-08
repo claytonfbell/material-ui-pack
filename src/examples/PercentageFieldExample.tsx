@@ -1,7 +1,6 @@
 import { Box, Tooltip } from "@material-ui/core"
 import React from "react"
-import Form from "../Form"
-import PercentageField from "../PercentageField"
+import { Form, PercentageField } from "../lib"
 
 export default function PercentageFieldExample() {
   const [state, setState] = React.useState({ taxRate: 0 })

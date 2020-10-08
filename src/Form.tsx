@@ -2,9 +2,9 @@ import { PropTypes } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import React from "react"
 import Debug from "./Debug"
-import FormProvider, { FieldSizeType } from "./FormProvider"
+import { FieldSizeType, FormProvider } from "./FormProvider"
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%",
     marginTop: theme.spacing(1),
@@ -28,7 +28,7 @@ function FormComponent(props: FormProps) {
     <form
       className={classes.form}
       noValidate
-      onSubmit={e => {
+      onSubmit={(e) => {
         e.preventDefault()
         props.onSubmit()
       }}
@@ -38,7 +38,7 @@ function FormComponent(props: FormProps) {
     </form>
   )
 }
-const Form = (props: FormProps) => (
+export const Form = (props: FormProps) => (
   <FormProvider {...props}>
     <FormComponent {...props} />
   </FormProvider>
@@ -50,5 +50,3 @@ Form.defaultProps = {
   debug: false,
   busy: false,
 } as Partial<FormProps>
-
-export default Form

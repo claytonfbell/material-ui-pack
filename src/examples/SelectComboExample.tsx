@@ -1,6 +1,5 @@
 import React from "react"
-import Form from "../Form"
-import SelectCombo from "../SelectCombo"
+import { Form, SelectCombo } from "../lib"
 
 export default function SelectComboExample() {
   const [state, setState] = React.useState({ myInput: "" })

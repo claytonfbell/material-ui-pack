@@ -18,7 +18,7 @@ const TOOLBAR = {
   },
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
     "& .rdw-editor-toolbar": {
@@ -64,7 +64,7 @@ export interface RichTextEditorProps {
   placedOnWhite?: boolean
   darkMode?: boolean
 }
-const RickTextEditor = (props: RichTextEditorProps) => {
+export const RichTextEditor = (props: RichTextEditorProps) => {
   const classes = useStyles()
 
   const { getValue, setValue } = useForm()
@@ -126,4 +126,3 @@ const RickTextEditor = (props: RichTextEditorProps) => {
     </div>
   )
 }
-export default RickTextEditor

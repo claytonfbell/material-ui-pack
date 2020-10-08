@@ -1,13 +1,13 @@
 import React from "react"
 import countries from "./countries"
-import SelectCombo, { BaseSelectComboProps } from "./SelectCombo"
+import { BaseSelectComboProps, SelectCombo } from "./SelectCombo"
 
 export type CountryIsoType = "isoAlpha2" | "isoAlpha3"
 
 interface SelectCountryProps extends BaseSelectComboProps {
   isoType?: CountryIsoType
 }
-export default function SelectCountry(props: SelectCountryProps) {
+export function SelectCountry(props: SelectCountryProps) {
   const isoType: CountryIsoType =
     props.isoType !== undefined ? props.isoType : "isoAlpha3"
 

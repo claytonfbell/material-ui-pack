@@ -1,6 +1,5 @@
 import React from "react"
-import Form from "../Form"
-import RichTextEditor from "../RichTextEditor"
+import { Form, RichTextEditor } from "../lib"
 
 export default function RichTextEditorExample() {
   const [state, setState] = React.useState({ myInput: "" })

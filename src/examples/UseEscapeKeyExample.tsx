@@ -1,6 +1,6 @@
 import Collapse from "@material-ui/core/Collapse"
 import React from "react"
-import useEscapeKey from "../hooks/useEscapeKey"
+import { useEscapeKey } from "../lib"
 
 function UseEscapeKeyExample() {
   const [isOpen, setIsOpen] = React.useState(true)

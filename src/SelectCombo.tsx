@@ -34,7 +34,7 @@ export interface SelectComboProps extends BaseSelectComboProps {
   formatter?: (str: string) => string
   type?: string
 }
-export default function SelectCombo(props: SelectComboProps) {
+export function SelectCombo(props: SelectComboProps) {
   const classes = useStyles()
   const {
     getValue,

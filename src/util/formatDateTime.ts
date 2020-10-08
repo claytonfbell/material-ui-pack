@@ -7,9 +7,8 @@ dayjs.extend(LocalizedFormat)
 dayjs.extend(timezone)
 dayjs.extend(utc)
 
-const formatDateTime = (iso8601: string, timeZone?: string) => {
+export const formatDateTime = (iso8601: string, timeZone?: string) => {
   return dayjs(iso8601)
     .tz(timeZone === undefined ? dayjs.tz.guess() : timeZone)
     .format("lll z")
 }
-export default formatDateTime

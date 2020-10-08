@@ -2,7 +2,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles"
 import Tooltip from "@material-ui/core/Tooltip"
 import dayjs from "dayjs"
 import React from "react"
-import formatDate from "../util/formatDate"
+import { formatDate } from "../util/formatDate"
 
 const useStyles = makeStyles({
   root: {
@@ -16,7 +16,7 @@ interface DisplayDateProps {
   ymd: string | null
   fromNow?: boolean
 }
-export default function DisplayDate(props: DisplayDateProps) {
+export function DisplayDate(props: DisplayDateProps) {
   const classes = useStyles()
   const fromNow = (ymd: string) => dayjs(ymd).fromNow()
   return (

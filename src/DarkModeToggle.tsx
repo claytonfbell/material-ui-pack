@@ -9,7 +9,7 @@ interface Props {
   labelOff?: string
 }
 
-export default function DarkModeToggle(props: Props) {
+export function DarkModeToggle(props: Props) {
   const { labelOn = "Dark Mode On", labelOff = "Dark Mode Off" } = props
   const { darkMode, toggleDarkMode } = useDarkMode()
 

@@ -1,7 +1,7 @@
 import Button from "@material-ui/core/Button"
 import Collapse from "@material-ui/core/Collapse"
 import React from "react"
-import useHandleState from "../hooks/useHandleState"
+import { useHandleState } from "../lib"
 
 function UseHandleStateExample() {
   const [isOpen, handleIsOpen, setIsOpen] = useHandleState(true)

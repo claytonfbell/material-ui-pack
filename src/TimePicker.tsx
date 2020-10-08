@@ -14,7 +14,7 @@ interface TimePickerProps {
   disabled?: boolean
   required?: boolean
 }
-function TimePicker(props: TimePickerProps) {
+export function TimePicker(props: TimePickerProps) {
   const {
     formProps: { busy, size, margin },
     getValue,
@@ -47,5 +47,3 @@ function TimePicker(props: TimePickerProps) {
     </MuiPickersUtilsProvider>
   )
 }
-
-export default TimePicker

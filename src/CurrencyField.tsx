@@ -25,7 +25,7 @@ interface CurrencyFieldProps {
   inPennies?: boolean
   fulleWidth?: boolean
 }
-export default function CurrencyField(props: CurrencyFieldProps) {
+export function CurrencyField(props: CurrencyFieldProps) {
   const classes = useStyles()
 
   const { getValue, setValue, formProps } = useForm()

@@ -21,7 +21,7 @@ export function useForm() {
   return context
 }
 
-export default function FormProvider(formProps: FormProps) {
+export function FormProvider(formProps: FormProps) {
   const setValue = useCallback(
     (name: string, value: FormValue) => {
       //   var newState = { ...formProps.state }

@@ -9,7 +9,7 @@ import timezone from "dayjs/plugin/timezone"
 import utc from "dayjs/plugin/utc"
 import React from "react"
 import countries from "./countries"
-import SelectCombo, { BaseSelectComboProps } from "./SelectCombo"
+import { BaseSelectComboProps, SelectCombo } from "./SelectCombo"
 import { CountryIsoType } from "./SelectCountry"
 
 dayjs.extend(relativeTime)
@@ -20,7 +20,7 @@ interface SelectTimeZoneProps extends BaseSelectComboProps {
   country?: string
   countryIsoType?: CountryIsoType
 }
-export default function SelectTimeZone(props: SelectTimeZoneProps) {
+export function SelectTimeZone(props: SelectTimeZoneProps) {
   const getOptions = React.useCallback(() => {
     const zones =
       props.country?.length === 2 && props.countryIsoType === "isoAlpha2"

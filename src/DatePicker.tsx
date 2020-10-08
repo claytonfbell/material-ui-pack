@@ -11,7 +11,7 @@ import dayjs from "dayjs"
 import startCase from "lodash/startCase"
 import React from "react"
 import { useForm } from "./FormProvider"
-import useHandleState from "./hooks/useHandleState"
+import { useHandleState } from "./hooks/useHandleState"
 
 interface DatePickerProps {
   name: string
@@ -20,7 +20,7 @@ interface DatePickerProps {
   clearable?: boolean
   required?: boolean
 }
-function DatePicker(props: DatePickerProps) {
+export function DatePicker(props: DatePickerProps) {
   const {
     formProps: { busy, size, margin },
     getValue,
@@ -91,5 +91,3 @@ function DatePicker(props: DatePickerProps) {
     </MuiPickersUtilsProvider>
   )
 }
-
-export default DatePicker

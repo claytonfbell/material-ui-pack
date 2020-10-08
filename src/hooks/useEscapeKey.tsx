@@ -1,9 +1,9 @@
 import React from "react"
 
-const useEscapeKey = (callback: () => void) => {
+export const useEscapeKey = (callback: () => void) => {
   // detect escape keypress
   const escFunction = React.useCallback(
-    e => {
+    (e) => {
       if (e.keyCode === 27) {
         callback()
       }
@@ -17,5 +17,3 @@ const useEscapeKey = (callback: () => void) => {
     }
   }, [escFunction])
 }
-
-export default useEscapeKey

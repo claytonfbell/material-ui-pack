@@ -6,10 +6,12 @@ import {
   TableRow,
 } from "@material-ui/core"
 import React from "react"
-import DisplayDate from "../components/DisplayDate"
-import DisplayDateTime from "../components/DisplayDateTime"
-import formatDate from "../util/formatDate"
-import formatDateTime from "../util/formatDateTime"
+import {
+  DisplayDate,
+  DisplayDateTime,
+  formatDate,
+  formatDateTime,
+} from "../lib"
 
 function DisplayDateTimeExamples() {
   return (

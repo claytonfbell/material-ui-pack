@@ -2,7 +2,7 @@ import Button, { ButtonProps } from "material-ui-bootstrap/dist/Button"
 import React from "react"
 import { useForm } from "./FormProvider"
 
-export default function SubmitButton(props: ButtonProps) {
+export function SubmitButton(props: ButtonProps) {
   const {
     formProps: { busy },
   } = useForm()

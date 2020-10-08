@@ -1,6 +1,5 @@
 import React from "react"
-import Form from "../Form"
-import TextEditor from "../TextEditor"
+import { Form, TextEditor } from "../lib"
 
 export default function TextEditorExample() {
   const [state, setState] = React.useState({ myInput: "" })

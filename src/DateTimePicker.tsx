@@ -21,7 +21,7 @@ interface DateTimePickerProps {
   required?: boolean
   timeZone?: string
 }
-function DateTimePicker(props: DateTimePickerProps) {
+export function DateTimePicker(props: DateTimePickerProps) {
   const {
     formProps: { busy, size, margin },
     getValue,
@@ -79,5 +79,3 @@ function DateTimePicker(props: DateTimePickerProps) {
     </>
   )
 }
-
-export default DateTimePicker
