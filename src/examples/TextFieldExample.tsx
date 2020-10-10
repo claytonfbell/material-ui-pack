@@ -1,4 +1,3 @@
-import { Tooltip } from "@material-ui/core"
 import React from "react"
 import { Form } from "../lib"
 import { TextField } from "../TextField"
@@ -15,9 +14,7 @@ export default function TextFieldExample() {
       busy={busy}
       margin="dense"
     >
-      <Tooltip title="phone">
-        <TextField name="phone" phone />
-      </Tooltip>
+      <TextField name="phone" phone />
       <TextField name="password2" password />
     </Form>
   )

@@ -3,9 +3,9 @@ import { Form, SelectCountry, SelectRegion, SelectTimeZone } from "../lib"
 
 export default function SelectCountryExample() {
   const [state, setState] = React.useState({
-    country: "",
-    stateOrProvince: "",
-    timeZone: "",
+    country: "US",
+    stateOrProvince: "NY",
+    timeZone: "America/New_York",
   })
   const [busy, setBusy] = React.useState(false)
   return (

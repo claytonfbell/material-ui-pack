@@ -33,12 +33,19 @@ export function SelectTimeZone(props: SelectTimeZoneProps) {
         ? getTimeZonesWithCountry(countries.alpha3ToAlpha2(props.country))
         : getAllTimezoneNames()
 
-    return (zones === null ? getAllTimezoneNames() : zones).map(
-      (v: string) => ({
+    return (zones === null ? getAllTimezoneNames() : zones).map((v: string) => {
+      let label
+      try {
+        label = `${v} ${dayjs().tz(v).format("(h:mm A) Z")}`
+      } catch {
+        label = v
+      }
+
+      return {
         value: v,
-        label: `${v} ${dayjs().tz(v).format("(h:mm A) Z")}`,
-      })
-    )
+        label,
+      }
+    })
   }, [props.country, props.countryIsoType])
 
   return <SelectCombo {...props} options={getOptions()} />
