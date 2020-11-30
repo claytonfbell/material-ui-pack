@@ -10,6 +10,7 @@ import utc from "dayjs/plugin/utc"
 import startCase from "lodash/startCase"
 import React, { useMemo } from "react"
 import { useForm } from "./FormProvider"
+import { formatDateTime } from "./lib"
 
 dayjs.extend(timezone)
 dayjs.extend(utc)
@@ -36,9 +37,9 @@ export function DateTimePicker(props: DateTimePickerProps) {
 
   const mom = useMemo(() => {
     if (props.timeZone !== undefined) {
-      return dayjs(value as string).tz(props.timeZone)
+      return dayjs(value || undefined).tz(props.timeZone)
     } else {
-      return dayjs(value as string)
+      return dayjs(value || undefined)
     }
   }, [props.timeZone, value])
 
@@ -66,7 +67,13 @@ export function DateTimePicker(props: DateTimePickerProps) {
             disabled={props.disabled || busy}
             inputVariant="outlined"
             value={mom}
-            format={"lll z"}
+            labelFunc={() => {
+              if (value !== undefined && value !== null && value !== "") {
+                return formatDateTime(mom.toISOString(), props.timeZone)
+              } else {
+                return ""
+              }
+            }}
             onChange={(e) => {
               setValue(props.name, e === null ? null : e.toISOString())
             }}
