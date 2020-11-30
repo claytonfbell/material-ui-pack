@@ -8,6 +8,7 @@ import startCase from "lodash/startCase"
 import moment from "moment-timezone"
 import React, { useMemo } from "react"
 import { useForm } from "./FormProvider"
+import { formatDateTime } from "./lib"
 
 interface DateTimePickerProps {
   name: string
@@ -32,8 +33,8 @@ function DateTimePicker(props: DateTimePickerProps) {
   const mom = useMemo(
     () =>
       props.timeZone !== undefined
-        ? moment(value as string).tz(props.timeZone)
-        : moment(value as string),
+        ? moment(value || undefined).tz(props.timeZone)
+        : moment(value || undefined),
     [props.timeZone, value]
   )
 
@@ -61,7 +62,13 @@ function DateTimePicker(props: DateTimePickerProps) {
             disabled={props.disabled || busy}
             inputVariant="outlined"
             value={mom}
-            format={"lll z"}
+            labelFunc={() => {
+              if (value !== undefined && value !== null && value !== "") {
+                return formatDateTime(mom.toISOString(), props.timeZone)
+              } else {
+                return ""
+              }
+            }}
             onChange={(e) => {
               setValue(props.name, e === null ? null : e.toISOString())
             }}
