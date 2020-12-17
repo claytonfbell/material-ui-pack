@@ -9,6 +9,7 @@ export interface PercentageFieldProps {
   disabled?: boolean
   decimals: 2 | 3 | 4 | 5 | 6
   required?: boolean
+  fullWidth?: boolean
 }
 export const PercentageField = React.forwardRef(
   (props: PercentageFieldProps, ref: any) => {
@@ -63,6 +64,7 @@ export const PercentageField = React.forwardRef(
     return (
       <TextField
         {...props}
+        fullWidth={props.fullWidth}
         ref={ref}
         required={props.required}
         name={props.name}
