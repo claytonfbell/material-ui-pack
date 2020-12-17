@@ -121,7 +121,7 @@ export function CurrencyField(props: CurrencyFieldProps) {
       onFocus={handleFocus}
       disabled={props.disabled || formProps.busy}
       className={props.alignRight ? classes.root : undefined}
-      margin="dense"
+      margin={formProps.margin}
       variant="outlined"
       size={formProps.size}
       name={props.name}
