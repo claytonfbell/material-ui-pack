@@ -61,7 +61,7 @@ function DateTimePicker(props: DateTimePickerProps) {
             margin={margin}
             disabled={props.disabled || busy}
             inputVariant="outlined"
-            value={mom}
+            value={mom.toISOString()}
             labelFunc={() => {
               if (value !== undefined && value !== null && value !== "") {
                 return formatDateTime(mom.toISOString(), props.timeZone)
