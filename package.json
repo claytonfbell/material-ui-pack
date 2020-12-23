@@ -51,11 +51,11 @@
     "react-draft-wysiwyg": "^1.14.4"
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "@material-ui/pickers": "^3.2.10",
-    "material-ui-bootstrap": "^1.0.4",
+    "material-ui-bootstrap": "^1.0.17",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
@@ -85,7 +85,7 @@
     "@types/react-dom": "^16.9.5",
     "@types/react-draft-wysiwyg": "^1.13.0",
     "markdown-toc": "^1.2.0",
-    "material-ui-bootstrap": "^1.0.16",
+    "material-ui-bootstrap": "^1.0.17",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
