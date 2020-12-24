@@ -1,9 +1,9 @@
 import React from "react"
 
-interface DebugProps {
+interface Props {
   object: any
 }
 
-export function Debug(props: DebugProps) {
+export function Debug(props: Props) {
   return <pre>{JSON.stringify(props.object, undefined, 2)}</pre>
 }

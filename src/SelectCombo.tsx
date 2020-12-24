@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core"
 import TextField from "@material-ui/core/TextField"
 import Autocomplete from "@material-ui/lab/Autocomplete"
 import { startCase } from "lodash"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { useForm } from "./FormProvider"
 
 const useStyles = makeStyles({
@@ -44,16 +44,16 @@ export function SelectCombo(props: SelectComboProps) {
   const label = props.label === undefined ? startCase(props.name) : props.label
 
   const value = getValue(props.name)
-  const [selected, setSelected] = useState<OptionType | null | undefined>(
+  const [selected, setSelected] = React.useState<OptionType | null | undefined>(
     undefined
   )
-  const [index, setIndex] = useState(-2)
+  const [index, setIndex] = React.useState(-2)
 
-  useEffect(() => {
+  React.useEffect(() => {
     setIndex(props.options.findIndex((x) => x.value === value))
   }, [value, props.options])
 
-  useEffect(() => {
+  React.useEffect(() => {
     setSelected(index === -1 ? null : props.options[index])
   }, [index, props.options])
 
@@ -62,8 +62,8 @@ export function SelectCombo(props: SelectComboProps) {
     setValue(props.name, v === null ? "" : v.value)
   }
 
-  const [inputText, setInputText] = useState("")
-  useEffect(() => {
+  const [inputText, setInputText] = React.useState("")
+  React.useEffect(() => {
     if (props.matchValue) {
       const find = props.options.find((x) => x.value === inputText)
       if (find !== undefined) {
@@ -72,9 +72,9 @@ export function SelectCombo(props: SelectComboProps) {
     }
   }, [inputText, props.matchValue, props.options])
 
-  const [hasFocus, setHasFocus] = useState(false)
-  const [touched, setTouched] = useState(false)
-  useEffect(() => {
+  const [hasFocus, setHasFocus] = React.useState(false)
+  const [touched, setTouched] = React.useState(false)
+  React.useEffect(() => {
     if (!hasFocus) {
       setTouched(false)
     }

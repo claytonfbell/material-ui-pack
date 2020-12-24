@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { useForm } from "./FormProvider"
 import { SelectCombo } from "./SelectCombo"
 
@@ -11,7 +11,7 @@ interface EmailFieldProps {
 export function EmailField(props: EmailFieldProps) {
   const { getValue } = useForm()
   const value = getValue(props.name) as string
-  const [state, setState] = useState(value)
+  const [state, setState] = React.useState(value)
 
   let firstPart =
     state !== null && state !== undefined ? state.split("@")[0] : ""

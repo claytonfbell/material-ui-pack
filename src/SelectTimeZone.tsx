@@ -16,11 +16,11 @@ dayjs.extend(relativeTime)
 dayjs.extend(timezone)
 dayjs.extend(utc)
 
-interface SelectTimeZoneProps extends BaseSelectComboProps {
+interface Props extends BaseSelectComboProps {
   country?: string
   countryIsoType?: CountryIsoType
 }
-export function SelectTimeZone(props: SelectTimeZoneProps) {
+export function SelectTimeZone(props: Props) {
   const getOptions = React.useCallback(() => {
     const zones =
       props.country &&

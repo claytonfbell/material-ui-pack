@@ -1,6 +1,6 @@
 import React from "react"
 
-export const useEscapeKey = (callback: () => void) => {
+export function useEscapeKey(callback: () => void) {
   // detect escape keypress
   const escFunction = React.useCallback(
     (e) => {

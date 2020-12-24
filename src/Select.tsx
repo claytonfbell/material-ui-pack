@@ -2,7 +2,7 @@ import FormControl from "@material-ui/core/FormControl"
 import InputLabel from "@material-ui/core/InputLabel"
 import MUISelect from "@material-ui/core/Select"
 import { startCase } from "lodash"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { useForm } from "./FormProvider"
 import { OptionType } from "./SelectCombo"
 
@@ -26,8 +26,8 @@ export function Select(props: SelectProps) {
 
   const label = props.label === undefined ? startCase(props.name) : props.label
   const value = getValue(props.name)
-  const [isNumeric, setIsNumeric] = useState(typeof value === "number")
-  useEffect(() => {
+  const [isNumeric, setIsNumeric] = React.useState(typeof value === "number")
+  React.useEffect(() => {
     if (props.isNumeric !== undefined) {
       setIsNumeric(props.isNumeric)
     }
@@ -37,7 +37,7 @@ export function Select(props: SelectProps) {
 
   const [labelWidth, setLabelWidth] = React.useState(0)
   const inputLabel = React.useRef<HTMLLabelElement>(null)
-  useEffect(() => {
+  React.useEffect(() => {
     const width =
       inputLabel.current !== null ? inputLabel.current.offsetWidth : 0
     setLabelWidth(width)

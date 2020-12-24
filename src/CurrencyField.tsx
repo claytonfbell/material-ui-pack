@@ -2,7 +2,7 @@
 import { InputAdornment, makeStyles } from "@material-ui/core"
 import MUITextField from "@material-ui/core/TextField/TextField"
 import { startCase } from "lodash"
-import React, { ChangeEvent } from "react"
+import React from "react"
 import { useForm } from "./FormProvider"
 
 const useStyles = makeStyles({
@@ -75,7 +75,7 @@ export function CurrencyField(props: CurrencyFieldProps) {
     }
   }, [hasFocus, inputValue, outgoing, props.name, setValue, value])
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(fmt(e.target.value))
   }
 

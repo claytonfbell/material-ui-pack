@@ -4,11 +4,11 @@ import { countries } from "./countries"
 import { BaseSelectComboProps, SelectCombo } from "./SelectCombo"
 import { CountryIsoType } from "./SelectCountry"
 
-interface SelectRegionProps extends BaseSelectComboProps {
+interface Props extends BaseSelectComboProps {
   country: string
   countryIsoType?: CountryIsoType
 }
-export function SelectRegion(props: SelectRegionProps) {
+export function SelectRegion(props: Props) {
   const isoType: CountryIsoType =
     props.countryIsoType !== undefined ? props.countryIsoType : "isoAlpha3"
 

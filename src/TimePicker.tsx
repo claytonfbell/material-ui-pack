@@ -8,13 +8,13 @@ import { startCase } from "lodash"
 import React from "react"
 import { useForm } from "./FormProvider"
 
-interface TimePickerProps {
+interface Props {
   name: string
   label?: string
   disabled?: boolean
   required?: boolean
 }
-export function TimePicker(props: TimePickerProps) {
+export function TimePicker(props: Props) {
   const {
     formProps: { busy, size, margin },
     getValue,

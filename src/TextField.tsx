@@ -9,7 +9,7 @@ import PhoneIcon from "@material-ui/icons/Phone"
 import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
 import { startCase } from "lodash"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { useForm } from "./FormProvider"
 
 export interface FormTextFieldProps extends BaseTextFieldProps {
@@ -32,9 +32,9 @@ export function TextField(props: FormTextFieldProps) {
     getValue,
     setValue,
   } = useForm()
-  const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = React.useState(false)
+  const [errorMessage, setErrorMessage] = React.useState("")
+  const [showPassword, setShowPassword] = React.useState(false)
 
   const buildProps = React.useCallback(() => {
     // formatters
@@ -190,7 +190,7 @@ export function TextField(props: FormTextFieldProps) {
     label,
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     const errs = []
     const value = textFieldProps.value as string
     // check for strong password

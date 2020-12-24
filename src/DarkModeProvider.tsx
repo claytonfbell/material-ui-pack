@@ -3,26 +3,17 @@ import createMuiTheme, {
   ThemeOptions,
 } from "@material-ui/core/styles/createMuiTheme"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react"
+import React from "react"
 
-export interface DarkModeContextProps {
+type ContextType = {
   darkMode: boolean
   toggleDarkMode: (on: boolean) => void
   createMuiThemeWithDarkMode: (options: ThemeOptions) => Theme
 }
 
-const DarkModeContext = createContext<DarkModeContextProps | undefined>(
-  undefined
-)
+const Context = React.createContext<ContextType | undefined>(undefined)
 export function useDarkMode() {
-  const context = useContext(DarkModeContext)
+  const context = React.useContext(Context)
   if (!context) {
     throw new Error(`useDarkMode must be used within a DarkModeProvider`)
   }
@@ -30,10 +21,10 @@ export function useDarkMode() {
 }
 
 export function DarkModeProvider(props: any) {
-  const [savedDarkMode, setSavedDarkMode] = useState<string | null>(null)
-  const [darkMode, setDarkMode] = useState<boolean>(false)
+  const [savedDarkMode, setSavedDarkMode] = React.useState<string | null>(null)
+  const [darkMode, setDarkMode] = React.useState<boolean>(false)
   const osDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
-  const [detectCount, setDetectCount] = useState(0)
+  const [detectCount, setDetectCount] = React.useState(0)
 
   React.useEffect(() => {
     setSavedDarkMode(window.localStorage.getItem("DARKMODE"))
@@ -45,7 +36,7 @@ export function DarkModeProvider(props: any) {
     setDarkMode(savedDarkMode === "1")
   }, [savedDarkMode])
 
-  const toggleDarkMode = useCallback((on: boolean) => {
+  const toggleDarkMode = React.useCallback((on: boolean) => {
     setDarkMode(on)
     window.localStorage.setItem("DARKMODE", on ? "1" : "0")
   }, [])
@@ -53,7 +44,7 @@ export function DarkModeProvider(props: any) {
   // ignore first reading from useMediaQuery
   // use the second reading if not saved mode
   // remove saved mode if any changes detected in os settings
-  useEffect(() => {
+  React.useEffect(() => {
     if (detectCount === 1 && savedDarkMode === null) {
       setDarkMode(osDarkMode)
     } else if (detectCount >= 2) {
@@ -65,7 +56,7 @@ export function DarkModeProvider(props: any) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [osDarkMode])
 
-  const createMuiThemeWithDarkMode = useCallback(
+  const createMuiThemeWithDarkMode = React.useCallback(
     (options: ThemeOptions) => {
       return createMuiTheme({
         ...options,
@@ -78,13 +69,13 @@ export function DarkModeProvider(props: any) {
     [darkMode]
   )
 
-  const value = useMemo(
-    () => ({
+  const value = React.useMemo(
+    (): ContextType => ({
       darkMode,
       toggleDarkMode,
       createMuiThemeWithDarkMode,
     }),
     [darkMode, toggleDarkMode, createMuiThemeWithDarkMode]
   )
-  return <DarkModeContext.Provider value={value} {...props} />
+  return <Context.Provider value={value} {...props} />
 }

@@ -3,7 +3,7 @@ import { EditorState } from "draft-js"
 import { stateToMarkdown } from "draft-js-export-markdown"
 import { stateFromMarkdown } from "draft-js-import-markdown"
 import { startCase } from "lodash"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Editor } from "react-draft-wysiwyg"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import { useForm } from "./FormProvider"
@@ -74,12 +74,12 @@ export const RichTextEditor = (props: RichTextEditorProps) => {
   value = value === undefined ? "" : value
   const label =
     props.label === undefined ? _.startCase(props.name) : props.label
-  const [hasFocus, setHasFocus] = useState(false)
-  const [editorState, setEditorState] = useState(
+  const [hasFocus, setHasFocus] = React.useState(false)
+  const [editorState, setEditorState] = React.useState(
     getEditorStateWithMarkdown(value)
   )
-  const [charLength, setCharLength] = useState(0)
-  useEffect(() => {
+  const [charLength, setCharLength] = React.useState(0)
+  React.useEffect(() => {
     setEditorState(getEditorStateWithMarkdown(value))
   }, [value])
 
