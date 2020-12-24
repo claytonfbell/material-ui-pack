@@ -12,12 +12,12 @@ const useStyles = makeStyles({
   },
 })
 
-interface DisplayDateTimeProps {
+interface Props {
   iso8601: string | null
   fromNow?: boolean
   timeZone?: string
 }
-export function DisplayDateTime(props: DisplayDateTimeProps) {
+export function DisplayDateTime(props: Props) {
   const classes = useStyles()
 
   const formatted = React.useMemo(

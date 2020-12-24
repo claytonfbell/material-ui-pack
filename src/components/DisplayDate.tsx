@@ -12,11 +12,11 @@ const useStyles = makeStyles({
   },
 })
 
-interface DisplayDateProps {
+interface Props {
   ymd: string | null
   fromNow?: boolean
 }
-export function DisplayDate(props: DisplayDateProps) {
+export function DisplayDate(props: Props) {
   const classes = useStyles()
   const fromNow = (ymd: string) => dayjs(ymd).fromNow()
   return (
