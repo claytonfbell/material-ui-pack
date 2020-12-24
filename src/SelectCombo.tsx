@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core"
 import TextField from "@material-ui/core/TextField"
 import Autocomplete from "@material-ui/lab/Autocomplete"
-import startCase from "lodash/startCase"
+import { startCase } from "lodash"
 import React, { useEffect, useState } from "react"
 import { useForm } from "./FormProvider"
 

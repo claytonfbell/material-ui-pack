@@ -2,11 +2,13 @@ import { makeStyles, Typography } from "@material-ui/core"
 import { EditorState } from "draft-js"
 import { stateToMarkdown } from "draft-js-export-markdown"
 import { stateFromMarkdown } from "draft-js-import-markdown"
-import _ from "lodash"
+import { startCase } from "lodash"
 import React, { useEffect, useState } from "react"
 import { Editor } from "react-draft-wysiwyg"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import { useForm } from "./FormProvider"
+
+const _ = { startCase }
 
 const TOOLBAR = {
   options: ["inline", "list", "link"],

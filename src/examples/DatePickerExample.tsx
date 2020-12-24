@@ -1,7 +1,7 @@
 import React from "react"
 import { DatePicker, Form } from "../lib"
 
-export default function DatePickerExample() {
+export function DatePickerExample() {
   const [state, setState] = React.useState({
     myDate: "1978-09-22",
     myClearableDate: null,

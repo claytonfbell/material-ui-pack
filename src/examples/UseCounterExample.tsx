@@ -4,7 +4,7 @@ import Remove from "@material-ui/icons/Remove"
 import React from "react"
 import { useCounter } from "../lib"
 
-function UseCounterExample() {
+export function UseCounterExample() {
   const [count, increase, decrease] = useCounter(100)
   return (
     <>
@@ -18,5 +18,3 @@ function UseCounterExample() {
     </>
   )
 }
-
-export default UseCounterExample

@@ -13,7 +13,7 @@ import {
   formatDateTime,
 } from "../lib"
 
-function DisplayDateTimeExamples() {
+export function DisplayDateTimeExamples() {
   return (
     <>
       <Table>
@@ -95,5 +95,3 @@ function DisplayDateTimeExamples() {
     </>
   )
 }
-
-export default DisplayDateTimeExamples

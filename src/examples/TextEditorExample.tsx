@@ -1,7 +1,7 @@
 import React from "react"
 import { Form, TextEditor } from "../lib"
 
-export default function TextEditorExample() {
+export function TextEditorExample() {
   const [state, setState] = React.useState({ myInput: "" })
   const [busy, setBusy] = React.useState(false)
   return (

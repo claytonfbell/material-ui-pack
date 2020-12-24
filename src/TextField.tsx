@@ -8,7 +8,7 @@ import MUITextField, {
 import PhoneIcon from "@material-ui/icons/Phone"
 import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
-import startCase from "lodash/startCase"
+import { startCase } from "lodash"
 import React, { useEffect, useState } from "react"
 import { useForm } from "./FormProvider"
 

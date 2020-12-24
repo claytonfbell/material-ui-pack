@@ -8,7 +8,7 @@ import {
 } from "@material-ui/pickers"
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date"
 import dayjs from "dayjs"
-import startCase from "lodash/startCase"
+import { startCase } from "lodash"
 import React from "react"
 import { useForm } from "./FormProvider"
 import { useHandleState } from "./hooks/useHandleState"

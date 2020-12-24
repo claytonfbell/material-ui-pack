@@ -2,7 +2,7 @@ import { Tooltip } from "@material-ui/core"
 import React from "react"
 import { Checkbox, Form } from "../lib"
 
-export default function CheckboxExample() {
+export function CheckboxExample() {
   const [state, setState] = React.useState({ aCheckbox: true })
   const [busy, setBusy] = React.useState(false)
   return (

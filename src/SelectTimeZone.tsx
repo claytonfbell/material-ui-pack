@@ -8,7 +8,7 @@ import relativeTime from "dayjs/plugin/relativeTime"
 import timezone from "dayjs/plugin/timezone"
 import utc from "dayjs/plugin/utc"
 import React from "react"
-import countries from "./countries"
+import { countries } from "./countries"
 import { BaseSelectComboProps, SelectCombo } from "./SelectCombo"
 import { CountryIsoType } from "./SelectCountry"
 

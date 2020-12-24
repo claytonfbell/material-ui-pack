@@ -3,7 +3,7 @@ import Collapse from "@material-ui/core/Collapse"
 import React from "react"
 import { useHandleState } from "../lib"
 
-function UseHandleStateExample() {
+export function UseHandleStateExample() {
   const [isOpen, handleIsOpen, setIsOpen] = useHandleState(true)
 
   return (
@@ -13,5 +13,3 @@ function UseHandleStateExample() {
     </Collapse>
   )
 }
-
-export default UseHandleStateExample

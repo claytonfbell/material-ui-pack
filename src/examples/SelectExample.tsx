@@ -1,7 +1,7 @@
 import React from "react"
 import { Form, Select } from "../lib"
 
-export default function SelectExample() {
+export function SelectExample() {
   const [state, setState] = React.useState({ color: undefined })
   const [busy, setBusy] = React.useState(false)
   return (

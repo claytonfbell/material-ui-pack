@@ -2,7 +2,7 @@ import React from "react"
 import { Form } from "../lib"
 import { TextField } from "../TextField"
 
-export default function TextFieldExample() {
+export function TextFieldExample() {
   const [state, setState] = React.useState({ phone: "", password2: "" })
   const [busy, setBusy] = React.useState(false)
   return (

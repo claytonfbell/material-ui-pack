@@ -2,7 +2,7 @@ import Collapse from "@material-ui/core/Collapse"
 import React from "react"
 import { useEscapeKey } from "../lib"
 
-function UseEscapeKeyExample() {
+export function UseEscapeKeyExample() {
   const [isOpen, setIsOpen] = React.useState(true)
 
   useEscapeKey(
@@ -17,5 +17,3 @@ function UseEscapeKeyExample() {
     </Collapse>
   )
 }
-
-export default UseEscapeKeyExample

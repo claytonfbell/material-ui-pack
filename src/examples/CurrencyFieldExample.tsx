@@ -2,7 +2,7 @@ import Box from "@material-ui/core/Box"
 import React from "react"
 import { CurrencyField, Form } from "../lib"
 
-export default function CurrencyFieldExample() {
+export function CurrencyFieldExample() {
   const [state, setState] = React.useState({ price: 0.23 })
   const [busy, setBusy] = React.useState(false)
   return (

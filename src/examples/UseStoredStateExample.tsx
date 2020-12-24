@@ -4,7 +4,7 @@ import { removeStoredState, useStoredState } from "../hooks/useStoredState"
 import { Form } from "../lib"
 import { TextField } from "../TextField"
 
-function UseStoredStateExample() {
+export function UseStoredStateExample() {
   const [state, setState] = useStoredState("myValues", {
     myText: "",
     myDescrption: "",
@@ -19,5 +19,3 @@ function UseStoredStateExample() {
     </Form>
   )
 }
-
-export default UseStoredStateExample

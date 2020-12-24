@@ -1,7 +1,7 @@
 import React from "react"
 import { Form, SelectCountry, SelectRegion, SelectTimeZone } from "../lib"
 
-export default function SelectCountryExample() {
+export function SelectCountryExample() {
   const [state, setState] = React.useState({
     country: "US",
     stateOrProvince: "NY",

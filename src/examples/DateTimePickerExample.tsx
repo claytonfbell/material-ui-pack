@@ -1,7 +1,7 @@
 import React from "react"
 import { DateTimePicker, Form, SelectTimeZone } from "../lib"
 
-export default function DateTimePickerExample() {
+export function DateTimePickerExample() {
   const [state, setState] = React.useState({
     dateAndTime: "2020-06-23T20:36:51.673Z",
     dateAndTimeNull: null,

@@ -2,7 +2,7 @@ import { Box } from "@material-ui/core"
 import React from "react"
 import { Form, PercentageField } from "../lib"
 
-export default function PercentageFieldExample() {
+export function PercentageFieldExample() {
   const [state, setState] = React.useState({ taxRate: 0 })
   const [busy, setBusy] = React.useState(false)
   return (

@@ -1,6 +1,8 @@
-import _ from "lodash"
+import { cloneDeep, get, set } from "lodash"
 import React, { createContext, useCallback, useContext, useMemo } from "react"
 import { FormProps } from "./Form"
+
+const _ = { get, set, cloneDeep }
 
 export type FieldSizeType = "small" | "medium" | undefined
 

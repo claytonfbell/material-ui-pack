@@ -1,8 +1,10 @@
 import { FormControlLabel } from "@material-ui/core"
 import MUICheckbox, { CheckboxProps } from "@material-ui/core/Checkbox"
-import startCase from "lodash/startCase"
+import { startCase } from "lodash"
 import React from "react"
 import { useForm } from "./FormProvider"
+
+const _ = { startCase }
 
 export interface FormCheckboxProps extends CheckboxProps {
   name: string
@@ -17,7 +19,7 @@ export const Checkbox = React.forwardRef(
     } = useForm()
     const checked = getValue(props.name) as boolean
     const label =
-      props.label === undefined ? startCase(props.name) : props.label
+      props.label === undefined ? _.startCase(props.name) : props.label
     let { name, ...newProps }: CheckboxProps = {
       ...props,
 

@@ -1,5 +1,5 @@
 import React from "react"
-import countries from "./countries"
+import { countries } from "./countries"
 import { BaseSelectComboProps, SelectCombo } from "./SelectCombo"
 
 export type CountryIsoType = "isoAlpha2" | "isoAlpha3"

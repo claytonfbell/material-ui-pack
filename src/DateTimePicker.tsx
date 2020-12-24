@@ -7,7 +7,7 @@ import {
 import dayjs from "dayjs"
 import timezone from "dayjs/plugin/timezone"
 import utc from "dayjs/plugin/utc"
-import startCase from "lodash/startCase"
+import { startCase } from "lodash"
 import React, { useMemo } from "react"
 import { useForm } from "./FormProvider"
 import { formatDateTime } from "./lib"

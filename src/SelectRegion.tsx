@@ -1,6 +1,6 @@
 import countryRegionData from "country-region-data"
 import React from "react"
-import countries from "./countries"
+import { countries } from "./countries"
 import { BaseSelectComboProps, SelectCombo } from "./SelectCombo"
 import { CountryIsoType } from "./SelectCountry"
 

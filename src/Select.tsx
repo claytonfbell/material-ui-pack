@@ -1,7 +1,7 @@
 import FormControl from "@material-ui/core/FormControl"
 import InputLabel from "@material-ui/core/InputLabel"
 import MUISelect from "@material-ui/core/Select"
-import startCase from "lodash/startCase"
+import { startCase } from "lodash"
 import React, { useEffect, useState } from "react"
 import { useForm } from "./FormProvider"
 import { OptionType } from "./SelectCombo"

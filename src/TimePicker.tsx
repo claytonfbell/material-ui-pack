@@ -4,7 +4,7 @@ import {
   TimePicker as MUITimePicker,
 } from "@material-ui/pickers"
 import dayjs from "dayjs"
-import startCase from "lodash/startCase"
+import { startCase } from "lodash"
 import React from "react"
 import { useForm } from "./FormProvider"
 

@@ -1,7 +1,7 @@
 import React from "react"
 import { Form, SubmitButton } from "../lib"
 
-export default function SubmitButtonExample() {
+export function SubmitButtonExample() {
   const [state, setState] = React.useState({})
   const [busy, setBusy] = React.useState(false)
   return (

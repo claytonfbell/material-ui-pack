@@ -55,13 +55,13 @@ yarn add material-ui-pack
 Pass your own `state` and `setState` into the surrounding `Form` component.
 
 | Property | Description                                                                   |
-| -------- | ----------------------------------------------------------------------------- |
+| -------- | ----------------------------------------------------------------------------- | --------- | -------- |
 | state    | React useState to contain all your form values.                               |
 | setState | From React useState                                                           |
 | onSubmit | Callback function to fire when form is submitted                              |
 | busy     | Boolean used to disable inputs and submit button after your form is submitted |
-| margin   | Default for `TextField` components `"normal" | "none" | "dense"`              |
-| size     | Default for `TextField` components `"small" | "medium"`                       |
+| margin   | Default for `TextField` components `"normal"                                  | "none"    | "dense"` |
+| size     | Default for `TextField` components `"small"                                   | "medium"` |
 | debug    | Display state values stringified                                              |
 
 ```tsx
@@ -98,14 +98,14 @@ You can optionally use this React hook to compose your own custom form component
 import React from "react"
 import { useForm } from "./FormProvider"
 
-export default function CustomFormInput(props) {
+export function CustomFormInput(props) {
   const { formProps, getValue, setValue } = useForm()
   return (
     <input
       type="text"
       disabled={formProps.busy}
       value={getValue(props.name)}
-      onChange={e => setValue(props.name, e.currentTarget.value)}
+      onChange={(e) => setValue(props.name, e.currentTarget.value)}
     />
   )
 }
@@ -211,8 +211,8 @@ A drop-down/input combo box. User can enter or select options.
 
 This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-countries) to build a full list of countries for your address forms. Values are set as [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3), but support `alpha-2` also.
 
-| Property | Description                 |
-| -------- | --------------------------- |
+| Property | Description  |
+| -------- | ------------ | ------------ |
 | isoType  | `"isoAlpha2" | "isoAlpha3"` |
 
 ```tsx
@@ -226,9 +226,9 @@ This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-
 This component uses [country-region-data](https://www.npmjs.com/package/country-region-data) to build a full list of states/provinces with the props value `country`.
 
 | Property       | Description                          |
-| -------------- | ------------------------------------ |
+| -------------- | ------------------------------------ | ------------ |
 | country        | To control which regions are loaded. |
-| countryIsoType | `"isoAlpha3" | "isoAlpha2"`          |
+| countryIsoType | `"isoAlpha3"                         | "isoAlpha2"` |
 
 ```tsx
 <SelectRegion country="USA" name="stateOrProvince" />
@@ -241,9 +241,9 @@ This component uses [country-region-data](https://www.npmjs.com/package/country-
 This component uses [moment-timezone](https://momentjs.com/timezone/) to build a full list of time zones.
 
 | Property       | Description                    |
-| -------------- | ------------------------------ |
+| -------------- | ------------------------------ | ------------ |
 | country        | To optionall filter the zones. |
-| countryIsoType | `"isoAlpha3" | "isoAlpha2"`    |
+| countryIsoType | `"isoAlpha3"                   | "isoAlpha2"` |
 
 ```tsx
 <SelectTimeZone name="timeZone" />
@@ -255,9 +255,9 @@ This component uses [moment-timezone](https://momentjs.com/timezone/) to build a
 
 This is a simple native drop-down select component.
 
-| Property | Description                                                                 |
-| -------- | --------------------------------------------------------------------------- |
-| options  | Array of objects containing `(string | numnber) value` and `(string) label` |
+| Property | Description                          |
+| -------- | ------------------------------------ | ---------------------------------- |
+| options  | Array of objects containing `(string | numnber) value`and`(string) label` |
 
 ```tsx
 <Select
@@ -394,7 +394,7 @@ import Remove from "@material-ui/icons/Remove"
 import React from "react"
 import useCounter from "../hooks/useCounter"
 
-function UseCounterExample() {
+export function UseCounterExample() {
   const [count, increase, decrease] = useCounter(100)
   return (
     <>
@@ -408,8 +408,6 @@ function UseCounterExample() {
     </>
   )
 }
-
-export default UseCounterExample
 ```
 
 ### useEscapeKey
@@ -419,7 +417,7 @@ import { Collapse } from "@material-ui/core"
 import React from "react"
 import useEscapeKey from "../hooks/useEscapeKey"
 
-function UseEscapeKeyExample() {
+export function UseEscapeKeyExample() {
   const [isOpen, setIsOpen] = React.useState(true)
 
   useEscapeKey(
@@ -434,8 +432,6 @@ function UseEscapeKeyExample() {
     </Collapse>
   )
 }
-
-export default UseEscapeKeyExample
 ```
 
 ### useHandleState
@@ -445,7 +441,7 @@ import { Button, Collapse } from "@material-ui/core"
 import React from "react"
 import useHandleState from "../hooks/useHandleState"
 
-function UseHandleStateExample() {
+export function UseHandleStateExample() {
   const [isOpen, handleIsOpen, setIsOpen] = useHandleState(true)
 
   return (
@@ -455,8 +451,6 @@ function UseHandleStateExample() {
     </Collapse>
   )
 }
-
-export default UseHandleStateExample
 ```
 
 ### useStoredState
@@ -467,7 +461,7 @@ import Form from "../Form"
 import useStoredState from "../hooks/useStoredState"
 import TextField from "../TextField"
 
-function UseStoredStateExample() {
+export function UseStoredStateExample() {
   const [state, setState] = useStoredState("myValues", {
     myText: "",
     myDescrption: "",
@@ -479,6 +473,4 @@ function UseStoredStateExample() {
     </Form>
   )
 }
-
-export default UseStoredStateExample
 ```
