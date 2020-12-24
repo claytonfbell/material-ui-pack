@@ -18,7 +18,11 @@
     "noEmit": true,
     "emitDeclarationOnly": false,
     "declarationDir": "dist",
-    "typeRoots": ["./types", "./node_modules/@types"]
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "importHelpers": true,
+    "sourceMap": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
