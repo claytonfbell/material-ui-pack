@@ -12,7 +12,6 @@
   "bugs": {
     "url": "https://github.com/claytonfbell/material-ui-pack/issues"
   },
-  "homepage": "https://github.com/claytonfbell/material-ui-pack#readme",
   "types": "dist/lib.d.ts",
   "main": "dist/lib.js",
   "scripts": {
@@ -30,12 +29,14 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "IE 11"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "IE 11"
     ]
   },
   "dependencies": {
@@ -87,6 +88,7 @@
     "markdown-toc": "^1.2.0",
     "material-ui-bootstrap": "^1.0.18",
     "react": "^16.12.0",
+    "react-app-polyfill": "^2.0.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
     "typescript": "^3.8.2"
