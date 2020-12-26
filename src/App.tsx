@@ -49,8 +49,8 @@ function App() {
         <SelectExample />
         <RichTextEditorExample />
         <TextEditorExample />
-        {/* <DateTimePickerExample />
-        <DatePickerExample /> */}
+        <DateTimePickerExample />
+        <DatePickerExample />
         <SubmitButtonExample />
         <CurrencyFieldExample />
         <PercentageFieldExample />
@@ -60,7 +60,9 @@ function App() {
         <UseEscapeKeyExample />
         <UseHandleStateExample />
       </Container>
-      <Container maxWidth="md">{/* <DisplayDateTimeExamples /> */}</Container>
+      <Container maxWidth="md">
+        <DisplayDateTimeExamples />
+      </Container>
     </ThemeProvider>
   )
 }

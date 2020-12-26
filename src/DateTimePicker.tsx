@@ -5,15 +5,15 @@ import {
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers"
 import dayjs from "dayjs"
-import timezone from "dayjs/plugin/timezone"
-import utc from "dayjs/plugin/utc"
+// import timezone from "dayjs/plugin/timezone"
+// import utc from "dayjs/plugin/utc"
 import { startCase } from "lodash"
 import React from "react"
 import { useForm } from "./FormProvider"
 import { formatDateTime } from "./lib"
 
-dayjs.extend(timezone)
-dayjs.extend(utc)
+// dayjs.extend(timezone)
+// dayjs.extend(utc)
 
 interface Props {
   name: string
@@ -37,7 +37,8 @@ export function DateTimePicker(props: Props) {
 
   const mom = React.useMemo(() => {
     if (props.timeZone !== undefined) {
-      return dayjs(value || undefined).tz(props.timeZone)
+      return dayjs(value || undefined)
+      //.tz(props.timeZone)
     } else {
       return dayjs(value || undefined)
     }

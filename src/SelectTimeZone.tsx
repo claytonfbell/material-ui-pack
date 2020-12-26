@@ -5,16 +5,16 @@ import {
 import dayjs from "dayjs"
 import "dayjs/locale/en" // import locale
 import relativeTime from "dayjs/plugin/relativeTime"
-import timezone from "dayjs/plugin/timezone"
-import utc from "dayjs/plugin/utc"
+// import timezone from "dayjs/plugin/timezone"
+// import utc from "dayjs/plugin/utc"
 import React from "react"
 import { countries } from "./countries"
 import { BaseSelectComboProps, SelectCombo } from "./SelectCombo"
 import { CountryIsoType } from "./SelectCountry"
 
 dayjs.extend(relativeTime)
-dayjs.extend(timezone)
-dayjs.extend(utc)
+// dayjs.extend(timezone)
+// dayjs.extend(utc)
 
 interface Props extends BaseSelectComboProps {
   country?: string
@@ -36,7 +36,9 @@ export function SelectTimeZone(props: Props) {
     return (zones === null ? getAllTimezoneNames() : zones).map((v: string) => {
       let label
       try {
-        label = `${v} ${dayjs().tz(v).format("(h:mm A) Z")}`
+        label = `${v} ${dayjs()
+          //.tz(v)
+          .format("(h:mm A)")}`
       } catch {
         label = v
       }
