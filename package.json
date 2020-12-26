@@ -12,7 +12,6 @@
   "bugs": {
     "url": "https://github.com/claytonfbell/material-ui-pack/issues"
   },
-  "homepage": "https://github.com/claytonfbell/material-ui-pack#readme",
   "types": "dist/lib.d.ts",
   "main": "dist/lib.js",
   "scripts": {
