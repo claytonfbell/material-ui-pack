@@ -16,16 +16,16 @@ import "@formatjs/intl-datetimeformat/polyfill"
 import "@formatjs/intl-datetimeformat/locale-data/en" // locale-data for en
 import "@formatjs/intl-datetimeformat/add-all-tz" // Add ALL tz data
 
+import "@formatjs/intl-relativetimeformat/polyfill"
+import "@formatjs/intl-relativetimeformat/locale-data/en" // locale-data for en
+
+import "@formatjs/intl-listformat/polyfill"
+import "@formatjs/intl-listformat/locale-data/en" // locale-data for en
+
+import "@formatjs/intl-displaynames/polyfill"
+import "@formatjs/intl-displaynames/locale-data/en" // locale-data for en
+
 import "date-time-format-timezone"
-
-// import "@formatjs/intl-relativetimeformat/polyfill"
-// import "@formatjs/intl-relativetimeformat/locale-data/en" // locale-data for en
-
-// import "@formatjs/intl-listformat/polyfill"
-// import "@formatjs/intl-listformat/locale-data/en" // locale-data for en
-
-// import "@formatjs/intl-displaynames/polyfill"
-// import "@formatjs/intl-displaynames/locale-data/en" // locale-data for en
 
 import React from "react"
 import ReactDOM from "react-dom"
