@@ -1,10 +1,10 @@
-import DayjsUtils from "@date-io/dayjs"
+import MomentUtils from "@date-io/moment"
 import {
   MuiPickersUtilsProvider,
   TimePicker as MUITimePicker,
 } from "@material-ui/pickers"
-import dayjs from "dayjs"
 import { startCase } from "lodash"
+import moment from "moment-timezone"
 import React from "react"
 import { useForm } from "./FormProvider"
 
@@ -22,14 +22,14 @@ export function TimePicker(props: Props) {
   } = useForm()
   let value = getValue(props.name) as string | null
   if (value === undefined || value === null) {
-    value = dayjs().format("HH:mm:ss")
+    value = moment().format("HH:mm:ss")
   }
-  value = `${dayjs().format("YYYY-MM-DD")} ${value}`
+  value = `${moment().format("YYYY-MM-DD")} ${value}`
 
   const label = props.label === undefined ? startCase(props.name) : props.label
 
   return (
-    <MuiPickersUtilsProvider utils={DayjsUtils}>
+    <MuiPickersUtilsProvider utils={MomentUtils}>
       <MUITimePicker
         fullWidth
         label={label}

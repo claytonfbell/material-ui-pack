@@ -1,4 +1,4 @@
-import DayjsUtils from "@date-io/dayjs"
+import MomentUtils from "@date-io/moment"
 import IconButton from "@material-ui/core/IconButton"
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday"
 import CloseIcon from "@material-ui/icons/Close"
@@ -7,8 +7,8 @@ import {
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers"
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date"
-import dayjs from "dayjs"
 import { startCase } from "lodash"
+import moment from "moment-timezone"
 import React from "react"
 import { useForm } from "./FormProvider"
 import { useHandleState } from "./hooks/useHandleState"
@@ -28,7 +28,7 @@ export function DatePicker(props: DatePickerProps) {
   } = useForm()
   const value = getValue(props.name) as string | null
   const dateTime = React.useMemo(
-    () => (value === null ? null : dayjs(value as string)),
+    () => (value === null ? null : moment(value as string)),
     [value]
   )
   const label = props.label === undefined ? startCase(props.name) : props.label
@@ -51,7 +51,7 @@ export function DatePicker(props: DatePickerProps) {
   )
 
   return (
-    <MuiPickersUtilsProvider utils={DayjsUtils}>
+    <MuiPickersUtilsProvider utils={MomentUtils}>
       <MUIDatePicker
         {...extraProps}
         clearable={props.clearable}

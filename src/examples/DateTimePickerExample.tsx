@@ -16,6 +16,7 @@ export function DateTimePickerExample() {
       setState={setState}
       busy={busy}
       margin="dense"
+      debug
     >
       <SelectTimeZone name="timeZone" />
       <DateTimePicker name="dateAndTime" timeZone={state.timeZone} />

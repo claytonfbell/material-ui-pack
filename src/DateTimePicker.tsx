@@ -1,19 +1,14 @@
-import DayjsUtils from "@date-io/dayjs"
+import MomentUtils from "@date-io/moment"
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday"
 import {
   DateTimePicker as MUIDateTimePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers"
-import dayjs from "dayjs"
-import timezone from "dayjs/plugin/timezone"
-import utc from "dayjs/plugin/utc"
 import { startCase } from "lodash"
-import React from "react"
+import moment from "moment-timezone"
+import React, { useMemo } from "react"
 import { useForm } from "./FormProvider"
 import { formatDateTime } from "./lib"
-
-dayjs.extend(timezone)
-dayjs.extend(utc)
 
 interface Props {
   name: string
@@ -22,6 +17,7 @@ interface Props {
   required?: boolean
   timeZone?: string
 }
+
 export function DateTimePicker(props: Props) {
   const {
     formProps: { busy, size, margin },
@@ -35,13 +31,13 @@ export function DateTimePicker(props: Props) {
 
   const label = props.label === undefined ? startCase(props.name) : props.label
 
-  const mom = React.useMemo(() => {
-    if (props.timeZone !== undefined) {
-      return dayjs(value || undefined).tz(props.timeZone)
-    } else {
-      return dayjs(value || undefined)
-    }
-  }, [props.timeZone, value])
+  const mom = useMemo(
+    () =>
+      props.timeZone !== undefined
+        ? moment(value || undefined).tz(props.timeZone)
+        : moment(value || undefined),
+    [props.timeZone, value]
+  )
 
   // this is a hack to reload the component if the timezone changes
   // the initial timezone appears to stick to the components state
@@ -57,7 +53,7 @@ export function DateTimePicker(props: Props) {
   return (
     <>
       {show && (
-        <MuiPickersUtilsProvider utils={DayjsUtils}>
+        <MuiPickersUtilsProvider utils={MomentUtils}>
           <MUIDateTimePicker
             required={props.required}
             fullWidth
@@ -66,7 +62,7 @@ export function DateTimePicker(props: Props) {
             margin={margin}
             disabled={props.disabled || busy}
             inputVariant="outlined"
-            value={mom.toISOString()}
+            value={mom}
             labelFunc={() => {
               if (value !== undefined && value !== null && value !== "") {
                 return formatDateTime(mom.toISOString(), props.timeZone)
@@ -75,7 +71,7 @@ export function DateTimePicker(props: Props) {
               }
             }}
             onChange={(e) => {
-              setValue(props.name, e === null ? null : e.toISOString())
+              setValue(props.name, e === null ? null : e.toISOString(true))
             }}
             InputProps={{
               endAdornment: <CalendarTodayIcon fontSize="inherit" />,

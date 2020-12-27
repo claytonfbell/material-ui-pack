@@ -1,14 +1,7 @@
-import dayjs from "dayjs"
-import LocalizedFormat from "dayjs/plugin/localizedFormat"
-import timezone from "dayjs/plugin/timezone"
-import utc from "dayjs/plugin/utc"
-
-dayjs.extend(LocalizedFormat)
-dayjs.extend(timezone)
-dayjs.extend(utc)
+import moment from "moment-timezone"
 
 export const formatDateTime = (iso8601: string, timeZone?: string) => {
-  return dayjs(iso8601)
-    .tz(timeZone === undefined ? dayjs.tz.guess() : timeZone)
+  return moment(iso8601)
+    .tz(timeZone === undefined ? moment.tz.guess() : timeZone)
     .format("lll z")
 }
