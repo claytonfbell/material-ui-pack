@@ -4,17 +4,19 @@ import {
 } from "countries-and-timezones"
 import dayjs from "dayjs"
 import "dayjs/locale/en" // import locale
+import customParseFormat from "dayjs/plugin/customParseFormat"
 import relativeTime from "dayjs/plugin/relativeTime"
-// import timezone from "dayjs/plugin/timezone"
-// import utc from "dayjs/plugin/utc"
+import timezone from "dayjs/plugin/timezone"
+import utc from "dayjs/plugin/utc"
 import React from "react"
 import { countries } from "./countries"
 import { BaseSelectComboProps, SelectCombo } from "./SelectCombo"
 import { CountryIsoType } from "./SelectCountry"
 
+dayjs.extend(customParseFormat)
 dayjs.extend(relativeTime)
-// dayjs.extend(timezone)
-// dayjs.extend(utc)
+dayjs.extend(timezone)
+dayjs.extend(utc)
 
 interface Props extends BaseSelectComboProps {
   country?: string

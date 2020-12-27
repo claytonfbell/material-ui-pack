@@ -1,13 +1,15 @@
 import dayjs from "dayjs"
 import LocalizedFormat from "dayjs/plugin/localizedFormat"
-// import timezone from "dayjs/plugin/timezone"
-// import utc from "dayjs/plugin/utc"
+import timezone from "dayjs/plugin/timezone"
+import utc from "dayjs/plugin/utc"
+import customParseFormat from "dayjs/plugin/customParseFormat"
 
-// dayjs.extend(timezone)
-// dayjs.extend(utc)
+dayjs.extend(customParseFormat)
+dayjs.extend(timezone)
+dayjs.extend(utc)
 dayjs.extend(LocalizedFormat)
 
 export const formatDate = (ymd: string) =>
   dayjs(`${ymd} 00:00:00`)
-    //   .tz(dayjs.tz.guess())
+    //.tz(dayjs.tz.guess())
     .format("LL")

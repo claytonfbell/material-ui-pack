@@ -5,15 +5,17 @@ import {
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers"
 import dayjs from "dayjs"
-// import timezone from "dayjs/plugin/timezone"
-// import utc from "dayjs/plugin/utc"
+import customParseFormat from "dayjs/plugin/customParseFormat"
+import timezone from "dayjs/plugin/timezone"
+import utc from "dayjs/plugin/utc"
 import { startCase } from "lodash"
 import React from "react"
 import { useForm } from "./FormProvider"
 import { formatDateTime } from "./lib"
 
-// dayjs.extend(timezone)
-// dayjs.extend(utc)
+dayjs.extend(customParseFormat)
+dayjs.extend(timezone)
+dayjs.extend(utc)
 
 interface Props {
   name: string
