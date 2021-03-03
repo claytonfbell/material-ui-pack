@@ -50,7 +50,7 @@ export function SelectCombo(props: SelectComboProps) {
   const [index, setIndex] = React.useState(-2)
 
   React.useEffect(() => {
-    setIndex(props.options.findIndex((x) => x.value === value))
+    setIndex(props.options.findIndex(x => x.value === value))
   }, [value, props.options])
 
   React.useEffect(() => {
@@ -65,7 +65,7 @@ export function SelectCombo(props: SelectComboProps) {
   const [inputText, setInputText] = React.useState("")
   React.useEffect(() => {
     if (props.matchValue) {
-      const find = props.options.find((x) => x.value === inputText)
+      const find = props.options.find(x => x.value === inputText)
       if (find !== undefined) {
         setInputText(find.label)
       }
@@ -97,7 +97,7 @@ export function SelectCombo(props: SelectComboProps) {
           defaultValue={props.options[index]}
           onChange={handleChange}
           inputValue={inputText}
-          onInputChange={(_, v) => {
+          onInputChange={(_: unknown, v: string) => {
             setTouched(true)
             setInputText(fmt(v))
             if (props.onInputChange !== undefined) {
@@ -107,7 +107,7 @@ export function SelectCombo(props: SelectComboProps) {
           onFocus={() => setHasFocus(true)}
           onBlur={() => setHasFocus(false)}
           style={{ width: `100%` }}
-          renderInput={(params) => (
+          renderInput={(params: unknown) => (
             <TextField
               {...params}
               className={classes.txt}

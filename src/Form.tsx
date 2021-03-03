@@ -4,7 +4,7 @@ import React from "react"
 import { Debug } from "./Debug"
 import { FieldSizeType, FormProvider } from "./FormProvider"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   form: {
     width: "100%",
     marginTop: theme.spacing(1),
@@ -28,7 +28,7 @@ function FormComponent(props: FormProps) {
     <form
       className={classes.form}
       noValidate
-      onSubmit={(e) => {
+      onSubmit={e => {
         e.preventDefault()
         props.onSubmit()
       }}

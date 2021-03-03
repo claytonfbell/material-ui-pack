@@ -13,7 +13,7 @@ export function SelectCountry(props: Props) {
 
   function getOptions() {
     const c = countries.getNames("en")
-    return Object.keys(c).map((isoAlpha2, index) => ({
+    return Object.keys(c).map(isoAlpha2 => ({
       value:
         isoType === "isoAlpha3"
           ? countries.alpha2ToAlpha3(isoAlpha2)

@@ -13,13 +13,13 @@ export function SelectRegion(props: Props) {
     props.countryIsoType !== undefined ? props.countryIsoType : "isoAlpha3"
 
   function getOptions() {
-    let country = countryRegionData.find((c) => {
+    let country = countryRegionData.find(c => {
       return isoType === "isoAlpha3"
         ? c.countryShortCode === countries.alpha3ToAlpha2(props.country)
         : c.countryShortCode === props.country
     })
     if (country !== null && country !== undefined) {
-      return country.regions.map((region, i) => ({
+      return country.regions.map(region => ({
         value: region.shortCode,
         label: region.name,
       }))

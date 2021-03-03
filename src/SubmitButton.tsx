@@ -1,4 +1,5 @@
-import Button, { ButtonProps } from "material-ui-bootstrap/dist/Button"
+import { Button } from "material-ui-bootstrap"
+import { ButtonProps } from "material-ui-bootstrap/dist/Button"
 import React from "react"
 import { useForm } from "./FormProvider"
 

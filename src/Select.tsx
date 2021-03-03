@@ -54,8 +54,7 @@ export function Select(props: SelectProps) {
     event: React.ChangeEvent<{
       name?: string | undefined
       value: unknown
-    }>,
-    child: React.ReactNode
+    }>
   ) {
     let v = event.currentTarget.value as string | null
     v = props.allowNull && v === nullLabel ? null : v

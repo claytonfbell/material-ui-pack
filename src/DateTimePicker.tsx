@@ -8,7 +8,7 @@ import { startCase } from "lodash"
 import moment from "moment-timezone"
 import React, { useMemo } from "react"
 import { useForm } from "./FormProvider"
-import { formatDateTime } from "./lib"
+import { formatDateTime } from "./util/formatDateTime"
 
 interface Props {
   name: string
@@ -70,7 +70,7 @@ export function DateTimePicker(props: Props) {
                 return ""
               }
             }}
-            onChange={(e) => {
+            onChange={e => {
               setValue(props.name, e === null ? null : e.toISOString(true))
             }}
             InputProps={{

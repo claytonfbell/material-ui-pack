@@ -21,8 +21,6 @@ Why? Because I love the [Material UI](https://material-ui.com/) api but `<TextFi
   - [SelectRegion](#selectregion)
   - [SelectTimeZone](#selecttimezone)
   - [Select](#select)
-  - [RichTextEditor](#richtexteditor)
-  - [TextEditor](#texteditor)
   - [DateTimePicker](#datetimepicker)
   - [DatePicker](#datepicker)
   - [TimePicker](#timepicker)
@@ -55,13 +53,13 @@ yarn add material-ui-pack
 Pass your own `state` and `setState` into the surrounding `Form` component.
 
 | Property | Description                                                                   |
-| -------- | ----------------------------------------------------------------------------- | --------- | -------- |
+| -------- | ----------------------------------------------------------------------------- |
 | state    | React useState to contain all your form values.                               |
 | setState | From React useState                                                           |
 | onSubmit | Callback function to fire when form is submitted                              |
 | busy     | Boolean used to disable inputs and submit button after your form is submitted |
-| margin   | Default for `TextField` components `"normal"                                  | "none"    | "dense"` |
-| size     | Default for `TextField` components `"small"                                   | "medium"` |
+| margin   | Default for `TextField` components `"normal" | "none" | "dense"`              |
+| size     | Default for `TextField` components `"small" | "medium"`                       |
 | debug    | Display state values stringified                                              |
 
 ```tsx
@@ -105,7 +103,7 @@ export function CustomFormInput(props) {
       type="text"
       disabled={formProps.busy}
       value={getValue(props.name)}
-      onChange={(e) => setValue(props.name, e.currentTarget.value)}
+      onChange={e => setValue(props.name, e.currentTarget.value)}
     />
   )
 }
@@ -211,8 +209,8 @@ A drop-down/input combo box. User can enter or select options.
 
 This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-countries) to build a full list of countries for your address forms. Values are set as [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3), but support `alpha-2` also.
 
-| Property | Description  |
-| -------- | ------------ | ------------ |
+| Property | Description                 |
+| -------- | --------------------------- |
 | isoType  | `"isoAlpha2" | "isoAlpha3"` |
 
 ```tsx
@@ -226,9 +224,9 @@ This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-
 This component uses [country-region-data](https://www.npmjs.com/package/country-region-data) to build a full list of states/provinces with the props value `country`.
 
 | Property       | Description                          |
-| -------------- | ------------------------------------ | ------------ |
+| -------------- | ------------------------------------ |
 | country        | To control which regions are loaded. |
-| countryIsoType | `"isoAlpha3"                         | "isoAlpha2"` |
+| countryIsoType | `"isoAlpha3" | "isoAlpha2"`          |
 
 ```tsx
 <SelectRegion country="USA" name="stateOrProvince" />
@@ -241,9 +239,9 @@ This component uses [country-region-data](https://www.npmjs.com/package/country-
 This component uses [moment-timezone](https://momentjs.com/timezone/) to build a full list of time zones.
 
 | Property       | Description                    |
-| -------------- | ------------------------------ | ------------ |
+| -------------- | ------------------------------ |
 | country        | To optionall filter the zones. |
-| countryIsoType | `"isoAlpha3"                   | "isoAlpha2"` |
+| countryIsoType | `"isoAlpha3" | "isoAlpha2"`    |
 
 ```tsx
 <SelectTimeZone name="timeZone" />
@@ -255,8 +253,8 @@ This component uses [moment-timezone](https://momentjs.com/timezone/) to build a
 
 This is a simple native drop-down select component.
 
-| Property | Description                          |
-| -------- | ------------------------------------ | ---------------------------------- |
+| Property | Description                                                               |
+| -------- | ------------------------------------------------------------------------- |
 | options  | Array of objects containing `(string | numnber) value`and`(string) label` |
 
 ```tsx
@@ -267,26 +265,6 @@ This is a simple native drop-down select component.
     { value: "red", label: "Red" },
   ]}
 />
-```
-
-### RichTextEditor
-
-![example](./src/examples/RichTextEditorExample.gif)
-
-This component uses [react-draft-wysiwyg](https://jpuri.github.io/react-draft-wysiwyg/) and sets value in markdown formatting.
-
-```tsx
-<RichTextEditor name="markdownContent" />
-```
-
-### TextEditor
-
-![example](./src/examples/TextEditorExample.gif)
-
-This component provides user choice to toggle between a `RichTextEditor` or a normal multiline `TextField`.
-
-```tsx
-<TextEditor name="markdownContent" />
 ```
 
 ### DateTimePicker

@@ -62,10 +62,7 @@ export function DatePicker(props: DatePickerProps) {
         disabled={props.disabled || busy}
         required={props.required}
         value={dateTime}
-        onChange={(
-          e: MaterialUiPickersDate,
-          value?: string | null | undefined
-        ) => {
+        onChange={(e: MaterialUiPickersDate) => {
           setValue(props.name, e === null ? null : e.format("YYYY-MM-DD"))
         }}
         autoOk

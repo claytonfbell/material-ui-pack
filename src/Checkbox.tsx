@@ -24,7 +24,7 @@ export const Checkbox = React.forwardRef(
       ...props,
 
       checked,
-      onChange: (e) => setValue(props.name, e.currentTarget.checked),
+      onChange: e => setValue(props.name, e.currentTarget.checked),
       disabled: busy || props.disabled,
     }
     return (
