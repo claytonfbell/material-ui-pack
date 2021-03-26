@@ -20,10 +20,12 @@ export interface FormProps {
   debug?: boolean
   margin?: PropTypes.Margin
   size?: FieldSizeType
+  preventSubmitOnEnterKey?: boolean
 }
 
 function FormComponent(props: FormProps) {
   const classes = useStyles(props)
+
   return (
     <form
       className={classes.form}
@@ -31,6 +33,23 @@ function FormComponent(props: FormProps) {
       onSubmit={e => {
         e.preventDefault()
         props.onSubmit()
+      }}
+      onKeyPress={(e) => {
+        // prevent form submitting on enter key
+        if (e.which === 13 && props.preventSubmitOnEnterKey === true) {
+          try {
+            if (
+              // @ts-ignore
+              e.target.nodeName.toUpperCase() !== "TEXTAREA" &&
+              // @ts-ignore
+              e.target.nodeName.toUpperCase() !== "BUTTON"
+            ) {
+              e.preventDefault()
+            }
+          } catch (e) {
+            // nothing
+          }
+        }
       }}
     >
       {props.debug && <Debug object={props.state} />}
