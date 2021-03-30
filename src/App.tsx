@@ -68,7 +68,7 @@ function App() {
 }
 
 export default () => (
-  <DarkModeProvider>
+  <DarkModeProvider preferDarkMode={true}>
     <App />
   </DarkModeProvider>
 )
