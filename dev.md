@@ -5,5 +5,5 @@
 3. Commit Changes
 4. `npm version patch`
 5. Push changes, check travis results
-6. `npm run publish:npm`
+6. `npm run build`
 7. `npm publish`
