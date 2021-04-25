@@ -1,226 +1,212 @@
-import IconButton from "@material-ui/core/IconButton"
-import InputAdornment from "@material-ui/core/InputAdornment"
-import { OutlinedInputProps } from "@material-ui/core/OutlinedInput"
-import MUITextField, {
-  BaseTextFieldProps,
-  TextFieldProps,
-} from "@material-ui/core/TextField"
+import {
+  IconButton,
+  InputAdornment,
+  TextField as MUITextField,
+  TextFieldProps as MUITextFieldProps,
+} from "@material-ui/core"
+import { startCase } from "lodash"
+import React from "react"
+import { useForm } from "."
 import PhoneIcon from "@material-ui/icons/Phone"
 import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
-import { startCase } from "lodash"
-import React from "react"
-import { useForm } from "./FormProvider"
 
-export interface FormTextFieldProps extends BaseTextFieldProps {
-  onBlur?: OutlinedInputProps["onBlur"]
-  onChange?: OutlinedInputProps["onChange"]
-  onFocus?: OutlinedInputProps["onFocus"]
-  InputProps?: Partial<OutlinedInputProps>
-  inputProps?: OutlinedInputProps["inputProps"]
-  capitalize?: boolean
-  lowercase?: boolean
-  phone?: boolean
-  newPassword?: boolean
-  password?: boolean
-  formatter?: (str: string) => string
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type TextFieldProps = Omit<MUITextFieldProps, "name"> & {
+  name: string
+  formatter?:
+    | StringFormatter
+    | "capitalize"
+    | "lowercase"
+    | "phone"
+    | "newPassword"
+    | "password"
 }
 
-export function TextField(props: FormTextFieldProps) {
-  const {
-    formProps: { margin, size, busy },
-    getValue,
-    setValue,
-  } = useForm()
-  const [error, setError] = React.useState(false)
-  const [errorMessage, setErrorMessage] = React.useState("")
-  const [showPassword, setShowPassword] = React.useState(false)
+type StringFormatter = (str: string) => string
 
-  const buildProps = React.useCallback(() => {
-    // formatters
-    let fmt = (v: string) => v
-    fmt = props.capitalize
-      ? (v: string) =>
-          v
-            .split(" ")
-            .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-            .join(" ")
-      : fmt
-    fmt = props.lowercase ? (v: string) => v.toLowerCase() : fmt
-    fmt = props.phone
-      ? (v: string) =>
-          v
-            .replace(/[^0-9() -]/g, "")
-            .replace(
-              /^[^0-9]*([0-9]{3})[^0-9]*([0-9]{1,2})[^0-9]*$/g,
-              "($1) $2"
-            )
-            .replace(/^[^0-9]*([0-9]{3})[^0-9]*([0-9]{1,3})$/g, "($1) $2")
-            .replace(
-              /^[^0-9]*([0-9]{3})[^0-9]*([0-9]{3})[^0-9]*([0-9]{1,4}).*$/g,
-              "($1) $2-$3"
-            )
-      : fmt
-    fmt = props.formatter !== undefined ? props.formatter : fmt
+const formatters = {
+  capitalize: (str: string) =>
+    str
+      .split(" ")
+      .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+      .join(" "),
+  lowercase: (str: string) => str.toLowerCase(),
+  phone: (str: string) =>
+    str
+      .replace(/[^0-9() -]/g, "")
+      .replace(/^[^0-9]*([0-9]{3})[^0-9]*([0-9]{1,2})[^0-9]*$/g, "($1) $2")
+      .replace(/^[^0-9]*([0-9]{3})[^0-9]*([0-9]{1,3})$/g, "($1) $2")
+      .replace(
+        /^[^0-9]*([0-9]{3})[^0-9]*([0-9]{3})[^0-9]*([0-9]{1,4}).*$/g,
+        "($1) $2-$3"
+      ),
+  phoneBlur: (v: string) => {
+    if (v !== null) {
+      v = v.replace(/[^0-9]/g, "")
+      v = v.length > 10 ? v.substr(0, 10) : v
+      v =
+        v.length === 10
+          ? `(${v.substr(0, 3)}) ${v.substr(3, 3)}-${v.substr(6, 4)}`
+          : v
+    }
+    return v
+  },
+}
 
-    // blur
-    let blur = (v: string) => v
-    blur = props.phone
-      ? (v: string) => {
-          if (v !== null) {
-            v = v.replace(/[^0-9]/g, "")
-            v = v.length > 10 ? v.substr(0, 10) : v
-            v =
-              v.length === 10
-                ? `(${v.substr(0, 3)}) ${v.substr(3, 3)}-${v.substr(6, 4)}`
-                : v
-          }
-          return v
-        }
-      : blur
+export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
+  (originalProps, ref) => {
+    const { formatter, ...props } = originalProps
+    const { formProps, getValue, setValue } = useForm()
+
+    // handleChange
+    function handleChange(
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) {
+      let newValue = e.currentTarget.value
+      switch (formatter) {
+        case "capitalize":
+          newValue = formatters.capitalize(newValue)
+          break
+        case "lowercase":
+          newValue = formatters.lowercase(newValue)
+          break
+        case "phone":
+          newValue = formatters.phone(newValue)
+      }
+
+      if (typeof formatter === "function") {
+        newValue = formatter(newValue)
+      }
+      setValue(props.name, newValue)
+    }
+
+    // handleBlur
+    function handleBlur(
+      e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) {
+      let newValue = e.currentTarget.value
+      if (formatter === "phone") {
+        newValue = formatters.phoneBlur(newValue)
+      }
+      setValue(props.name, newValue)
+    }
+
+    // password state
+    const [error, setError] = React.useState(false)
+    const [errorMessage, setErrorMessage] = React.useState("")
+    const [showPassword, setShowPassword] = React.useState(false)
 
     // label
-    let label = props.label
-    label =
-      label === undefined && props.name !== undefined
-        ? startCase(props.name)
-        : label
-    label =
-      label !== undefined && error && errorMessage !== ""
-        ? `${label} - ${errorMessage}`
-        : label
+    props.label = props.label || startCase(props.name)
+    props.label =
+      error && errorMessage !== ""
+        ? `${props.label} - ${errorMessage}`
+        : props.label
 
     // autoComplete
-    let autoComplete: string | undefined = undefined
-    autoComplete = props.newPassword ? "new-password" : autoComplete
-    autoComplete = props.password ? "current-password" : autoComplete
-    if (props.autoComplete !== undefined) {
-      autoComplete = props.autoComplete
-    }
+    props.autoComplete =
+      formatter === "newPassword" ? "new-password" : props.autoComplete
+    props.autoComplete =
+      formatter === "password" ? "current-password" : props.autoComplete
 
     // type
-    let type: string | undefined = undefined
-    type = props.newPassword && !showPassword ? "password" : type
-    type = props.password && !showPassword ? "password" : type
+    props.type =
+      formatter === "newPassword" && !showPassword ? "password" : props.type
+    props.type =
+      formatter === "password" && !showPassword ? "password" : props.type
 
     // value
-    let value = props.name !== undefined ? getValue(props.name) : props.value
-    value = value === undefined ? "" : value
+    props.value = props.value === undefined ? getValue(props.name) : props.value
 
-    return { fmt, blur, label, autoComplete, value, type }
-  }, [
-    error,
-    errorMessage,
-    getValue,
-    props.autoComplete,
-    props.capitalize,
-    props.formatter,
-    props.label,
-    props.lowercase,
-    props.name,
-    props.newPassword,
-    props.password,
-    props.phone,
-    props.value,
-    showPassword,
-  ])
+    // variant
+    props.variant = props.variant || "outlined"
 
-  const { fmt, blur, label, autoComplete, value, type } = React.useMemo(
-    () => buildProps(),
-    [buildProps]
-  )
+    // margin
+    props.margin = props.margin || formProps.margin
 
-  // reduce props to TextFieldProps
-  const {
-    capitalize,
-    lowercase,
-    phone,
-    newPassword,
-    password,
-    formatter,
-    ...reduced
-  } = props
+    // size
+    props.size = props.size || formProps.size
 
-  const textFieldProps: FormTextFieldProps = {
-    // default props
-    margin,
-    size,
-    required: false,
-    fullWidth: true,
-    variant: "outlined",
-    autoComplete,
-    type,
-    error,
-    value,
-    onBlur: (e) =>
-      setValue(props.name as string, blur(fmt(e.currentTarget.value))),
-    onChange:
-      props.name !== undefined
-        ? (e) => setValue(props.name as string, fmt(e.currentTarget.value))
-        : undefined,
-    InputProps:
-      props.password || props.newPassword
-        ? {
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={() => setShowPassword(true)}
-                  onMouseDown={() => setShowPassword(false)}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            ),
+    // InputProps
+    props.InputProps =
+      props.InputProps === undefined
+        ? formatter === "password" || formatter === "newPassword"
+          ? {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() => setShowPassword(true)}
+                    onMouseDown={() => setShowPassword(false)}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }
+          : formatter === "phone"
+          ? {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <PhoneIcon fontSize="inherit" />
+                </InputAdornment>
+              ),
+            }
+          : undefined
+        : props.InputProps
+
+    // disabled
+    props.disabled = props.disabled || formProps.busy
+
+    // error
+    props.error = props.error || error
+
+    // fullWidth
+    props.fullWidth = props.fullWidth === undefined ? true : props.fullWidth
+
+    // error state
+    React.useEffect(() => {
+      const errs = []
+      const value = props.value as string
+      // check for strong password
+      if (formatter === "newPassword") {
+        if (value !== undefined && value.length > 0) {
+          if (value.length < 8) {
+            errs.push("TOO SHORT")
           }
-        : props.phone
-        ? {
-            endAdornment: (
-              <InputAdornment position="end">
-                <PhoneIcon fontSize="inherit" />
-              </InputAdornment>
-            ),
+          if (value.length > 256) {
+            errs.push("TOO LONG")
           }
-        : undefined,
-    // passed props
-    ...reduced,
-    // overridden props
-    disabled: props.disabled || busy,
-    label,
-  }
-
-  React.useEffect(() => {
-    const errs = []
-    const value = textFieldProps.value as string
-    // check for strong password
-    if (props.newPassword) {
-      if (value !== undefined && value.length > 0) {
-        if (value.length < 8) {
-          errs.push("TOO SHORT")
-        }
-        if (value.length > 256) {
-          errs.push("TOO LONG")
-        }
-        if (value.match(/[A-Z]/) === null) {
-          errs.push("UPPERCASE REQUIRED")
-        }
-        if (value.match(/[a-z]/) === null) {
-          errs.push("LOWERCASE REQUIRED")
-        }
-        if (value.match(/[0-9]/) === null) {
-          errs.push("NUMBER REQUIRED")
+          if (value.match(/[A-Z]/) === null) {
+            errs.push("UPPERCASE REQUIRED")
+          }
+          if (value.match(/[a-z]/) === null) {
+            errs.push("LOWERCASE REQUIRED")
+          }
+          if (value.match(/[0-9]/) === null) {
+            errs.push("NUMBER REQUIRED")
+          }
         }
       }
-    }
-    if (errs.length > 0) {
-      setError(true)
-      setErrorMessage(errs[0])
-    } else {
-      setError(false)
-      setErrorMessage("")
-    }
-  }, [textFieldProps.value, props.newPassword])
+      if (errs.length > 0) {
+        setError(true)
+        setErrorMessage(errs[0])
+      } else {
+        setError(false)
+        setErrorMessage("")
+      }
+    }, [props.value, formatter])
 
-  return <MUITextField {...(textFieldProps as TextFieldProps)} />
-}
+    return (
+      <MUITextField
+        ref={ref}
+        value={props.value}
+        onBlur={handleBlur}
+        onChange={handleChange}
+        {...props}
+      />
+    )
+  }
+)

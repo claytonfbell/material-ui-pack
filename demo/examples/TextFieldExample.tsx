@@ -5,6 +5,7 @@ export function TextFieldExample() {
   const [state, setState] = React.useState({
     phone: "",
     password2: "",
+    password3: "",
     someText: "",
   })
   const [busy, setBusy] = React.useState(false)
@@ -18,9 +19,10 @@ export function TextFieldExample() {
       margin="dense"
       preventSubmitOnEnterKey
     >
-      <TextField name="phone" phone />
-      <TextField name="password2" password />
-      <TextField name="someText" password rows={4} multiline />
+      <TextField name="phone" formatter="phone" />
+      <TextField name="password2" formatter="password" />
+      <TextField name="password3" formatter="newPassword" />
+      <TextField name="someText" rows={4} multiline />
       <SubmitButton>Submit</SubmitButton>
     </Form>
   )

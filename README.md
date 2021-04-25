@@ -80,8 +80,8 @@ export default function App() {
   }
   return (
     <Form state={state} setState={setState} onSubmit={handleSubmit} busy={busy}>
-      <TextField name="email" email />
-      <TextField name="password" password />
+      <TextField name="email" type="email" />
+      <TextField name="password" fomatter="password" />
       <SubmitButton>Submit</SubmitButton>
     </Form>
   )
@@ -141,11 +141,11 @@ The wrapped `TextField` will default with `variant="outlined"` and you can skip 
 // supports object paths in the name (uses lodash.get() and lodash.set())
 <TextField name="alternateEmails[0]" label="Alternate Email"/>
 
-<TextField name="email" lowercase />
-<TextField name="password" password />
-<TextField name="newPassword" newPassword />
-<TextField name="phone" phone />
-<TextField name="capitalizedWords" capitalize />
+<TextField name="email" formatter="lowercase" />
+<TextField name="password" formatter="password" />
+<TextField name="newPassword" formatter="newPassword" />
+<TextField name="phone" formatter="phone" />
+<TextField name="capitalizedWords" formatter="capitalize" />
 ```
 
 ### CurrencyField
