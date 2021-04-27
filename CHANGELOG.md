@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.2](https://github.com/claytonfbell/material-ui-pack/compare/v2.1.1...v2.1.2) (2021-04-27)
+
+
+### Bug Fixes
+
+* Added missing type export ([0c17bf4](https://github.com/claytonfbell/material-ui-pack/commit/0c17bf495d9d429da7c4da36fc509ff6e1b8a088))
+
 ### [2.1.1](https://github.com/claytonfbell/material-ui-pack/compare/v2.1.0...v2.1.1) (2021-04-27)
 
 
