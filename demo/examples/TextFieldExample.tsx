@@ -19,7 +19,7 @@ export function TextFieldExample() {
       margin="dense"
       preventSubmitOnEnterKey
     >
-      <TextField name="phone" formatter="phone" />
+      <TextField name="phone" phone />
       <TextField name="password2" formatter="password" />
       <TextField name="password3" formatter="newPassword" />
       <TextField name="someText" rows={4} multiline />

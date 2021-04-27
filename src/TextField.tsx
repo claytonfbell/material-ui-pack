@@ -21,6 +21,26 @@ export type TextFieldProps = Omit<MUITextFieldProps, "name"> & {
     | "phone"
     | "newPassword"
     | "password"
+  /**
+   * @deprecated - use formatter
+   */
+  capitalize?: boolean
+  /**
+   * @deprecated - use formatter
+   */
+  lowercase?: boolean
+  /**
+   * @deprecated - use formatter
+   */
+  phone?: boolean
+  /**
+   * @deprecated - use formatter
+   */
+  newPassword?: boolean
+  /**
+   * @deprecated - use formatter
+   */
+  password?: boolean
 }
 
 type StringFormatter = (str: string) => string
@@ -56,8 +76,37 @@ const formatters = {
 
 export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
   (originalProps, ref) => {
-    const { formatter, ...props } = originalProps
+    let {
+      formatter,
+      capitalize,
+      lowercase,
+      phone,
+      newPassword,
+      password,
+      ...props
+    } = originalProps
     const { formProps, getValue, setValue } = useForm()
+
+    /**
+     * @deprecated props
+     */
+    if (formatter === undefined) {
+      if (capitalize) {
+        formatter = "capitalize"
+      }
+      if (lowercase) {
+        formatter = "lowercase"
+      }
+      if (phone) {
+        formatter = "phone"
+      }
+      if (newPassword) {
+        formatter = "newPassword"
+      }
+      if (password) {
+        formatter = "password"
+      }
+    }
 
     // handleChange
     function handleChange(
