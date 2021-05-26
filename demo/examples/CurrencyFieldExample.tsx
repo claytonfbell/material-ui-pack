@@ -1,10 +1,13 @@
 import Box from "@material-ui/core/Box"
+import { CurrencyField, CurrencyFieldBase, Form } from "material-ui-pack"
 import React from "react"
-import { CurrencyField, Form } from "material-ui-pack"
 
 export function CurrencyFieldExample() {
   const [state, setState] = React.useState({ price: 0.23 })
   const [busy, setBusy] = React.useState(false)
+
+  const [value, setValue] = React.useState(12.25)
+
   return (
     <Box>
       <Form
@@ -25,6 +28,13 @@ export function CurrencyFieldExample() {
           fulleWidth
         />
       </Form>
+
+      <CurrencyFieldBase
+        label="CurrencyFieldBase"
+        value={value}
+        onChange={x => setValue(x as number)}
+        numeric
+      />
     </Box>
   )
 }
