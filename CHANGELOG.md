@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.2](https://github.com/claytonfbell/material-ui-pack/compare/v2.2.1...v2.2.2) (2021-05-26)
+
+
+### Bug Fixes
+
+* fixed fullWidth property in demo ([7d8765f](https://github.com/claytonfbell/material-ui-pack/commit/7d8765f20ca22df1e6f986008768ccaf7351ea24))
+
 ### [2.2.1](https://github.com/claytonfbell/material-ui-pack/compare/v2.2.0...v2.2.1) (2021-05-26)
 
 
