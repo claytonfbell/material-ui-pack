@@ -28,6 +28,7 @@ export const CurrencyField = React.forwardRef<
       onChange={x => setValue(props.name, x)}
       margin={formProps.margin}
       size={formProps.size}
+      disabled={formProps.busy || props.disabled}
     />
   )
 })

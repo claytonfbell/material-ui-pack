@@ -1,100 +1,33 @@
-import FormControl from "@material-ui/core/FormControl"
-import InputLabel from "@material-ui/core/InputLabel"
-import MUISelect from "@material-ui/core/Select"
-import { startCase } from "lodash"
 import React from "react"
 import { useForm } from "./FormProvider"
-import { OptionType } from "./SelectCombo"
+import { SelectBase, SelectBaseProps } from "./SelectBase"
 
-export interface SelectProps {
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type CurrencyFieldProps = Omit<
+  SelectBaseProps,
+  "name" | "value" | "onChange" | "margin" | "size"
+> & {
   name: string
-  options: OptionType[]
-  label?: string
-  fullWidth?: boolean
-  disabled?: boolean
-  isNumeric?: boolean
-  allowNull?: boolean
-  nullLabel?: string
-  required?: boolean
 }
-export function Select(props: SelectProps) {
-  const {
-    formProps: { busy, size, margin },
-    getValue,
-    setValue,
-  } = useForm()
 
-  const label = props.label === undefined ? startCase(props.name) : props.label
-  const value = getValue(props.name)
-  const [isNumeric, setIsNumeric] = React.useState(typeof value === "number")
-  React.useEffect(() => {
-    if (props.isNumeric !== undefined) {
-      setIsNumeric(props.isNumeric)
-    }
-  }, [props.isNumeric])
+export const Select = React.forwardRef<HTMLDivElement, CurrencyFieldProps>(
+  (props, ref) => {
+    const { getValue, setValue, formProps } = useForm()
+    const value = (React.useMemo(() => getValue(props.name), [
+      getValue,
+      props.name,
+    ]) || "") as string | number
 
-  const disabled = busy || props.disabled
-
-  const [labelWidth, setLabelWidth] = React.useState(0)
-  const inputLabel = React.useRef<HTMLLabelElement>(null)
-  React.useEffect(() => {
-    const width =
-      inputLabel.current !== null ? inputLabel.current.offsetWidth : 0
-    setLabelWidth(width)
-  }, [])
-
-  const nullLabel =
-    props.nullLabel !== undefined
-      ? props.nullLabel
-      : props.allowNull
-      ? "NONE"
-      : "SELECT"
-
-  function handleChange(
-    event: React.ChangeEvent<{
-      name?: string | undefined
-      value: unknown
-    }>
-  ) {
-    let v = event.currentTarget.value as string | null
-    v = props.allowNull && v === nullLabel ? null : v
-    if (isNumeric) {
-      setValue(props.name, Number(v))
-      return
-    }
-    setValue(props.name, v)
-  }
-
-  return (
-    <FormControl
-      disabled={disabled}
-      fullWidth
-      variant="outlined"
-      size={size}
-      margin={margin}
-      required={props.required}
-    >
-      <InputLabel ref={inputLabel}>{label}</InputLabel>
-      <MUISelect
-        disabled={disabled}
-        fullWidth
-        native
+    return (
+      <SelectBase
+        {...props}
+        ref={ref}
         value={value}
-        onChange={handleChange}
-        labelWidth={labelWidth}
-        inputProps={{
-          name: props.name,
-        }}
-      >
-        <option disabled={!props.allowNull && value !== null}>
-          {nullLabel}
-        </option>
-        {props.options.map((o, x) => (
-          <option key={x} value={o.value} disabled={o.disabled}>
-            {o.label}
-          </option>
-        ))}
-      </MUISelect>
-    </FormControl>
-  )
-}
+        onChange={x => setValue(props.name, x)}
+        margin={formProps.margin}
+        size={formProps.size}
+        disabled={formProps.busy || props.disabled}
+      />
+    )
+  }
+)
