@@ -22,7 +22,7 @@ export interface CurrencyFieldBaseProps {
   numeric?: boolean
   blankZero?: boolean
   inPennies?: boolean
-  fulleWidth?: boolean
+  fullWidth?: boolean
   margin?: PropTypes.Margin
   size?: "medium" | "small"
   name?: string
@@ -131,7 +131,7 @@ export const CurrencyFieldBase = React.forwardRef<
       InputProps={{
         startAdornment: <InputAdornment position="start">$</InputAdornment>,
       }}
-      fullWidth={props.fulleWidth}
+      fullWidth={props.fullWidth}
     />
   )
 })
