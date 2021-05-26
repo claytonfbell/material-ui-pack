@@ -25,7 +25,7 @@ export function CurrencyFieldExample() {
           inPennies
           alignRight
           blankZero
-          fulleWidth
+          fullWidth
         />
       </Form>
 
