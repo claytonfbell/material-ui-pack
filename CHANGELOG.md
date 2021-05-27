@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.2.3...v2.3.0) (2021-05-27)
+
+
+### Features
+
+* Split out a TextFieldBase component to use without the useForm hook ([8763802](https://github.com/claytonfbell/material-ui-pack/commit/8763802c5452c5ae8bd44c478644aa517ed14805))
+
 ### [2.2.3](https://github.com/claytonfbell/material-ui-pack/compare/v2.2.2...v2.2.3) (2021-05-26)
 
 ### [2.2.2](https://github.com/claytonfbell/material-ui-pack/compare/v2.2.1...v2.2.2) (2021-05-26)
