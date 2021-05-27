@@ -1,7 +1,7 @@
 import InputAdornment from "@material-ui/core/InputAdornment"
 import React from "react"
 import { useForm } from "./FormProvider"
-import { TextField } from "./TextField"
+import { TextFieldBase } from "./TextFieldBase"
 
 export interface PercentageFieldProps {
   name: string
@@ -62,7 +62,7 @@ export const PercentageField = React.forwardRef(
     }, [defaultValue, toPercent])
 
     return (
-      <TextField
+      <TextFieldBase
         {...props}
         fullWidth={props.fullWidth}
         ref={ref}
@@ -71,8 +71,8 @@ export const PercentageField = React.forwardRef(
         label={props.label}
         disabled={props.disabled}
         value={state}
-        onChange={(e) => setState(fmt(e.currentTarget.value))}
-        onBlur={(e) => setValue(props.name, toDecimal(e.currentTarget.value))}
+        onChange={newValue => setState(fmt(newValue))}
+        onBlur={e => setValue(props.name, toDecimal(e.currentTarget.value))}
         InputProps={{
           endAdornment: <InputAdornment position="end">%</InputAdornment>,
         }}
