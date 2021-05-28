@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.3.0...v2.4.0) (2021-05-28)
+
+
+### Features
+
+* Split out a PercentageFieldBase component ([a1ea935](https://github.com/claytonfbell/material-ui-pack/commit/a1ea935d1c32007615b024da20f7e65c696dc8c6))
+
 ## [2.3.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.2.3...v2.3.0) (2021-05-27)
 
 
