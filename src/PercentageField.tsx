@@ -1,81 +1,36 @@
-import InputAdornment from "@material-ui/core/InputAdornment"
 import React from "react"
 import { useForm } from "./FormProvider"
-import { TextFieldBase } from "./TextFieldBase"
+import {
+  PercentageFieldBase,
+  PercentageFieldBaseProps,
+} from "./PercentageFieldBase"
 
-export interface PercentageFieldProps {
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type PercentageFieldProps = Omit<
+  PercentageFieldBaseProps,
+  "name" | "value" | "onChange" | "margin" | "size"
+> & {
   name: string
-  label?: string
-  disabled?: boolean
-  decimals: 2 | 3 | 4 | 5 | 6
-  required?: boolean
-  fullWidth?: boolean
 }
+
 export const PercentageField = React.forwardRef(
   (props: PercentageFieldProps, ref: any) => {
-    const { getValue, setValue } = useForm()
-    const fmt = (s: string) => {
-      let str = s.replace(/[^\d.]/g, "")
-      let parts = str.split(".")
-      if (parts.length > 2) {
-        parts = parts.slice(0, 2)
-      }
-      if (parts.length === 2 && parts[1].length > props.decimals - 2) {
-        parts[1] = parts[1].substr(0, props.decimals - 2)
-      }
-      str = parts.join(".")
-      return str
-    }
+    const { getValue, setValue, formProps } = useForm()
 
-    const toNumber = React.useCallback(
-      (v: string | null) => (v === null ? 0 : Number(v)),
-      []
-    )
-
-    const toPercent = React.useCallback(
-      (v: string) => {
-        let newValue = parseFloat(
-          (toNumber(v) * 100).toFixed(props.decimals - 2)
-        ).toString()
-        if (newValue === "0") {
-          newValue = ""
-        }
-        return newValue
-      },
-      [toNumber, props.decimals]
-    )
-
-    const toDecimal = React.useCallback(
-      (v: string) => Number((toNumber(v) / 100).toFixed(props.decimals)),
-      [toNumber, props.decimals]
-    )
-
-    const defaultValue = String(getValue(props.name) as number)
-
-    const [state, setState] = React.useState(toPercent(defaultValue))
-    React.useEffect(() => {
-      setState(toPercent(defaultValue))
-    }, [defaultValue, toPercent])
-
-    React.useEffect(() => {
-      setState(toPercent(defaultValue))
-    }, [defaultValue, toPercent])
+    const value = (React.useMemo(() => getValue(props.name), [
+      getValue,
+      props.name,
+    ]) || 0) as number
 
     return (
-      <TextFieldBase
+      <PercentageFieldBase
         {...props}
-        fullWidth={props.fullWidth}
         ref={ref}
-        required={props.required}
-        name={props.name}
-        label={props.label}
-        disabled={props.disabled}
-        value={state}
-        onChange={newValue => setState(fmt(newValue))}
-        onBlur={e => setValue(props.name, toDecimal(e.currentTarget.value))}
-        InputProps={{
-          endAdornment: <InputAdornment position="end">%</InputAdornment>,
-        }}
+        value={value}
+        onChange={x => setValue(props.name, x)}
+        margin={formProps.margin}
+        size={formProps.size}
+        disabled={formProps.busy || props.disabled}
       />
     )
   }
