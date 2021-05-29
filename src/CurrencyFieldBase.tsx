@@ -26,6 +26,7 @@ export interface CurrencyFieldBaseProps {
   margin?: PropTypes.Margin
   size?: "medium" | "small"
   name?: string
+  debugNamedInput?: boolean
 }
 
 export const CurrencyFieldBase = React.forwardRef<
@@ -114,24 +115,33 @@ export const CurrencyFieldBase = React.forwardRef<
   const label = props.label === undefined ? startCase(props.name) : props.label
 
   return (
-    <MUITextField
-      ref={ref}
-      value={inputValue}
-      onChange={handleChange}
-      onBlur={handleBlur}
-      onFocus={handleFocus}
-      disabled={props.disabled}
-      className={props.alignRight ? classes.root : undefined}
-      margin={props.margin}
-      variant="outlined"
-      size={props.size}
-      name={props.name}
-      required={props.required}
-      label={label}
-      InputProps={{
-        startAdornment: <InputAdornment position="start">$</InputAdornment>,
-      }}
-      fullWidth={props.fullWidth}
-    />
+    <>
+      {props.name !== undefined ? (
+        <input
+          type={props.debugNamedInput ? "text" : "hidden"}
+          name={props.name}
+          value={outgoing(inputValue)}
+        />
+      ) : null}
+
+      <MUITextField
+        ref={ref}
+        value={inputValue}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        disabled={props.disabled}
+        className={props.alignRight ? classes.root : undefined}
+        margin={props.margin}
+        variant="outlined"
+        size={props.size}
+        required={props.required}
+        label={label}
+        InputProps={{
+          startAdornment: <InputAdornment position="start">$</InputAdornment>,
+        }}
+        fullWidth={props.fullWidth}
+      />
+    </>
   )
 })

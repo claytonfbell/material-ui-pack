@@ -33,7 +33,10 @@ export function CurrencyFieldExample() {
         label="CurrencyFieldBase"
         value={value}
         onChange={x => setValue(x as number)}
+        inPennies
         numeric
+        name="myformInput"
+        debugNamedInput
       />
     </Box>
   )
