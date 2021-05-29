@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.4.0...v2.5.0) (2021-05-29)
+
+
+### Features
+
+* Added shadow input for heavily formatted currency input for traditional forms ([79579af](https://github.com/claytonfbell/material-ui-pack/commit/79579af2a2ad8dde3691fecaf8826cc09aea500e))
+* shadow input for percentage field, unmanaged state supported ([17810cb](https://github.com/claytonfbell/material-ui-pack/commit/17810cb977e88aa5fb52523461b0b85cae1badf3))
+* unmanaged currency field ([ffbd6fe](https://github.com/claytonfbell/material-ui-pack/commit/ffbd6fe3733904d48fc452ef29c2f82792148638))
+* unmanaged textfields ([a9038ab](https://github.com/claytonfbell/material-ui-pack/commit/a9038ab3f27a3850857f6a4de665a58117b2a02a))
+
 ## [2.4.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.3.0...v2.4.0) (2021-05-28)
 
 
