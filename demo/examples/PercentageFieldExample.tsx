@@ -27,6 +27,16 @@ export function PercentageFieldExample() {
         value={value}
         onChange={newValue => setValue(newValue)}
         decimals={5}
+        debugNamedInput
+        name="PercentageFieldBase"
+      />
+
+      <PercentageFieldBase
+        fullWidth
+        label={`PercentageFieldBase ${value}`}
+        decimals={3}
+        debugNamedInput
+        name="PercentageFieldBase2"
       />
     </Box>
   )
