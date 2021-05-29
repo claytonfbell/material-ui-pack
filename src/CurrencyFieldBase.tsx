@@ -11,9 +11,12 @@ const useStyles = makeStyles({
   },
 })
 
+type OnChange = (value: string | number) => void
+type Value = string | number
+
 export interface CurrencyFieldBaseProps {
-  value: string | number
-  onChange: (value: string | number) => void
+  value?: Value
+  onChange?: OnChange
   label?: string
   disabled?: boolean
   required?: boolean
@@ -32,8 +35,14 @@ export interface CurrencyFieldBaseProps {
 export const CurrencyFieldBase = React.forwardRef<
   HTMLDivElement,
   CurrencyFieldBaseProps
->(({ value, ...props }, ref) => {
+>(({ value: propsValue, onChange: propsOnChange, ...props }, ref) => {
   const classes = useStyles()
+
+  // manage state if no value and onChange
+  const [state, setState] = React.useState<Value>("")
+  const value = propsValue !== undefined ? propsValue : state
+  const onChange: OnChange =
+    propsOnChange !== undefined ? propsOnChange : x => setState(x)
 
   const [hasFocus, setHasFocus] = React.useState(false)
 
@@ -49,6 +58,8 @@ export const CurrencyFieldBase = React.forwardRef<
     [props.blankZero, props.inPennies]
   )
 
+  const [inputValue, setInputValue] = React.useState<string>(incoming(value))
+
   const outgoing = React.useCallback(
     (v: string): string | number => {
       v = Number(v).toFixed(2)
@@ -62,8 +73,6 @@ export const CurrencyFieldBase = React.forwardRef<
     [props.inPennies, props.numeric]
   )
 
-  const [inputValue, setInputValue] = React.useState<string>(incoming(value))
-
   React.useEffect(() => {
     setInputValue(incoming(value))
   }, [incoming, value])
@@ -71,10 +80,10 @@ export const CurrencyFieldBase = React.forwardRef<
   React.useEffect(() => {
     if (!hasFocus) {
       if (Number(outgoing(inputValue)) !== Number(value)) {
-        props.onChange(outgoing(inputValue))
+        onChange(outgoing(inputValue))
       }
     }
-  }, [hasFocus, inputValue, outgoing, value, props.onChange])
+  }, [hasFocus, inputValue, outgoing, value, onChange])
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(fmt(e.target.value))
@@ -121,6 +130,7 @@ export const CurrencyFieldBase = React.forwardRef<
           type={props.debugNamedInput ? "text" : "hidden"}
           name={props.name}
           value={outgoing(inputValue)}
+          onChange={() => {}}
         />
       ) : null}
 

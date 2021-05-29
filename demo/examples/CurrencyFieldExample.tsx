@@ -38,6 +38,13 @@ export function CurrencyFieldExample() {
         name="myformInput"
         debugNamedInput
       />
+
+      <CurrencyFieldBase
+        label="CurrencyFieldBase2"
+        numeric
+        name="myformInput2"
+        debugNamedInput
+      />
     </Box>
   )
 }
