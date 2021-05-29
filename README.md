@@ -111,7 +111,7 @@ export function CustomFormInput(props) {
 
 ### SubmitButton
 
-![example](./src/examples/SubmitButtonExample.gif)
+![example](./demo/examples/SubmitButtonExample.gif)
 
 No need to set `type="submit"` or an `onClick` action.
 
@@ -121,7 +121,7 @@ No need to set `type="submit"` or an `onClick` action.
 
 ### TextField
 
-![example](./src/examples/TextFieldExample.gif)
+![example](./demo/examples/TextFieldExample.gif)
 
 The wrapped `TextField` will default with `variant="outlined"` and you can skip properties such as `label`, `value`, and `onChange`. Labels are automtically derived from the name property `name="firstName"` will be labeled _First Name_.
 
@@ -150,7 +150,7 @@ The wrapped `TextField` will default with `variant="outlined"` and you can skip 
 
 ### CurrencyField
 
-![example](./src/examples/CurrencyFieldExample.gif)
+![example](./demo/examples/CurrencyFieldExample.gif)
 
 ```tsx
 <CurrencyField name="price" />
@@ -158,7 +158,7 @@ The wrapped `TextField` will default with `variant="outlined"` and you can skip 
 
 ### PercentageField
 
-![example](./src/examples/PercentageFieldExample.gif)
+![example](./demo/examples/PercentageFieldExample.gif)
 
 ```tsx
 <PercentageField name="taxRate" decimals={3} />
@@ -166,7 +166,7 @@ The wrapped `TextField` will default with `variant="outlined"` and you can skip 
 
 ### EmailField
 
-![example](./src/examples/EmailFieldExample.gif)
+![example](./demo/examples/EmailFieldExample.gif)
 
 Contains an auto-complete with popular mail servers.
 
@@ -176,7 +176,7 @@ Contains an auto-complete with popular mail servers.
 
 ### Checkbox
 
-![example](./src/examples/CheckboxExample.gif)
+![example](./demo/examples/CheckboxExample.gif)
 
 ```tsx
 // auto labeled "A Checkbox"
@@ -185,7 +185,7 @@ Contains an auto-complete with popular mail servers.
 
 ### SelectCombo
 
-![example](./src/examples/SelectComboExample.gif)
+![example](./demo/examples/SelectComboExample.gif)
 
 A drop-down/input combo box. User can enter or select options.
 
@@ -205,7 +205,7 @@ A drop-down/input combo box. User can enter or select options.
 
 ### SelectCountry
 
-![example](./src/examples/SelectCountryExample.gif)
+![example](./demo/examples/SelectCountryExample.gif)
 
 This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-countries) to build a full list of countries for your address forms. Values are set as [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3), but support `alpha-2` also.
 
@@ -219,7 +219,7 @@ This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-
 
 ### SelectRegion
 
-![example](./src/examples/SelectRegionExample.gif)
+![example](./demo/examples/SelectRegionExample.gif)
 
 This component uses [country-region-data](https://www.npmjs.com/package/country-region-data) to build a full list of states/provinces with the props value `country`.
 
@@ -234,7 +234,7 @@ This component uses [country-region-data](https://www.npmjs.com/package/country-
 
 ### SelectTimeZone
 
-![example](./src/examples/SelectTimeZoneExample.gif)
+![example](./demo/examples/SelectTimeZoneExample.gif)
 
 This component uses [moment-timezone](https://momentjs.com/timezone/) to build a full list of time zones.
 
@@ -249,7 +249,7 @@ This component uses [moment-timezone](https://momentjs.com/timezone/) to build a
 
 ### Select
 
-![example](./src/examples/SelectExample.gif)
+![example](./demo/examples/SelectExample.gif)
 
 This is a simple native drop-down select component.
 
@@ -269,7 +269,7 @@ This is a simple native drop-down select component.
 
 ### DateTimePicker
 
-![example](./src/examples/DateTimePickerExample.gif)
+![example](./demo/examples/DateTimePickerExample.gif)
 
 This component uses [@material-ui/pickers](https://material-ui-pickers.dev/) and sets values in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 
@@ -295,7 +295,7 @@ This component uses [@material-ui/pickers](https://material-ui-pickers.dev/) and
 
 ## Dark Mode
 
-![example](./src/examples/DarkModeToggleExample.gif)
+![example](./demo/examples/DarkModeToggleExample.gif)
 
 Allow `useDarkMode` and `DarkModeProvider` to manage dark mode state. User can select dark mode in their operating system OR using the `DarkModeToggle` switch component. It sets a storage property to remember the user's preference.
 
