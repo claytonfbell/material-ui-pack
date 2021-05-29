@@ -37,6 +37,8 @@ export function TextFieldExample() {
         formatter="phone"
         name="TextFieldBase"
       />
+      {/* unmanaged state */}
+      <TextFieldBase formatter="phone" name="anotherOne" />
     </>
   )
 }

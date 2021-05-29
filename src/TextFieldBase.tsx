@@ -10,14 +10,16 @@ import PhoneIcon from "@material-ui/icons/Phone"
 import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
 
+type OnChange = (value: string) => void
+
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type TextFieldBaseProps = Omit<
   MUITextFieldProps,
   "value" | "onChange"
 > & {
   name?: string
-  value: string
-  onChange: (value: string) => void
+  value?: string
+  onChange?: OnChange
   formatter?:
     | StringFormatter
     | "capitalize"
@@ -84,8 +86,8 @@ export const TextFieldBase = React.forwardRef<
 >((originalProps, ref) => {
   let {
     formatter,
-    value,
-    onChange,
+    value: propsValue,
+    onChange: propsOnChange,
     capitalize,
     lowercase,
     phone,
@@ -134,7 +136,7 @@ export const TextFieldBase = React.forwardRef<
     if (typeof formatter === "function") {
       newValue = formatter(newValue)
     }
-    onChange(newValue)
+    onChange !== undefined && onChange(newValue)
   }
 
   // handleBlur
@@ -145,8 +147,14 @@ export const TextFieldBase = React.forwardRef<
     if (formatter === "phone") {
       newValue = formatters.phoneBlur(newValue)
     }
-    onChange(newValue)
+    onChange !== undefined && onChange(newValue)
   }
+
+  // manage state if no value and onChange
+  const [state, setState] = React.useState("")
+  const value = propsValue !== undefined ? propsValue : state
+  const onChange: OnChange =
+    propsOnChange !== undefined ? propsOnChange : x => setState(x)
 
   // password state
   const [error, setError] = React.useState(false)
