@@ -44,11 +44,9 @@ export const DatePickerBase = React.forwardRef<
   )
   const label = props.label === undefined ? startCase(props.name) : props.label
 
-  const handleClear = () => onChange(null)
-
-  const [open, handleOpen] = useHandleState(false)
-
   // control open state when clearable
+  const handleClear = () => onChange(null)
+  const [open, handleOpen] = useHandleState(false)
   const extraProps = React.useMemo(
     () =>
       props.clearable
