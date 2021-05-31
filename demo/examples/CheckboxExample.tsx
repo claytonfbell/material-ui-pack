@@ -1,4 +1,4 @@
-import { Tooltip } from "@material-ui/core"
+import { Button, Tooltip } from "@material-ui/core"
 import React from "react"
 import { Checkbox, Form } from "material-ui-pack"
 
@@ -16,6 +16,10 @@ export function CheckboxExample() {
       <Tooltip title="checkbox">
         <Checkbox name="aCheckbox" />
       </Tooltip>
+
+      <Button onClick={() => setState({ aCheckbox: !state.aCheckbox })}>
+        switch checkbox state
+      </Button>
     </Form>
   )
 }

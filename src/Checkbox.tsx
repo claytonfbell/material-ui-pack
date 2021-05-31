@@ -1,38 +1,30 @@
-import { FormControlLabel } from "@material-ui/core"
-import MUICheckbox, { CheckboxProps } from "@material-ui/core/Checkbox"
-import { startCase } from "lodash"
 import React from "react"
+import { CheckboxBase, FormCheckboxBaseProps } from "./CheckboxBase"
 import { useForm } from "./FormProvider"
 
-const _ = { startCase }
-
-export interface FormCheckboxProps extends CheckboxProps {
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type FormCheckboxProps = Omit<
+  FormCheckboxBaseProps,
+  "name" | "value" | "onChange"
+> & {
   name: string
-  label?: string
 }
-export const Checkbox = React.forwardRef(
-  (props: FormCheckboxProps, ref: any) => {
-    const {
-      formProps: { busy },
-      getValue,
-      setValue,
-    } = useForm()
-    const checked = getValue(props.name) as boolean
-    const label =
-      props.label === undefined ? _.startCase(props.name) : props.label
-    let { name, ...newProps }: CheckboxProps = {
-      ...props,
 
-      checked,
-      onChange: e => setValue(props.name, e.currentTarget.checked),
-      disabled: busy || props.disabled,
-    }
+export const Checkbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
+  (props, ref) => {
+    const { getValue, setValue, formProps } = useForm()
+    const value: boolean = React.useMemo(() => getValue(props.name) === true, [
+      getValue,
+      props.name,
+    ])
+
     return (
-      <FormControlLabel
-        {...(props as any)}
+      <CheckboxBase
+        {...props}
         ref={ref}
-        label={label}
-        control={<MUICheckbox {...newProps} />}
+        value={value}
+        onChange={x => setValue(props.name, x)}
+        disabled={formProps.busy || props.disabled}
       />
     )
   }

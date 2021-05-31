@@ -1,4 +1,5 @@
 export { Checkbox } from "./Checkbox"
+export { CheckboxBase } from "./CheckboxBase"
 export { DisplayDate } from "./components/DisplayDate"
 export { DisplayDateTime } from "./components/DisplayDateTime"
 export { CurrencyField } from "./CurrencyField"
