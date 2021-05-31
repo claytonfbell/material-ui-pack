@@ -6,6 +6,7 @@ import {
   DateTimePicker as MUIDateTimePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers"
+import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date"
 import { startCase } from "lodash"
 import moment from "moment-timezone"
 import React from "react"
@@ -26,6 +27,7 @@ export interface DateTimePickerBaseProps {
   timeZone?: string
   margin?: PropTypes.Margin
   size?: "medium" | "small"
+  debugNamedInput?: boolean
 }
 
 export const DateTimePickerBase = React.forwardRef<
@@ -76,10 +78,23 @@ export const DateTimePickerBase = React.forwardRef<
     [handleOpen, open, props.clearable]
   )
 
+  function outgoing(v: MaterialUiPickersDate) {
+    return v?.toISOString(true) || null
+  }
+
   return (
     <>
       {show && (
         <MuiPickersUtilsProvider utils={MomentUtils}>
+          {props.name !== undefined ? (
+            <input
+              type={props.debugNamedInput ? "text" : "hidden"}
+              name={props.name}
+              value={outgoing(dateTime) || ""}
+              onChange={() => {}}
+            />
+          ) : null}
+
           <MUIDateTimePicker
             {...extraProps}
             ref={ref}
@@ -101,8 +116,8 @@ export const DateTimePickerBase = React.forwardRef<
                 return ""
               }
             }}
-            onChange={e => {
-              onChange(e === null ? null : e.toISOString(true))
+            onChange={v => {
+              onChange(outgoing(v))
             }}
             InputProps={{
               startAdornment: (

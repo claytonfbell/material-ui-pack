@@ -35,8 +35,9 @@ export function DateTimePickerExample() {
       <DateTimePickerBase
         value={value}
         onChange={x => setValue(x)}
-        label="base"
+        name="baseClearable"
         clearable
+        debugNamedInput
       />
     </>
   )

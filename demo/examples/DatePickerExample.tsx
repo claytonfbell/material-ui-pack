@@ -25,7 +25,13 @@ export function DatePickerExample() {
       </Form>
       <br />
       <br />
-      <DatePickerBase label="base" value={value} onChange={x => setValue(x)} />
+      <DatePickerBase
+        clearable
+        debugNamedInput
+        name="base"
+        value={value}
+        onChange={x => setValue(x)}
+      />
     </>
   )
 }

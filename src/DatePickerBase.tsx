@@ -26,6 +26,7 @@ export interface DatePickerBaseProps {
   required?: boolean
   margin?: PropTypes.Margin
   size?: "medium" | "small"
+  debugNamedInput?: boolean
 }
 
 export const DatePickerBase = React.forwardRef<
@@ -59,8 +60,21 @@ export const DatePickerBase = React.forwardRef<
     [handleOpen, open, props.clearable]
   )
 
+  function outgoing(v: MaterialUiPickersDate) {
+    return v?.format("YYYY-MM-DD") || null
+  }
+
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
+      {props.name !== undefined ? (
+        <input
+          type={props.debugNamedInput ? "text" : "hidden"}
+          name={props.name}
+          value={outgoing(dateTime) || ""}
+          onChange={() => {}}
+        />
+      ) : null}
+
       <MUIDatePicker
         {...extraProps}
         ref={ref}
@@ -72,8 +86,8 @@ export const DatePickerBase = React.forwardRef<
         disabled={props.disabled}
         required={props.required}
         value={dateTime}
-        onChange={(e: MaterialUiPickersDate) => {
-          onChange(e === null ? null : e.format("YYYY-MM-DD"))
+        onChange={v => {
+          onChange(outgoing(v))
         }}
         autoOk
         inputVariant="outlined"
