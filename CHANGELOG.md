@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.1](https://github.com/claytonfbell/material-ui-pack/compare/v2.6.0...v2.6.1) (2021-05-31)
+
+
+### Bug Fixes
+
+* DatePickerBase and DateTimePickerBase hidden inputs ([5d15b33](https://github.com/claytonfbell/material-ui-pack/commit/5d15b33338f4e18869003321d145db6c8e93e7bb))
+
 ## [2.6.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.5.0...v2.6.0) (2021-05-31)
 
 
