@@ -24,6 +24,7 @@ export const PercentageFieldBase = React.forwardRef(
       name,
       value: propsValue,
       onChange: propsOnChange,
+      debugNamedInput,
       ...props
     }: PercentageFieldBaseProps,
     ref: any
@@ -85,7 +86,7 @@ export const PercentageFieldBase = React.forwardRef(
       <>
         {name !== undefined ? (
           <input
-            type={props.debugNamedInput ? "text" : "hidden"}
+            type={debugNamedInput ? "text" : "hidden"}
             name={name}
             value={toDecimal(state)}
             onChange={() => {}}
