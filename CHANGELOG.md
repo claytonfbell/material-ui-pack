@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.2](https://github.com/claytonfbell/material-ui-pack/compare/v2.7.1...v2.7.2) (2021-06-09)
+
+
+### Bug Fixes
+
+* Fixed null value Select component behavior ([e2325ff](https://github.com/claytonfbell/material-ui-pack/commit/e2325ff9b5124ee8bd28df84a7e8e12882050ef4))
+
 ### [2.7.1](https://github.com/claytonfbell/material-ui-pack/compare/v2.7.0...v2.7.1) (2021-06-09)
 
 
