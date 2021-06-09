@@ -1,6 +1,6 @@
 import React from "react"
 import { useForm } from "./FormProvider"
-import { SelectBase, SelectBaseProps } from "./SelectBase"
+import { SelectBase, SelectBaseProps, SelectValue } from "./SelectBase"
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type CurrencyFieldProps = Omit<
@@ -13,10 +13,10 @@ export type CurrencyFieldProps = Omit<
 export const Select = React.forwardRef<HTMLDivElement, CurrencyFieldProps>(
   (props, ref) => {
     const { getValue, setValue, formProps } = useForm()
-    const value = (React.useMemo(() => getValue(props.name), [
+    const value = React.useMemo(() => getValue(props.name), [
       getValue,
       props.name,
-    ]) || "") as string | number
+    ]) as SelectValue
 
     return (
       <SelectBase

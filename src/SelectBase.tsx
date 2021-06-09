@@ -6,10 +6,12 @@ import { startCase } from "lodash"
 import React from "react"
 import { OptionType } from "./SelectCombo"
 
+export type SelectValue = string | number | null
+
 export interface SelectBaseProps {
   name?: string
-  value: string | number | null
-  onChange: (value: string | number | null) => void
+  value: SelectValue
+  onChange: (value: SelectValue) => void
   options: OptionType[]
   label?: string
   fullWidth?: boolean
