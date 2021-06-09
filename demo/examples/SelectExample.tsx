@@ -2,7 +2,10 @@ import React from "react"
 import { Form, Select, SelectBase } from "material-ui-pack"
 
 export function SelectExample() {
-  const [state, setState] = React.useState({ color: undefined })
+  const [state, setState] = React.useState({
+    color: undefined,
+    secondColor: undefined,
+  })
   const [busy, setBusy] = React.useState(false)
 
   const [value, setValue] = React.useState(1)
@@ -27,6 +30,17 @@ export function SelectExample() {
           allowNull
           nullLabel="No Color"
           required
+        />
+
+        <Select
+          name="secondColor"
+          options={[
+            { value: 1, label: "Blue" },
+            { value: 2, label: "Red" },
+            { value: 3, label: "Purple", disabled: true },
+          ]}
+          nullLabel="No Color"
+          isNumeric
         />
       </Form>
 

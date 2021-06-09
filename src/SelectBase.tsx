@@ -63,6 +63,9 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
       props.onChange(v)
     }
 
+    const selectedValue = value || null
+    const isNullOptionDisabled = !props.allowNull && selectedValue !== null
+
     return (
       <FormControl
         ref={ref}
@@ -78,16 +81,14 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
           disabled={disabled}
           fullWidth
           native
-          value={value}
+          value={selectedValue}
           onChange={handleChange}
           labelWidth={labelWidth}
           inputProps={{
             name: props.name,
           }}
         >
-          <option disabled={!props.allowNull && value !== null}>
-            {nullLabel}
-          </option>
+          <option disabled={isNullOptionDisabled}>{nullLabel}</option>
           {props.options.map((o, x) => (
             <option key={x} value={o.value} disabled={o.disabled}>
               {o.label}
