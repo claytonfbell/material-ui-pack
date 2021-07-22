@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.3](https://github.com/claytonfbell/material-ui-pack/compare/v2.7.2...v2.7.3) (2021-07-22)
+
+
+### Bug Fixes
+
+* Fixed ie11 support by downgrading i18n-iso-countries ([4307665](https://github.com/claytonfbell/material-ui-pack/commit/43076654264eca55b12079cbbfbc52feee0fff75))
+
 ### [2.7.2](https://github.com/claytonfbell/material-ui-pack/compare/v2.7.1...v2.7.2) (2021-06-09)
 
 
