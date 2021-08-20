@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.7.3...v2.8.0) (2021-08-20)
+
+
+### Features
+
+* upgraded countries-and-timezones to v3 ([fabf256](https://github.com/claytonfbell/material-ui-pack/commit/fabf25670174a91550f5e0306603f32a302fc755))
+
 ### [2.7.3](https://github.com/claytonfbell/material-ui-pack/compare/v2.7.2...v2.7.3) (2021-07-22)
 
 
