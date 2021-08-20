@@ -28,7 +28,9 @@ export function SelectTimeZone(props: Props) {
     return (zones === null ? getAllTimezoneNames() : zones).map((v: string) => {
       let label
       try {
-        label = `${v} ${moment().tz(v).format("(h:mm A) Z")}`
+        label = `${v} ${moment()
+          .tz(v)
+          .format("(h:mm A) Z")}`
       } catch {
         label = v
       }
@@ -44,9 +46,11 @@ export function SelectTimeZone(props: Props) {
 }
 
 function getAllTimezoneNames(): string[] {
-  return Object.entries(getAllTimezones()).map((x) => x[1].name)
+  return Object.entries(getAllTimezones()).map(x => x[1].name)
 }
 
 function getTimeZonesWithCountry(countryIsoCode: string): string[] {
-  return getTimezonesForCountry(countryIsoCode).map((x) => x.name)
+  const zones = getTimezonesForCountry(countryIsoCode) || []
+
+  return zones.map(x => x.name)
 }
