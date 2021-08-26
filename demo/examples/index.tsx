@@ -5,7 +5,13 @@ import {
   Typography,
 } from "@material-ui/core"
 import React from "react"
-import { DarkModeProvider, useDarkMode, DarkModeToggle } from "material-ui-pack"
+import {
+  DarkModeProvider,
+  useDarkMode,
+  DarkModeToggle,
+  ResponsiveTable,
+  Spacer,
+} from "material-ui-pack"
 import { CheckboxExample } from "./CheckboxExample"
 import { CurrencyFieldExample } from "./CurrencyFieldExample"
 import { DatePickerExample } from "./DatePickerExample"
@@ -58,6 +64,40 @@ function ExamplesContent() {
       <Container maxWidth="md">
         <DisplayDateTimeExamples />
       </Container>
+
+      <Spacer size={4} />
+      <Container>
+        <ResponsiveTable
+          onSelectChange={film => {
+            console.log(film)
+          }}
+          onEdit={film => alert(`Edit ${film.title}`)}
+          onDelete={film => alert(`Delete ${film.title}`)}
+          rowData={[
+            { id: 1, title: "Star Wars", category: "Sci-Fi" },
+            { id: 2, title: "The Shining", category: "Horror" },
+          ]}
+          schema={[
+            {
+              headerLabel: "Title",
+              render: function(item) {
+                return item.title
+              },
+            },
+            {
+              xsDownHidden: true,
+              headerLabel: "Category",
+              render: function(item) {
+                return item.category
+              },
+            },
+          ]}
+        />
+      </Container>
+      <Spacer size={4} />
+
+      <br />
+      <br />
     </ThemeProvider>
   )
 }

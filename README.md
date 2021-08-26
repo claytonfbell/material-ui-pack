@@ -452,3 +452,41 @@ export function UseStoredStateExample() {
   )
 }
 ```
+
+### ResponsiveTable
+
+```tsx
+import React from "react"
+import { ResponsiveTable } from "material-ui-pack"
+
+export function ResponsiveTableExample() {
+  return (
+    <ResponsiveTable
+      onSelectChange={film => {
+        console.log(film)
+      }}
+      onEdit={film => alert(`Edit ${film.title}`)}
+      onDelete={film => alert(`Delete ${film.title}`)}
+      rowData={[
+        { id: 1, title: "Star Wars", category: "Sci-Fi" },
+        { id: 2, title: "The Shining", category: "Horror" },
+      ]}
+      schema={[
+        {
+          headerLabel: "Title",
+          render: function(item) {
+            return item.title
+          },
+        },
+        {
+          xsDownHidden: true,
+          headerLabel: "Category",
+          render: function(item) {
+            return item.category
+          },
+        },
+      ]}
+    />
+  )
+}
+```
