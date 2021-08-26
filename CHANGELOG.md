@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.8.0...v2.9.0) (2021-08-26)
+
+
+### Features
+
+* Added ResponsiveTable and Spacer components ([46fdc48](https://github.com/claytonfbell/material-ui-pack/commit/46fdc481755fad817f3ccbf568d8f4afb04d7675))
+
 ## [2.8.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.7.3...v2.8.0) (2021-08-20)
 
 
