@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.9.1](https://github.com/claytonfbell/material-ui-pack/compare/v2.9.0...v2.9.1) (2021-08-26)
+
+
+### Bug Fixes
+
+* renamed the responsive schemal label property ([00b503b](https://github.com/claytonfbell/material-ui-pack/commit/00b503b9a824924f1be5a400c88e5b06729b6084))
+
 ## [2.9.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.8.0...v2.9.0) (2021-08-26)
 
 
