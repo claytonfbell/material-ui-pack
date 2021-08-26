@@ -24,6 +24,7 @@ Why? Because I love the [Material UI](https://material-ui.com/) api but `<TextFi
   - [DateTimePicker](#datetimepicker)
   - [DatePicker](#datepicker)
   - [TimePicker](#timepicker)
+  - [ResponsiveTable](#responsivetable)
 - [Dark Mode](#dark-mode)
 - [Date & Time Display](#date--time-display)
   - [DisplayDateTime](#displaydatetime)
@@ -293,6 +294,44 @@ This component uses [@material-ui/pickers](https://material-ui-pickers.dev/) and
 <TimePicker name="time" />
 ```
 
+### ResponsiveTable
+
+```tsx
+import React from "react"
+import { ResponsiveTable } from "material-ui-pack"
+
+export function ResponsiveTableExample() {
+  return (
+    <ResponsiveTable
+      onSelectChange={film => {
+        console.log(film)
+      }}
+      onEdit={film => alert(`Edit ${film.title}`)}
+      onDelete={film => alert(`Delete ${film.title}`)}
+      rowData={[
+        { id: 1, title: "Star Wars", category: "Sci-Fi" },
+        { id: 2, title: "The Shining", category: "Horror" },
+      ]}
+      schema={[
+        {
+          label: "Title",
+          render: function(item) {
+            return item.title
+          },
+        },
+        {
+          xsDownHidden: true,
+          label: "Category",
+          render: function(item) {
+            return item.category
+          },
+        },
+      ]}
+    />
+  )
+}
+```
+
 ## Dark Mode
 
 ![example](./demo/examples/DarkModeToggleExample.gif)
@@ -449,44 +488,6 @@ export function UseStoredStateExample() {
       <TextField name="myText" />
       <TextField name="myDescription" />
     </Form>
-  )
-}
-```
-
-### ResponsiveTable
-
-```tsx
-import React from "react"
-import { ResponsiveTable } from "material-ui-pack"
-
-export function ResponsiveTableExample() {
-  return (
-    <ResponsiveTable
-      onSelectChange={film => {
-        console.log(film)
-      }}
-      onEdit={film => alert(`Edit ${film.title}`)}
-      onDelete={film => alert(`Delete ${film.title}`)}
-      rowData={[
-        { id: 1, title: "Star Wars", category: "Sci-Fi" },
-        { id: 2, title: "The Shining", category: "Horror" },
-      ]}
-      schema={[
-        {
-          label: "Title",
-          render: function(item) {
-            return item.title
-          },
-        },
-        {
-          xsDownHidden: true,
-          label: "Category",
-          render: function(item) {
-            return item.category
-          },
-        },
-      ]}
-    />
   )
 }
 ```
