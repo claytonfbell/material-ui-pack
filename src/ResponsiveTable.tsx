@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export interface ResponsiveTableSchema<DataItem> {
-  headerLabel: string
+  label: string
   alignRight?: boolean
   render: (
     data: DataItem
@@ -173,7 +173,7 @@ export function ResponsiveTable<T extends object>({
                     justify="space-between"
                   >
                     <Grid item>
-                      <span className="label">{x.headerLabel}</span>
+                      <span className="label">{x.label}</span>
                     </Grid>
                     <Grid item>{x.render(dataItem)}</Grid>
                   </Grid>
@@ -254,10 +254,10 @@ export function ResponsiveTable<T extends object>({
                         )
                       }
                     >
-                      {x.headerLabel}
+                      {x.label}
                     </Button>
                   ) : (
-                    x.headerLabel
+                    x.label
                   )}
                 </TableCell>
               )

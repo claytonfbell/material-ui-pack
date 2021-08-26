@@ -79,14 +79,14 @@ function ExamplesContent() {
           ]}
           schema={[
             {
-              headerLabel: "Title",
+              label: "Title",
               render: function(item) {
                 return item.title
               },
             },
             {
               xsDownHidden: true,
-              headerLabel: "Category",
+              label: "Category",
               render: function(item) {
                 return item.category
               },
