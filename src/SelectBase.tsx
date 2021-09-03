@@ -8,15 +8,6 @@ import { OptionType } from "./SelectCombo"
 
 export type SelectValue = string | number | boolean | null
 
-// encode because option values are actually strings, by encoding we support boolean, number or null types
-function encodeValue(value: SelectValue) {
-  return Buffer.from(JSON.stringify({ value })).toString("base64")
-}
-function decodeValue(encodedValue: string) {
-  return JSON.parse(Buffer.from(encodedValue, "base64").toString())
-    .value as SelectValue
-}
-
 export interface SelectBaseProps {
   name?: string
   value: SelectValue
@@ -62,13 +53,17 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
         value: unknown
       }>
     ) {
-      const encodedValue = event.currentTarget.value
-      let v = decodeValue(encodedValue as string)
-      props.onChange(v)
+      const stringValue = event.currentTarget.value as string
+      const newValue = props.options.find(o => String(o.value) === stringValue)
+        ?.value
+      props.onChange(newValue === undefined ? null : newValue)
     }
 
     const isNullOptionDisabled = !props.allowNull && value !== null
-    const selectedValue = value === undefined ? null : value
+
+    // we use string values in the material-ui select component
+    const selectedValue: string =
+      value === undefined || value === null ? `null` : String(value)
 
     return (
       <FormControl
@@ -85,18 +80,22 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
           disabled={disabled}
           fullWidth
           native
-          value={encodeValue(selectedValue)}
-          onChange={handleChange}
+          value={selectedValue}
           labelWidth={labelWidth}
           inputProps={{
             name: props.name,
           }}
+          onChange={handleChange}
         >
-          <option disabled={isNullOptionDisabled} value={encodeValue(null)}>
+          <option
+            disabled={isNullOptionDisabled}
+            value="null"
+            onSelect={() => props.onChange(null)}
+          >
             {nullLabel}
           </option>
           {props.options.map((o, x) => (
-            <option key={x} value={encodeValue(o.value)} disabled={o.disabled}>
+            <option key={x} value={String(o.value)} disabled={o.disabled}>
               {o.label}
             </option>
           ))}

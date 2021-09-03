@@ -8,7 +8,7 @@ export function SelectExample() {
   })
   const [busy, setBusy] = React.useState(false)
 
-  const [value, setValue] = React.useState<number | string | null>("red")
+  const [value, setValue] = React.useState<number | string | null>(0)
 
   return (
     <>
@@ -53,6 +53,7 @@ export function SelectExample() {
           { value: 2, label: "Two" },
           { value: "red", label: "Red" },
           { value: true, label: "True" },
+          { value: "YES", label: "Yes" },
         ]}
       />
     </>
