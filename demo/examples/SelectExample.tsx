@@ -3,12 +3,12 @@ import { Form, Select, SelectBase } from "material-ui-pack"
 
 export function SelectExample() {
   const [state, setState] = React.useState({
-    color: undefined,
-    secondColor: undefined,
+    color: "red",
+    secondColor: 2,
   })
   const [busy, setBusy] = React.useState(false)
 
-  const [value, setValue] = React.useState<number | null>()
+  const [value, setValue] = React.useState<number | string | null>("red")
 
   return (
     <>
@@ -40,18 +40,19 @@ export function SelectExample() {
             { value: 3, label: "Purple", disabled: true },
           ]}
           nullLabel="No Color"
-          isNumeric
         />
       </Form>
       <pre>{JSON.stringify({ value })}</pre>
       <SelectBase
         value={value}
         onChange={x => setValue(x as number | null)}
-        isNumeric
         allowNull
         options={[
+          { value: 0, label: "Zero" },
           { value: 1, label: "One" },
           { value: 2, label: "Two" },
+          { value: "red", label: "Red" },
+          { value: true, label: "True" },
         ]}
       />
     </>

@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 })
 
 export interface OptionType {
-  value: string | number
+  value: string | number | boolean
   label: string
   disabled?: boolean
 }
