@@ -8,7 +8,7 @@ export function SelectExample() {
   })
   const [busy, setBusy] = React.useState(false)
 
-  const [value, setValue] = React.useState<number>()
+  const [value, setValue] = React.useState<number | null>()
 
   return (
     <>
@@ -43,11 +43,12 @@ export function SelectExample() {
           isNumeric
         />
       </Form>
-
+      <pre>{JSON.stringify({ value })}</pre>
       <SelectBase
         value={value}
-        onChange={x => setValue(x as number)}
+        onChange={x => setValue(x as number | null)}
         isNumeric
+        allowNull
         options={[
           { value: 1, label: "One" },
           { value: 2, label: "Two" },

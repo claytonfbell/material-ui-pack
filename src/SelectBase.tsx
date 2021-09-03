@@ -58,7 +58,7 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
     ) {
       let v = event.currentTarget.value as string | null
       v = props.allowNull && v === nullLabel ? null : v
-      if (isNumeric) {
+      if (isNumeric && (!props.allowNull || v !== null)) {
         props.onChange(Number(v))
         return
       }
