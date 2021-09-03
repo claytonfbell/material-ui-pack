@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.9.2...v2.10.0) (2021-09-03)
+
+
+### Features
+
+* refactored SelectBase to handle selected values better, deprecated isNumeric property can used mixed types and added support for Booleans ([e0f2ddc](https://github.com/claytonfbell/material-ui-pack/commit/e0f2ddcd7791e24163b5b36a0f297a5da2927dff))
+
 ### [2.9.2](https://github.com/claytonfbell/material-ui-pack/compare/v2.9.1...v2.9.2) (2021-09-03)
 
 
