@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.9.2](https://github.com/claytonfbell/material-ui-pack/compare/v2.9.1...v2.9.2) (2021-09-03)
+
+
+### Bug Fixes
+
+* Fixed Select component to set null instead of zero with isNumeric and allowNull ([18cc68d](https://github.com/claytonfbell/material-ui-pack/commit/18cc68da412032bb01658f7518374ad870e2ab6d))
+
 ### [2.9.1](https://github.com/claytonfbell/material-ui-pack/compare/v2.9.0...v2.9.1) (2021-08-26)
 
 
