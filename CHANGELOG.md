@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.10.1](https://github.com/claytonfbell/material-ui-pack/compare/v2.10.0...v2.10.1) (2021-09-03)
+
+
+### Bug Fixes
+
+* Fixed to use plain string values in <option> elements ([8abd88a](https://github.com/claytonfbell/material-ui-pack/commit/8abd88aef17f5e68f98d27ee3eae704ce2adee11))
+
 ## [2.10.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.9.2...v2.10.0) (2021-09-03)
 
 
