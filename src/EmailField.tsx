@@ -9,7 +9,7 @@ interface EmailFieldProps {
   required?: boolean
 }
 export function EmailField(props: EmailFieldProps) {
-  const { getValue } = useForm()
+  const { getValue } = useForm<any>()
   const value = getValue(props.name) as string
   const [state, setState] = React.useState(value)
 
@@ -31,11 +31,11 @@ export function EmailField(props: EmailFieldProps) {
     return [
       { value: state, label: state },
       ...topProviders
-        .map((provider) => {
+        .map(provider => {
           const email = `${firstPart}@${provider}`
           return { value: email, label: email }
         })
-        .filter((o) => o.value !== state),
+        .filter(o => o.value !== state),
     ]
   }
 
@@ -48,8 +48,8 @@ export function EmailField(props: EmailFieldProps) {
       disabled={props.disabled}
       options={getOptions()}
       autoComplete="email"
-      formatter={(v) => v.toLowerCase()}
-      onInputChange={(v) => setState(v)}
+      formatter={v => v.toLowerCase()}
+      onInputChange={v => setState(v)}
     />
   )
 }

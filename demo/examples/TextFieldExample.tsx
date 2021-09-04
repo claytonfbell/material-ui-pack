@@ -1,8 +1,23 @@
-import { Form, SubmitButton, TextField, TextFieldBase } from "material-ui-pack"
+import { Box } from "@material-ui/core"
+import {
+  Form,
+  Spacer,
+  SubmitButton,
+  TextField,
+  TextFieldBase,
+  useForm,
+} from "material-ui-pack"
 import React from "react"
 
+type FormData = {
+  phone: string
+  password2: string
+  password3: string
+  someText: string
+}
+
 export function TextFieldExample() {
-  const [state, setState] = React.useState({
+  const [state, setState] = React.useState<FormData>({
     phone: "",
     password2: "",
     password3: "",
@@ -27,6 +42,7 @@ export function TextFieldExample() {
         <TextField name="password2" formatter="password" />
         <TextField name="password3" formatter="newPassword" />
         <TextField name="someText" rows={4} multiline />
+        <CustomInputs />
         <SubmitButton>Submit</SubmitButton>
       </Form>
       <br />
@@ -40,5 +56,24 @@ export function TextFieldExample() {
       {/* unmanaged state */}
       <TextFieldBase formatter="phone" name="anotherOne" />
     </>
+  )
+}
+
+function CustomInputs() {
+  const { getValue, setValue, state, setState } = useForm<FormData>()
+  return (
+    <Box paddingTop={1} paddingBottom={1}>
+      <input
+        type="text"
+        value={getValue("someText")}
+        onChange={e => setValue("someText", e.target.value)}
+      />
+      <Spacer />
+      <input
+        type="text"
+        value={state.phone}
+        onChange={e => setState(prev => ({ ...prev, phone: e.target.value }))}
+      />
+    </Box>
   )
 }

@@ -40,7 +40,7 @@ export function SelectCombo(props: SelectComboProps) {
     getValue,
     setValue,
     formProps: { margin, size, busy },
-  } = useForm()
+  } = useForm<any>()
   const label = props.label === undefined ? startCase(props.name) : props.label
 
   const value = getValue(props.name)

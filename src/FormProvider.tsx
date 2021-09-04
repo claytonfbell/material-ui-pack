@@ -8,24 +8,26 @@ export type FieldSizeType = "small" | "medium" | undefined
 
 export type FormValue = string | number | boolean | null
 
-type ContextType = {
-  formProps: FormProps
-  getValue: (name: string) => FormValue
-  setValue: (name: string, value: FormValue) => void
+type ContextType<T> = {
+  formProps: FormProps<T>
+  getValue: (name: keyof T) => T[keyof T]
+  setValue: (name: keyof T, value: FormValue) => void
+  state: T
+  setState: React.Dispatch<React.SetStateAction<T>>
 }
 
-const Context = React.createContext<ContextType | undefined>(undefined)
-export function useForm() {
-  const context = React.useContext(Context)
+const Context = React.createContext<ContextType<any> | undefined>(undefined)
+export function useForm<T extends object>() {
+  const context = React.useContext<ContextType<T> | undefined>(Context)
   if (!context) {
     throw new Error(`useForm must be used within a FormProvider`)
   }
   return context
 }
 
-export function FormProvider(formProps: FormProps) {
+export function FormProvider<T extends object>(formProps: FormProps<T>) {
   const setValue = React.useCallback(
-    (name: string, value: FormValue) => {
+    (name: keyof T, value: FormValue) => {
       //   var newState = { ...formProps.state }
       var newState = _.cloneDeep(formProps.state)
       _.set(newState, name as string, value)
@@ -35,17 +37,21 @@ export function FormProvider(formProps: FormProps) {
   )
 
   const getValue = React.useCallback(
-    (name: string) => {
+    (name: keyof T) => {
       return _.get(formProps.state, name)
     },
     [formProps.state]
   )
 
+  const { state, setState } = formProps
+
   const value = React.useMemo(
-    (): ContextType => ({
+    (): ContextType<T> => ({
       formProps,
       getValue,
       setValue,
+      state,
+      setState,
     }),
     [formProps, getValue, setValue]
   )

@@ -14,7 +14,7 @@ export const CurrencyField = React.forwardRef<
   HTMLDivElement,
   CurrencyFieldProps
 >((props, ref) => {
-  const { getValue, setValue, formProps } = useForm()
+  const { getValue, setValue, formProps } = useForm<any>()
   const value = (React.useMemo(() => getValue(props.name), [
     getValue,
     props.name,

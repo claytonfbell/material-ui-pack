@@ -12,7 +12,7 @@ export type FormCheckboxProps = Omit<
 
 export const Checkbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
   (props, ref) => {
-    const { getValue, setValue, formProps } = useForm()
+    const { getValue, setValue, formProps } = useForm<any>()
     const value: boolean = React.useMemo(() => getValue(props.name) === true, [
       getValue,
       props.name,

@@ -11,11 +11,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export interface FormProps {
+export interface FormProps<T> {
   children: React.ReactNode
   onSubmit: () => void
-  state: any
-  setState: React.Dispatch<React.SetStateAction<any>>
+  state: T
+  setState: React.Dispatch<React.SetStateAction<T>>
   busy?: boolean
   debug?: boolean
   margin?: PropTypes.Margin
@@ -23,7 +23,13 @@ export interface FormProps {
   preventSubmitOnEnterKey?: boolean
 }
 
-function FormComponent(props: FormProps) {
+function FormComponent<T extends object>({
+  size = "small",
+  margin = "none",
+  debug = false,
+  busy = false,
+  ...props
+}: FormProps<T>) {
   const classes = useStyles(props)
 
   return (
@@ -34,7 +40,7 @@ function FormComponent(props: FormProps) {
         e.preventDefault()
         props.onSubmit()
       }}
-      onKeyPress={(e) => {
+      onKeyPress={e => {
         // prevent form submitting on enter key
         if (e.which === 13 && props.preventSubmitOnEnterKey === true) {
           try {
@@ -52,20 +58,15 @@ function FormComponent(props: FormProps) {
         }
       }}
     >
-      {props.debug && <Debug object={props.state} />}
+      {debug && <Debug object={props.state} />}
       {props.children}
     </form>
   )
 }
-export const Form = (props: FormProps) => (
-  <FormProvider {...props}>
-    <FormComponent {...props} />
-  </FormProvider>
-)
-
-Form.defaultProps = {
-  size: "medium",
-  margin: "none",
-  debug: false,
-  busy: false,
-} as Partial<FormProps>
+export function Form<T extends object>(props: FormProps<T>) {
+  return (
+    <FormProvider {...props}>
+      <FormComponent {...props} />
+    </FormProvider>
+  )
+}

@@ -12,7 +12,7 @@ export type DatePickerProps = Omit<
 
 export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
   (props, ref) => {
-    const { getValue, setValue, formProps } = useForm()
+    const { getValue, setValue, formProps } = useForm<any>()
     const value = (React.useMemo(() => getValue(props.name), [
       getValue,
       props.name,

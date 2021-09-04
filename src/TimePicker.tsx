@@ -19,7 +19,7 @@ export function TimePicker(props: Props) {
     formProps: { busy, size, margin },
     getValue,
     setValue,
-  } = useForm()
+  } = useForm<any>()
   let value = getValue(props.name) as string | null
   if (value === undefined || value === null) {
     value = moment().format("HH:mm:ss")
@@ -40,7 +40,7 @@ export function TimePicker(props: Props) {
         inputVariant="outlined"
         value={value}
         format={"h:mm A"}
-        onChange={(e) => {
+        onChange={e => {
           setValue(props.name, e === null ? null : e.format("HH:mm:00"))
         }}
       />

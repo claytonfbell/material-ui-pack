@@ -12,7 +12,7 @@ export type TextFieldProps = Omit<
 
 export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
   ({ disabled, margin, size, ...props }, ref) => {
-    const { formProps, getValue, setValue } = useForm()
+    const { formProps, getValue, setValue } = useForm<any>()
 
     // value
     const value = getValue(props.name) as string

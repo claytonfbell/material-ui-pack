@@ -17,7 +17,7 @@ export const DateTimePicker = React.forwardRef<
   HTMLDivElement,
   DateTimePickerProps
 >((props, ref) => {
-  const { getValue, setValue, formProps } = useForm()
+  const { getValue, setValue, formProps } = useForm<any>()
   const value = (React.useMemo(() => getValue(props.name), [
     getValue,
     props.name,

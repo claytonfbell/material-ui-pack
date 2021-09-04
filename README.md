@@ -98,7 +98,7 @@ import React from "react"
 import { useForm } from "./FormProvider"
 
 export function CustomFormInput(props) {
-  const { formProps, getValue, setValue } = useForm()
+  const { formProps, getValue, setValue } = useForm<FormData>()
   return (
     <input
       type="text"

@@ -15,7 +15,7 @@ export type PercentageFieldProps = Omit<
 
 export const PercentageField = React.forwardRef(
   (props: PercentageFieldProps, ref: any) => {
-    const { getValue, setValue, formProps } = useForm()
+    const { getValue, setValue, formProps } = useForm<any>()
 
     const value = (React.useMemo(() => getValue(props.name), [
       getValue,
