@@ -56,13 +56,14 @@ export function TextFieldExample() {
       <br />
       <br />
       <TextFieldBase
+        margin="normal"
         value={value}
         onChange={newValue => setValue(newValue)}
         formatter="phone"
         name="TextFieldBase"
       />
       {/* unmanaged state */}
-      <TextFieldBase formatter="phone" name="anotherOne" />
+      <TextFieldBase margin="normal" formatter="phone" name="anotherOne" />
     </>
   )
 }

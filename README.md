@@ -35,7 +35,6 @@ Why? Because I love the [Material UI](https://material-ui.com/) api but `<TextFi
   - [useCounter](#usecounter)
   - [useEscapeKey](#useescapekey)
   - [useHandleState](#usehandlestate)
-  - [useStoredState](#usestoredstate)
 
 <!-- tocstop -->
 
@@ -466,28 +465,6 @@ export function UseHandleStateExample() {
       <Button onClick={() => setIsOpen(false)}>Hide with Setter</Button>
       <Button onClick={handleIsOpen(false)}>Hide with Handler</Button>
     </Collapse>
-  )
-}
-```
-
-### useStoredState
-
-```tsx
-import React from "react"
-import Form from "../Form"
-import useStoredState from "../hooks/useStoredState"
-import TextField from "../TextField"
-
-export function UseStoredStateExample() {
-  const [state, setState] = useStoredState("myValues", {
-    myText: "",
-    myDescrption: "",
-  })
-  return (
-    <Form state={state} setState={setState} margin="normal">
-      <TextField name="myText" />
-      <TextField name="myDescription" />
-    </Form>
   )
 }
 ```

@@ -1,13 +1,10 @@
 import React from "react"
 
-/**
- * Hook to persist state to localStorage in browser
- * @param storeKeyName
- * @param defaultValue
- */
-
 const KEY = "stored-state"
 
+/**
+ * @deprecated use react-storage-hooks instead
+ */
 export function useStoredState<T>(
   storeKeyName: string,
   defaultValue: T
