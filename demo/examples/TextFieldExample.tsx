@@ -1,4 +1,4 @@
-import { Box } from "@material-ui/core"
+import { Box, Grid } from "@material-ui/core"
 import {
   Form,
   Spacer,
@@ -6,6 +6,7 @@ import {
   TextField,
   TextFieldBase,
   useForm,
+  CancelButton,
 } from "material-ui-pack"
 import React from "react"
 
@@ -43,7 +44,14 @@ export function TextFieldExample() {
         <TextField name="password3" formatter="newPassword" />
         <TextField name="someText" rows={4} multiline />
         <CustomInputs />
-        <SubmitButton>Submit</SubmitButton>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <SubmitButton />
+          </Grid>
+          <Grid item xs={6}>
+            <CancelButton />
+          </Grid>
+        </Grid>
       </Form>
       <br />
       <br />
