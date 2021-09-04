@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.10.1...v2.11.0) (2021-09-04)
+
+
+### Features
+
+* default base component size to "small" ([5596a00](https://github.com/claytonfbell/material-ui-pack/commit/5596a00fc17cc0b199a0e5b69eb5ad794d7f09b1))
+* Deprecated useStoredState, use react-storage-hooks instead ([7f366dd](https://github.com/claytonfbell/material-ui-pack/commit/7f366dd02af02b7b57962c5519779bf54a05d30d))
+* dropped EmailField ([13403c9](https://github.com/claytonfbell/material-ui-pack/commit/13403c90d1787aee5d66197ab96822f989689025))
+* Improvements to SubmitButton, added CancelButton ([107f2de](https://github.com/claytonfbell/material-ui-pack/commit/107f2de84081c5f3e4b7f43c21d18f903b20228e))
+* New NumberField component ([17827df](https://github.com/claytonfbell/material-ui-pack/commit/17827dff2112f15cc69cb6fbb08baf5b0449f1ea))
+* typescript improvements on useForm() hook ([3b29be1](https://github.com/claytonfbell/material-ui-pack/commit/3b29be104f29fecb5bf5d720c16c43bd05be20ca))
+
 ### [2.10.1](https://github.com/claytonfbell/material-ui-pack/compare/v2.10.0...v2.10.1) (2021-09-03)
 
 
