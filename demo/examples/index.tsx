@@ -26,6 +26,7 @@ import { TextFieldExample } from "./TextFieldExample"
 import { UseCounterExample } from "./UseCounterExample"
 import { UseEscapeKeyExample } from "./UseEscapeKeyExample"
 import { UseHandleStateExample } from "./UseHandleStateExample"
+import { NumberFieldExample } from "./NumberFieldExample"
 
 function ExamplesContent() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -53,6 +54,7 @@ function ExamplesContent() {
         <SubmitButtonExample />
         <CurrencyFieldExample />
         <PercentageFieldExample />
+        <NumberFieldExample />
         <UseCounterExample />
         <UseEscapeKeyExample />
         <UseHandleStateExample />

@@ -14,6 +14,7 @@ Why? Because I love the [Material UI](https://material-ui.com/) api but `<TextFi
   - [TextField](#textfield)
   - [CurrencyField](#currencyfield)
   - [PercentageField](#percentagefield)
+  - [NumberField](#numberField)
   - [Checkbox](#checkbox)
   - [SelectCombo](#selectcombo)
   - [SelectCountry](#selectcountry)
@@ -161,6 +162,12 @@ The wrapped `TextField` will default with `variant="outlined"` and you can skip 
 
 ```tsx
 <PercentageField name="taxRate" decimals={3} />
+```
+
+### NumberField
+
+```tsx
+<NumberField name="myNumber" decimals={1} />
 ```
 
 ### Checkbox
