@@ -88,6 +88,7 @@ export const TextFieldBase = React.forwardRef<
     formatter,
     value: propsValue,
     onChange: propsOnChange,
+    size = "small",
     capitalize,
     lowercase,
     phone,
@@ -256,6 +257,7 @@ export const TextFieldBase = React.forwardRef<
       value={value}
       onBlur={handleBlur}
       onChange={handleChange}
+      size={size}
       {...props}
     />
   )

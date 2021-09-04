@@ -36,14 +36,12 @@ export function CurrencyFieldExample() {
         inPennies
         numeric
         name="myformInput"
-        debugNamedInput
       />
 
       <CurrencyFieldBase
         label="CurrencyFieldBase2"
         numeric
         name="myformInput2"
-        debugNamedInput
       />
     </Box>
   )

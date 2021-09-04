@@ -25,6 +25,7 @@ export const PercentageFieldBase = React.forwardRef(
       value: propsValue,
       onChange: propsOnChange,
       debugNamedInput,
+      size = "small",
       ...props
     }: PercentageFieldBaseProps,
     ref: any
@@ -107,7 +108,7 @@ export const PercentageFieldBase = React.forwardRef(
             endAdornment: <InputAdornment position="end">%</InputAdornment>,
           }}
           margin={props.margin}
-          size={props.size}
+          size={size}
         />
       </>
     )

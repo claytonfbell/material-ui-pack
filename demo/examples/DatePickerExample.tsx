@@ -27,7 +27,6 @@ export function DatePickerExample() {
       <br />
       <DatePickerBase
         clearable
-        debugNamedInput
         name="base"
         value={value}
         onChange={x => setValue(x)}

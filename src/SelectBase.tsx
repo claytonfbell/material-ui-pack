@@ -28,7 +28,7 @@ export interface SelectBaseProps {
 }
 
 export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
-  ({ value, disabled, size, margin, ...props }, ref) => {
+  ({ value, disabled, size = "small", margin, ...props }, ref) => {
     const label =
       props.label === undefined ? startCase(props.name) : props.label
 
