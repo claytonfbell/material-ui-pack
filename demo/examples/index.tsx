@@ -17,7 +17,6 @@ import { CurrencyFieldExample } from "./CurrencyFieldExample"
 import { DatePickerExample } from "./DatePickerExample"
 import { DateTimePickerExample } from "./DateTimePickerExample"
 import { DisplayDateTimeExamples } from "./DisplayDateTimeExamples"
-import { EmailFieldExample } from "./EmailFieldExample"
 import { PercentageFieldExample } from "./PercentageFieldExample"
 import { SelectComboExample } from "./SelectComboExample"
 import { SelectCountryExample } from "./SelectCountryExample"
@@ -54,7 +53,6 @@ function ExamplesContent() {
         <SubmitButtonExample />
         <CurrencyFieldExample />
         <PercentageFieldExample />
-        <EmailFieldExample />
         <UseCounterExample />
         <UseEscapeKeyExample />
         <UseHandleStateExample />
