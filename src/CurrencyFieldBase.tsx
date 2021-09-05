@@ -37,7 +37,13 @@ export const CurrencyFieldBase = React.forwardRef<
   CurrencyFieldBaseProps
 >(
   (
-    { value: propsValue, onChange: propsOnChange, size = "small", ...props },
+    {
+      value: propsValue,
+      onChange: propsOnChange,
+      size = "small",
+      fullWidth = true,
+      ...props
+    },
     ref
   ) => {
     const classes = useStyles()
@@ -155,7 +161,7 @@ export const CurrencyFieldBase = React.forwardRef<
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
-          fullWidth={props.fullWidth}
+          fullWidth={fullWidth}
         />
       </>
     )

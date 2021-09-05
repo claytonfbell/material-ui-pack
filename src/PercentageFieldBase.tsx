@@ -96,6 +96,7 @@ export const PercentageFieldBase = React.forwardRef(
 
         <TextFieldBase
           {...props}
+          name={name}
           fullWidth={props.fullWidth}
           ref={ref}
           required={props.required}
