@@ -36,6 +36,7 @@ export const NumberFieldBase = React.forwardRef(
       onChange: propsOnChange,
       debugNamedInput,
       size = "small",
+      setZeroToNull,
       ...props
     }: NumberFieldBaseProps,
     ref: any
@@ -82,12 +83,12 @@ export const NumberFieldBase = React.forwardRef(
     const toDecimal = React.useCallback(
       (v: string) => {
         const x = Math.min(max, Math.max(min, toNumber(v)))
-        if (props.setZeroToNull === true && x === 0) {
+        if (setZeroToNull === true && x === 0) {
           return null
         }
         return Number(x.toFixed(decimals))
       },
-      [toNumber, decimals, min, max, props.setZeroToNull]
+      [toNumber, decimals, min, max, setZeroToNull]
     )
 
     const defaultValue = String(value)

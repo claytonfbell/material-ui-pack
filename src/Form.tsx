@@ -23,13 +23,7 @@ export interface FormProps<T> {
   preventSubmitOnEnterKey?: boolean
 }
 
-function FormComponent<T extends object>({
-  size = "small",
-  margin = "none",
-  debug = false,
-  busy = false,
-  ...props
-}: FormProps<T>) {
+function FormComponent<T extends object>({ ...props }: FormProps<T>) {
   const classes = useStyles(props)
 
   return (
@@ -58,7 +52,7 @@ function FormComponent<T extends object>({
         }
       }}
     >
-      {debug && <Debug object={props.state} />}
+      {props.debug === true ? <Debug object={props.state} /> : null}
       {props.children}
     </form>
   )
@@ -69,4 +63,11 @@ export function Form<T extends object>(props: FormProps<T>) {
       <FormComponent {...props} />
     </FormProvider>
   )
+}
+
+Form.defaultProps = {
+  size: "small",
+  margin: "none",
+  debug: false,
+  busy: false,
 }
