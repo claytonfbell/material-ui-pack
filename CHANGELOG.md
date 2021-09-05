@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.3](https://github.com/claytonfbell/material-ui-pack/compare/v2.11.2...v2.11.3) (2021-09-05)
+
+
+### Bug Fixes
+
+* Fixed some default props ([0fe0521](https://github.com/claytonfbell/material-ui-pack/commit/0fe0521b5b2b07d2112c913eb7a854c1313cf9cd))
+
 ### [2.11.2](https://github.com/claytonfbell/material-ui-pack/compare/v2.11.1...v2.11.2) (2021-09-05)
 
 
