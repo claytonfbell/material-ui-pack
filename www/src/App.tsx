@@ -29,6 +29,8 @@ import { DateSnippet } from "./DateSnippet"
 import { DateExample } from "./DateExample"
 import { DarkModeExample } from "./DarkModeExample"
 import { DarkModeSnippet } from "./DarkModeSnippet"
+import { FormHookExample } from "./FormHookExample"
+import { FormHookSnippet } from "./FormHookSnippet"
 
 function AppContent() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -116,6 +118,10 @@ function AppContent() {
 
         <ExampleBox title="Dates / Times" snippet={<DateSnippet />}>
           <DateExample />
+        </ExampleBox>
+
+        <ExampleBox title="useForm Hook" snippet={<FormHookSnippet />}>
+          <FormHookExample />
         </ExampleBox>
 
         <ExampleBox title="Dark Mode" snippet={<DarkModeSnippet />}>
