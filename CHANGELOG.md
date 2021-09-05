@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.1](https://github.com/claytonfbell/material-ui-pack/compare/v2.11.0...v2.11.1) (2021-09-05)
+
+
+### Bug Fixes
+
+* Fixed extra space from NumberField ([2535f92](https://github.com/claytonfbell/material-ui-pack/commit/2535f927d27f25cb081b864f33f2d09847685cab))
+
 ## [2.11.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.10.1...v2.11.0) (2021-09-04)
 
 
