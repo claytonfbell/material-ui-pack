@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.2](https://github.com/claytonfbell/material-ui-pack/compare/v2.11.1...v2.11.2) (2021-09-05)
+
+
+### Bug Fixes
+
+* pass name to percentage base component, fullWidth true by default on currency component ([0966f3b](https://github.com/claytonfbell/material-ui-pack/commit/0966f3bd61eb7d6f23b5e32a52319269cb49363c))
+
 ### [2.11.1](https://github.com/claytonfbell/material-ui-pack/compare/v2.11.0...v2.11.1) (2021-09-05)
 
 
