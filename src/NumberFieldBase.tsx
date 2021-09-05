@@ -1,11 +1,10 @@
 import { IconButton, PropTypes } from "@material-ui/core"
 import InputAdornment from "@material-ui/core/InputAdornment"
-import { startCase } from "lodash"
-import React from "react"
-import { Spacer } from "./Spacer"
-import { TextFieldBase } from "./TextFieldBase"
 import AddIcon from "@material-ui/icons/Add"
 import RemoveIcon from "@material-ui/icons/Remove"
+import { startCase } from "lodash"
+import React from "react"
+import { TextFieldBase } from "./TextFieldBase"
 
 type OnChange = (newValue: number | null) => void
 
@@ -124,15 +123,12 @@ export const NumberFieldBase = React.forwardRef(
     return (
       <>
         {name !== undefined ? (
-          <>
-            <input
-              type={debugNamedInput ? "text" : "hidden"}
-              name={name}
-              value={hiddenInputValue === null ? "" : hiddenInputValue}
-              onChange={() => {}}
-            />
-            <Spacer />
-          </>
+          <input
+            type={debugNamedInput ? "text" : "hidden"}
+            name={name}
+            value={hiddenInputValue === null ? "" : hiddenInputValue}
+            onChange={() => {}}
+          />
         ) : null}
 
         <TextFieldBase
