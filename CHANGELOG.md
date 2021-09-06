@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.5](https://github.com/claytonfbell/material-ui-pack/compare/v2.11.4...v2.11.5) (2021-09-06)
+
+
+### Bug Fixes
+
+* more adjustment to number and percentage inputs ([a69d2e3](https://github.com/claytonfbell/material-ui-pack/commit/a69d2e37cda2eb84ce9b86d5bca2913f03cf92fa))
+
 ### [2.11.4](https://github.com/claytonfbell/material-ui-pack/compare/v2.11.3...v2.11.4) (2021-09-06)
 
 
