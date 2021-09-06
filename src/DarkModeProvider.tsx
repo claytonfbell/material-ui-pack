@@ -1,7 +1,5 @@
-import createMuiTheme, {
-  Theme,
-  ThemeOptions,
-} from "@material-ui/core/styles/createMuiTheme"
+import { Theme, ThemeOptions } from "@material-ui/core/styles"
+import createTheme from "@material-ui/core/styles/createTheme"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
 import React from "react"
 
@@ -69,7 +67,7 @@ export function DarkModeProvider(props: Props) {
 
   const createMuiThemeWithDarkMode = React.useCallback(
     (options: ThemeOptions) => {
-      return createMuiTheme({
+      return createTheme({
         ...options,
         palette: {
           ...options.palette,
