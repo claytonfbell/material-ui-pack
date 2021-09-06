@@ -2,6 +2,8 @@ import { InputAdornment, makeStyles, PropTypes } from "@material-ui/core"
 import MUITextField from "@material-ui/core/TextField/TextField"
 import { startCase } from "lodash"
 import React from "react"
+import { useTheme } from "@material-ui/core/styles"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
 
 const useStyles = makeStyles({
   root: {
@@ -30,6 +32,7 @@ export interface CurrencyFieldBaseProps {
   size?: "medium" | "small"
   name?: string
   debugNamedInput?: boolean
+  autoDecimal?: boolean
 }
 
 export const CurrencyFieldBase = React.forwardRef<
@@ -96,7 +99,8 @@ export const CurrencyFieldBase = React.forwardRef<
     }, [hasFocus, inputValue, outgoing, value, onChange])
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-      setInputValue(fmt(e.target.value))
+      let str = e.target.value
+      setInputValue(fmt(str))
     }
 
     function handleBlur() {
@@ -108,12 +112,27 @@ export const CurrencyFieldBase = React.forwardRef<
       setHasFocus(true)
     }
 
-    const fmt = (s: string) => {
-      return s
-        .replace(/[^0-9.-]/g, "")
-        .replace(/[.]+/g, ".")
-        .replace(/[-]+/g, "-")
-        .replace(/^(-?[0-9]+)(\.[0-9]{1,2}).*/g, "$1$2")
+    const fmt = (str: string) => {
+      // mobile uses phone numpad input that doesn't include negatives or decimals
+      // decimal is auto placed
+      if (props.autoDecimal || isXsDown) {
+        str = str.replace(/[^\d-]/g, "")
+        if (str.length > 2) {
+          str = `${str.substr(0, str.length - 2)}.${str.substr(
+            str.length - 2,
+            2
+          )}`
+        }
+        return str
+      }
+      // standard entry
+      else {
+        return str
+          .replace(/[^0-9.-]/g, "")
+          .replace(/[.]+/g, ".")
+          .replace(/[-]+/g, "-")
+          .replace(/^(-?[0-9]+)(\.[0-9]{1,2}).*/g, "$1$2")
+      }
     }
     const formatBlur = (s: string) => {
       s = isNaN(Number(s)) ? "0" : s
@@ -134,6 +153,9 @@ export const CurrencyFieldBase = React.forwardRef<
     const label =
       props.label === undefined ? startCase(props.name) : props.label
 
+    const theme = useTheme()
+    const isXsDown = useMediaQuery(theme.breakpoints.down("xs"))
+
     return (
       <>
         {props.name !== undefined ? (
@@ -147,6 +169,11 @@ export const CurrencyFieldBase = React.forwardRef<
 
         <MUITextField
           ref={ref}
+          type="text"
+          inputProps={{
+            pattern: "[0-9]*",
+            step: "0.01",
+          }}
           value={inputValue}
           onChange={handleChange}
           onBlur={handleBlur}

@@ -42,6 +42,8 @@ export function CurrencyFieldExample() {
         label="CurrencyFieldBase2"
         numeric
         name="myformInput2"
+        autoDecimal
+        allowNegative
       />
     </Box>
   )

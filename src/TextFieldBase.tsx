@@ -258,6 +258,14 @@ export const TextFieldBase = React.forwardRef<
       onBlur={handleBlur}
       onChange={handleChange}
       size={size}
+      inputProps={
+        formatter === "phone"
+          ? {
+              pattern: "[0-9]*",
+              step: "0.01",
+            }
+          : undefined
+      }
       {...props}
     />
   )
