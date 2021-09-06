@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.4](https://github.com/claytonfbell/material-ui-pack/compare/v2.11.3...v2.11.4) (2021-09-06)
+
+
+### Bug Fixes
+
+* added numeric keypads for mobile ([799b894](https://github.com/claytonfbell/material-ui-pack/commit/799b89446c0afc56e6607541baf112d11fd4ee0b))
+
 ### [2.11.3](https://github.com/claytonfbell/material-ui-pack/compare/v2.11.2...v2.11.3) (2021-09-05)
 
 
