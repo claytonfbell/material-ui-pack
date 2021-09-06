@@ -1,6 +1,11 @@
 import { Box } from "@material-ui/core"
 import React from "react"
-import { Form, PercentageField, PercentageFieldBase } from "material-ui-pack"
+import {
+  Form,
+  PercentageField,
+  PercentageFieldBase,
+  Spacer,
+} from "material-ui-pack"
 
 export function PercentageFieldExample() {
   const [state, setState] = React.useState({ taxRate: 0 })
@@ -14,13 +19,12 @@ export function PercentageFieldExample() {
         state={state}
         setState={setState}
         busy={busy}
-        margin="dense"
+        margin="normal"
         debug
       >
         <PercentageField name="taxRate" decimals={3} fullWidth={false} />
       </Form>
 
-      <br />
       <PercentageFieldBase
         fullWidth
         label={`PercentageFieldBase ${value}`}
@@ -29,13 +33,8 @@ export function PercentageFieldExample() {
         decimals={5}
         name="PercentageFieldBase"
       />
-
-      <PercentageFieldBase
-        fullWidth
-        label={`PercentageFieldBase ${value}`}
-        decimals={3}
-        name="PercentageFieldBase2"
-      />
+      <Spacer />
+      <PercentageFieldBase fullWidth decimals={2} name="PercentageFieldBase2" />
     </Box>
   )
 }

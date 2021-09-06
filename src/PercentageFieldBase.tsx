@@ -38,6 +38,9 @@ export const PercentageFieldBase = React.forwardRef(
 
     const fmt = (s: string) => {
       let str = s.replace(/[^\d.]/g, "")
+      if (props.decimals < 3) {
+        str = str.replace(/\./g, "")
+      }
       let parts = str.split(".")
       if (parts.length > 2) {
         parts = parts.slice(0, 2)
@@ -108,6 +111,14 @@ export const PercentageFieldBase = React.forwardRef(
           InputProps={{
             endAdornment: <InputAdornment position="end">%</InputAdornment>,
           }}
+          inputProps={
+            props.decimals < 3
+              ? {
+                  pattern: "[0-9]*",
+                  step: "0.01",
+                }
+              : undefined
+          }
           margin={props.margin}
           size={size}
         />

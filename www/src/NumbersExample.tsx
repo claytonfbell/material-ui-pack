@@ -10,7 +10,8 @@ import { DebugBox } from "./DebugBox"
 
 export function NumbersExample() {
   const [state, setState] = useState({
-    percentageField: 0.255,
+    percentage1: 0.255,
+    percentage2: 0.25,
     currencyField: 9.99,
     numberField: 2,
   })
@@ -29,7 +30,10 @@ export function NumbersExample() {
           <DebugBox object={state} />
         </Grid>
         <Grid item xs={6} sm={3} md={2}>
-          <PercentageField name="percentageField" decimals={3} />
+          <PercentageField name="percentage1" decimals={3} />
+        </Grid>
+        <Grid item xs={6} sm={3} md={2}>
+          <PercentageField name="percentage2" decimals={2} />
         </Grid>
         <Grid item xs={6} sm={3} md={2}>
           <CurrencyField name="currencyField" />

@@ -37,6 +37,7 @@ export const NumberFieldBase = React.forwardRef(
       debugNamedInput,
       size = "small",
       setZeroToNull,
+      incrementBy,
       ...props
     }: NumberFieldBaseProps,
     ref: any
@@ -111,13 +112,13 @@ export const NumberFieldBase = React.forwardRef(
     const disableIncrement = toNumber(String(value)) === max
     const disableDecrement = toNumber(String(value)) === min
     function handleIncrement() {
-      if (props.incrementBy !== undefined) {
-        onChange(toDecimal(String(toNumber(String(value)) + props.incrementBy)))
+      if (incrementBy !== undefined) {
+        onChange(toDecimal(String(toNumber(String(value)) + incrementBy)))
       }
     }
     function handleDecrement() {
-      if (props.incrementBy !== undefined) {
-        onChange(toDecimal(String(toNumber(String(value)) - props.incrementBy)))
+      if (incrementBy !== undefined) {
+        onChange(toDecimal(String(toNumber(String(value)) - incrementBy)))
       }
     }
 
@@ -142,8 +143,16 @@ export const NumberFieldBase = React.forwardRef(
           value={state}
           onChange={newValue => setState(fmt(newValue))}
           onBlur={e => onChange(toDecimal(e.currentTarget.value))}
+          inputProps={
+            decimals === 0
+              ? {
+                  pattern: "[0-9]*",
+                  step: "0.01",
+                }
+              : undefined
+          }
           InputProps={
-            props.incrementBy !== undefined
+            incrementBy !== undefined
               ? {
                   endAdornment: (
                     <InputAdornment position="end">
