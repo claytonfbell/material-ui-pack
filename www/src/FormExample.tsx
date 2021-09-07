@@ -42,10 +42,12 @@ export function FormExample() {
                 type: "region",
                 country: state.country,
                 countryIsoType: "isoAlpha2",
+                fiftyStatesAndDC: true,
               },
               country: {
                 type: "country",
                 isoType: "isoAlpha2",
+                unitedStatesAndCanadaOnly: true,
               },
               zip: "text",
               timeZone: {
@@ -80,8 +82,8 @@ export function FormExample() {
               street2: { xs: 4 },
               city: { xs: 5 },
               state: { xs: 7 },
-              country: { xs: 7 },
-              zip: { xs: 5 },
+              country: { xs: 8 },
+              zip: { xs: 4 },
               agree: { xs: 6 },
               custom: { xs: 6 },
             }}

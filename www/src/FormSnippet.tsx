@@ -44,10 +44,12 @@ export function FormSnippet() {
                     type: "region",
                     country: state.country,
                     countryIsoType: "isoAlpha2",
+                    fiftyStatesAndDC: true,
                 },
                 country: {
                     type: "country",
                     isoType: "isoAlpha2",
+                    unitedStatesAndCanadaOnly: true,
                 },
                 zip: "text",
                 timeZone: {
