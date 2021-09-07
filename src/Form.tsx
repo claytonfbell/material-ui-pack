@@ -29,6 +29,7 @@ export interface FormProps<T> {
   schema?: FormSchema<T>
   layout?: FormLayout<T>
   buttons?: boolean
+  error?: string
 }
 
 function FormComponent<T extends object>({ ...props }: FormProps<T>) {

@@ -22,12 +22,18 @@ export function SelectCountryExample() {
       margin="dense"
       debug
     >
-      <SelectCountry name="country" isoType="isoAlpha2" required />
+      <SelectCountry
+        name="country"
+        isoType="isoAlpha2"
+        required
+        unitedStatesAndCanadaOnly
+      />
       <SelectRegion
         name="stateOrProvince"
         country={state.country}
         countryIsoType="isoAlpha2"
         required
+        fiftyStatesAndDC
       />
       <SelectTimeZone
         name="timeZone"

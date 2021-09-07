@@ -1,3 +1,6 @@
+import Collapse from "@material-ui/core/Collapse"
+import Grid from "@material-ui/core/Grid"
+import { Tooltip } from "material-ui-bootstrap"
 import React from "react"
 import {
   CancelButton,
@@ -7,27 +10,23 @@ import {
   SubmitButton,
   TimePicker,
 } from "."
-import { CurrencyFieldProps, CurrencyField } from "./CurrencyField"
+import { Checkbox, CheckboxProps } from "./Checkbox"
+import { CurrencyField, CurrencyFieldProps } from "./CurrencyField"
 import { DatePicker, DatePickerProps } from "./DatePicker"
 import { DateTimePicker, DateTimePickerProps } from "./DateTimePicker"
-import { useForm } from "./FormProvider"
+import { DisplayError } from "./DisplayError"
+import { useForm, FormContextType } from "./FormProvider"
 import { NumberFieldProps } from "./NumberField"
-import { SelectProps, Select } from "./Select"
+import { PercentageField, PercentageFieldProps } from "./PercentageField"
+import { Select, SelectProps } from "./Select"
+import { SelectCombo, SelectComboProps } from "./SelectCombo"
 import { SelectCountryProps } from "./SelectCountry"
 import { SelectRegionProps } from "./SelectRegion"
-import { TextField } from "./TextField"
-
-import { TextFieldProps } from "./TextField"
-import { TimePickerProps } from "./TimePicker"
 import { SelectTimeZone, SelectTimeZoneProps } from "./SelectTimeZone"
-import { SelectCombo, SelectComboProps } from "./SelectCombo"
-import { PercentageField, PercentageFieldProps } from "./PercentageField"
-import { Checkbox, CheckboxProps } from "./Checkbox"
-import Grid from "@material-ui/core/Grid"
-import { Tooltip } from "material-ui-bootstrap"
-import Collapse from "@material-ui/core/Collapse"
+import { TextField, TextFieldProps } from "./TextField"
+import { TimePickerProps } from "./TimePicker"
 
-export type FieldType =
+export type FieldType<T> =
   | "text"
   | "phone"
   | "passsword"
@@ -46,9 +45,9 @@ export type FieldType =
   | "timeZone"
   | "percentage"
   | "checkbox"
-  | (() => React.ReactElement)
+  | ((key: keyof T, form: FormContextType<T>) => React.ReactElement)
 
-export type Field =
+export type Field<T> =
   | (Partial<TextFieldProps> & {
       type:
         | "text"
@@ -94,10 +93,13 @@ export type Field =
   | (Partial<CheckboxProps> & {
       type: "checkbox"
     })
-  | { type: "custom"; render: () => React.ReactElement }
+  | {
+      type: "custom"
+      render: (key: keyof T, form: FormContextType<T>) => React.ReactElement
+    }
 
 export type FormSchema<T> = {
-  [K in keyof T]?: FieldType | Field
+  [K in keyof T]?: FieldType<T> | Field<T>
 }
 
 type GridSpan = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
@@ -107,29 +109,42 @@ type GridSpans = {
   md?: GridSpan
   lg?: GridSpan
   xl?: GridSpan
+}
+
+type GridSpansWithExtras = GridSpans & {
   tooltip?: string
   collapse?: boolean
   renderAfter?: React.ReactNode | (() => React.ReactNode) | undefined
 }
 
 export type FormLayout<T> = {
-  [K in keyof T]?: GridSpans
+  [K in keyof T]?: GridSpansWithExtras
+} & {
+  submitButton?: GridSpans
+  cancelButton?: GridSpans
 }
 
-export function FormFields() {
-  const { formProps } = useForm<any>()
-  const { schema, layout } = formProps
+export function FormFields<T extends object>() {
+  const form = useForm<T>()
+  const { schema, layout, error } = form.formProps
 
   return (
     <>
       {/* <Debug object={{ schema }} /> */}
       <Grid container spacing={2}>
+        {error !== undefined ? (
+          <Grid item xs={12}>
+            <DisplayError error={error} />
+          </Grid>
+        ) : null}
         {schema !== undefined ? (
           <>
-            {Object.keys(schema).map(key => {
-              const item = schema[key]
+            {Object.entries(schema).map(arr => {
+              const key = arr[0] as keyof T
+              const item = arr[1] as FieldType<T> | Field<T>
+              const name = String(key)
               if (item !== undefined) {
-                const field: Field =
+                const field: Field<T> =
                   typeof item === "string"
                     ? { type: item }
                     : typeof item === "function"
@@ -138,8 +153,8 @@ export function FormFields() {
 
                 let { renderAfter, tooltip, collapse, ...gridSpans } =
                   layout !== undefined && layout[key] !== undefined
-                    ? (layout[key] as GridSpans)
-                    : ({ xs: 12 } as GridSpans)
+                    ? (layout[key] as GridSpansWithExtras)
+                    : ({ xs: 12 } as GridSpansWithExtras)
 
                 let element: React.ReactElement | null = null
 
@@ -154,7 +169,7 @@ export function FormFields() {
                   const { type, ...props } = field
                   element = (
                     <TextField
-                      name={key}
+                      name={name}
                       {...props}
                       formatter={
                         field.type === "lowercase"
@@ -173,45 +188,47 @@ export function FormFields() {
                   )
                 } else if (field.type === "date") {
                   const { type, ...props } = field
-                  element = <DatePicker name={key} {...props} />
+                  element = <DatePicker name={name} {...props} />
                 } else if (field.type === "dateTime") {
                   const { type, ...props } = field
-                  element = <DateTimePicker name={key} {...props} />
+                  element = <DateTimePicker name={name} {...props} />
                 } else if (field.type === "time") {
                   const { type, ...props } = field
-                  element = <TimePicker name={key} {...props} />
+                  element = <TimePicker name={name} {...props} />
                 } else if (field.type === "number") {
                   const { type, ...props } = field
-                  element = <NumberField name={key} {...props} />
+                  element = <NumberField name={name} {...props} />
                 } else if (field.type === "region") {
                   const { type, ...props } = field
-                  element = <SelectRegion name={key} {...props} />
+                  element = <SelectRegion name={name} {...props} />
                 } else if (field.type === "country") {
                   const { type, ...props } = field
-                  element = <SelectCountry name={key} {...props} />
+                  element = <SelectCountry name={name} {...props} />
                 } else if (field.type === "currency") {
                   const { type, ...props } = field
-                  element = <CurrencyField name={key} {...props} />
+                  element = <CurrencyField name={name} {...props} />
                 } else if (field.type === "select") {
                   const { type, ...props } = field
-                  element = <Select name={key} {...{ options: [], ...props }} />
+                  element = (
+                    <Select name={name} {...{ options: [], ...props }} />
+                  )
                 } else if (field.type === "selectCombo") {
                   const { type, ...props } = field
                   element = (
-                    <SelectCombo name={key} {...{ options: [], ...props }} />
+                    <SelectCombo name={name} {...{ options: [], ...props }} />
                   )
                 } else if (field.type === "timeZone") {
                   const { type, ...props } = field
-                  element = <SelectTimeZone name={key} {...props} />
+                  element = <SelectTimeZone name={name} {...props} />
                 } else if (field.type === "percentage") {
                   const { type, ...props } = field
-                  element = <PercentageField name={key} {...props} />
+                  element = <PercentageField name={name} {...props} />
                 } else if (field.type === "checkbox") {
                   const { type, ...props } = field
-                  element = <Checkbox name={key} {...props} />
+                  element = <Checkbox name={name} {...props} />
                 } else if (field.type === "custom") {
                   const { render } = field
-                  element = render()
+                  element = render(key as keyof T, form)
                 }
 
                 // wrap it with tooltip
@@ -226,7 +243,7 @@ export function FormFields() {
 
                 // wrap node with Grid item, inject renderAfter
                 return element !== null ? (
-                  <React.Fragment key={key}>
+                  <React.Fragment key={name}>
                     <Grid item {...gridSpans}>
                       {element}
                     </Grid>
@@ -241,14 +258,25 @@ export function FormFields() {
             })}
 
             {/* submit and cancel buttons  */}
-            {formProps.buttons === true ? (
+            {form.formProps.buttons === true ? (
               <>
-                <Grid item xs={12} sm={6}>
+                <Grid
+                  item
+                  {...(layout !== undefined && layout.submitButton !== undefined
+                    ? layout.submitButton
+                    : { xs: 12, sm: 6 })}
+                >
                   <SubmitButton />
                 </Grid>
-                {formProps.onCancel !== undefined ? (
-                  <Grid item xs={12} sm={6}>
-                    <CancelButton onClick={formProps.onCancel} />
+                {form.formProps.onCancel !== undefined ? (
+                  <Grid
+                    item
+                    {...(layout !== undefined &&
+                    layout.submitButton !== undefined
+                      ? layout.cancelButton
+                      : { xs: 12, sm: 6 })}
+                  >
+                    <CancelButton onClick={form.formProps.onCancel} />
                   </Grid>
                 ) : null}
               </>
