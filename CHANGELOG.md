@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.13.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.12.0...v2.13.0) (2021-09-07)
+
+
+### Features
+
+* New form schema/layout to construct forms ([6cf168b](https://github.com/claytonfbell/material-ui-pack/commit/6cf168b7b5fb8d3e38edc112f2185008a98efec0))
+
 ## [2.12.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.11.5...v2.12.0) (2021-09-06)
 
 
