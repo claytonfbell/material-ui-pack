@@ -31,6 +31,8 @@ import { DarkModeExample } from "./DarkModeExample"
 import { DarkModeSnippet } from "./DarkModeSnippet"
 import { FormHookExample } from "./FormHookExample"
 import { FormHookSnippet } from "./FormHookSnippet"
+import { FormSnippet } from "./FormSnippetExample"
+import { FormExample } from "./FormExample"
 
 function AppContent() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -96,6 +98,10 @@ function AppContent() {
           </Grid>
         </Grid>
         <Spacer />
+        <ExampleBox title="Form" snippet={<FormSnippet />}>
+          <FormExample />
+        </ExampleBox>
+
         <ExampleBox title="TextField" snippet={<TextFieldSnippet />}>
           <TextFieldExample />
         </ExampleBox>
