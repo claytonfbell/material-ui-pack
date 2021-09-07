@@ -4,7 +4,7 @@ import InputLabel from "@material-ui/core/InputLabel"
 import MUISelect from "@material-ui/core/Select"
 import { startCase } from "lodash"
 import React from "react"
-import { OptionType } from "./SelectCombo"
+import { OptionType } from "./SelectComboBase"
 
 export type SelectValue = string | number | boolean | null
 

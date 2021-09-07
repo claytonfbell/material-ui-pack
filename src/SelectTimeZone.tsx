@@ -1,56 +1,38 @@
-import {
-  getAllTimezones,
-  getTimezonesForCountry,
-} from "countries-and-timezones"
-import moment from "moment-timezone"
 import React from "react"
-import { countries } from "./countries"
-import { BaseSelectComboProps, SelectCombo } from "./SelectCombo"
-import { CountryIsoType } from "./SelectCountry"
+import { useForm } from "./FormProvider"
+import { SelectValue } from "./SelectBase"
+import {
+  SelectTimeZoneBase,
+  SelectTimeZoneBaseProps,
+} from "./SelectTimeZoneBase"
 
-interface Props extends BaseSelectComboProps {
-  country?: string
-  countryIsoType?: CountryIsoType
-}
-export function SelectTimeZone(props: Props) {
-  const getOptions = React.useCallback(() => {
-    const zones =
-      props.country &&
-      props.country.length === 2 &&
-      props.countryIsoType === "isoAlpha2"
-        ? getTimeZonesWithCountry(props.country)
-        : props.country &&
-          props.country.length === 3 &&
-          props.countryIsoType === "isoAlpha3"
-        ? getTimeZonesWithCountry(countries.alpha3ToAlpha2(props.country))
-        : getAllTimezoneNames()
-
-    return (zones === null ? getAllTimezoneNames() : zones).map((v: string) => {
-      let label
-      try {
-        label = `${v} ${moment()
-          .tz(v)
-          .format("(h:mm A) Z")}`
-      } catch {
-        label = v
-      }
-
-      return {
-        value: v,
-        label,
-      }
-    })
-  }, [props.country, props.countryIsoType])
-
-  return <SelectCombo {...props} options={getOptions()} />
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type SelectTimeZoneProps = Omit<
+  SelectTimeZoneBaseProps,
+  "name" | "value" | "onChange" | "margin" | "size"
+> & {
+  name: string
 }
 
-function getAllTimezoneNames(): string[] {
-  return Object.entries(getAllTimezones()).map(x => x[1].name)
-}
+export const SelectTimeZone = React.forwardRef<
+  HTMLDivElement,
+  SelectTimeZoneProps
+>((props, ref) => {
+  const { getValue, setValue, formProps } = useForm<any>()
+  const value = React.useMemo(() => getValue(props.name), [
+    getValue,
+    props.name,
+  ]) as SelectValue
 
-function getTimeZonesWithCountry(countryIsoCode: string): string[] {
-  const zones = getTimezonesForCountry(countryIsoCode) || []
-
-  return zones.map(x => x.name)
-}
+  return (
+    <SelectTimeZoneBase
+      {...props}
+      ref={ref}
+      value={value}
+      onChange={x => setValue(props.name, x)}
+      margin={formProps.margin}
+      size={formProps.size}
+      disabled={formProps.busy || props.disabled}
+    />
+  )
+})

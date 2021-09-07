@@ -11,12 +11,14 @@ export interface PercentageFieldBaseProps {
   onChange?: OnChange
   label?: string
   disabled?: boolean
-  decimals: 2 | 3 | 4 | 5 | 6
+  decimals?: 2 | 3 | 4 | 5 | 6
   required?: boolean
   fullWidth?: boolean
   margin?: PropTypes.Margin
   size?: "medium" | "small"
   debugNamedInput?: boolean
+  max?: number
+  min?: number
 }
 export const PercentageFieldBase = React.forwardRef(
   (
@@ -26,6 +28,9 @@ export const PercentageFieldBase = React.forwardRef(
       onChange: propsOnChange,
       debugNamedInput,
       size = "small",
+      decimals = 2,
+      max = 1,
+      min = 0,
       ...props
     }: PercentageFieldBaseProps,
     ref: any
@@ -38,15 +43,15 @@ export const PercentageFieldBase = React.forwardRef(
 
     const fmt = (s: string) => {
       let str = s.replace(/[^\d.]/g, "")
-      if (props.decimals < 3) {
+      if (decimals < 3) {
         str = str.replace(/\./g, "")
       }
       let parts = str.split(".")
       if (parts.length > 2) {
         parts = parts.slice(0, 2)
       }
-      if (parts.length === 2 && parts[1].length > props.decimals - 2) {
-        parts[1] = parts[1].substr(0, props.decimals - 2)
+      if (parts.length === 2 && parts[1].length > decimals - 2) {
+        parts[1] = parts[1].substr(0, decimals - 2)
       }
       str = parts.join(".")
       return str
@@ -60,19 +65,23 @@ export const PercentageFieldBase = React.forwardRef(
     const toPercent = React.useCallback(
       (v: string) => {
         let newValue = parseFloat(
-          (toNumber(v) * 100).toFixed(props.decimals - 2)
+          (toNumber(v) * 100).toFixed(decimals - 2)
         ).toString()
         if (newValue === "0") {
           newValue = ""
         }
         return newValue
       },
-      [toNumber, props.decimals]
+      [toNumber, decimals]
     )
 
     const toDecimal = React.useCallback(
-      (v: string) => Number((toNumber(v) / 100).toFixed(props.decimals)),
-      [toNumber, props.decimals]
+      (v: string) =>
+        Math.min(
+          max,
+          Math.max(min, Number((toNumber(v) / 100).toFixed(decimals)))
+        ),
+      [toNumber, decimals]
     )
 
     const defaultValue = String(value)
@@ -112,7 +121,7 @@ export const PercentageFieldBase = React.forwardRef(
             endAdornment: <InputAdornment position="end">%</InputAdornment>,
           }}
           inputProps={
-            props.decimals < 3
+            decimals < 3
               ? {
                   pattern: "[0-9]*",
                   step: "0.01",

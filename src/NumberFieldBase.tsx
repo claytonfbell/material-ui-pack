@@ -157,14 +157,14 @@ export const NumberFieldBase = React.forwardRef(
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        disabled={disableIncrement}
+                        disabled={disableIncrement || props.disabled}
                         size="small"
                         onClick={handleIncrement}
                       >
                         <AddIcon />
                       </IconButton>
                       <IconButton
-                        disabled={disableDecrement}
+                        disabled={disableDecrement || props.disabled}
                         size="small"
                         onClick={handleDecrement}
                       >

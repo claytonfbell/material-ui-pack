@@ -1,5 +1,7 @@
 import { FormControlLabel } from "@material-ui/core"
-import MUICheckbox, { CheckboxProps } from "@material-ui/core/Checkbox"
+import MUICheckbox, {
+  CheckboxProps as MUICheckboxProps,
+} from "@material-ui/core/Checkbox"
 import { startCase } from "lodash"
 import React from "react"
 
@@ -9,8 +11,8 @@ type Value = boolean
 type OnChange = (value: Value) => void
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-export type FormCheckboxBaseProps = Omit<
-  CheckboxProps,
+export type CheckboxBaseProps = Omit<
+  MUICheckboxProps,
   "name" | "value" | "onChange"
 > & {
   name?: string
@@ -21,11 +23,7 @@ export type FormCheckboxBaseProps = Omit<
 
 export const CheckboxBase = React.forwardRef(
   (
-    {
-      value: propsValue,
-      onChange: propsOnChange,
-      ...props
-    }: FormCheckboxBaseProps,
+    { value: propsValue, onChange: propsOnChange, ...props }: CheckboxBaseProps,
     ref: any
   ) => {
     // manage state if no value and onChange
@@ -39,7 +37,7 @@ export const CheckboxBase = React.forwardRef(
 
     const label =
       props.label === undefined ? _.startCase(props.name) : props.label
-    let { name, ...newProps }: CheckboxProps = {
+    let { name, ...newProps }: MUICheckboxProps = {
       ...props,
       checked,
       onChange: e => onChange(e.currentTarget.checked),

@@ -1,30 +1,34 @@
-import countryRegionData from "country-region-data"
 import React from "react"
-import { countries } from "./countries"
-import { BaseSelectComboProps, SelectCombo } from "./SelectCombo"
-import { CountryIsoType } from "./SelectCountry"
+import { useForm } from "./FormProvider"
+import { SelectValue } from "./SelectBase"
+import { SelectRegionBase, SelectRegionBaseProps } from "./SelectRegionBase"
 
-interface Props extends BaseSelectComboProps {
-  country: string
-  countryIsoType?: CountryIsoType
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type SelectRegionProps = Omit<
+  SelectRegionBaseProps,
+  "name" | "value" | "onChange" | "margin" | "size"
+> & {
+  name: string
 }
-export function SelectRegion(props: Props) {
-  const isoType: CountryIsoType =
-    props.countryIsoType !== undefined ? props.countryIsoType : "isoAlpha3"
 
-  function getOptions() {
-    let country = countryRegionData.find(c => {
-      return isoType === "isoAlpha3"
-        ? c.countryShortCode === countries.alpha3ToAlpha2(props.country)
-        : c.countryShortCode === props.country
-    })
-    if (country !== null && country !== undefined) {
-      return country.regions.map(region => ({
-        value: region.shortCode,
-        label: region.name,
-      }))
-    }
-    return []
+export const SelectRegion = React.forwardRef<HTMLDivElement, SelectRegionProps>(
+  (props, ref) => {
+    const { getValue, setValue, formProps } = useForm<any>()
+    const value = React.useMemo(() => getValue(props.name), [
+      getValue,
+      props.name,
+    ]) as SelectValue
+
+    return (
+      <SelectRegionBase
+        {...props}
+        ref={ref}
+        value={value}
+        onChange={x => setValue(props.name, x)}
+        margin={formProps.margin}
+        size={formProps.size}
+        disabled={formProps.busy || props.disabled}
+      />
+    )
   }
-  return <SelectCombo {...props} options={getOptions()} matchValue />
-}
+)

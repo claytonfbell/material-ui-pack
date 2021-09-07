@@ -27,6 +27,7 @@ import { UseCounterExample } from "./UseCounterExample"
 import { UseEscapeKeyExample } from "./UseEscapeKeyExample"
 import { UseHandleStateExample } from "./UseHandleStateExample"
 import { NumberFieldExample } from "./NumberFieldExample"
+import { SchemaExample } from "./SchemaExample"
 
 function ExamplesContent() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -44,6 +45,7 @@ function ExamplesContent() {
         <CssBaseline />
         <DarkModeToggle />
         <Typography variant="h4">Examples</Typography>
+        <SchemaExample />
         <TextFieldExample />
         <CheckboxExample />
         <SelectComboExample />

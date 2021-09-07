@@ -8,13 +8,13 @@ import moment from "moment-timezone"
 import React from "react"
 import { useForm } from "./FormProvider"
 
-interface Props {
+export interface TimePickerProps {
   name: string
   label?: string
   disabled?: boolean
   required?: boolean
 }
-export function TimePicker(props: Props) {
+export function TimePicker(props: TimePickerProps) {
   const {
     formProps: { busy, size, margin },
     getValue,

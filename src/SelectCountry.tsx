@@ -1,30 +1,35 @@
 import React from "react"
-import { countries } from "./countries"
-import { BaseSelectComboProps, SelectCombo } from "./SelectCombo"
+import { useForm } from "./FormProvider"
+import { SelectValue } from "./SelectBase"
+import { SelectCountryBase, SelectCountryBaseProps } from "./SelectCountryBase"
 
-export type CountryIsoType = "isoAlpha2" | "isoAlpha3"
-
-interface Props extends BaseSelectComboProps {
-  isoType?: CountryIsoType
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type SelectCountryProps = Omit<
+  SelectCountryBaseProps,
+  "name" | "value" | "onChange" | "margin" | "size"
+> & {
+  name: string
 }
-export function SelectCountry(props: Props) {
-  const isoType: CountryIsoType =
-    props.isoType !== undefined ? props.isoType : "isoAlpha3"
 
-  function getOptions() {
-    const c = countries.getNames("en")
-    return Object.keys(c).map(isoAlpha2 => ({
-      value:
-        isoType === "isoAlpha3"
-          ? countries.alpha2ToAlpha3(isoAlpha2)
-          : isoAlpha2,
-      label: c[isoAlpha2],
-    }))
-  }
+export const SelectCountry = React.forwardRef<
+  HTMLDivElement,
+  SelectCountryProps
+>((props, ref) => {
+  const { getValue, setValue, formProps } = useForm<any>()
+  const value = React.useMemo(() => getValue(props.name), [
+    getValue,
+    props.name,
+  ]) as SelectValue
 
   return (
-    <>
-      <SelectCombo {...props} options={getOptions()} matchValue />
-    </>
+    <SelectCountryBase
+      {...props}
+      ref={ref}
+      value={value}
+      onChange={x => setValue(props.name, x)}
+      margin={formProps.margin}
+      size={formProps.size}
+      disabled={formProps.busy || props.disabled}
+    />
   )
-}
+})

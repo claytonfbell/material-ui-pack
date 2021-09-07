@@ -6,7 +6,11 @@ import { useForm } from "./FormProvider"
 export const SubmitButton = React.forwardRef<HTMLDivElement, ButtonProps>(
   (props, ref) => {
     const {
-      formProps: { busy },
+      formProps: {
+        busy,
+        submitLabel = "Submit",
+        pleaseWaitLabel = "Please Wait",
+      },
     } = useForm()
 
     const newProps: ButtonProps = {
@@ -17,9 +21,9 @@ export const SubmitButton = React.forwardRef<HTMLDivElement, ButtonProps>(
       ...props,
       disabled: props.disabled || busy,
       children: busy ? (
-        <>Please Wait... </>
+        <>{pleaseWaitLabel}... </>
       ) : props.children === undefined ? (
-        `Submit`
+        submitLabel
       ) : (
         props.children
       ),
