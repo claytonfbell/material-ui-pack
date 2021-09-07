@@ -1,4 +1,4 @@
-import { Box, Grid } from "@material-ui/core"
+import { Box, FormControlLabel, Grid, Switch } from "@material-ui/core"
 import { Form } from "material-ui-pack"
 import React, { useState } from "react"
 import { DebugBox } from "./DebugBox"
@@ -15,6 +15,8 @@ export function FormExample() {
     zip: "",
     timeZone: null,
     agree: false,
+    custom: false,
+    comments: "",
   })
 
   const [busy, setBusy] = useState(false)
@@ -29,6 +31,7 @@ export function FormExample() {
             busy={busy}
             onSubmit={() => setBusy(true)}
             onCancel={() => setBusy(false)}
+            error={state.custom ? "Example error box." : undefined}
             schema={{
               firstName: "capitalize",
               lastName: "capitalize",
@@ -40,7 +43,10 @@ export function FormExample() {
                 country: state.country,
                 countryIsoType: "isoAlpha2",
               },
-              country: { type: "country", isoType: "isoAlpha2" },
+              country: {
+                type: "country",
+                isoType: "isoAlpha2",
+              },
               zip: "text",
               timeZone: {
                 type: "timeZone",
@@ -48,6 +54,24 @@ export function FormExample() {
                 countryIsoType: "isoAlpha2",
               },
               agree: { type: "checkbox", label: "Yes, I Agree" },
+              custom: () => (
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={state.custom}
+                      onChange={e =>
+                        setState(prev => ({
+                          ...prev,
+                          custom: e.currentTarget.checked,
+                        }))
+                      }
+                      name="checkedA"
+                    />
+                  }
+                  label="Custom"
+                />
+              ),
+              comments: { type: "text", multiline: true, minRows: 3 },
             }}
             layout={{
               firstName: { xs: 6 },
@@ -58,6 +82,8 @@ export function FormExample() {
               state: { xs: 7 },
               country: { xs: 7 },
               zip: { xs: 5 },
+              agree: { xs: 6 },
+              custom: { xs: 6 },
             }}
           />
         </Box>

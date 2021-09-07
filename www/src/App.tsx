@@ -31,7 +31,7 @@ import { DarkModeExample } from "./DarkModeExample"
 import { DarkModeSnippet } from "./DarkModeSnippet"
 import { FormHookExample } from "./FormHookExample"
 import { FormHookSnippet } from "./FormHookSnippet"
-import { FormSnippet } from "./FormSnippetExample"
+import { FormSnippet } from "./FormSnippet"
 import { FormExample } from "./FormExample"
 
 function AppContent() {
