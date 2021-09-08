@@ -24,9 +24,12 @@ export function DateTimePickerExample() {
         busy={busy}
         margin="dense"
         debug
+        schema={{
+          dateAndTime: "dateTime",
+        }}
       >
         <SelectTimeZone name="timeZone" />
-        <DateTimePicker name="dateAndTime" timeZone={state.timeZone} />
+        {/* <DateTimePicker name="dateAndTime" timeZone={state.timeZone} /> */}
         <DateTimePicker name="dateAndTimeNull" timeZone={state.timeZone} />
         <DateTimePicker name="dateAndTimeEmpty" timeZone={state.timeZone} />
       </Form>
