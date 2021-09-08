@@ -40,8 +40,12 @@ function AlternateComponet() {
     <input
       style={{ margin: 4, color: "red", backgroundColor: "#bbb", fontSize: 24 }}
       type="text"
-      value={state.lastName}
-      onChange={e => setState(prev => ({ ...prev, lastName: e.target.value }))}
+      value={state?.lastName}
+      onChange={e =>
+        setState((prev: any) =>
+          prev === undefined ? undefined : { ...prev, lastName: e.target.value }
+        )
+      }
     />
   )
 }
