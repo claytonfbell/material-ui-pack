@@ -1,7 +1,6 @@
 import { Box, FormControlLabel, Grid, Switch } from "@material-ui/core"
-import { KeyboardArrowDown } from "@material-ui/icons"
 import { Alert } from "material-ui-bootstrap"
-import { Form, useForm } from "material-ui-pack"
+import { Form } from "material-ui-pack"
 import React from "react"
 
 export function SchemaExample() {
@@ -43,6 +42,7 @@ export function SchemaExample() {
         submitLabel="Save It!"
         cancelLabel="Forget It!"
         pleaseWaitLabel="Wait!!!!!"
+        disabledSubmitButton={state.custom}
         error={
           state.firstName.length === 0 ? "**First name** is missing" : undefined
         }

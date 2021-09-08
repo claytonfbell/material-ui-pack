@@ -30,6 +30,7 @@ export interface FormProps<T> {
   layout?: FormLayout<T>
   buttons?: boolean
   error?: string
+  disabledSubmitButton?: boolean
 }
 
 function FormComponent<T extends object>({ ...props }: FormProps<T>) {

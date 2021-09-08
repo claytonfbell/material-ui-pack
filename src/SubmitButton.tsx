@@ -10,6 +10,7 @@ export const SubmitButton = React.forwardRef<HTMLDivElement, ButtonProps>(
         busy,
         submitLabel = "Submit",
         pleaseWaitLabel = "Please Wait",
+        disabledSubmitButton = false,
       },
     } = useForm()
 
@@ -19,7 +20,7 @@ export const SubmitButton = React.forwardRef<HTMLDivElement, ButtonProps>(
       fullWidth: true,
       color: "primary",
       ...props,
-      disabled: props.disabled || busy,
+      disabled: props.disabled || busy || disabledSubmitButton,
       children: busy ? (
         <>{pleaseWaitLabel}... </>
       ) : props.children === undefined ? (
