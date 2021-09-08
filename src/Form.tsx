@@ -18,7 +18,7 @@ export type FormSetState<T> =
 
 export interface FormProps<T> {
   children?: React.ReactNode
-  onSubmit: () => void
+  onSubmit?: () => void
   onCancel?: () => void
   submitLabel?: string
   cancelLabel?: string
@@ -46,7 +46,9 @@ function FormComponent<T extends object>({ ...props }: FormProps<T>) {
       noValidate
       onSubmit={e => {
         e.preventDefault()
-        props.onSubmit()
+        if (props.onSubmit !== undefined) {
+          props.onSubmit()
+        }
       }}
       onKeyPress={e => {
         // prevent form submitting on enter key
