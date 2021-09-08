@@ -88,6 +88,6 @@
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "react-draft-wysiwyg": "^1.14.5",
-    "react-markdown": "^7.0.1"
+    "react-markdown": "^6.0.3"
   }
 }
