@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.1](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.0...v2.14.1) (2021-09-08)
+
+
+### Bug Fixes
+
+* Added disabledSubmitButton property ([dd1981f](https://github.com/claytonfbell/material-ui-pack/commit/dd1981fb954caac3a2498cbcd437112e70510f12))
+
 ## [2.14.0](https://github.com/claytonfbell/material-ui-pack/compare/v2.13.0...v2.14.0) (2021-09-07)
 
 
