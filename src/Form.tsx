@@ -12,6 +12,10 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+export type FormSetState<T> =
+  | React.Dispatch<React.SetStateAction<T>>
+  | React.Dispatch<React.SetStateAction<T | undefined>>
+
 export interface FormProps<T> {
   children?: React.ReactNode
   onSubmit: () => void
@@ -19,8 +23,8 @@ export interface FormProps<T> {
   submitLabel?: string
   cancelLabel?: string
   pleaseWaitLabel?: string
-  state: T
-  setState: React.Dispatch<React.SetStateAction<T>>
+  state: T | undefined
+  setState: FormSetState<T>
   busy?: boolean
   debug?: boolean
   margin?: PropTypes.Margin
@@ -64,7 +68,7 @@ function FormComponent<T extends object>({ ...props }: FormProps<T>) {
     >
       {props.debug === true ? <Debug object={props.state} /> : null}
       {props.children}
-      <FormFields />
+      {props.state !== undefined ? <FormFields /> : null}
     </form>
   )
 }

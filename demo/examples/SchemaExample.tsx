@@ -1,37 +1,69 @@
 import { Box, FormControlLabel, Grid, Switch } from "@material-ui/core"
-import { Alert } from "material-ui-bootstrap"
+import { Alert, Button } from "material-ui-bootstrap"
 import { Form } from "material-ui-pack"
 import React from "react"
 
+interface FormState {
+  firstName: string
+  lastName: string
+  phone: string
+  password: string
+  newPassword: string
+  date: string
+  dateTime: null | string
+  time: string
+  number: number
+  street1: string
+  city: string
+  state: string
+  country: string
+  zip: string
+  timeZone: string
+  price: string
+  color: string
+  color2: string
+  percentage: number
+  checkTheBox: boolean
+  custom: boolean
+  multiline: string
+}
+
+const myState: FormState = {
+  firstName: "Claytion",
+  lastName: "",
+  phone: "",
+  password: "",
+  newPassword: "",
+  date: "2021-09-22",
+  dateTime: null,
+  time: "23:00:00",
+  number: 10,
+  street1: "",
+  city: "",
+  state: "",
+  country: "USA",
+  zip: "",
+  timeZone: "",
+  price: "3.99",
+  color: "red",
+  color2: "red",
+  percentage: 0.111,
+  checkTheBox: false,
+  custom: false,
+  multiline: "",
+}
+
 export function SchemaExample() {
-  const [state, setState] = React.useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    password: "",
-    newPassword: "",
-    date: "2021-09-22",
-    dateTime: null,
-    time: "23:00:00",
-    number: 10,
-    street1: "",
-    city: "",
-    state: "",
-    country: "USA",
-    zip: "",
-    timeZone: "",
-    price: "3.99",
-    color: "red",
-    color2: "red",
-    percentage: "0.111",
-    checkTheBox: false,
-    custom: false,
-    multiline: "",
-  })
+  const [state, setState] = React.useState<FormState>()
   const [busy, setBusy] = React.useState(false)
+
+  function handleSetup() {
+    setState(myState)
+  }
 
   return (
     <Box>
+      <Button onClick={handleSetup}>Setup</Button>
       <Form
         debug
         onSubmit={() => setBusy(true)}
@@ -42,9 +74,11 @@ export function SchemaExample() {
         submitLabel="Save It!"
         cancelLabel="Forget It!"
         pleaseWaitLabel="Wait!!!!!"
-        disabledSubmitButton={state.custom}
+        disabledSubmitButton={state?.custom}
         error={
-          state.firstName.length === 0 ? "**First name** is missing" : undefined
+          (state?.firstName || "").length === 0
+            ? "**First name** is missing"
+            : undefined
         }
         schema={{
           multiline: { type: "text", multiline: true, minRows: 3 },
@@ -54,12 +88,12 @@ export function SchemaExample() {
           password: "passsword",
           newPassword: "newPassword",
           date: "date",
-          dateTime: { type: "dateTime", timeZone: state.timeZone },
+          dateTime: { type: "dateTime", timeZone: state?.timeZone },
           time: "time",
           number: { type: "number", incrementBy: 1 },
           street1: "text",
           city: "capitalize",
-          state: { type: "region", country: state.country },
+          state: { type: "region", country: state?.country },
           country: "country",
           zip: "text",
           price: {
@@ -75,7 +109,7 @@ export function SchemaExample() {
             ],
             allowNull: true,
           },
-          color2: state.checkTheBox
+          color2: state?.checkTheBox
             ? undefined
             : {
                 type: "selectCombo",
@@ -86,7 +120,7 @@ export function SchemaExample() {
               },
           timeZone: {
             type: "timeZone",
-            country: state.country,
+            country: state?.country,
             countryIsoType: "isoAlpha3",
           },
           checkTheBox: "checkbox",
@@ -96,12 +130,17 @@ export function SchemaExample() {
                 disabled={busy}
                 control={
                   <Switch
-                    checked={state.custom}
+                    checked={state?.custom}
                     onChange={e =>
-                      setState(prev => ({
-                        ...prev,
-                        custom: e.currentTarget.checked,
-                      }))
+                      setState(prev => {
+                        if (prev === undefined) {
+                          return prev
+                        }
+                        return {
+                          ...prev,
+                          custom: e.currentTarget.checked,
+                        }
+                      })
                     }
                   />
                 }
@@ -134,7 +173,7 @@ export function SchemaExample() {
           timeZone: {
             xs: 12,
             tooltip: "Hello",
-            collapse: state.checkTheBox,
+            collapse: state?.checkTheBox,
             renderAfter: () => (
               <Grid xs={12} item>
                 <Alert color="info">Some custom info here!</Alert>

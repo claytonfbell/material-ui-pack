@@ -4,7 +4,7 @@ import { Debug, Form, NumberField, NumberFieldBase } from "material-ui-pack"
 
 export function NumberFieldExample() {
   const [state, setState] = React.useState({ first: 0 })
-  const [value, setValue] = React.useState(5)
+  const [value, setValue] = React.useState<number | null>(5)
   const [busy, setBusy] = React.useState(false)
 
   return (

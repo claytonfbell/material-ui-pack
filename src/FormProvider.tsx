@@ -1,6 +1,6 @@
 import { cloneDeep, get, set } from "lodash"
 import React from "react"
-import { FormProps } from "./Form"
+import { FormProps, FormSetState } from "./Form"
 
 const _ = { get, set, cloneDeep }
 
@@ -10,10 +10,10 @@ export type FormValue = string | number | boolean | null
 
 export type FormContextType<T> = {
   formProps: FormProps<T>
-  getValue: (name: keyof T) => T[keyof T]
+  getValue: (name: keyof T) => T[keyof T] | undefined
   setValue: (name: keyof T, value: FormValue) => void
-  state: T
-  setState: React.Dispatch<React.SetStateAction<T>>
+  state: T | undefined
+  setState: FormSetState<T>
 }
 
 const Context = React.createContext<FormContextType<any> | undefined>(undefined)
@@ -30,8 +30,10 @@ export function FormProvider<T extends object>(formProps: FormProps<T>) {
     (name: keyof T, value: FormValue) => {
       //   var newState = { ...formProps.state }
       var newState = _.cloneDeep(formProps.state)
-      _.set(newState, name as string, value)
-      formProps.setState(newState)
+      if (newState !== undefined) {
+        _.set(newState, name as string, value)
+        formProps.setState(newState)
+      }
     },
     [formProps]
   )

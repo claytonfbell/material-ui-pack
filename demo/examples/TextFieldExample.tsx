@@ -80,8 +80,12 @@ function CustomInputs() {
       <Spacer />
       <input
         type="text"
-        value={state.phone}
-        onChange={e => setState(prev => ({ ...prev, phone: e.target.value }))}
+        value={state?.phone}
+        onChange={e =>
+          setState((prev: any) =>
+            prev !== undefined ? { ...prev, phone: e.target.value } : undefined
+          )
+        }
       />
     </Box>
   )
