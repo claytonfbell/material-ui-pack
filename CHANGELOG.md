@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.4](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.3...v2.14.4) (2021-09-08)
+
+
+### Bug Fixes
+
+* onSubmit is an optional property ([cae5bba](https://github.com/claytonfbell/material-ui-pack/commit/cae5bba8cf35af0958daf4f82fc5846d1b6af96d))
+
 ### [2.14.3](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.2...v2.14.3) (2021-09-08)
 
 
