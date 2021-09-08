@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.3](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.2...v2.14.3) (2021-09-08)
+
+
+### Bug Fixes
+
+* Fixed time zone bug ([9f11700](https://github.com/claytonfbell/material-ui-pack/commit/9f11700b4e5c357e6071bbe85c7d30150ecd6a1b))
+* Fixed to support undefined state ([b89c393](https://github.com/claytonfbell/material-ui-pack/commit/b89c393d19370378dce02d4ca4b098512a4d8037))
+
 ### [2.14.2](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.1...v2.14.2) (2021-09-08)
 
 
