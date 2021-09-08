@@ -33,6 +33,7 @@ export function FormSnippet() {
             busy={busy}
             onSubmit={() => setBusy(true)}
             onCancel={() => setBusy(false)}
+            disabledSubmitButton={state.custom}
             error={state.custom ? "Example error box." : undefined}
             schema={{
                 firstName: "capitalize",
@@ -60,6 +61,7 @@ export function FormSnippet() {
                 agree: { type: "checkbox", label: "Yes, I Agree" },
                 custom: () => (
                     <FormControlLabel
+                    disabled={form.formProps.busy}
                     control={
                         <Switch
                         checked={state.custom}

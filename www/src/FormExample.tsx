@@ -31,6 +31,7 @@ export function FormExample() {
             busy={busy}
             onSubmit={() => setBusy(true)}
             onCancel={() => setBusy(false)}
+            disabledSubmitButton={state.custom}
             error={state.custom ? "Example error box." : undefined}
             schema={{
               firstName: "capitalize",
@@ -56,8 +57,9 @@ export function FormExample() {
                 countryIsoType: "isoAlpha2",
               },
               agree: { type: "checkbox", label: "Yes, I Agree" },
-              custom: () => (
+              custom: (key, form) => (
                 <FormControlLabel
+                  disabled={form.formProps.busy}
                   control={
                     <Switch
                       checked={state.custom}
