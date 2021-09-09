@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.9](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.8...v2.14.9) (2021-09-09)
+
+
+### Bug Fixes
+
+* removed some unused packages ([47c3903](https://github.com/claytonfbell/material-ui-pack/commit/47c39038802f31f36693edaebfa1121a0fb1b6fe))
+
 ### [2.14.8](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.7...v2.14.8) (2021-09-09)
 
 
