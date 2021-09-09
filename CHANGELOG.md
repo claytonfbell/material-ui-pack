@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.8](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.7...v2.14.8) (2021-09-09)
+
+
+### Bug Fixes
+
+* Default the form state type to any on useForm hook ([03c7da6](https://github.com/claytonfbell/material-ui-pack/commit/03c7da6f6e827ccdcaa343386815476885d5e1a7))
+
 ### [2.14.7](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.6...v2.14.7) (2021-09-09)
 
 
