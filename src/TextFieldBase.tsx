@@ -27,6 +27,7 @@ export type TextFieldBaseProps = Omit<
     | "phone"
     | "newPassword"
     | "password"
+    | "email"
   /**
    * @deprecated - use formatter
    */
@@ -77,6 +78,10 @@ const formatters = {
           : v
     }
     return v
+  },
+  email: (v: string) => {
+    const [user, host] = v.toLowerCase().split(/@/)
+    return `${user.trim()}${host !== undefined ? `@${host.trim()}` : ""}`
   },
 }
 
@@ -132,6 +137,10 @@ export const TextFieldBase = React.forwardRef<
         break
       case "phone":
         newValue = formatters.phone(newValue)
+        break
+      case "email":
+        newValue = formatters.email(newValue)
+        break
     }
 
     if (typeof formatter === "function") {
@@ -180,6 +189,7 @@ export const TextFieldBase = React.forwardRef<
     formatter === "newPassword" && !showPassword ? "password" : props.type
   props.type =
     formatter === "password" && !showPassword ? "password" : props.type
+  props.type = formatter === "email" ? "email" : props.type
 
   // variant
   props.variant = props.variant || "outlined"

@@ -4,6 +4,7 @@ import { Form } from "material-ui-pack"
 import React from "react"
 
 interface FormState {
+  email: string
   firstName: string
   lastName: string
   phone: string
@@ -29,6 +30,7 @@ interface FormState {
 }
 
 const myState: FormState = {
+  email: "",
   firstName: "Claytion",
   lastName: "",
   phone: "",
@@ -81,6 +83,7 @@ export function SchemaExample() {
             : undefined
         }
         schema={{
+          email: "email",
           multiline: { type: "text", multiline: true, minRows: 3 },
           firstName: "capitalize",
           lastName: "capitalize",

@@ -33,6 +33,7 @@ export type FieldType<T> =
   | "newPassword"
   | "capitalize"
   | "lowercase"
+  | "email"
   | "date"
   | "dateTime"
   | "time"
@@ -56,6 +57,7 @@ export type Field<T> =
         | "newPassword"
         | "capitalize"
         | "lowercase"
+        | "email"
     })
   | (Partial<DatePickerProps> & {
       type: "date"
@@ -164,7 +166,8 @@ export function FormFields<T extends object>() {
                   field.type === "newPassword" ||
                   field.type === "passsword" ||
                   field.type === "phone" ||
-                  field.type === "capitalize"
+                  field.type === "capitalize" ||
+                  field.type === "email"
                 ) {
                   const { type, ...props } = field
                   element = (
@@ -182,6 +185,8 @@ export function FormFields<T extends object>() {
                           ? "password"
                           : field.type === "newPassword"
                           ? "newPassword"
+                          : field.type === "email"
+                          ? "email"
                           : field.formatter
                       }
                     />
