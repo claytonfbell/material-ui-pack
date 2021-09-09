@@ -269,7 +269,9 @@ export function FormFields<T extends object>() {
                   item
                   {...(layout !== undefined && layout.submitButton !== undefined
                     ? layout.submitButton
-                    : { xs: 12, sm: 6 })}
+                    : form.formProps.onCancel !== undefined
+                    ? { xs: 12, sm: 6 } // has cancel button too
+                    : { xs: 12 })} // no cancel button
                 >
                   <SubmitButton />
                 </Grid>
