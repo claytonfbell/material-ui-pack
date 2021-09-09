@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.5](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.4...v2.14.5) (2021-09-09)
+
+
+### Bug Fixes
+
+* Added support for email textfield ([75e1a65](https://github.com/claytonfbell/material-ui-pack/commit/75e1a6555fc6a6dfd5d4fa0990b818973881d4bc))
+
 ### [2.14.4](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.3...v2.14.4) (2021-09-08)
 
 
