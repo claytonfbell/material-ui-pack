@@ -11,6 +11,7 @@ export function TextFieldExample() {
     password: "",
     newPassword: "",
     customFormat: "",
+    email: "",
   })
 
   const [busy, setBusy] = useState(false)
@@ -52,6 +53,9 @@ export function TextFieldExample() {
             }
             name="customFormat"
           />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <TextField formatter="email" name="email" />
         </Grid>
       </Grid>
     </Form>
