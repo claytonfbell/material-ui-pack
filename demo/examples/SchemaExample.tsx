@@ -88,7 +88,7 @@ export function SchemaExample() {
           firstName: "capitalize",
           lastName: "capitalize",
           phone: { type: "phone", required: true },
-          password: "passsword",
+          password: "password",
           newPassword: "newPassword",
           date: "date",
           dateTime: { type: "dateTime", timeZone: state?.timeZone },

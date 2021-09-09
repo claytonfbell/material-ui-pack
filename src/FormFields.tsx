@@ -29,7 +29,7 @@ import { TimePickerProps } from "./TimePicker"
 export type FieldType<T> =
   | "text"
   | "phone"
-  | "passsword"
+  | "password"
   | "newPassword"
   | "capitalize"
   | "lowercase"
@@ -53,7 +53,7 @@ export type Field<T> =
       type:
         | "text"
         | "phone"
-        | "passsword"
+        | "password"
         | "newPassword"
         | "capitalize"
         | "lowercase"
@@ -164,7 +164,7 @@ export function FormFields<T extends object>() {
                   field.type === "text" ||
                   field.type === "lowercase" ||
                   field.type === "newPassword" ||
-                  field.type === "passsword" ||
+                  field.type === "password" ||
                   field.type === "phone" ||
                   field.type === "capitalize" ||
                   field.type === "email"
@@ -181,7 +181,7 @@ export function FormFields<T extends object>() {
                           ? "phone"
                           : field.type === "capitalize"
                           ? "capitalize"
-                          : field.type === "passsword"
+                          : field.type === "password"
                           ? "password"
                           : field.type === "newPassword"
                           ? "newPassword"
