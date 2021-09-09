@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.6](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.5...v2.14.6) (2021-09-09)
+
+
+### Bug Fixes
+
+* mispelled passsword property ([493ad1a](https://github.com/claytonfbell/material-ui-pack/commit/493ad1a74c6a15703ad34600c7f53d226018602c))
+
 ### [2.14.5](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.4...v2.14.5) (2021-09-09)
 
 
