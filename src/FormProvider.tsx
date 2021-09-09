@@ -17,7 +17,7 @@ export type FormContextType<T> = {
 }
 
 const Context = React.createContext<FormContextType<any> | undefined>(undefined)
-export function useForm<T extends object>() {
+export function useForm<T extends object = any>() {
   const context = React.useContext<FormContextType<T> | undefined>(Context)
   if (!context) {
     throw new Error(`useForm must be used within a FormProvider`)
