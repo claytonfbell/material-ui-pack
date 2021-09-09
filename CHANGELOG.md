@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.7](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.6...v2.14.7) (2021-09-09)
+
+
+### Bug Fixes
+
+* adjustment to default submit button to fill space when cancel button not present ([7968aaf](https://github.com/claytonfbell/material-ui-pack/commit/7968aafadb7c6884ffa2d32b78d3f94b60a9e853))
+
 ### [2.14.6](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.5...v2.14.6) (2021-09-09)
 
 
