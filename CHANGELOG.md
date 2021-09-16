@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.12](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.11...v2.14.12) (2021-09-16)
+
+
+### Bug Fixes
+
+* Render Form children AFTER the schema rendered stuff ([7283efe](https://github.com/claytonfbell/material-ui-pack/commit/7283efedfa7d00b3418edb5f32cb40a224e47b16))
+
 ### [2.14.11](https://github.com/claytonfbell/material-ui-pack/compare/v2.14.10...v2.14.11) (2021-09-14)
 
 
