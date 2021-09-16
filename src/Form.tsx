@@ -69,8 +69,8 @@ function FormComponent<T extends object>({ ...props }: FormProps<T>) {
       }}
     >
       {props.debug === true ? <Debug object={props.state} /> : null}
-      {props.children}
       {props.state !== undefined ? <FormFields /> : null}
+      {props.children}
     </form>
   )
 }
