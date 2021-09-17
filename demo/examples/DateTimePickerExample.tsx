@@ -3,8 +3,10 @@ import {
   DateTimePicker,
   DateTimePickerBase,
   Form,
+  FormFields,
   SelectTimeZone,
 } from "material-ui-pack"
+import { Box } from "@material-ui/core"
 
 export function DateTimePickerExample() {
   const [state, setState] = React.useState({
@@ -16,7 +18,7 @@ export function DateTimePickerExample() {
   const [busy, setBusy] = React.useState(false)
   const [value, setValue] = React.useState<string | null>(null)
   return (
-    <>
+    <Box style={{ border: `1px solid red` }}>
       <Form
         onSubmit={() => setBusy(true)}
         state={state}
@@ -27,7 +29,9 @@ export function DateTimePickerExample() {
         schema={{
           dateAndTime: "dateTime",
         }}
+        buttons={false}
       >
+        <FormFields />
         <SelectTimeZone name="timeZone" />
         {/* <DateTimePicker name="dateAndTime" timeZone={state.timeZone} /> */}
         <DateTimePicker name="dateAndTimeNull" timeZone={state.timeZone} />
@@ -41,6 +45,6 @@ export function DateTimePickerExample() {
         name="baseClearable"
         clearable
       />
-    </>
+    </Box>
   )
 }
