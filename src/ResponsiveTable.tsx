@@ -1,45 +1,24 @@
-import Box from "@material-ui/core/Box"
-import Button from "@material-ui/core/Button"
-import Checkbox from "@material-ui/core/Checkbox"
-import Grid from "@material-ui/core/Grid"
-import IconButton from "@material-ui/core/IconButton"
-import Paper from "@material-ui/core/Paper"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
-import Table, { Size } from "@material-ui/core/Table"
-import TableBody from "@material-ui/core/TableBody"
-import TableCell from "@material-ui/core/TableCell"
-import TableContainer from "@material-ui/core/TableContainer"
-import TableHead from "@material-ui/core/TableHead"
-import TableRow from "@material-ui/core/TableRow"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
-import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp"
-import DeleteIcon from "@material-ui/icons/Delete"
-import EditIcon from "@material-ui/icons/Edit"
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp"
+import DeleteIcon from "@mui/icons-material/Delete"
+import EditIcon from "@mui/icons-material/Edit"
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
+import Checkbox from "@mui/material/Checkbox"
+import Grid from "@mui/material/Grid"
+import IconButton from "@mui/material/IconButton"
+import Paper from "@mui/material/Paper"
+import { useTheme } from "@mui/material/styles"
+import Table, { TablePropsSizeOverrides } from "@mui/material/Table"
+import TableBody from "@mui/material/TableBody"
+import TableCell from "@mui/material/TableCell"
+import TableContainer from "@mui/material/TableContainer"
+import TableHead from "@mui/material/TableHead"
+import TableRow from "@mui/material/TableRow"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import { OverridableStringUnion } from "@mui/types"
 import clsx from "clsx"
 import React, { useState } from "react"
-
-const useStyles = makeStyles(theme => ({
-  table: {
-    "&.striped": {
-      "& tr:nth-of-type(odd)": {
-        backgroundColor: theme.palette.action.hover,
-      },
-      "& .iconButton": {
-        marginLeft: theme.spacing(1),
-      },
-    },
-  },
-  sortButton: {
-    textTransform: "none",
-  },
-  collapsed: {
-    marginBottom: theme.spacing(3),
-    "& .label": {
-      color: theme.palette.text.hint,
-    },
-  },
-}))
 
 export interface ResponsiveTableSchema<DataItem> {
   label: string
@@ -63,6 +42,8 @@ export interface ResponsiveTableSchema<DataItem> {
   xlUpHidden?: boolean
 }
 
+type Size = OverridableStringUnion<"small" | "medium", TablePropsSizeOverrides>
+
 export interface ResponsiveTableProps<DataItem> {
   schema: ResponsiveTableSchema<DataItem>[]
   rowData: DataItem[]
@@ -83,7 +64,6 @@ export function ResponsiveTable<T extends object>({
   onSelectChange,
   ...props
 }: ResponsiveTableProps<T>) {
-  const classes = useStyles()
   const theme = useTheme()
 
   const [selectedState, setSelectedState] = useState<T[]>([])
@@ -159,7 +139,12 @@ export function ResponsiveTable<T extends object>({
         return (
           <Paper
             key={index}
-            className={classes.collapsed}
+            sx={{
+              marginBottom: theme.spacing(3),
+              "& .label": {
+                color: theme.palette.text.disabled,
+              },
+            }}
             variant={props.variant}
             elevation={props.elevation}
           >
@@ -170,7 +155,7 @@ export function ResponsiveTable<T extends object>({
                     key={index}
                     container
                     spacing={2}
-                    justify="space-between"
+                    justifyContent="space-between"
                   >
                     <Grid item>
                       <span className="label">{x.label}</span>
@@ -181,7 +166,7 @@ export function ResponsiveTable<T extends object>({
               })}
 
               {onEdit !== undefined || onDelete !== undefined ? (
-                <Grid container spacing={2} justify="space-between">
+                <Grid container spacing={2} justifyContent="space-between">
                   <Grid item></Grid>
                   <Grid item>
                     {onEdit !== undefined ? (
@@ -214,10 +199,17 @@ export function ResponsiveTable<T extends object>({
     >
       <Table
         size={size}
-        className={clsx(
-          classes.table,
-          props.striped === true ? "striped" : null
-        )}
+        sx={{
+          "&.striped": {
+            "& tr:nth-of-type(odd)": {
+              backgroundColor: theme.palette.action.hover,
+            },
+            "& .iconButton": {
+              marginLeft: theme.spacing(1),
+            },
+          },
+        }}
+        className={clsx(props.striped === true ? "striped" : null)}
       >
         <TableHead>
           <TableRow className="stripe">
@@ -245,7 +237,9 @@ export function ResponsiveTable<T extends object>({
                           x.onSortChange(x.ascending !== true)
                         }
                       }}
-                      className={classes.sortButton}
+                      sx={{
+                        textTransform: "none",
+                      }}
                       endIcon={
                         x.ascending === true ? (
                           <ArrowDropUpIcon />

@@ -1,9 +1,8 @@
-import { Button } from "material-ui-bootstrap"
-import { ButtonProps } from "material-ui-bootstrap/dist/Button"
+import Button, { ButtonProps } from "@mui/material/Button"
 import React from "react"
 import { useForm } from "./FormProvider"
 
-export const CancelButton = React.forwardRef<HTMLDivElement, ButtonProps>(
+export const CancelButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const {
       formProps: { cancelLabel = "Cancel" },

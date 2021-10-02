@@ -3,7 +3,7 @@ import SyntaxHighlighter from "react-syntax-highlighter"
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs"
 export function NumbersSnippet() {
   const codeString = `
-  import { Grid } from "@material-ui/core"
+  import { Grid } from "@mui/material"
   import {
     CurrencyField,
     Form,

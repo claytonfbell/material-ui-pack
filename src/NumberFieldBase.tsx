@@ -1,10 +1,10 @@
-import { IconButton, PropTypes } from "@material-ui/core"
-import InputAdornment from "@material-ui/core/InputAdornment"
-import AddIcon from "@material-ui/icons/Add"
-import RemoveIcon from "@material-ui/icons/Remove"
+import InputAdornment from "@mui/material/InputAdornment"
+import AddIcon from "@mui/icons-material/Add"
+import RemoveIcon from "@mui/icons-material/Remove"
 import { startCase } from "lodash"
 import React from "react"
 import { TextFieldBase } from "./TextFieldBase"
+import IconButton from "@mui/material/IconButton"
 
 type OnChange = (newValue: number | null) => void
 
@@ -17,7 +17,7 @@ export interface NumberFieldBaseProps {
   decimals?: 0 | 1 | 2 | 3 | 4 | 5 | 6
   required?: boolean
   fullWidth?: boolean
-  margin?: PropTypes.Margin
+  margin?: "none" | "dense" | "normal" | undefined
   size?: "medium" | "small"
   debugNamedInput?: boolean
   min?: number

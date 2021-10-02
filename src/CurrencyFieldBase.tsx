@@ -1,17 +1,9 @@
-import { InputAdornment, makeStyles, PropTypes } from "@material-ui/core"
-import MUITextField from "@material-ui/core/TextField/TextField"
+import MUITextField from "@mui/material/TextField/TextField"
 import { startCase } from "lodash"
 import React from "react"
-import { useTheme } from "@material-ui/core/styles"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
-
-const useStyles = makeStyles({
-  root: {
-    "& input": {
-      textAlign: "right",
-    },
-  },
-})
+import InputAdornment from "@mui/material/InputAdornment"
+import useTheme from "@mui/material/styles/useTheme"
+import useMediaQuery from "@mui/material/useMediaQuery"
 
 type OnChange = (value: string | number) => void
 type Value = string | number
@@ -28,7 +20,7 @@ export interface CurrencyFieldBaseProps {
   blankZero?: boolean
   inPennies?: boolean
   fullWidth?: boolean
-  margin?: PropTypes.Margin
+  margin?: "normal" | "none" | "dense" | undefined
   size?: "medium" | "small"
   name?: string
   debugNamedInput?: boolean
@@ -49,8 +41,6 @@ export const CurrencyFieldBase = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles()
-
     // manage state if no value and onChange
     const [state, setState] = React.useState<Value>("")
     const value = propsValue !== undefined ? propsValue : state
@@ -179,7 +169,15 @@ export const CurrencyFieldBase = React.forwardRef<
           onBlur={handleBlur}
           onFocus={handleFocus}
           disabled={props.disabled}
-          className={props.alignRight ? classes.root : undefined}
+          sx={
+            props.alignRight
+              ? {
+                  "& input": {
+                    textAlign: "right",
+                  },
+                }
+              : undefined
+          }
           margin={props.margin}
           variant="outlined"
           size={size}

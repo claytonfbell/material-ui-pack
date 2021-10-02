@@ -1,5 +1,4 @@
-import { Box, Paper, Typography } from "@material-ui/core"
-import ThemeProvider from "@material-ui/styles/ThemeProvider"
+import { Box, Paper, ThemeProvider, Typography } from "@mui/material"
 import { DarkModeToggle, DarkModeProvider, useDarkMode } from "material-ui-pack"
 import React from "react"
 

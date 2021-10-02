@@ -1,30 +1,18 @@
-import { Fade } from "@material-ui/core"
-import makeStyles from "@material-ui/core/styles/makeStyles"
-import { Alert } from "material-ui-bootstrap"
+import Alert from "@mui/material/Alert"
+import Box from "@mui/material/Box"
+import Fade from "@mui/material/Fade"
+import { useTheme } from "@mui/material/styles"
 import React from "react"
 import ReactMarkdown from "react-markdown"
 
 const scrollToRef = (ref: any) =>
   window.scrollTo(0, ref.current.offsetTop - 100)
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(2),
-    width: "100%",
-  },
-  md: {
-    "& p": {
-      margin: 0,
-    },
-  },
-}))
-
 interface Props {
   error: string | undefined
 }
 export function DisplayError(props: Props) {
-  const classes = useStyles()
+  const theme = useTheme()
   const [show, setShow] = React.useState(false)
 
   const myRef = React.useRef(null)
@@ -46,15 +34,28 @@ export function DisplayError(props: Props) {
   return (
     <>
       <Fade in={show} unmountOnExit>
-        <div ref={myRef} className={classes.root}>
-          <Alert show={show}>
-            {props.error !== undefined && (
-              <ReactMarkdown className={classes.md}>
-                {props.error}
-              </ReactMarkdown>
-            )}
+        <Box
+          ref={myRef}
+          sx={{
+            marginTop: theme.spacing(1),
+            marginBottom: theme.spacing(2),
+            width: "100%",
+          }}
+        >
+          <Alert severity="error">
+            <Box
+              sx={{
+                "& p": {
+                  margin: 0,
+                },
+              }}
+            >
+              {props.error !== undefined && (
+                <ReactMarkdown>{props.error}</ReactMarkdown>
+              )}
+            </Box>
           </Alert>
-        </div>
+        </Box>
       </Fade>
     </>
   )

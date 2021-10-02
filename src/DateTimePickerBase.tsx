@@ -1,17 +1,14 @@
-import MomentUtils from "@date-io/moment"
-import { IconButton, PropTypes } from "@material-ui/core"
-import CalendarTodayIcon from "@material-ui/icons/CalendarToday"
-import CloseIcon from "@material-ui/icons/Close"
-import {
-  DateTimePicker as MUIDateTimePicker,
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers"
-import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date"
+import CloseIcon from "@mui/icons-material/Close"
+import DateAdapter from "@mui/lab/AdapterMoment"
+import DateTimePicker from "@mui/lab/DateTimePicker"
+import LocalizationProvider from "@mui/lab/LocalizationProvider"
+import IconButton from "@mui/material/IconButton"
+import TextField from "@mui/material/TextField"
 import { startCase } from "lodash"
-import moment from "moment-timezone"
+import moment, { Moment } from "moment-timezone"
 import React from "react"
 import { useHandleState } from "./hooks/useHandleState"
-import { formatDateTime, getTimeZone } from "./util/formatDateTime"
+import { getTimeZone } from "./util/formatDateTime"
 
 type Value = string | null
 type OnChange = (newValue: Value) => void
@@ -25,7 +22,7 @@ export interface DateTimePickerBaseProps {
   clearable?: boolean
   required?: boolean
   timeZone?: string
-  margin?: PropTypes.Margin
+  margin?: "none" | "dense" | "normal" | undefined
   size?: "medium" | "small"
   debugNamedInput?: boolean
 }
@@ -72,13 +69,13 @@ export const DateTimePickerBase = React.forwardRef<
       [handleOpen, open, props.clearable]
     )
 
-    function outgoing(v: MaterialUiPickersDate) {
+    function outgoing(v: Moment | null) {
       return v?.toISOString(true) || null
     }
 
     return (
       <>
-        <MuiPickersUtilsProvider utils={MomentUtils}>
+        <LocalizationProvider dateAdapter={DateAdapter}>
           {props.name !== undefined ? (
             <input
               type={props.debugNamedInput ? "text" : "hidden"}
@@ -88,48 +85,51 @@ export const DateTimePickerBase = React.forwardRef<
             />
           ) : null}
 
-          <MUIDateTimePicker
+          {/* labelFunc={() => {
+                if (dateTime !== null) {
+                  return `   ${formatDateTime(
+                    dateTime.toISOString(),
+                    props.timeZone
+                  )}`
+                } else {
+                  return ""
+                }
+              }} */}
+
+          <DateTimePicker
             {...extraProps}
             ref={ref}
-            required={props.required}
-            fullWidth
             label={label}
-            size={size}
-            margin={props.margin}
             disabled={props.disabled}
-            inputVariant="outlined"
             value={dateTime || undefined}
-            labelFunc={() => {
-              if (dateTime !== null) {
-                return `   ${formatDateTime(
-                  dateTime.toISOString(),
-                  props.timeZone
-                )}`
-              } else {
-                return ""
-              }
-            }}
             onChange={v => {
               onChange(outgoing(v))
             }}
-            InputProps={{
-              startAdornment: (
-                <IconButton size="small" onClick={handleOpen(true)}>
-                  <CalendarTodayIcon fontSize="inherit" />
-                </IconButton>
-              ),
-              endAdornment: (
-                <>
-                  {props.clearable && dateTime !== null && (
-                    <IconButton size="small" onClick={handleClear}>
-                      <CloseIcon fontSize="inherit" />
-                    </IconButton>
-                  )}
-                </>
-              ),
-            }}
+            renderInput={p => (
+              <TextField
+                required={p.required}
+                fullWidth
+                size={size}
+                margin={p.margin}
+                variant="outlined"
+                {...p}
+                InputProps={{
+                  ...p.InputProps,
+                  endAdornment: (
+                    <>
+                      {props.clearable && dateTime !== null && (
+                        <IconButton size="small" onClick={handleClear}>
+                          <CloseIcon fontSize="inherit" />
+                        </IconButton>
+                      )}
+                      {p.InputProps?.endAdornment}
+                    </>
+                  ),
+                }}
+              />
+            )}
           />
-        </MuiPickersUtilsProvider>
+        </LocalizationProvider>
       </>
     )
   }

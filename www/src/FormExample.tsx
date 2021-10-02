@@ -1,4 +1,4 @@
-import { Box, FormControlLabel, Grid, Switch } from "@material-ui/core"
+import { Box, FormControlLabel, Grid, Switch } from "@mui/material"
 import { Form } from "material-ui-pack"
 import React, { useState } from "react"
 import { DebugBox } from "./DebugBox"

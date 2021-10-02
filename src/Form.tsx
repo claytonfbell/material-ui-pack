@@ -1,16 +1,10 @@
-import { PropTypes } from "@material-ui/core"
-import { makeStyles } from "@material-ui/core/styles"
 import React from "react"
 import { Debug } from "./Debug"
 import { FormFields, FormLayout, FormSchema } from "./FormFields"
 import { FieldSizeType, FormProvider } from "./FormProvider"
+import { useTheme, styled } from "@mui/material/styles"
 
-const useStyles = makeStyles(theme => ({
-  form: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-  },
-}))
+const StyledForm = styled("form")``
 
 export type FormSetState<T> =
   | React.Dispatch<React.SetStateAction<T>>
@@ -27,7 +21,7 @@ export interface FormProps<T> {
   setState: FormSetState<T>
   busy?: boolean
   debug?: boolean
-  margin?: PropTypes.Margin
+  margin?: "none" | "dense" | "normal" | undefined
   size?: FieldSizeType
   preventSubmitOnEnterKey?: boolean
   schema?: FormSchema<T>
@@ -38,11 +32,14 @@ export interface FormProps<T> {
 }
 
 function FormComponent<T extends object>({ ...props }: FormProps<T>) {
-  const classes = useStyles(props)
+  const theme = useTheme()
 
   return (
-    <form
-      className={classes.form}
+    <StyledForm
+      sx={{
+        width: "100%",
+        marginTop: theme.spacing(1),
+      }}
       noValidate
       onSubmit={e => {
         e.preventDefault()
@@ -73,7 +70,7 @@ function FormComponent<T extends object>({ ...props }: FormProps<T>) {
         <FormFields />
       ) : null}
       {props.children}
-    </form>
+    </StyledForm>
   )
 }
 export function Form<T extends object>(props: FormProps<T>) {

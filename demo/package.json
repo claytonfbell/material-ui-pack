@@ -13,11 +13,13 @@
     "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.0.1",
+    "@mui/lab": "^5.0.0-alpha.49",
+    "@mui/material": "^5.0.2",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "material-ui-bootstrap": "^2.4.0",
     "material-ui-pack": "file:..",
-    "next": "10.0.7"
+    "next": "^11.1.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.168",

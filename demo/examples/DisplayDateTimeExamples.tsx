@@ -1,10 +1,4 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from "@material-ui/core"
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import React from "react"
 import {
   DisplayDate,

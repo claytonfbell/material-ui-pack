@@ -3,21 +3,13 @@ import {
   Collapse,
   Grid,
   IconButton,
-  makeStyles,
   Paper,
   Typography,
-} from "@material-ui/core"
-import CodeIcon from "@material-ui/icons/Code"
+  useTheme,
+} from "@mui/material"
+import CodeIcon from "@mui/icons-material/Code"
 import { Tooltip } from "material-ui-bootstrap"
 import React from "react"
-
-const useStyles = makeStyles(theme => ({
-  header: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    paddingTop: theme.spacing(1),
-  },
-}))
 
 interface ExampleProps {
   title: string
@@ -26,13 +18,18 @@ interface ExampleProps {
 }
 
 export function ExampleBox(props: ExampleProps) {
-  const classes = useStyles()
   const [showCode, setShowCode] = React.useState(false)
-
+  const theme = useTheme()
   return (
     <Paper variant="outlined" style={{ marginBottom: 20 }}>
-      <div className={classes.header}>
-        <Grid container justify="space-between">
+      <Box
+        sx={{
+          paddingLeft: theme.spacing(2),
+          paddingRight: theme.spacing(2),
+          paddingTop: theme.spacing(1),
+        }}
+      >
+        <Grid container justifyContent="space-between">
           <Grid item>
             <Typography variant="h5" gutterBottom>
               {props.title}
@@ -46,7 +43,7 @@ export function ExampleBox(props: ExampleProps) {
             </Tooltip>
           </Grid>
         </Grid>
-      </div>
+      </Box>
       <Collapse in={showCode}>
         <Box>{props.snippet}</Box>
       </Collapse>

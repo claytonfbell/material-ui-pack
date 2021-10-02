@@ -1,6 +1,6 @@
-import Collapse from "@material-ui/core/Collapse"
-import Grid from "@material-ui/core/Grid"
-import { Tooltip } from "material-ui-bootstrap"
+import Collapse from "@mui/material/Collapse"
+import Grid from "@mui/material/Grid"
+import Tooltip from "@mui/material/Tooltip"
 import React from "react"
 import {
   CancelButton,

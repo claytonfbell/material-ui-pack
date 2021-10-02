@@ -1,5 +1,4 @@
-import { PropTypes } from "@material-ui/core"
-import InputAdornment from "@material-ui/core/InputAdornment"
+import InputAdornment from "@mui/material/InputAdornment"
 import React from "react"
 import { TextFieldBase } from "./TextFieldBase"
 
@@ -14,7 +13,7 @@ export interface PercentageFieldBaseProps {
   decimals?: 2 | 3 | 4 | 5 | 6
   required?: boolean
   fullWidth?: boolean
-  margin?: PropTypes.Margin
+  margin?: "none" | "dense" | "normal" | undefined
   size?: "medium" | "small"
   debugNamedInput?: boolean
   max?: number

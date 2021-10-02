@@ -6,7 +6,7 @@ import {
   FormFields,
   SelectTimeZone,
 } from "material-ui-pack"
-import { Box } from "@material-ui/core"
+import { Box } from "@mui/material"
 
 export function DateTimePickerExample() {
   const [state, setState] = React.useState({

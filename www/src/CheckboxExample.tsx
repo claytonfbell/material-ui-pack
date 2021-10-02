@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core"
+import { Grid } from "@mui/material"
 import { Checkbox, Form } from "material-ui-pack"
 import React, { useState } from "react"
 import { DebugBox } from "./DebugBox"

@@ -1,5 +1,5 @@
-import { useTheme } from "@material-ui/core"
-import Box from "@material-ui/core/Box"
+import { useTheme } from "@mui/material"
+import Box from "@mui/material/Box"
 import { ResponsiveTable } from "material-ui-pack"
 import React, { useState } from "react"
 import { DebugBox } from "./DebugBox"

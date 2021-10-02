@@ -3,7 +3,7 @@ import SyntaxHighlighter from "react-syntax-highlighter"
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs"
 export function DateSnippet() {
   const codeString = `
-  import { Grid, Typography } from "@material-ui/core"
+  import { Grid, Typography } from "@mui/material"
   import {
     Checkbox,
     DatePicker,

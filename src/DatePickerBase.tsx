@@ -1,15 +1,11 @@
-import MomentUtils from "@date-io/moment"
-import { PropTypes } from "@material-ui/core"
-import IconButton from "@material-ui/core/IconButton"
-import CalendarTodayIcon from "@material-ui/icons/CalendarToday"
-import CloseIcon from "@material-ui/icons/Close"
-import {
-  DatePicker as MUIDatePicker,
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers"
-import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date"
+import CloseIcon from "@mui/icons-material/Close"
+import DateAdapter from "@mui/lab/AdapterMoment"
+import DatePicker from "@mui/lab/DatePicker"
+import LocalizationProvider from "@mui/lab/LocalizationProvider"
+import IconButton from "@mui/material/IconButton"
+import TextField from "@mui/material/TextField"
 import { startCase } from "lodash"
-import moment from "moment-timezone"
+import moment, { Moment } from "moment-timezone"
 import React from "react"
 import { useHandleState } from "./hooks/useHandleState"
 
@@ -24,7 +20,7 @@ export interface DatePickerBaseProps {
   disabled?: boolean
   clearable?: boolean
   required?: boolean
-  margin?: PropTypes.Margin
+  margin?: "none" | "dense" | "normal" | undefined
   size?: "medium" | "small"
   debugNamedInput?: boolean
 }
@@ -65,12 +61,12 @@ export const DatePickerBase = React.forwardRef<
       [handleOpen, open, props.clearable]
     )
 
-    function outgoing(v: MaterialUiPickersDate) {
+    function outgoing(v: Moment | null) {
       return v?.format("YYYY-MM-DD") || null
     }
 
     return (
-      <MuiPickersUtilsProvider utils={MomentUtils}>
+      <LocalizationProvider dateAdapter={DateAdapter}>
         {props.name !== undefined ? (
           <input
             type={props.debugNamedInput ? "text" : "hidden"}
@@ -80,29 +76,20 @@ export const DatePickerBase = React.forwardRef<
           />
         ) : null}
 
-        <MUIDatePicker
+        {/* autoOk */}
+        {/* format={"   LL"} */}
+
+        <DatePicker
           {...extraProps}
           ref={ref}
           clearable={props.clearable}
-          fullWidth={true}
           label={label}
-          size={size}
-          margin={props.margin}
           disabled={props.disabled}
-          required={props.required}
           value={dateTime}
           onChange={v => {
             onChange(outgoing(v))
           }}
-          autoOk
-          inputVariant="outlined"
-          format={"   LL"}
           InputProps={{
-            startAdornment: (
-              <IconButton size="small" onClick={handleOpen(true)}>
-                <CalendarTodayIcon fontSize="inherit" />
-              </IconButton>
-            ),
             endAdornment: (
               <>
                 {props.clearable && dateTime !== null && (
@@ -113,8 +100,18 @@ export const DatePickerBase = React.forwardRef<
               </>
             ),
           }}
+          renderInput={params => (
+            <TextField
+              fullWidth={true}
+              size={size}
+              margin={props.margin}
+              required={props.required}
+              variant="outlined"
+              {...params}
+            />
+          )}
         />
-      </MuiPickersUtilsProvider>
+      </LocalizationProvider>
     )
   }
 )

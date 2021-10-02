@@ -1,5 +1,7 @@
 # material-ui-pack
 
+[DEMO HERE https://material-ui-pack.xyz](https://material-ui-pack.xyz)
+
 [![npm version](https://badge.fury.io/js/material-ui-pack.svg)](https://badge.fury.io/js/material-ui-pack)
 [![Build Status](https://travis-ci.org/claytonfbell/material-ui-pack.svg?branch=master)](https://travis-ci.org/claytonfbell/material-ui-pack)
 
@@ -43,11 +45,11 @@ Why? Because I love the [Material UI](https://material-ui.com/) api but `<TextFi
 ## Install
 
 ```bash
-# npm
-npm i material-ui-pack
+# use with mui v5
+npm i material-ui-pack@5
 
-# yarn
-yarn add material-ui-pack
+# use with mui v4
+npm i material-ui-pack@4
 ```
 
 ## Form

@@ -1,7 +1,4 @@
-import { PropTypes } from "@material-ui/core"
-import FormControl from "@material-ui/core/FormControl"
-import InputLabel from "@material-ui/core/InputLabel"
-import MUISelect from "@material-ui/core/Select"
+import TextField from "@mui/material/TextField"
 import { startCase } from "lodash"
 import React from "react"
 import { OptionType } from "./SelectComboBase"
@@ -19,7 +16,7 @@ export interface SelectBaseProps {
   allowNull?: boolean
   nullLabel?: string
   required?: boolean
-  margin?: PropTypes.Margin
+  margin?: "none" | "dense" | "normal" | undefined
   size?: "medium" | "small"
   /**
    * @deprecated - uses value type of whatever is passed into options array
@@ -31,14 +28,6 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
   ({ value, disabled, size = "small", margin, ...props }, ref) => {
     const label =
       props.label === undefined ? startCase(props.name) : props.label
-
-    const [labelWidth, setLabelWidth] = React.useState(0)
-    const inputLabel = React.useRef<HTMLLabelElement>(null)
-    React.useEffect(() => {
-      const width =
-        inputLabel.current !== null ? inputLabel.current.offsetWidth : 0
-      setLabelWidth(width)
-    }, [])
 
     const nullLabel =
       props.nullLabel !== undefined
@@ -53,7 +42,7 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
         value: unknown
       }>
     ) {
-      const stringValue = event.currentTarget.value as string
+      const stringValue = event.target.value as string
       const newValue = props.options.find(o => String(o.value) === stringValue)
         ?.value
       props.onChange(newValue === undefined ? null : newValue)
@@ -66,41 +55,36 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
       value === undefined || value === null ? `null` : String(value)
 
     return (
-      <FormControl
+      <TextField
+        select
         ref={ref}
+        label={label}
         disabled={disabled}
         fullWidth
         variant="outlined"
         size={size}
         margin={margin}
         required={props.required}
+        value={selectedValue}
+        name={props.name}
+        onChange={handleChange}
+        SelectProps={{
+          native: true,
+        }}
       >
-        <InputLabel ref={inputLabel}>{label}</InputLabel>
-        <MUISelect
-          disabled={disabled}
-          fullWidth
-          native
-          value={selectedValue}
-          labelWidth={labelWidth}
-          inputProps={{
-            name: props.name,
-          }}
-          onChange={handleChange}
+        <option
+          disabled={isNullOptionDisabled}
+          value="null"
+          onSelect={() => props.onChange(null)}
         >
-          <option
-            disabled={isNullOptionDisabled}
-            value="null"
-            onSelect={() => props.onChange(null)}
-          >
-            {nullLabel}
+          {nullLabel}
+        </option>
+        {props.options.map((o, x) => (
+          <option key={x} value={String(o.value)} disabled={o.disabled}>
+            {o.label}
           </option>
-          {props.options.map((o, x) => (
-            <option key={x} value={String(o.value)} disabled={o.disabled}>
-              {o.label}
-            </option>
-          ))}
-        </MUISelect>
-      </FormControl>
+        ))}
+      </TextField>
     )
   }
 )

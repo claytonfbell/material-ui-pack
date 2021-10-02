@@ -1,4 +1,4 @@
-import Box from "@material-ui/core/Box"
+import Box from "@mui/material/Box"
 import { CurrencyField, CurrencyFieldBase, Form } from "material-ui-pack"
 import React from "react"
 

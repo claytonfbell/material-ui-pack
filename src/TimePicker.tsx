@@ -1,8 +1,7 @@
-import MomentUtils from "@date-io/moment"
-import {
-  MuiPickersUtilsProvider,
-  TimePicker as MUITimePicker,
-} from "@material-ui/pickers"
+import DateAdapter from "@mui/lab/AdapterMoment"
+import LocalizationProvider from "@mui/lab/LocalizationProvider"
+import MUITimePicker from "@mui/lab/TimePicker"
+import TextField from "@mui/material/TextField"
 import { startCase } from "lodash"
 import moment from "moment-timezone"
 import React from "react"
@@ -29,21 +28,30 @@ export function TimePicker(props: TimePickerProps) {
   const label = props.label === undefined ? startCase(props.name) : props.label
 
   return (
-    <MuiPickersUtilsProvider utils={MomentUtils}>
+    <LocalizationProvider dateAdapter={DateAdapter}>
+      {/* format={"h:mm A"} */}
+
       <MUITimePicker
-        fullWidth
         label={label}
-        size={size}
-        margin={margin}
         disabled={props.disabled || busy}
-        required={props.required}
-        inputVariant="outlined"
         value={value}
-        format={"h:mm A"}
         onChange={e => {
-          setValue(props.name, e === null ? null : e.format("HH:mm:00"))
+          setValue(
+            props.name,
+            e === null ? null : moment(`2021-01-01 ${e}`).format("HH:mm:00")
+          )
         }}
+        renderInput={params => (
+          <TextField
+            fullWidth
+            size={size}
+            margin={margin}
+            required={props.required}
+            variant="outlined"
+            {...params}
+          />
+        )}
       />
-    </MuiPickersUtilsProvider>
+    </LocalizationProvider>
   )
 }

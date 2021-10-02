@@ -1,17 +1,8 @@
-import { makeStyles, PropTypes } from "@material-ui/core"
-import TextField from "@material-ui/core/TextField"
-import Autocomplete from "@material-ui/lab/Autocomplete"
+import TextField from "@mui/material/TextField"
+import Autocomplete from "@mui/lab/Autocomplete"
 import { startCase } from "lodash"
 import React from "react"
 import { SelectValue } from "./SelectBase"
-
-const useStyles = makeStyles({
-  txt: {
-    "& input::-ms-clear": {
-      display: "none",
-    },
-  },
-})
 
 export interface OptionType {
   value: string | number | boolean
@@ -28,7 +19,7 @@ export interface BaseSelectComboProps {
   matchValue?: boolean
   autoComplete?: string
   required?: boolean
-  margin?: PropTypes.Margin
+  margin?: "none" | "dense" | "normal" | undefined
   size?: "medium" | "small"
 }
 
@@ -43,8 +34,6 @@ export const SelectComboBase = React.forwardRef<
   HTMLDivElement,
   SelectComboBaseProps
 >(({ value, onChange, size = "small", margin = "none", ...props }, ref) => {
-  const classes = useStyles()
-
   const label = props.label === undefined ? startCase(props.name) : props.label
 
   const [selected, setSelected] = React.useState<OptionType | null | undefined>(
@@ -114,7 +103,11 @@ export const SelectComboBase = React.forwardRef<
             <TextField
               {...params}
               ref={ref}
-              className={classes.txt}
+              sx={{
+                "& input::-ms-clear": {
+                  display: "none",
+                },
+              }}
               type={props.type}
               name={props.name}
               margin={margin}

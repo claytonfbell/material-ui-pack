@@ -1,5 +1,4 @@
-import { Box, FormControlLabel, Grid, Switch } from "@material-ui/core"
-import { Alert, Button } from "material-ui-bootstrap"
+import { Box, Button, FormControlLabel, Grid, Switch } from "@mui/material"
 import { Form } from "material-ui-pack"
 import React from "react"
 
@@ -179,7 +178,9 @@ export function SchemaExample() {
             collapse: state?.checkTheBox,
             renderAfter: () => (
               <Grid xs={12} item>
-                <Alert color="info">Some custom info here!</Alert>
+                {/* <Alert color="info"> */}
+                Some custom info here!
+                {/* </Alert> */}
               </Grid>
             ),
           },

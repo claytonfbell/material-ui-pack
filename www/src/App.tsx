@@ -1,8 +1,8 @@
-import Container from "@material-ui/core/Container"
-import CssBaseline from "@material-ui/core/CssBaseline"
-import Grid from "@material-ui/core/Grid"
-import { ThemeProvider } from "@material-ui/core/styles"
-import GitHubIcon from "@material-ui/icons/GitHub"
+import Container from "@mui/material/Container"
+import CssBaseline from "@mui/material/CssBaseline"
+import Grid from "@mui/material/Grid"
+import { ThemeProvider } from "@mui/material/styles"
+import GitHubIcon from "@mui/icons-material/GitHub"
 import { Button, Panel, PanelBody, Typography } from "material-ui-bootstrap"
 import {
   DarkModeProvider,
@@ -33,6 +33,7 @@ import { FormHookExample } from "./FormHookExample"
 import { FormHookSnippet } from "./FormHookSnippet"
 import { FormSnippet } from "./FormSnippet"
 import { FormExample } from "./FormExample"
+import Box from "@mui/material/Box"
 
 function AppContent() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -56,7 +57,7 @@ function AppContent() {
         <CssBaseline />
 
         <br />
-        <Grid container justify="space-between">
+        <Grid container justifyContent="space-between">
           <Grid>
             <Typography variant="h3" component="h1" color="dark">
               material-ui-pack
@@ -77,9 +78,18 @@ function AppContent() {
                     alt="Build Status"
                   />
                 </a>
-                <div>
-                  <code>npm install material-ui-pack</code>
-                </div>
+                <Box marginTop={2}>
+                  <Typography>
+                    <strong>Install for MUI v5</strong>
+                  </Typography>
+                  <code>npm install material-ui-pack@5</code>
+                </Box>
+                <Box marginTop={2}>
+                  <Typography>
+                    <strong>Install for MUI v4</strong>
+                  </Typography>
+                  <code>npm install material-ui-pack@4</code>
+                </Box>
               </PanelBody>
             </Panel>
             <br />

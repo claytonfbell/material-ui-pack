@@ -3,7 +3,7 @@ import {
   CssBaseline,
   ThemeProvider,
   Typography,
-} from "@material-ui/core"
+} from "@mui/material"
 import React from "react"
 import {
   DarkModeProvider,
@@ -28,20 +28,26 @@ import { UseEscapeKeyExample } from "./UseEscapeKeyExample"
 import { UseHandleStateExample } from "./UseHandleStateExample"
 import { NumberFieldExample } from "./NumberFieldExample"
 import { SchemaExample } from "./SchemaExample"
+import { DisplayError } from "material-ui-pack"
 
 function ExamplesContent() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
   const theme = createMuiThemeWithDarkMode({
     palette: {
-      primary: {
-        main: "#db544c",
-      },
+      //   primary: {
+      //     main: "#db544c",
+      //   },
     },
   })
 
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xs">
+        <DisplayError
+          error={`**Some Markdown**
+
+New line`}
+        />
         <CssBaseline />
         <DarkModeToggle />
         <Typography variant="h4">Examples</Typography>

@@ -1,7 +1,7 @@
-import { Theme, ThemeOptions } from "@material-ui/core/styles"
-import createTheme from "@material-ui/core/styles/createTheme"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
+import { Theme, ThemeOptions } from "@mui/material/styles"
+import useMediaQuery from "@mui/material/useMediaQuery"
 import React from "react"
+import createTheme from "@mui/material/styles/createTheme"
 
 type ContextType = {
   darkMode: boolean
@@ -71,7 +71,7 @@ export function DarkModeProvider(props: Props) {
         ...options,
         palette: {
           ...options.palette,
-          type: darkMode ? "dark" : "light",
+          mode: darkMode ? "dark" : "light",
         },
       })
     },

@@ -1,4 +1,4 @@
-import { Button, Tooltip } from "@material-ui/core"
+import { Button, Tooltip } from "@mui/material"
 import React from "react"
 import { Checkbox, Form } from "material-ui-pack"
 

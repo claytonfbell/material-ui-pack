@@ -1,16 +1,10 @@
-import makeStyles from "@material-ui/core/styles/makeStyles"
-import Tooltip from "@material-ui/core/Tooltip"
+import { styled } from "@mui/material/styles"
+import Tooltip from "@mui/material/Tooltip"
 import moment from "moment-timezone"
 import React from "react"
 import { formatDateTime } from "../util/formatDateTime"
 
-const useStyles = makeStyles({
-  root: {
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-  },
-})
+const StyledSpan = styled("span")``
 
 interface Props {
   iso8601: string | null
@@ -18,8 +12,6 @@ interface Props {
   timeZone?: string
 }
 export function DisplayDateTime(props: Props) {
-  const classes = useStyles()
-
   const formatted = React.useMemo(
     () =>
       props.iso8601 !== null
@@ -30,13 +22,19 @@ export function DisplayDateTime(props: Props) {
   const fromNow = (iso: string) => moment(iso).fromNow()
 
   return (
-    <span className={classes.root}>
+    <StyledSpan
+      sx={{
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+      }}
+    >
       {props.iso8601 !== null && props.fromNow && (
         <Tooltip arrow title={formatted}>
           <span>{fromNow(props.iso8601)}</span>
         </Tooltip>
       )}
       {props.iso8601 !== null && !props.fromNow && formatted}
-    </span>
+    </StyledSpan>
   )
 }
