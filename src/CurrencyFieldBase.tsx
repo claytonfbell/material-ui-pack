@@ -4,6 +4,7 @@ import React from "react"
 import InputAdornment from "@mui/material/InputAdornment"
 import useTheme from "@mui/material/styles/useTheme"
 import useMediaQuery from "@mui/material/useMediaQuery"
+import { useDebounce } from "react-use"
 
 type OnChange = (value: string | number) => void
 type Value = string | number
@@ -80,13 +81,17 @@ export const CurrencyFieldBase = React.forwardRef<
       setInputValue(incoming(value))
     }, [incoming, value])
 
-    React.useEffect(() => {
-      if (!hasFocus) {
-        if (Number(outgoing(inputValue)) !== Number(value)) {
-          onChange(outgoing(inputValue))
+    useDebounce(
+      () => {
+        if (!hasFocus) {
+          if (Number(outgoing(inputValue)) !== Number(value)) {
+            onChange(outgoing(inputValue))
+          }
         }
-      }
-    }, [hasFocus, inputValue, outgoing, value, onChange])
+      },
+      50,
+      [hasFocus, inputValue, outgoing, value, onChange]
+    )
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
       let str = e.target.value
