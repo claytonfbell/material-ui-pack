@@ -4,6 +4,7 @@ import { startCase } from "lodash"
 import React from "react"
 import { useTheme } from "@material-ui/core/styles"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
+import { useDebounce } from "react-use"
 
 const useStyles = makeStyles({
   root: {
@@ -90,13 +91,17 @@ export const CurrencyFieldBase = React.forwardRef<
       setInputValue(incoming(value))
     }, [incoming, value])
 
-    React.useEffect(() => {
-      if (!hasFocus) {
-        if (Number(outgoing(inputValue)) !== Number(value)) {
-          onChange(outgoing(inputValue))
+    useDebounce(
+      () => {
+        if (!hasFocus) {
+          if (Number(outgoing(inputValue)) !== Number(value)) {
+            onChange(outgoing(inputValue))
+          }
         }
-      }
-    }, [hasFocus, inputValue, outgoing, value, onChange])
+      },
+      50,
+      [hasFocus, inputValue, outgoing, value, onChange]
+    )
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
       let str = e.target.value

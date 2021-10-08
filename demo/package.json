@@ -15,7 +15,7 @@
   "dependencies": {
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "material-ui-bootstrap": "^2.4.0",
+    "material-ui-bootstrap": "^4.0.0",
     "material-ui-pack": "file:..",
     "next": "10.0.7"
   },
