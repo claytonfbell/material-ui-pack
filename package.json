@@ -35,7 +35,6 @@
   },
   "name": "material-ui-pack",
   "author": "Clay Bell",
-  "type": "module",
   "module": "dist/material-ui-pack.esm.js",
   "size-limit": [
     {
