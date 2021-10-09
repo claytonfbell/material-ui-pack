@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.1](https://github.com/claytonfbell/material-ui-pack/compare/v5.0.0...v5.0.1) (2021-10-09)
+
+
+### Bug Fixes
+
+* finished the date and time components ([7aaef62](https://github.com/claytonfbell/material-ui-pack/commit/7aaef6201c11fad753e5ecb8d370a19d6aaac05e))
+* useDebounce to work-around an edge-case infinite loop ([a8bc944](https://github.com/claytonfbell/material-ui-pack/commit/a8bc944597bbd30b67bdf1e28517db388e252f0e))
+
 ## [5.0.0](https://github.com/claytonfbell/material-ui-pack/compare/v4.0.0...v5.0.0) (2021-10-04)
 
 
