@@ -1,4 +1,4 @@
-import { Alert, Grid, Typography } from "@mui/material"
+import { Grid, Typography } from "@mui/material"
 import {
   Checkbox,
   DatePicker,
@@ -21,10 +21,6 @@ export function DateExample() {
 
   return (
     <>
-      <Alert severity="warning">
-        These components are still being worked on for v5. There are known
-        issues.
-      </Alert>
       <Form state={state} setState={setState} onSubmit={() => {}}>
         <Grid container spacing={2} alignItems="baseline">
           <Grid item xs={12}>
