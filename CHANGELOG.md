@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.4](https://github.com/claytonfbell/material-ui-pack/compare/v5.0.3...v5.0.4) (2021-10-09)
+
+
+### Bug Fixes
+
+* trying cjs path ([6d8a388](https://github.com/claytonfbell/material-ui-pack/commit/6d8a388ccf686200b0f1f08793e0e1ff3aec4fe5))
+
 ### [5.0.3](https://github.com/claytonfbell/material-ui-pack/compare/v5.0.2...v5.0.3) (2021-10-09)
 
 
