@@ -5,6 +5,7 @@ import {
   Form,
   FormFields,
   SelectTimeZone,
+  TimePicker,
 } from "material-ui-pack"
 import { Box } from "@mui/material"
 
@@ -14,28 +15,32 @@ export function DateTimePickerExample() {
     dateAndTimeNull: null,
     dateAndTimeEmpty: "",
     timeZone: "America/Chicago",
+    time: "23:33:00",
   })
   const [busy, setBusy] = React.useState(false)
   const [value, setValue] = React.useState<string | null>(null)
   return (
-    <Box style={{ border: `1px solid red` }}>
+    <Box>
       <Form
         onSubmit={() => setBusy(true)}
         state={state}
         setState={setState}
         busy={busy}
-        margin="dense"
         debug
         schema={{
-          dateAndTime: "dateTime",
+          dateAndTime: {
+            type: "dateTime",
+            clearable: false,
+            timeZone: state.timeZone,
+          },
         }}
         buttons={false}
       >
         <FormFields />
         <SelectTimeZone name="timeZone" />
-        {/* <DateTimePicker name="dateAndTime" timeZone={state.timeZone} /> */}
         <DateTimePicker name="dateAndTimeNull" timeZone={state.timeZone} />
         <DateTimePicker name="dateAndTimeEmpty" timeZone={state.timeZone} />
+        <TimePicker name="time" />
       </Form>
       <br />
       <br />

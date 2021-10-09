@@ -1,13 +1,13 @@
 import CloseIcon from "@mui/icons-material/Close"
+import EventIcon from "@mui/icons-material/Event"
+import { MobileDateTimePicker } from "@mui/lab"
 import DateAdapter from "@mui/lab/AdapterMoment"
-import DateTimePicker from "@mui/lab/DateTimePicker"
 import LocalizationProvider from "@mui/lab/LocalizationProvider"
 import IconButton from "@mui/material/IconButton"
 import TextField from "@mui/material/TextField"
 import { startCase } from "lodash"
 import moment, { Moment } from "moment-timezone"
-import React from "react"
-import { useHandleState } from "./hooks/useHandleState"
+import React, { useState } from "react"
 import { getTimeZone } from "./util/formatDateTime"
 
 type Value = string | null
@@ -51,22 +51,22 @@ export const DateTimePickerBase = React.forwardRef<
           : props.timeZone !== undefined
           ? moment(value || undefined).tz(getTimeZone(props.timeZone))
           : moment(value || undefined),
-      [value]
+      [value, props.timeZone]
     )
 
     // control open state when clearable
     const handleClear = () => onChange(null)
-    const [open, handleOpen] = useHandleState(false)
+    const [open, setOpen] = useState(false)
     const extraProps = React.useMemo(
       () =>
         props.clearable
           ? {
               open,
-              onClose: handleOpen(false),
-              onDoubleClick: handleOpen(true),
+              onClose: () => setOpen(false),
+              onDoubleClick: () => setOpen(true),
             }
           : {},
-      [handleOpen, open, props.clearable]
+      [setOpen, open, props.clearable]
     )
 
     function outgoing(v: Moment | null) {
@@ -85,26 +85,19 @@ export const DateTimePickerBase = React.forwardRef<
             />
           ) : null}
 
-          {/* labelFunc={() => {
-                if (dateTime !== null) {
-                  return `   ${formatDateTime(
-                    dateTime.toISOString(),
-                    props.timeZone
-                  )}`
-                } else {
-                  return ""
-                }
-              }} */}
-
-          <DateTimePicker
+          <MobileDateTimePicker
             {...extraProps}
             ref={ref}
             label={label}
             disabled={props.disabled}
-            value={dateTime || undefined}
+            value={dateTime || null}
             onChange={v => {
               onChange(outgoing(v))
             }}
+            open={open}
+            onClose={() => setOpen(false)}
+            clearable={props.clearable}
+            inputFormat="lll z"
             renderInput={p => (
               <TextField
                 required={p.required}
@@ -118,10 +111,13 @@ export const DateTimePickerBase = React.forwardRef<
                   endAdornment: (
                     <>
                       {props.clearable && dateTime !== null && (
-                        <IconButton size="small" onClick={handleClear}>
+                        <IconButton onClick={handleClear}>
                           <CloseIcon fontSize="inherit" />
                         </IconButton>
                       )}
+                      <IconButton onClick={() => setOpen(true)}>
+                        <EventIcon fontSize="inherit" />
+                      </IconButton>
                       {p.InputProps?.endAdornment}
                     </>
                   ),

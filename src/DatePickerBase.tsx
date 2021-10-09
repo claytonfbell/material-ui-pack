@@ -1,13 +1,13 @@
 import CloseIcon from "@mui/icons-material/Close"
+import EventIcon from "@mui/icons-material/Event"
+import { MobileDatePicker } from "@mui/lab"
 import DateAdapter from "@mui/lab/AdapterMoment"
-import DatePicker from "@mui/lab/DatePicker"
 import LocalizationProvider from "@mui/lab/LocalizationProvider"
 import IconButton from "@mui/material/IconButton"
 import TextField from "@mui/material/TextField"
 import { startCase } from "lodash"
 import moment, { Moment } from "moment-timezone"
-import React from "react"
-import { useHandleState } from "./hooks/useHandleState"
+import React, { useState } from "react"
 
 type Value = string | null
 type OnChange = (newValue: Value) => void
@@ -48,17 +48,17 @@ export const DatePickerBase = React.forwardRef<
 
     // control open state when clearable
     const handleClear = () => onChange(null)
-    const [open, handleOpen] = useHandleState(false)
+    const [open, setOpen] = useState(false)
     const extraProps = React.useMemo(
       () =>
         props.clearable
           ? {
               open,
-              onClose: handleOpen(false),
-              onDoubleClick: handleOpen(true),
+              onClose: () => setOpen(false),
+              onDoubleClick: () => setOpen(true),
             }
           : {},
-      [handleOpen, open, props.clearable]
+      [open, props.clearable]
     )
 
     function outgoing(v: Moment | null) {
@@ -79,7 +79,7 @@ export const DatePickerBase = React.forwardRef<
         {/* autoOk */}
         {/* format={"   LL"} */}
 
-        <DatePicker
+        <MobileDatePicker
           {...extraProps}
           ref={ref}
           clearable={props.clearable}
@@ -89,17 +89,8 @@ export const DatePickerBase = React.forwardRef<
           onChange={v => {
             onChange(outgoing(v))
           }}
-          InputProps={{
-            endAdornment: (
-              <>
-                {props.clearable && dateTime !== null && (
-                  <IconButton size="small" onClick={handleClear}>
-                    <CloseIcon fontSize="inherit" />
-                  </IconButton>
-                )}
-              </>
-            ),
-          }}
+          open={open}
+          onClose={() => setOpen(false)}
           renderInput={params => (
             <TextField
               fullWidth={true}
@@ -108,6 +99,22 @@ export const DatePickerBase = React.forwardRef<
               required={props.required}
               variant="outlined"
               {...params}
+              InputProps={{
+                ...params.InputProps,
+                endAdornment: (
+                  <>
+                    {props.clearable && dateTime !== null && (
+                      <IconButton onClick={handleClear}>
+                        <CloseIcon fontSize="inherit" />
+                      </IconButton>
+                    )}
+                    <IconButton onClick={() => setOpen(true)}>
+                      <EventIcon fontSize="inherit" />
+                    </IconButton>
+                    {params.InputProps?.endAdornment}
+                  </>
+                ),
+              }}
             />
           )}
         />

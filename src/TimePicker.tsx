@@ -1,57 +1,33 @@
-import DateAdapter from "@mui/lab/AdapterMoment"
-import LocalizationProvider from "@mui/lab/LocalizationProvider"
-import MUITimePicker from "@mui/lab/TimePicker"
-import TextField from "@mui/material/TextField"
-import { startCase } from "lodash"
-import moment from "moment-timezone"
 import React from "react"
 import { useForm } from "./FormProvider"
+import { TimePickerBase, TimePickerBaseProps } from "./TimePickerBase"
 
-export interface TimePickerProps {
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type TimePickerProps = Omit<
+  TimePickerBaseProps,
+  "name" | "value" | "onChange" | "margin" | "size"
+> & {
   name: string
-  label?: string
-  disabled?: boolean
-  required?: boolean
 }
-export function TimePicker(props: TimePickerProps) {
-  const {
-    formProps: { busy, size, margin },
-    getValue,
-    setValue,
-  } = useForm<any>()
-  let value = getValue(props.name) as string | null
-  if (value === undefined || value === null) {
-    value = moment().format("HH:mm:ss")
-  }
-  value = `${moment().format("YYYY-MM-DD")} ${value}`
 
-  const label = props.label === undefined ? startCase(props.name) : props.label
+export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
+  (props, ref) => {
+    const { getValue, setValue, formProps } = useForm<any>()
+    const value = (React.useMemo(() => getValue(props.name), [
+      getValue,
+      props.name,
+    ]) || null) as string | null
 
-  return (
-    <LocalizationProvider dateAdapter={DateAdapter}>
-      {/* format={"h:mm A"} */}
-
-      <MUITimePicker
-        label={label}
-        disabled={props.disabled || busy}
+    return (
+      <TimePickerBase
+        {...props}
+        ref={ref}
         value={value}
-        onChange={e => {
-          setValue(
-            props.name,
-            e === null ? null : moment(`2021-01-01 ${e}`).format("HH:mm:00")
-          )
-        }}
-        renderInput={params => (
-          <TextField
-            fullWidth
-            size={size}
-            margin={margin}
-            required={props.required}
-            variant="outlined"
-            {...params}
-          />
-        )}
+        onChange={x => setValue(props.name, x)}
+        margin={formProps.margin}
+        size={formProps.size}
+        disabled={formProps.busy || props.disabled}
       />
-    </LocalizationProvider>
-  )
-}
+    )
+  }
+)
