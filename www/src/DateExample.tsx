@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@mui/material"
+import { Button, Grid, Tooltip, Typography } from "@mui/material"
 import {
   Checkbox,
   DatePicker,
@@ -56,7 +56,11 @@ export function DateExample() {
             <Checkbox name="fromNow" />
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Button onClick={() => setOpen(true)}>Select Dates...</Button>
+            <Tooltip arrow title="This component is only available in v5">
+              <Button onClick={() => setOpen(true)}>
+                Select Multiple Dates...
+              </Button>
+            </Tooltip>
             <MultipleDatePicker
               open={open}
               onClose={() => setOpen(false)}
