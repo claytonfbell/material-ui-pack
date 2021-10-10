@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.0.5...v5.1.0) (2021-10-10)
+
+
+### Features
+
+* New MultipleDatePicker component ([f1922bf](https://github.com/claytonfbell/material-ui-pack/commit/f1922bf4cf658419178f16412b5c9d222cfc2205))
+
 ### [5.0.5](https://github.com/claytonfbell/material-ui-pack/compare/v5.0.4...v5.0.5) (2021-10-09)
 
 
