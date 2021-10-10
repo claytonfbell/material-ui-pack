@@ -29,6 +29,7 @@ import { UseHandleStateExample } from "./UseHandleStateExample"
 import { NumberFieldExample } from "./NumberFieldExample"
 import { SchemaExample } from "./SchemaExample"
 import { DisplayError } from "material-ui-pack"
+import { MultipleDatePickerExamples } from "./MultipleDatePickerExamples"
 
 function ExamplesContent() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -43,6 +44,12 @@ function ExamplesContent() {
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xs">
+        <MultipleDatePickerExamples />
+        <Spacer />
+        <Spacer />
+        <Spacer />
+        <Spacer />
+
         <DisplayError
           error={`**Some Markdown**
 
