@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material"
+import { Button, Grid, Typography } from "@mui/material"
 import {
   Checkbox,
   DatePicker,
@@ -6,6 +6,7 @@ import {
   DisplayDate,
   DisplayDateTime,
   Form,
+  MultipleDatePicker,
   TimePicker,
 } from "material-ui-pack"
 import React, { useState } from "react"
@@ -17,7 +18,10 @@ export function DateExample() {
     dateTime: "2021-09-26T19:00:00.000-07:00",
     time: "23:00:00",
     fromNow: true,
+    multipleDates: ["2021-11-01"],
   })
+
+  const [open, setOpen] = useState(false)
 
   return (
     <>
@@ -50,6 +54,17 @@ export function DateExample() {
           </Grid>
           <Grid item xs={12} sm={4}>
             <Checkbox name="fromNow" />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Button onClick={() => setOpen(true)}>Select Dates...</Button>
+            <MultipleDatePicker
+              open={open}
+              onClose={() => setOpen(false)}
+              dates={state.multipleDates}
+              onChange={multipleDates =>
+                setState(prev => ({ ...prev, multipleDates }))
+              }
+            />
           </Grid>
         </Grid>
       </Form>
