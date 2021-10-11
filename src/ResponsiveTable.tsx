@@ -34,7 +34,6 @@ export interface ResponsiveTableSchema<DataItem> {
   smDownHidden?: boolean
   mdDownHidden?: boolean
   lgDownHidden?: boolean
-  xlDownHidden?: boolean
   xsUpHidden?: boolean
   smUpHidden?: boolean
   mdUpHidden?: boolean
@@ -100,11 +99,10 @@ export function ResponsiveTable<T extends object>({
     }
   }
 
-  const isXsDown = useMediaQuery(theme.breakpoints.down("xs"))
-  const isSmDown = useMediaQuery(theme.breakpoints.down("sm"))
-  const isMdDown = useMediaQuery(theme.breakpoints.down("md"))
-  const isLgDown = useMediaQuery(theme.breakpoints.down("lg"))
-  const isXlDown = useMediaQuery(theme.breakpoints.down("xl"))
+  const isXsDown = useMediaQuery(theme.breakpoints.down("sm"))
+  const isSmDown = useMediaQuery(theme.breakpoints.down("md"))
+  const isMdDown = useMediaQuery(theme.breakpoints.down("lg"))
+  const isLgDown = useMediaQuery(theme.breakpoints.down("xl"))
   const isXsUp = useMediaQuery(theme.breakpoints.up("xs"))
   const isSmUp = useMediaQuery(theme.breakpoints.up("sm"))
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"))
@@ -117,7 +115,6 @@ export function ResponsiveTable<T extends object>({
       (column.smDownHidden && isSmDown) ||
       (column.mdDownHidden && isMdDown) ||
       (column.lgDownHidden && isLgDown) ||
-      (column.xlDownHidden && isXlDown) ||
       (column.xsUpHidden && isXsUp) ||
       (column.smUpHidden && isSmUp) ||
       (column.mdUpHidden && isMdUp) ||

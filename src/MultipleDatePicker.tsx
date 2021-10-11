@@ -59,7 +59,7 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
   }
 
   const theme = useTheme()
-  const isSmDown = useMediaQuery(theme.breakpoints.down("sm"))
+  const isSmDown = useMediaQuery(theme.breakpoints.down("md"))
 
   return (
     <Dialog

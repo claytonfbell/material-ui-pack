@@ -149,7 +149,7 @@ export const CurrencyFieldBase = React.forwardRef<
       props.label === undefined ? startCase(props.name) : props.label
 
     const theme = useTheme()
-    const isXsDown = useMediaQuery(theme.breakpoints.down("xs"))
+    const isXsDown = useMediaQuery(theme.breakpoints.down("sm"))
 
     return (
       <>
