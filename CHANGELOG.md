@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.1](https://github.com/claytonfbell/material-ui-pack/compare/v5.1.0...v5.1.1) (2021-10-11)
+
+
+### Bug Fixes
+
+* Fixed responsive breakpoint changes in MUI v5 ([d52bbec](https://github.com/claytonfbell/material-ui-pack/commit/d52bbece69c0d66fafd8aa2d1730b1612e847e14))
+
 ## [5.1.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.0.5...v5.1.0) (2021-10-10)
 
 
