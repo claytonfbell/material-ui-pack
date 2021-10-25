@@ -1,8 +1,8 @@
-import MUITextField from "@mui/material/TextField/TextField"
+import MUITextField from "@mui/material/TextField"
 import { startCase } from "lodash"
 import React from "react"
 import InputAdornment from "@mui/material/InputAdornment"
-import useTheme from "@mui/material/styles/useTheme"
+import { useTheme } from "@mui/material/styles"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import { useDebounce } from "react-use"
 
