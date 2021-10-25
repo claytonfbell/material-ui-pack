@@ -1,7 +1,6 @@
-import { Theme, ThemeOptions } from "@mui/material/styles"
+import { Theme, ThemeOptions, createTheme } from "@mui/material/styles"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import React from "react"
-import createTheme from "@mui/material/styles/createTheme"
 
 type ContextType = {
   darkMode: boolean
