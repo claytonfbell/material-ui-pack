@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.4](https://github.com/claytonfbell/material-ui-pack/compare/v5.1.3...v5.1.4) (2021-10-25)
+
+
+### Bug Fixes
+
+* Corrected some imports ([23d4145](https://github.com/claytonfbell/material-ui-pack/commit/23d4145b7fc89be16ab482ff76341689257316da))
+
 ### [5.1.3](https://github.com/claytonfbell/material-ui-pack/compare/v5.1.2...v5.1.3) (2021-10-25)
 
 
