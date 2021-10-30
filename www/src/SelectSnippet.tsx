@@ -1,6 +1,6 @@
 import React from "react"
-import SyntaxHighlighter from "react-syntax-highlighter"
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs"
+import { Snippet } from "./Snippet"
+
 export function SelectSnippet() {
   const codeString = `
   import { Grid } from "@mui/material"
@@ -63,13 +63,7 @@ export function SelectSnippet() {
       </Form>
     )
   }
-  
-  
     
 `
-  return (
-    <SyntaxHighlighter language="javascript" style={docco}>
-      {codeString}
-    </SyntaxHighlighter>
-  )
+  return <Snippet>{codeString}</Snippet>
 }

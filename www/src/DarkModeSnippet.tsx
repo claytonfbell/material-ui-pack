@@ -1,6 +1,6 @@
 import React from "react"
-import SyntaxHighlighter from "react-syntax-highlighter"
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs"
+import { Snippet } from "./Snippet"
+
 export function DarkModeSnippet() {
   const codeString = `
   import { Box, Paper, Typography } from "@material-ui/core"
@@ -35,9 +35,5 @@ export function DarkModeSnippet() {
   
     
 `
-  return (
-    <SyntaxHighlighter language="javascript" style={docco}>
-      {codeString}
-    </SyntaxHighlighter>
-  )
+  return <Snippet>{codeString}</Snippet>
 }

@@ -1,6 +1,6 @@
 import React from "react"
-import SyntaxHighlighter from "react-syntax-highlighter"
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs"
+import { Snippet } from "./Snippet"
+
 export function SubmitButtonSnippet() {
   const codeString = `
   import { CancelButton, Form, SubmitButton } from "material-ui-pack"
@@ -25,9 +25,5 @@ export function SubmitButtonSnippet() {
   }
     
 `
-  return (
-    <SyntaxHighlighter language="javascript" style={docco}>
-      {codeString}
-    </SyntaxHighlighter>
-  )
+  return <Snippet>{codeString}</Snippet>
 }
