@@ -1,4 +1,4 @@
-import { useTheme } from "@mui/material"
+import { useTheme } from "@mui/material/styles"
 import Box from "@mui/material/Box"
 import { ResponsiveTable } from "material-ui-pack"
 import React, { useState } from "react"

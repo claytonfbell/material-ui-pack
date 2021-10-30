@@ -1,13 +1,11 @@
-import {
-  Box,
-  Collapse,
-  Grid,
-  IconButton,
-  Paper,
-  Typography,
-  useTheme,
-} from "@mui/material"
 import CodeIcon from "@mui/icons-material/Code"
+import Box from "@mui/material/Box"
+import Collapse from "@mui/material/Collapse"
+import Grid from "@mui/material/Grid"
+import IconButton from "@mui/material/IconButton"
+import Paper from "@mui/material/Paper"
+import { useTheme } from "@mui/material/styles"
+import Typography from "@mui/material/Typography"
 import { Tooltip } from "material-ui-bootstrap"
 import React from "react"
 

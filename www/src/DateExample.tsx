@@ -1,4 +1,7 @@
-import { Button, Grid, Tooltip, Typography } from "@mui/material"
+import Button from "@mui/material/Button"
+import Grid from "@mui/material/Grid"
+import Tooltip from "@mui/material/Tooltip"
+import Typography from "@mui/material/Typography"
 import {
   Checkbox,
   DatePicker,
