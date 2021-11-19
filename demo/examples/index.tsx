@@ -73,6 +73,7 @@ function ExamplesContent() {
           }}
           onEdit={film => alert(`Edit ${film.title}`)}
           onDelete={film => alert(`Delete ${film.title}`)}
+          selectionDisabled={film => film.id === 2}
           rowData={[
             { id: 1, title: "Star Wars", category: "Sci-Fi" },
             { id: 2, title: "The Shining", category: "Horror" },
