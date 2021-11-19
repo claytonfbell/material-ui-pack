@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.5](https://github.com/claytonfbell/material-ui-pack/compare/v5.1.4...v5.1.5) (2021-11-19)
+
+
+### Bug Fixes
+
+* added method to disable checkboxes in responsive table ([b955961](https://github.com/claytonfbell/material-ui-pack/commit/b955961e382465f71da36bf41c2de2167e96b6b8))
+
 ### [5.1.4](https://github.com/claytonfbell/material-ui-pack/compare/v5.1.3...v5.1.4) (2021-10-25)
 
 
