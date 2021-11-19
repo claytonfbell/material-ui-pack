@@ -50,6 +50,7 @@ export interface ResponsiveTableProps<DataItem> {
   onEdit?: (dataItem: DataItem) => void
   onDelete?: (dataItem: DataItem) => void
   onSelectChange?: (selected: DataItem[], dataItem: DataItem | null) => void
+  selectionDisabled?: (dataItem: DataItem) => boolean
   selected?: DataItem[]
   striped?: boolean
   variant?: "outlined" | "elevation" | undefined
@@ -61,6 +62,7 @@ export function ResponsiveTable<T extends object>({
   onEdit,
   onDelete,
   onSelectChange,
+  selectionDisabled,
   ...props
 }: ResponsiveTableProps<T>) {
   const theme = useTheme()
@@ -91,7 +93,11 @@ export function ResponsiveTable<T extends object>({
     if (allSelected) {
       newSelected = []
     } else {
-      newSelected = [...props.rowData]
+      newSelected = [
+        ...props.rowData.filter(
+          x => selectionDisabled === undefined || selectionDisabled(x) === false
+        ),
+      ]
     }
     setSelectedState(newSelected)
     if (onSelectChange !== undefined) {
@@ -276,6 +282,11 @@ export function ResponsiveTable<T extends object>({
                       color="primary"
                       checked={isSelected}
                       onChange={handleSelect(dataItem)}
+                      disabled={
+                        selectionDisabled !== undefined
+                          ? selectionDisabled(dataItem)
+                          : undefined
+                      }
                     />
                   </TableCell>
                 ) : null}
