@@ -11,6 +11,7 @@ import {
   DarkModeToggle,
   ResponsiveTable,
   Spacer,
+  DisplayError,
 } from "material-ui-pack"
 import { CheckboxExample } from "./CheckboxExample"
 import { CurrencyFieldExample } from "./CurrencyFieldExample"
@@ -45,6 +46,7 @@ function ExamplesContent() {
         <CssBaseline />
         <DarkModeToggle />
         <Typography variant="h4">Examples</Typography>
+        <DisplayError error="Sample error" />
         <SchemaExample />
         <TextFieldExample />
         <CheckboxExample />
