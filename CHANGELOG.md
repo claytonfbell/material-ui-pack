@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.3](https://github.com/claytonfbell/material-ui-pack/compare/v4.0.2...v4.0.3) (2021-12-02)
+
+
+### Bug Fixes
+
+* downgraded react-markdown to support ie11 ([52ab6af](https://github.com/claytonfbell/material-ui-pack/commit/52ab6af73bb1d92f6ee0d53b7033b5f5a0384b3e))
+
 ### [4.0.2](https://github.com/claytonfbell/material-ui-pack/compare/v4.0.1...v4.0.2) (2021-11-19)
 
 
