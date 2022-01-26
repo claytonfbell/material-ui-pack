@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.2.1](https://github.com/claytonfbell/material-ui-pack/compare/v5.2.0...v5.2.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* Fix to prevent parent form submission when using a child form inside a dialog ([ad44d28](https://github.com/claytonfbell/material-ui-pack/commit/ad44d28bd4df0996ab8ed2d3e644b88ecd7ab8e4))
+
 ## [5.2.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.1.6...v5.2.0) (2022-01-18)
 
 
