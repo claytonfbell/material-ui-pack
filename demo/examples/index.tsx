@@ -29,6 +29,7 @@ import { UseEscapeKeyExample } from "./UseEscapeKeyExample"
 import { UseHandleStateExample } from "./UseHandleStateExample"
 import { NumberFieldExample } from "./NumberFieldExample"
 import { SchemaExample } from "./SchemaExample"
+import { ParentChildFormExample } from "./ParentChildFormExample"
 
 function ExamplesContent() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -62,6 +63,7 @@ function ExamplesContent() {
         <UseCounterExample />
         <UseEscapeKeyExample />
         <UseHandleStateExample />
+        <ParentChildFormExample />
       </Container>
       <Container maxWidth="md">
         <DisplayDateTimeExamples />
