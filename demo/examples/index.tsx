@@ -30,6 +30,7 @@ import { NumberFieldExample } from "./NumberFieldExample"
 import { SchemaExample } from "./SchemaExample"
 import { DisplayError } from "material-ui-pack"
 import { MultipleDatePickerExamples } from "./MultipleDatePickerExamples"
+import { ParentChildFormExample } from "./ParentChildFormExample"
 
 function ExamplesContent() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -73,6 +74,7 @@ New line`}
         <UseCounterExample />
         <UseEscapeKeyExample />
         <UseHandleStateExample />
+        <ParentChildFormExample />
       </Container>
       <Container maxWidth="md">
         <DisplayDateTimeExamples />

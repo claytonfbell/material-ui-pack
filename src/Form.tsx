@@ -45,6 +45,9 @@ function FormComponent<T extends object>({ ...props }: FormProps<T>) {
         e.preventDefault()
         if (props.onSubmit !== undefined) {
           props.onSubmit()
+          // prevent a parent form from submitting also
+          // this is useful when you have a child form in a dialog
+          e.stopPropagation()
         }
       }}
       onKeyPress={e => {
