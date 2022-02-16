@@ -28,6 +28,7 @@ export interface DateTimePickerBaseProps {
   margin?: PropTypes.Margin
   size?: "medium" | "small"
   debugNamedInput?: boolean
+  id?: string
 }
 
 export const DateTimePickerBase = React.forwardRef<
@@ -99,6 +100,7 @@ export const DateTimePickerBase = React.forwardRef<
             disabled={props.disabled}
             inputVariant="outlined"
             value={dateTime || undefined}
+            id={props.id}
             labelFunc={() => {
               if (dateTime !== null) {
                 return `   ${formatDateTime(

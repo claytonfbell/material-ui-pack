@@ -27,6 +27,7 @@ export interface DatePickerBaseProps {
   margin?: PropTypes.Margin
   size?: "medium" | "small"
   debugNamedInput?: boolean
+  id?: string
 }
 
 export const DatePickerBase = React.forwardRef<
@@ -91,6 +92,7 @@ export const DatePickerBase = React.forwardRef<
           disabled={props.disabled}
           required={props.required}
           value={dateTime}
+          id={props.id}
           onChange={v => {
             onChange(outgoing(v))
           }}

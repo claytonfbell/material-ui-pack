@@ -26,6 +26,7 @@ export function DatePickerExample() {
       <br />
       <br />
       <DatePickerBase
+        id="custom-id-2"
         clearable
         name="base"
         value={value}
