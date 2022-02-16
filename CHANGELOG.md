@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.2.2](https://github.com/claytonfbell/material-ui-pack/compare/v5.2.1...v5.2.2) (2022-02-16)
+
+
+### Bug Fixes
+
+* Added id property to DatePicker and DateTimePicker ([8b601db](https://github.com/claytonfbell/material-ui-pack/commit/8b601db8ca6a59e19f7eaca5b49129df7862c068))
+
 ### [5.2.1](https://github.com/claytonfbell/material-ui-pack/compare/v5.2.0...v5.2.1) (2022-01-26)
 
 
