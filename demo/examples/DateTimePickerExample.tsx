@@ -45,6 +45,7 @@ export function DateTimePickerExample() {
       <br />
       <br />
       <DateTimePickerBase
+        id="custom-id"
         value={value}
         onChange={x => setValue(x)}
         name="baseClearable"

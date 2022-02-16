@@ -23,6 +23,7 @@ export interface DatePickerBaseProps {
   margin?: "none" | "dense" | "normal" | undefined
   size?: "medium" | "small"
   debugNamedInput?: boolean
+  id?: string
 }
 
 export const DatePickerBase = React.forwardRef<
@@ -93,6 +94,7 @@ export const DatePickerBase = React.forwardRef<
           onClose={() => setOpen(false)}
           renderInput={params => (
             <TextField
+              id={props.id}
               fullWidth={true}
               size={size}
               margin={props.margin}

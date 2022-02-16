@@ -25,6 +25,7 @@ export interface DateTimePickerBaseProps {
   margin?: "none" | "dense" | "normal" | undefined
   size?: "medium" | "small"
   debugNamedInput?: boolean
+  id?: string
 }
 
 export const DateTimePickerBase = React.forwardRef<
@@ -100,6 +101,7 @@ export const DateTimePickerBase = React.forwardRef<
             inputFormat="lll z"
             renderInput={p => (
               <TextField
+                id={props.id}
                 required={p.required}
                 fullWidth
                 size={size}
