@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export interface ResponsiveTableSchema<DataItem> {
-  label: string
+  label: string | React.ReactElement
   alignRight?: boolean
   render: (
     data: DataItem
