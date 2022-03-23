@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.7](https://github.com/claytonfbell/material-ui-pack/compare/v4.0.6...v4.0.7) (2022-03-23)
+
+
+### Bug Fixes
+
+* added support for react element labels in responsive table columns headers ([5ebfb0e](https://github.com/claytonfbell/material-ui-pack/commit/5ebfb0eda9dd46b93490025afb2c1f0900886198))
+
 ### [4.0.6](https://github.com/claytonfbell/material-ui-pack/compare/v4.0.5...v4.0.6) (2022-02-16)
 
 
