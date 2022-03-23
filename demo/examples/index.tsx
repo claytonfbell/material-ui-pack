@@ -102,7 +102,7 @@ New line`}
             },
             {
               xsDownHidden: true,
-              label: "Category",
+              label: <i>Category</i>,
               render: function(item) {
                 return item.category
               },

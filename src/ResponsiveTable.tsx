@@ -21,7 +21,7 @@ import clsx from "clsx"
 import React, { useState } from "react"
 
 export interface ResponsiveTableSchema<DataItem> {
-  label: string
+  label: string | React.ReactElement
   alignRight?: boolean
   render: (
     data: DataItem
