@@ -9,7 +9,7 @@ export interface PercentageFieldBaseProps {
   name?: string
   value?: number
   onChange?: OnChange
-  label?: string
+  label?: React.ReactNode
   disabled?: boolean
   decimals?: 2 | 3 | 4 | 5 | 6
   required?: boolean

@@ -20,7 +20,7 @@ type Value = string | number
 export interface CurrencyFieldBaseProps {
   value?: Value
   onChange?: OnChange
-  label?: string
+  label?: React.ReactNode
   disabled?: boolean
   required?: boolean
   allowNegative?: boolean

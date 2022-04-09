@@ -10,7 +10,7 @@ import { useForm } from "./FormProvider"
 
 export interface TimePickerProps {
   name: string
-  label?: string
+  label?: React.ReactNode
   disabled?: boolean
   required?: boolean
 }

@@ -23,7 +23,7 @@ export interface BaseSelectComboProps {
   value: SelectValue
   onChange: (newValue: SelectValue) => void
   name?: string
-  label?: string
+  label?: React.ReactNode
   disabled?: boolean
   matchValue?: boolean
   autoComplete?: string

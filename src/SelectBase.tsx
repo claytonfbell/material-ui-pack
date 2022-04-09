@@ -13,7 +13,7 @@ export interface SelectBaseProps {
   value: SelectValue
   onChange: (value: SelectValue) => void
   options: OptionType[]
-  label?: string
+  label?: React.ReactNode
   fullWidth?: boolean
   disabled?: boolean
   allowNull?: boolean
