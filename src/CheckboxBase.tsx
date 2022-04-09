@@ -18,7 +18,7 @@ export type CheckboxBaseProps = Omit<
   name?: string
   value: Value
   onChange: OnChange
-  label?: string
+  label?: React.ReactNode
 }
 
 export const CheckboxBase = React.forwardRef(
