@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.2.4](https://github.com/claytonfbell/material-ui-pack/compare/v5.2.3...v5.2.4) (2022-04-09)
+
+
+### Bug Fixes
+
+* Allow react node labels on Checkbox component ([292d90a](https://github.com/claytonfbell/material-ui-pack/commit/292d90a5d89c82e489f04bad9e59e074595e75a0))
+
 ### [5.2.3](https://github.com/claytonfbell/material-ui-pack/compare/v5.2.2...v5.2.3) (2022-03-23)
 
 
