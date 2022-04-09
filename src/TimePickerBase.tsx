@@ -15,7 +15,7 @@ export interface TimePickerBaseProps {
   value: Value
   onChange: OnChange
   name?: string
-  label?: string
+  label?: React.ReactNode
   disabled?: boolean
   required?: boolean
   margin?: "none" | "dense" | "normal" | undefined

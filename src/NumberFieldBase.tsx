@@ -12,7 +12,7 @@ export interface NumberFieldBaseProps {
   name?: string
   value?: number | null
   onChange?: OnChange
-  label?: string
+  label?: React.ReactNode
   disabled?: boolean
   decimals?: 0 | 1 | 2 | 3 | 4 | 5 | 6
   required?: boolean

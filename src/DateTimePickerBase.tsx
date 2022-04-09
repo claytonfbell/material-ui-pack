@@ -17,7 +17,7 @@ export interface DateTimePickerBaseProps {
   value?: Value
   onChange?: OnChange
   name?: string
-  label?: string
+  label?: React.ReactNode
   disabled?: boolean
   clearable?: boolean
   required?: boolean
