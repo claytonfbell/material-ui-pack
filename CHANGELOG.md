@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.2.5](https://github.com/claytonfbell/material-ui-pack/compare/v5.2.4...v5.2.5) (2022-04-09)
+
+
+### Bug Fixes
+
+* Allow other components to use ReactNode labels ([3f6d66e](https://github.com/claytonfbell/material-ui-pack/commit/3f6d66e416a36b14296105cb035b3174ada1cc3e))
+
 ### [5.2.4](https://github.com/claytonfbell/material-ui-pack/compare/v5.2.3...v5.2.4) (2022-04-09)
 
 
