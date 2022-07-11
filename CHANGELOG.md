@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.3.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.2.5...v5.3.0) (2022-07-11)
+
+
+### Features
+
+* upgraded react-markdown ([2c245e8](https://github.com/claytonfbell/material-ui-pack/commit/2c245e8d2ec1b99dd1cc74125999c28f16d88cb2))
+
 ### [5.2.5](https://github.com/claytonfbell/material-ui-pack/compare/v5.2.4...v5.2.5) (2022-04-09)
 
 
