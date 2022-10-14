@@ -81,7 +81,7 @@
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "moment": "^2.29.1",
-    "moment-timezone": "^0.5.33",
+    "moment-timezone": "^0.5.35",
     "react-markdown": "^8.0.3",
     "react-use": "^17.3.1"
   }
