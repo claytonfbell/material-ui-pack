@@ -5,8 +5,8 @@ import Grid from "@mui/material/Grid"
 import IconButton from "@mui/material/IconButton"
 import Paper from "@mui/material/Paper"
 import { useTheme } from "@mui/material/styles"
+import Tooltip from "@mui/material/Tooltip"
 import Typography from "@mui/material/Typography"
-import { Tooltip } from "material-ui-bootstrap"
 import React from "react"
 
 interface ExampleProps {
