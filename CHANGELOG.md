@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.3.1](https://github.com/claytonfbell/material-ui-pack/compare/v5.3.0...v5.3.1) (2022-10-14)
+
+
+### Bug Fixes
+
+* Fix the label overlap glitch when selected value is not initially available in options list ([56904e7](https://github.com/claytonfbell/material-ui-pack/commit/56904e72bab5f2a30eeaa1b2c4d660d5e84895f2))
+
 ## [5.3.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.2.5...v5.3.0) (2022-07-11)
 
 
