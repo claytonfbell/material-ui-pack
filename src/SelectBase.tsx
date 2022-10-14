@@ -54,8 +54,16 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
     const selectedValue: string =
       value === undefined || value === null ? `null` : String(value)
 
+    // fix issue with overlapping labels when the
+    // selected value was not initially in the options list
+    const optionFound =
+      props.options.find(o => String(o.value) === selectedValue) !== undefined
+
     return (
       <TextField
+        InputLabelProps={{
+          shrink: optionFound || selectedValue === "null",
+        }}
         select
         ref={ref}
         label={label}
