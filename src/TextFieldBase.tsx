@@ -79,7 +79,10 @@ const formatters = {
     return v
   },
   email: (v: string) => {
-    const [user, host] = v.toLowerCase().split(/@/)
+    const [user, host] = v
+      .toLowerCase()
+      .substring(0, 320)
+      .split(/@/)
     return `${user.trim()}${host !== undefined ? `@${host.trim()}` : ""}`
   },
 }
