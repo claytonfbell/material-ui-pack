@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.4.2](https://github.com/claytonfbell/material-ui-pack/compare/v5.4.1...v5.4.2) (2023-07-26)
+
+
+### Bug Fixes
+
+* disabled state on date picker icons ([3e15828](https://github.com/claytonfbell/material-ui-pack/commit/3e158289faa4a61bfd02189217189fc393acf4a8))
+
 ### [5.4.1](https://github.com/claytonfbell/material-ui-pack/compare/v5.4.0...v5.4.1) (2023-07-26)
 
 
