@@ -36,7 +36,6 @@ export function DateExample() {
           </Grid>
           <Grid item xs={12} sm={4}>
             <DateTimePicker name="dateTime" minuteIncrements={5} />
-            <DateTimePickerBase minuteIncrements={5} />
           </Grid>
           <Grid item xs={12} sm={4}>
             <DatePicker name="date" />
