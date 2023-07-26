@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.3.1...v5.4.0) (2023-07-26)
+
+
+### Features
+
+* added minuteIncrements to time pickers ([3bb6f92](https://github.com/claytonfbell/material-ui-pack/commit/3bb6f92ab49454d802e19302bc7e1afb1f85d33a))
+
+
+### Bug Fixes
+
+* set email input limit to 320 ([f47964c](https://github.com/claytonfbell/material-ui-pack/commit/f47964c6b3c8387a94c23bff958f2cb607ea7be2))
+
 ### [5.3.1](https://github.com/claytonfbell/material-ui-pack/compare/v5.3.0...v5.3.1) (2022-10-14)
 
 
