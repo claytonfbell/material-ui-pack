@@ -38,9 +38,13 @@ export function DateTimePickerExample() {
       >
         <FormFields />
         <SelectTimeZone name="timeZone" />
-        <DateTimePicker name="dateAndTimeNull" timeZone={state.timeZone} />
+        <DateTimePicker
+          name="dateAndTimeNull"
+          timeZone={state.timeZone}
+          minuteIncrements={5}
+        />
         <DateTimePicker name="dateAndTimeEmpty" timeZone={state.timeZone} />
-        <TimePicker name="time" />
+        <TimePicker name="time" minuteIncrements={1} />
       </Form>
       <br />
       <br />
@@ -50,6 +54,7 @@ export function DateTimePickerExample() {
         onChange={x => setValue(x)}
         name="baseClearable"
         clearable
+        minuteIncrements={5}
       />
     </Box>
   )

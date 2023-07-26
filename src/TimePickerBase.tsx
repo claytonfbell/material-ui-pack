@@ -21,6 +21,7 @@ export interface TimePickerBaseProps {
   margin?: "none" | "dense" | "normal" | undefined
   size?: "medium" | "small"
   debugNamedInput?: boolean
+  minuteIncrements?: 1 | 5 | 10 | 15 | 20 | 30 | 60
 }
 export const TimePickerBase = React.forwardRef<
   HTMLDivElement,
@@ -39,6 +40,15 @@ export const TimePickerBase = React.forwardRef<
         value={moment(`${moment().format("YYYY-MM-DD")} ${props.value}`)}
         onChange={e => {
           props.onChange(e === null ? null : e.format("HH:mm:00"))
+        }}
+        shouldDisableTime={(timeValue, clockType) => {
+          if (props.minuteIncrements === undefined) {
+            return false
+          }
+          if (clockType === "minutes" && timeValue % props.minuteIncrements) {
+            return true
+          }
+          return false
         }}
         open={open}
         onClose={() => setOpen(false)}

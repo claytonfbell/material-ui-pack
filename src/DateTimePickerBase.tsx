@@ -26,6 +26,7 @@ export interface DateTimePickerBaseProps {
   size?: "medium" | "small"
   debugNamedInput?: boolean
   id?: string
+  minuteIncrements?: 1 | 5 | 10 | 15 | 20 | 30 | 60
 }
 
 export const DateTimePickerBase = React.forwardRef<
@@ -99,6 +100,18 @@ export const DateTimePickerBase = React.forwardRef<
             onClose={() => setOpen(false)}
             clearable={props.clearable}
             inputFormat="lll z"
+            shouldDisableTime={(timeValue, clockType) => {
+              if (props.minuteIncrements === undefined) {
+                return false
+              }
+              if (
+                clockType === "minutes" &&
+                timeValue % props.minuteIncrements
+              ) {
+                return true
+              }
+              return false
+            }}
             renderInput={p => (
               <TextField
                 id={props.id}
