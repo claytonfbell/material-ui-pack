@@ -5,4 +5,4 @@
 3. `npm run build`
 4. `npm publish`
 
-Note: `rm -rf node_modules` occasionally to clear some cache if typings in `dist/` are invalid
+Note: `rm -rf node_modules && rm -rf dist` occasionally to clear some cache if typings in `dist/` are invalid
