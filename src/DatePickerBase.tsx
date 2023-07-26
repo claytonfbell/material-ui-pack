@@ -106,11 +106,17 @@ export const DatePickerBase = React.forwardRef<
                 endAdornment: (
                   <>
                     {props.clearable && dateTime !== null && (
-                      <IconButton onClick={handleClear}>
+                      <IconButton
+                        onClick={handleClear}
+                        disabled={params.disabled}
+                      >
                         <CloseIcon fontSize="inherit" />
                       </IconButton>
                     )}
-                    <IconButton onClick={() => setOpen(true)}>
+                    <IconButton
+                      onClick={() => setOpen(true)}
+                      disabled={params.disabled}
+                    >
                       <EventIcon fontSize="inherit" />
                     </IconButton>
                     {params.InputProps?.endAdornment}

@@ -64,7 +64,10 @@ export const TimePickerBase = React.forwardRef<
               ...params.InputProps,
               endAdornment: (
                 <>
-                  <IconButton onClick={() => setOpen(true)}>
+                  <IconButton
+                    onClick={() => setOpen(true)}
+                    disabled={params.disabled}
+                  >
                     <AccessTimeIcon fontSize="inherit" />
                   </IconButton>
                   {params.InputProps?.endAdornment}
