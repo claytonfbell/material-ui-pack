@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.5.1](https://github.com/claytonfbell/material-ui-pack/compare/v5.5.0...v5.5.1) (2023-09-05)
+
+
+### Bug Fixes
+
+* remove mjs ([a07fa02](https://github.com/claytonfbell/material-ui-pack/commit/a07fa02d84ca77a29cda432f4db1987df48c6031))
+
 ## [5.5.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.4.3...v5.5.0) (2023-09-05)
 
 
