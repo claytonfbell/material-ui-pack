@@ -4,7 +4,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider"
 import MUITimePicker from "@mui/lab/MobileTimePicker"
 import IconButton from "@mui/material/IconButton"
 import TextField from "@mui/material/TextField"
-import { startCase } from "lodash"
+import startCase from "lodash/startCase"
 import moment from "moment-timezone"
 import React, { useState } from "react"
 

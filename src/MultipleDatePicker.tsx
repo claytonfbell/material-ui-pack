@@ -11,7 +11,7 @@ import { useTheme } from "@mui/material/styles"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import moment, { Moment } from "moment"
 import React, { useState } from "react"
-import { useDebounce } from "react-use"
+import { useDebounce } from "./hooks/useDebounce"
 
 interface Props {
   open: boolean

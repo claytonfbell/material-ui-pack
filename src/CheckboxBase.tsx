@@ -2,10 +2,8 @@ import { FormControlLabel } from "@mui/material"
 import MUICheckbox, {
   CheckboxProps as MUICheckboxProps,
 } from "@mui/material/Checkbox"
-import { startCase } from "lodash"
+import startCase from "lodash/startCase"
 import React from "react"
-
-const _ = { startCase }
 
 type Value = boolean
 type OnChange = (value: Value) => void
@@ -29,18 +27,18 @@ export const CheckboxBase = React.forwardRef(
     // manage state if no value and onChange
     const [checked, setChecked] = React.useState<Value>(propsValue)
     const onChange: OnChange =
-      propsOnChange !== undefined ? propsOnChange : x => setChecked(x)
+      propsOnChange !== undefined ? propsOnChange : (x) => setChecked(x)
 
     React.useEffect(() => {
       setChecked(propsValue)
     }, [propsValue])
 
     const label =
-      props.label === undefined ? _.startCase(props.name) : props.label
+      props.label === undefined ? startCase(props.name) : props.label
     let { name, ...newProps }: MUICheckboxProps = {
       ...props,
       checked,
-      onChange: e => onChange(e.currentTarget.checked),
+      onChange: (e) => onChange(e.currentTarget.checked),
       disabled: props.disabled,
     }
     return (

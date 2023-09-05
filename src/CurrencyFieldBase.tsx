@@ -1,10 +1,10 @@
-import MUITextField from "@mui/material/TextField"
-import { startCase } from "lodash"
-import React from "react"
 import InputAdornment from "@mui/material/InputAdornment"
+import MUITextField from "@mui/material/TextField"
 import { useTheme } from "@mui/material/styles"
 import useMediaQuery from "@mui/material/useMediaQuery"
-import { useDebounce } from "react-use"
+import startCase from "lodash/startCase"
+import React from "react"
+import { useDebounce } from "./hooks/useDebounce"
 
 type OnChange = (value: string | number) => void
 type Value = string | number
@@ -46,7 +46,7 @@ export const CurrencyFieldBase = React.forwardRef<
     const [state, setState] = React.useState<Value>("")
     const value = propsValue !== undefined ? propsValue : state
     const onChange: OnChange =
-      propsOnChange !== undefined ? propsOnChange : x => setState(x)
+      propsOnChange !== undefined ? propsOnChange : (x) => setState(x)
 
     const [hasFocus, setHasFocus] = React.useState(false)
 

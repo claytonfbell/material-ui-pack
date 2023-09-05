@@ -1,6 +1,6 @@
+import Autocomplete from "@mui/material/Autocomplete"
 import TextField from "@mui/material/TextField"
-import Autocomplete from "@mui/lab/Autocomplete"
-import { startCase } from "lodash"
+import startCase from "lodash/startCase"
 import React from "react"
 import { SelectValue } from "./SelectBase"
 
@@ -42,7 +42,7 @@ export const SelectComboBase = React.forwardRef<
   const [index, setIndex] = React.useState(-2)
 
   React.useEffect(() => {
-    setIndex(props.options.findIndex((x) => x.value === value))
+    setIndex(props.options.findIndex(x => x.value === value))
   }, [value, props.options])
 
   React.useEffect(() => {
@@ -57,7 +57,7 @@ export const SelectComboBase = React.forwardRef<
   const [inputText, setInputText] = React.useState("")
   React.useEffect(() => {
     if (props.matchValue) {
-      const find = props.options.find((x) => x.value === inputText)
+      const find = props.options.find(x => x.value === inputText)
       if (find !== undefined) {
         setInputText(find.label)
       }

@@ -1,7 +1,7 @@
 import MUITextField, {
   TextFieldProps as MUITextFieldProps,
 } from "@mui/material/TextField"
-import { startCase } from "lodash"
+import startCase from "lodash/startCase"
 import React from "react"
 import PhoneIcon from "@mui/icons-material/Phone"
 import Visibility from "@mui/icons-material/Visibility"
@@ -55,7 +55,7 @@ const formatters = {
   capitalize: (str: string) =>
     str
       .split(" ")
-      .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+      .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
       .join(" "),
   lowercase: (str: string) => str.toLowerCase(),
   phone: (str: string) =>
@@ -79,10 +79,7 @@ const formatters = {
     return v
   },
   email: (v: string) => {
-    const [user, host] = v
-      .toLowerCase()
-      .substring(0, 320)
-      .split(/@/)
+    const [user, host] = v.toLowerCase().substring(0, 320).split(/@/)
     return `${user.trim()}${host !== undefined ? `@${host.trim()}` : ""}`
   },
 }
@@ -166,7 +163,7 @@ export const TextFieldBase = React.forwardRef<
   const [state, setState] = React.useState("")
   const value = propsValue !== undefined ? propsValue : state
   const onChange: OnChange =
-    propsOnChange !== undefined ? propsOnChange : x => setState(x)
+    propsOnChange !== undefined ? propsOnChange : (x) => setState(x)
 
   // password state
   const [error, setError] = React.useState(false)

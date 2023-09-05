@@ -1,10 +1,10 @@
-import InputAdornment from "@mui/material/InputAdornment"
 import AddIcon from "@mui/icons-material/Add"
 import RemoveIcon from "@mui/icons-material/Remove"
-import { startCase } from "lodash"
+import IconButton from "@mui/material/IconButton"
+import InputAdornment from "@mui/material/InputAdornment"
+import startCase from "lodash/startCase"
 import React from "react"
 import { TextFieldBase } from "./TextFieldBase"
-import IconButton from "@mui/material/IconButton"
 
 type OnChange = (newValue: number | null) => void
 
@@ -46,7 +46,7 @@ export const NumberFieldBase = React.forwardRef(
     const [unmanagedState, setUnmanagedState] = React.useState<number | null>(0)
     const value = propsValue !== undefined ? propsValue : unmanagedState
     const onChange: OnChange =
-      propsOnChange !== undefined ? propsOnChange : x => setUnmanagedState(x)
+      propsOnChange !== undefined ? propsOnChange : (x) => setUnmanagedState(x)
 
     // formatting as they type
     const fmt = (s: string) => {
@@ -141,8 +141,8 @@ export const NumberFieldBase = React.forwardRef(
           label={label}
           disabled={props.disabled}
           value={state}
-          onChange={newValue => setState(fmt(newValue))}
-          onBlur={e => onChange(toDecimal(e.currentTarget.value))}
+          onChange={(newValue) => setState(fmt(newValue))}
+          onBlur={(e) => onChange(toDecimal(e.currentTarget.value))}
           inputProps={
             decimals === 0
               ? {

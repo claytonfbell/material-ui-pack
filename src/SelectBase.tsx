@@ -1,5 +1,5 @@
 import TextField from "@mui/material/TextField"
-import { startCase } from "lodash"
+import startCase from "lodash/startCase"
 import React from "react"
 import { OptionType } from "./SelectComboBase"
 
@@ -43,8 +43,9 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
       }>
     ) {
       const stringValue = event.target.value as string
-      const newValue = props.options.find(o => String(o.value) === stringValue)
-        ?.value
+      const newValue = props.options.find(
+        (o) => String(o.value) === stringValue
+      )?.value
       props.onChange(newValue === undefined ? null : newValue)
     }
 
@@ -57,7 +58,7 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
     // fix issue with overlapping labels when the
     // selected value was not initially in the options list
     const optionFound =
-      props.options.find(o => String(o.value) === selectedValue) !== undefined
+      props.options.find((o) => String(o.value) === selectedValue) !== undefined
 
     return (
       <TextField
