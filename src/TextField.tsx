@@ -1,5 +1,5 @@
 import React from "react"
-import { useForm } from "./FormProvider"
+import { useForm } from "."
 import { TextFieldBase, TextFieldBaseProps } from "./TextFieldBase"
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

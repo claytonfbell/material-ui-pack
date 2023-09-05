@@ -1,7 +1,7 @@
 import React from "react"
+import { SelectBase } from "."
 import { countries } from "./countries"
 import { SelectComboBase, SelectComboBaseProps } from "./SelectComboBase"
-import { SelectBase } from "./SelectBase"
 
 export type CountryIsoType = "isoAlpha2" | "isoAlpha3"
 

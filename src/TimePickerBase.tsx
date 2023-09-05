@@ -1,4 +1,4 @@
-import { AccessTime as AccessTimeIcon } from "@mui/icons-material"
+import AccessTimeIcon from "@mui/icons-material/AccessTime"
 import DateAdapter from "@mui/lab/AdapterMoment"
 import LocalizationProvider from "@mui/lab/LocalizationProvider"
 import MUITimePicker from "@mui/lab/MobileTimePicker"

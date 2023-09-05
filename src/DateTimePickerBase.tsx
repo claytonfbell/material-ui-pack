@@ -1,4 +1,5 @@
-import { Close as CloseIcon, Event as EventIcon } from "@mui/icons-material"
+import CloseIcon from "@mui/icons-material/Close"
+import EventIcon from "@mui/icons-material/Event"
 import { MobileDateTimePicker } from "@mui/lab"
 import DateAdapter from "@mui/lab/AdapterMoment"
 import LocalizationProvider from "@mui/lab/LocalizationProvider"

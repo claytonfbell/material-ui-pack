@@ -1,15 +1,13 @@
-import {
-  Phone as PhoneIcon,
-  Visibility,
-  VisibilityOff,
-} from "@mui/icons-material"
-import IconButton from "@mui/material/IconButton"
-import InputAdornment from "@mui/material/InputAdornment"
 import MUITextField, {
   TextFieldProps as MUITextFieldProps,
 } from "@mui/material/TextField"
 import { startCase } from "lodash"
 import React from "react"
+import PhoneIcon from "@mui/icons-material/Phone"
+import Visibility from "@mui/icons-material/Visibility"
+import VisibilityOff from "@mui/icons-material/VisibilityOff"
+import InputAdornment from "@mui/material/InputAdornment"
+import IconButton from "@mui/material/IconButton"
 
 type OnChange = (value: string) => void
 

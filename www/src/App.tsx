@@ -1,4 +1,4 @@
-import { GitHub as GitHubIcon } from "@mui/icons-material"
+import GitHubIcon from "@mui/icons-material/GitHub"
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import CssBaseline from "@mui/material/CssBaseline"
