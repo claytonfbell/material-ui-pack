@@ -1,10 +1,9 @@
+import { Add as AddIcon, Remove as RemoveIcon } from "@mui/icons-material"
+import IconButton from "@mui/material/IconButton"
 import InputAdornment from "@mui/material/InputAdornment"
-import AddIcon from "@mui/icons-material/Add"
-import RemoveIcon from "@mui/icons-material/Remove"
 import { startCase } from "lodash"
 import React from "react"
 import { TextFieldBase } from "./TextFieldBase"
-import IconButton from "@mui/material/IconButton"
 
 type OnChange = (newValue: number | null) => void
 

@@ -1,5 +1,4 @@
-import CloseIcon from "@mui/icons-material/Close"
-import EventIcon from "@mui/icons-material/Event"
+import { Close as CloseIcon, Event as EventIcon } from "@mui/icons-material"
 import { MobileDateTimePicker } from "@mui/lab"
 import DateAdapter from "@mui/lab/AdapterMoment"
 import LocalizationProvider from "@mui/lab/LocalizationProvider"
@@ -41,7 +40,7 @@ export const DateTimePickerBase = React.forwardRef<
     const [state, setState] = React.useState<Value>(null)
     const value = propsValue !== undefined ? propsValue : state
     const onChange: OnChange =
-      propsOnChange !== undefined ? propsOnChange : x => setState(x)
+      propsOnChange !== undefined ? propsOnChange : (x) => setState(x)
 
     const label =
       props.label === undefined ? startCase(props.name) : props.label
@@ -93,14 +92,14 @@ export const DateTimePickerBase = React.forwardRef<
             label={label}
             disabled={props.disabled}
             value={dateTime || null}
-            onChange={v => {
+            onChange={(v: any) => {
               onChange(outgoing(v))
             }}
             open={open}
             onClose={() => setOpen(false)}
             clearable={props.clearable}
             inputFormat="lll z"
-            shouldDisableTime={(timeValue, clockType) => {
+            shouldDisableTime={(timeValue: any, clockType: any) => {
               if (props.minuteIncrements === undefined) {
                 return false
               }
@@ -112,7 +111,7 @@ export const DateTimePickerBase = React.forwardRef<
               }
               return false
             }}
-            renderInput={p => (
+            renderInput={(p: any) => (
               <TextField
                 id={props.id}
                 required={p.required}

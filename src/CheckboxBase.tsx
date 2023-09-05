@@ -1,7 +1,7 @@
-import { FormControlLabel } from "@mui/material"
 import MUICheckbox, {
   CheckboxProps as MUICheckboxProps,
 } from "@mui/material/Checkbox"
+import FormControlLabel from "@mui/material/FormControlLabel"
 import { startCase } from "lodash"
 import React from "react"
 

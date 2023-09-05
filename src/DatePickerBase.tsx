@@ -1,5 +1,4 @@
-import CloseIcon from "@mui/icons-material/Close"
-import EventIcon from "@mui/icons-material/Event"
+import { Close as CloseIcon, Event as EventIcon } from "@mui/icons-material"
 import { MobileDatePicker } from "@mui/lab"
 import DateAdapter from "@mui/lab/AdapterMoment"
 import LocalizationProvider from "@mui/lab/LocalizationProvider"
@@ -38,7 +37,7 @@ export const DatePickerBase = React.forwardRef<
     const [state, setState] = React.useState<Value>(null)
     const value = propsValue !== undefined ? propsValue : state
     const onChange: OnChange =
-      propsOnChange !== undefined ? propsOnChange : x => setState(x)
+      propsOnChange !== undefined ? propsOnChange : (x) => setState(x)
 
     const dateTime = React.useMemo(
       () => (value === null ? null : moment(value as string)),
@@ -87,12 +86,12 @@ export const DatePickerBase = React.forwardRef<
           label={label}
           disabled={props.disabled}
           value={dateTime}
-          onChange={v => {
+          onChange={(v: any) => {
             onChange(outgoing(v))
           }}
           open={open}
           onClose={() => setOpen(false)}
-          renderInput={params => (
+          renderInput={(params: any) => (
             <TextField
               id={props.id}
               fullWidth={true}

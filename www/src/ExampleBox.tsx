@@ -1,4 +1,4 @@
-import CodeIcon from "@mui/icons-material/Code"
+import { Code as CodeIcon } from "@mui/icons-material"
 import Box from "@mui/material/Box"
 import Collapse from "@mui/material/Collapse"
 import Grid from "@mui/material/Grid"

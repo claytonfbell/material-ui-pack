@@ -39,7 +39,7 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
         const value = add.format(FORMAT)
         setAdd(null)
         const isSelected = dates.includes(value)
-        const newDates = [...dates.filter(x => x !== value)]
+        const newDates = [...dates.filter((x) => x !== value)]
         if (isSelected) {
           onChange([...newDates])
         } else {
@@ -54,7 +54,7 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
   )
 
   function handleRemove(dateStr: string) {
-    const newDates = [...dates.filter(x => x !== dateStr)]
+    const newDates = [...dates.filter((x) => x !== dateStr)]
     onChange([...newDates])
   }
 
@@ -74,10 +74,10 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
             <LocalizationProvider dateAdapter={DateAdapter}>
               <CalendarPicker
                 date={latest}
-                onChange={newDate => {
+                onChange={(newDate: any) => {
                   console.log(newDate)
                 }}
-                renderDay={x => {
+                renderDay={(x: any) => {
                   return (
                     <PickersDay
                       day={x}
@@ -95,7 +95,7 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
             </LocalizationProvider>
           </Grid>
           <Grid item xs={12}>
-            {dates.map(date => (
+            {dates.map((date) => (
               <Chip
                 sx={{
                   marginBottom: theme.spacing(1),

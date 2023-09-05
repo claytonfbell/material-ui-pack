@@ -1,4 +1,4 @@
-import GitHubIcon from "@mui/icons-material/GitHub"
+import { GitHub as GitHubIcon } from "@mui/icons-material"
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import CssBaseline from "@mui/material/CssBaseline"
@@ -11,7 +11,6 @@ import {
   Spacer,
   useDarkMode,
 } from "material-ui-pack"
-import React from "react"
 import "../src/App.css"
 import { CheckboxExample } from "./CheckboxExample"
 import { CheckboxSnippet } from "./CheckboxSnippet"

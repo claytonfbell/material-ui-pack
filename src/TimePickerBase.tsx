@@ -1,4 +1,4 @@
-import AccessTimeIcon from "@mui/icons-material/AccessTime"
+import { AccessTime as AccessTimeIcon } from "@mui/icons-material"
 import DateAdapter from "@mui/lab/AdapterMoment"
 import LocalizationProvider from "@mui/lab/LocalizationProvider"
 import MUITimePicker from "@mui/lab/MobileTimePicker"
@@ -38,10 +38,10 @@ export const TimePickerBase = React.forwardRef<
         label={label}
         disabled={props.disabled}
         value={moment(`${moment().format("YYYY-MM-DD")} ${props.value}`)}
-        onChange={e => {
+        onChange={(e: any) => {
           props.onChange(e === null ? null : e.format("HH:mm:00"))
         }}
-        shouldDisableTime={(timeValue, clockType) => {
+        shouldDisableTime={(timeValue: any, clockType: any) => {
           if (props.minuteIncrements === undefined) {
             return false
           }
@@ -52,7 +52,7 @@ export const TimePickerBase = React.forwardRef<
         }}
         open={open}
         onClose={() => setOpen(false)}
-        renderInput={params => (
+        renderInput={(params: any) => (
           <TextField
             fullWidth
             size={props.size}

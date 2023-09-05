@@ -42,7 +42,7 @@ export const SelectComboBase = React.forwardRef<
   const [index, setIndex] = React.useState(-2)
 
   React.useEffect(() => {
-    setIndex(props.options.findIndex(x => x.value === value))
+    setIndex(props.options.findIndex((x) => x.value === value))
   }, [value, props.options])
 
   React.useEffect(() => {
@@ -57,7 +57,7 @@ export const SelectComboBase = React.forwardRef<
   const [inputText, setInputText] = React.useState("")
   React.useEffect(() => {
     if (props.matchValue) {
-      const find = props.options.find(x => x.value === inputText)
+      const find = props.options.find((x) => x.value === inputText)
       if (find !== undefined) {
         setInputText(find.label)
       }
@@ -99,7 +99,7 @@ export const SelectComboBase = React.forwardRef<
           onFocus={() => setHasFocus(true)}
           onBlur={() => setHasFocus(false)}
           style={{ width: `100%` }}
-          renderInput={(params: unknown) => (
+          renderInput={(params: any) => (
             <TextField
               {...params}
               ref={ref}
