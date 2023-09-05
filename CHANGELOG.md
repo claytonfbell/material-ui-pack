@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.5.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.4.3...v5.5.0) (2023-09-05)
+
+
+### Features
+
+* migrated to tsup ([95afd64](https://github.com/claytonfbell/material-ui-pack/commit/95afd648924650f1c5f7f4c77386ec4a77a74024))
+
 ### [5.4.3](https://github.com/claytonfbell/material-ui-pack/compare/v5.4.2...v5.4.3) (2023-07-26)
 
 
