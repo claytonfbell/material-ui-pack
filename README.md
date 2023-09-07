@@ -3,7 +3,6 @@
 [DEMO HERE https://material-ui-pack.xyz](https://material-ui-pack.xyz)
 
 [![npm version](https://badge.fury.io/js/material-ui-pack.svg)](https://badge.fury.io/js/material-ui-pack)
-[![Build Status](https://travis-ci.org/claytonfbell/material-ui-pack.svg?branch=master)](https://travis-ci.org/claytonfbell/material-ui-pack)
 
 [material-ui-pack.xyz](https://material-ui-pack.xyz)
 
@@ -11,34 +10,35 @@ Why? Because I love the [Material UI](https://material-ui.com/) api but `<TextFi
 
 <!-- toc -->
 
-- [Install](#install)
-- [Form](#form)
-  - [useForm Hook](#useform-hook)
-  - [SubmitButton](#submitbutton)
-  - [TextField](#textfield)
-  - [CurrencyField](#currencyfield)
-  - [PercentageField](#percentagefield)
-  - [NumberField](#numberField)
-  - [Checkbox](#checkbox)
-  - [SelectCombo](#selectcombo)
-  - [SelectCountry](#selectcountry)
-  - [SelectRegion](#selectregion)
-  - [SelectTimeZone](#selecttimezone)
-  - [Select](#select)
-  - [DateTimePicker](#datetimepicker)
-  - [DatePicker](#datepicker)
-  - [TimePicker](#timepicker)
-  - [ResponsiveTable](#responsivetable)
-- [Dark Mode](#dark-mode)
-- [Date & Time Display](#date--time-display)
-  - [DisplayDateTime](#displaydatetime)
-  - [DisplayDate](#displaydate)
-  - [formatDateTime](#formatdatetime)
-  - [formatDate](#formatdate)
-- [Hooks](#hooks)
-  - [useCounter](#usecounter)
-  - [useEscapeKey](#useescapekey)
-  - [useHandleState](#usehandlestate)
+- [material-ui-pack](#material-ui-pack)
+  - [Install](#install)
+  - [Form](#form)
+    - [useForm Hook](#useform-hook)
+    - [SubmitButton](#submitbutton)
+    - [TextField](#textfield)
+    - [CurrencyField](#currencyfield)
+    - [PercentageField](#percentagefield)
+    - [NumberField](#numberfield)
+    - [Checkbox](#checkbox)
+    - [SelectCombo](#selectcombo)
+    - [SelectCountry](#selectcountry)
+    - [SelectRegion](#selectregion)
+    - [SelectTimeZone](#selecttimezone)
+    - [Select](#select)
+    - [DateTimePicker](#datetimepicker)
+    - [DatePicker](#datepicker)
+    - [TimePicker](#timepicker)
+    - [ResponsiveTable](#responsivetable)
+  - [Dark Mode](#dark-mode)
+  - [Date \& Time Display](#date--time-display)
+    - [DisplayDateTime](#displaydatetime)
+    - [DisplayDate](#displaydate)
+    - [formatDateTime](#formatdatetime)
+    - [formatDate](#formatdate)
+  - [Hooks](#hooks)
+    - [useCounter](#usecounter)
+    - [useEscapeKey](#useescapekey)
+    - [useHandleState](#usehandlestate)
 
 <!-- tocstop -->
 
@@ -62,8 +62,8 @@ Pass your own `state` and `setState` into the surrounding `Form` component.
 | setState | From React useState                                                           |
 | onSubmit | Callback function to fire when form is submitted                              |
 | busy     | Boolean used to disable inputs and submit button after your form is submitted |
-| margin   | Default for `TextField` components `"normal" | "none" | "dense"`              |
-| size     | Default for `TextField` components `"small" | "medium"`                       |
+| margin   | Default for `TextField` components `"normal"                                  | "none"    | "dense"` |
+| size     | Default for `TextField` components `"small"                                   | "medium"` |
 | debug    | Display state values stringified                                              |
 
 ```tsx
@@ -209,8 +209,8 @@ A drop-down/input combo box. User can enter or select options.
 
 This component uses [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-countries) to build a full list of countries for your address forms. Values are set as [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3), but support `alpha-2` also.
 
-| Property | Description                 |
-| -------- | --------------------------- |
+| Property | Description  |
+| -------- | ------------ |
 | isoType  | `"isoAlpha2" | "isoAlpha3"` |
 
 ```tsx
@@ -226,7 +226,7 @@ This component uses [country-region-data](https://www.npmjs.com/package/country-
 | Property       | Description                          |
 | -------------- | ------------------------------------ |
 | country        | To control which regions are loaded. |
-| countryIsoType | `"isoAlpha3" | "isoAlpha2"`          |
+| countryIsoType | `"isoAlpha3"                         | "isoAlpha2"` |
 
 ```tsx
 <SelectRegion country="USA" name="stateOrProvince" />
@@ -241,7 +241,7 @@ This component uses [moment-timezone](https://momentjs.com/timezone/) to build a
 | Property       | Description                    |
 | -------------- | ------------------------------ |
 | country        | To optionall filter the zones. |
-| countryIsoType | `"isoAlpha3" | "isoAlpha2"`    |
+| countryIsoType | `"isoAlpha3"                   | "isoAlpha2"` |
 
 ```tsx
 <SelectTimeZone name="timeZone" />
@@ -253,8 +253,8 @@ This component uses [moment-timezone](https://momentjs.com/timezone/) to build a
 
 This is a simple native drop-down select component.
 
-| Property | Description                                                               |
-| -------- | ------------------------------------------------------------------------- |
+| Property | Description                          |
+| -------- | ------------------------------------ |
 | options  | Array of objects containing `(string | numnber) value`and`(string) label` |
 
 ```tsx
