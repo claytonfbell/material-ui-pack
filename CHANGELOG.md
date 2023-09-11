@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.5.7](https://github.com/claytonfbell/material-ui-pack/compare/v5.5.6...v5.5.7) (2023-09-11)
+
+
+### Bug Fixes
+
+* removed old module path ([cf8f18c](https://github.com/claytonfbell/material-ui-pack/commit/cf8f18c511bb9a3fa0912fdb8f498d86ef2f10c7))
+
 ### [5.5.6](https://github.com/claytonfbell/material-ui-pack/compare/v5.5.5...v5.5.6) (2023-09-07)
 
 ### [5.5.5](https://github.com/claytonfbell/material-ui-pack/compare/v5.5.4...v5.5.5) (2023-09-07)
