@@ -24,7 +24,6 @@
   },
   "name": "material-ui-pack",
   "author": "Clay Bell",
-  "module": "dist/index.mjs",
   "peerDependencies": {
     "@mui/icons-material": ">=5.14.7",
     "@mui/lab": ">=5.0.0-alpha.142",
