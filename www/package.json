@@ -3,27 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.15.5",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.8",
     "@mui/lab": "^5.0.0-alpha.143",
     "@mui/material": "^5.14.8",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
-    "material-ui-bootstrap": "^5.0.0",
+    "material-ui-bootstrap": "^5.4.4",
     "material-ui-pack": "^5.5.7",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-markdown": "^6.0.3",
-    "react-syntax-highlighter": "^15.4.4",
-    "web-vitals": "^1.0.1"
+    "react-markdown": "^8.0.7",
+    "react-syntax-highlighter": "^15.4.4"
   },
   "scripts": {
     "start": "vite",
@@ -32,8 +24,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
@@ -50,9 +41,12 @@
   },
   "devDependencies": {
     "@types/node": "^20.6.0",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
     "@types/react-syntax-highlighter": "^13.5.2",
     "@vitejs/plugin-react": "^4.0.4",
     "typescript": "^5.2.2",
-    "vite": "^4.4.9"
+    "vite": "^4.4.9",
+    "web-vitals": "^3.4.0"
   }
 }
