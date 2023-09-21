@@ -1,7 +1,9 @@
 import { defineConfig } from "tsup"
 
 export default defineConfig({
-  entry: ["src/index.tsx"],
+  entry: {
+    index: "src/index-package.tsx",
+  },
   splitting: false,
   sourcemap: true,
   clean: true,

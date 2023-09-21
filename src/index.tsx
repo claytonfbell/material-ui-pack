@@ -1,52 +1,17 @@
-export { Checkbox } from "./Checkbox"
-export { CheckboxBase } from "./CheckboxBase"
-export { DisplayDate } from "./components/DisplayDate"
-export { DisplayDateTime } from "./components/DisplayDateTime"
-export { CurrencyField } from "./CurrencyField"
-export { CurrencyFieldBase } from "./CurrencyFieldBase"
-export { DarkModeProvider, useDarkMode } from "./DarkModeProvider"
-export { DarkModeToggle } from "./DarkModeToggle"
-export { DatePicker } from "./DatePicker"
-export { DatePickerBase } from "./DatePickerBase"
-export { DateTimePicker } from "./DateTimePicker"
-export { DateTimePickerBase } from "./DateTimePickerBase"
-export { Form } from "./Form"
-export { FormProvider, useForm } from "./FormProvider"
-export { FormFields } from "./FormFields"
-export { useCounter } from "./hooks/useCounter"
-export { useEscapeKey } from "./hooks/useEscapeKey"
-export { useHandleState } from "./hooks/useHandleState"
-export { useStoredState } from "./hooks/useStoredState"
-export { useDebounce } from "./hooks/useDebounce"
-export { PercentageField } from "./PercentageField"
-export { PercentageFieldBase } from "./PercentageFieldBase"
-export { Select } from "./Select"
-export { SelectBase } from "./SelectBase"
-export { SelectCombo } from "./SelectCombo"
-export { SelectComboBase } from "./SelectComboBase"
-export { SelectCountry } from "./SelectCountry"
-export { SelectCountryBase } from "./SelectCountryBase"
-export { SelectRegion } from "./SelectRegion"
-export { SelectRegionBase } from "./SelectRegionBase"
-export { SelectTimeZone } from "./SelectTimeZone"
-export { SelectTimeZoneBase } from "./SelectTimeZoneBase"
-export { SubmitButton } from "./SubmitButton"
-export { CancelButton } from "./CancelButton"
-export { TextField } from "./TextField"
-export { TextFieldBase } from "./TextFieldBase"
-export { TimePicker } from "./TimePicker"
-export { formatDate } from "./util/formatDate"
-export { formatDateTime } from "./util/formatDateTime"
-export { removeStoredState } from "./hooks/useStoredState"
-export { OptionType } from "./SelectComboBase"
-export { ResponsiveTable } from "./ResponsiveTable"
-export { ResponsiveTableProps } from "./ResponsiveTable"
-export { ResponsiveTableSchema } from "./ResponsiveTable"
-export { Spacer } from "./Spacer"
-export { NumberFieldBase } from "./NumberFieldBase"
-export { NumberField } from "./NumberField"
-export { Debug } from "./Debug"
-export { DisplayError } from "./DisplayError"
-export { MultipleDatePicker } from "./MultipleDatePicker"
-export { SelectValue } from "./SelectBase"
-export { FormSchema } from "./FormFields"
+import React from "react"
+import { createRoot } from "react-dom/client"
+import App from "./www/App"
+// import reportWebVitals from "./www/reportWebVitals"
+
+const root = createRoot(document.getElementById("root") as HTMLElement)
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// reportWebVitals()

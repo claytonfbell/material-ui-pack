@@ -1,5 +1,5 @@
 import React from "react"
-import { SelectBase } from "."
+import { SelectBase } from "./index-package"
 import { countries } from "./countries"
 import { SelectComboBase, SelectComboBaseProps } from "./SelectComboBase"
 
@@ -22,11 +22,11 @@ export const SelectCountryBase = React.forwardRef<
     const c = countries.getNames("en")
     return Object.keys(c)
       .filter(
-        isoAlpha2 =>
+        (isoAlpha2) =>
           props.unitedStatesAndCanadaOnly !== true ||
           ["US", "CA"].includes(isoAlpha2)
       )
-      .map(isoAlpha2 => ({
+      .map((isoAlpha2) => ({
         value:
           isoType === "isoAlpha3"
             ? countries.alpha2ToAlpha3(isoAlpha2)

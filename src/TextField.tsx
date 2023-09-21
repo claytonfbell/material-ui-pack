@@ -1,5 +1,5 @@
 import React from "react"
-import { useForm } from "."
+import { useForm } from "./index-package"
 import { TextFieldBase, TextFieldBaseProps } from "./TextFieldBase"
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
@@ -34,7 +34,7 @@ export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
         margin={margin}
         size={size}
         value={value}
-        onChange={newValue => setValue(props.name, newValue)}
+        onChange={(newValue) => setValue(props.name, newValue)}
       />
     )
   }

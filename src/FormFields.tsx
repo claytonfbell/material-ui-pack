@@ -9,7 +9,7 @@ import {
   SelectRegion,
   SubmitButton,
   TimePicker,
-} from "."
+} from "./index-package"
 import { Checkbox, CheckboxProps } from "./Checkbox"
 import { CurrencyField, CurrencyFieldProps } from "./CurrencyField"
 import { DatePicker, DatePickerProps } from "./DatePicker"
@@ -141,7 +141,7 @@ export function FormFields<T extends object>() {
         ) : null}
         {schema !== undefined ? (
           <>
-            {Object.entries(schema).map(arr => {
+            {Object.entries(schema).map((arr) => {
               const key = arr[0] as keyof T
               const item = arr[1] as FieldType<T> | Field<T>
               const name = String(key)
