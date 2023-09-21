@@ -7,11 +7,6 @@ export default defineConfig(() => {
       outDir: "build",
     },
     plugins: [react()],
-    resolve: {
-      alias: {
-        "material-ui-pack": ".",
-      },
-    },
     server: {
       open: true,
       port: 3000,
