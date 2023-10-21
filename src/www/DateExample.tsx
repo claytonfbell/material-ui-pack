@@ -94,7 +94,10 @@ export function DateExample() {
           <Grid item xs={12} sm={4}>
             <Stack spacing={1}>
               <Tooltip arrow title="This component is only available in v5">
-                <Button onClick={() => setOpen(true)}>
+                <Button
+                  onClick={() => setOpen(true)}
+                  aria-label="Select Multiple Dates..."
+                >
                   Select Multiple Dates...
                 </Button>
               </Tooltip>
@@ -107,7 +110,10 @@ export function DateExample() {
                 }
               />
               <Tooltip arrow title="This component is only available in v5">
-                <Button onClick={() => setOpen2(true)}>
+                <Button
+                  onClick={() => setOpen2(true)}
+                  aria-label="Select Multiple Dates..."
+                >
                   Select Multiple Dates...
                 </Button>
               </Tooltip>

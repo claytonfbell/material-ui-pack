@@ -71,6 +71,8 @@ function AppContent() {
                   <img
                     src="https://badge.fury.io/js/material-ui-pack.svg"
                     alt="npm version"
+                    width={126}
+                    height={20}
                   />
                 </a>
                 <Box marginTop={2}>

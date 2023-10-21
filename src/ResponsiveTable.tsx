@@ -71,21 +71,20 @@ export function ResponsiveTable<T extends object>({
   const selected = props.selected || selectedState
 
   // toggle selection
-  const handleSelect = (dataItem: T) => (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    let newSelected = [...selected]
-    const checked = event.target.checked
-    if (selected.indexOf(dataItem) === -1 && checked) {
-      newSelected = [...newSelected, dataItem]
-    } else if (selected.indexOf(dataItem) !== -1 && !checked) {
-      newSelected.splice(selected.indexOf(dataItem), 1)
+  const handleSelect =
+    (dataItem: T) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      let newSelected = [...selected]
+      const checked = event.target.checked
+      if (selected.indexOf(dataItem) === -1 && checked) {
+        newSelected = [...newSelected, dataItem]
+      } else if (selected.indexOf(dataItem) !== -1 && !checked) {
+        newSelected.splice(selected.indexOf(dataItem), 1)
+      }
+      setSelectedState(newSelected)
+      if (onSelectChange !== undefined) {
+        onSelectChange(newSelected, dataItem)
+      }
     }
-    setSelectedState(newSelected)
-    if (onSelectChange !== undefined) {
-      onSelectChange(newSelected, dataItem)
-    }
-  }
   const allSelected = selected.length === props.rowData.length
   const indeterminate = !allSelected && selected.length > 0
   const handleSelectAll = () => {
@@ -95,7 +94,8 @@ export function ResponsiveTable<T extends object>({
     } else {
       newSelected = [
         ...props.rowData.filter(
-          x => selectionDisabled === undefined || selectionDisabled(x) === false
+          (x) =>
+            selectionDisabled === undefined || selectionDisabled(x) === false
         ),
       ]
     }
@@ -115,7 +115,7 @@ export function ResponsiveTable<T extends object>({
   const isLgUp = useMediaQuery(theme.breakpoints.up("lg"))
   const isXlUp = useMediaQuery(theme.breakpoints.up("xl"))
 
-  const filteredSchema = props.schema.filter(column => {
+  const filteredSchema = props.schema.filter((column) => {
     if (
       (column.xsDownHidden && isXsDown) ||
       (column.smDownHidden && isSmDown) ||
@@ -173,12 +173,17 @@ export function ResponsiveTable<T extends object>({
                   <Grid item></Grid>
                   <Grid item>
                     {onEdit !== undefined ? (
-                      <IconButton size="small" onClick={() => onEdit(dataItem)}>
+                      <IconButton
+                        aria-label="edit"
+                        size="small"
+                        onClick={() => onEdit(dataItem)}
+                      >
                         <EditIcon />
                       </IconButton>
                     ) : null}
                     {onDelete !== undefined ? (
                       <IconButton
+                        aria-label="delete"
                         size="small"
                         onClick={() => onDelete(dataItem)}
                       >
@@ -306,6 +311,7 @@ export function ResponsiveTable<T extends object>({
                   <TableCell align="right" style={{ whiteSpace: "nowrap" }}>
                     {onEdit !== undefined ? (
                       <IconButton
+                        aria-label="edit"
                         className="iconButton"
                         size="small"
                         onClick={() => onEdit(dataItem)}
@@ -315,6 +321,7 @@ export function ResponsiveTable<T extends object>({
                     ) : null}
                     {onDelete !== undefined ? (
                       <IconButton
+                        aria-label="delete"
                         className="iconButton"
                         size="small"
                         onClick={() => onDelete(dataItem)}
