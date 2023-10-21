@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.7.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.6.8...v5.7.0) (2023-10-21)
+
+
+### Features
+
+* replaced @mui/lab and moment with @mui/x-date-pickers and dayjs ([274e2b5](https://github.com/claytonfbell/material-ui-pack/commit/274e2b56cc56680040442d4b9ae078e11fcb8b95))
+
+
+### Bug Fixes
+
+* cleanup TextFieldBase component ([e96a04e](https://github.com/claytonfbell/material-ui-pack/commit/e96a04e183997015446ab5634a16aab23fb202a6))
+
 ### [5.6.8](https://github.com/claytonfbell/material-ui-pack/compare/v5.6.7...v5.6.8) (2023-10-21)
 
 
