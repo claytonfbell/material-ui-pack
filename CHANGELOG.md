@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.7.1](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.0...v5.7.1) (2023-10-21)
+
+
+### Bug Fixes
+
+* added dayjs advancedFormat plugin ([34dd989](https://github.com/claytonfbell/material-ui-pack/commit/34dd98995781c5364d6fb2f1974d450c7a3fae27))
+
 ## [5.7.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.6.8...v5.7.0) (2023-10-21)
 
 
