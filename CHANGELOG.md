@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.7.4](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.3...v5.7.4) (2023-10-21)
+
+
+### Bug Fixes
+
+* added id property back to the date time pickers ([f9919de](https://github.com/claytonfbell/material-ui-pack/commit/f9919de1964e6b8383457d8096edebb23a464386))
+
 ### [5.7.3](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.2...v5.7.3) (2023-10-21)
 
 
