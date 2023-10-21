@@ -41,7 +41,10 @@
     "@mui/icons-material": "^5.14.7",
     "@mui/material": "^5.14.7",
     "@mui/x-date-pickers": "^6.16.3",
-    "@types/lodash": "^4.14.197",
+    "@types/lodash.clonedeep": "^4.5.8",
+    "@types/lodash.get": "^4.4.8",
+    "@types/lodash.set": "^4.3.8",
+    "@types/lodash.startcase": "^4.4.8",
     "@types/node": "^20.6.3",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
@@ -75,7 +78,10 @@
     "countries-and-timezones": "^3.5.1",
     "country-region-data": "^1.11.0",
     "i18n-iso-countries": "^4.3.1",
-    "lodash": "^4.17.21"
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.get": "^4.4.2",
+    "lodash.set": "^4.3.2",
+    "lodash.startcase": "^4.4.0"
   },
   "eslintConfig": {
     "extends": [

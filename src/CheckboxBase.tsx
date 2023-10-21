@@ -2,7 +2,7 @@ import { FormControlLabel } from "@mui/material"
 import MUICheckbox, {
   CheckboxProps as MUICheckboxProps,
 } from "@mui/material/Checkbox"
-import startCase from "lodash/startCase"
+import startCase from "lodash.startcase"
 import React from "react"
 
 type Value = boolean

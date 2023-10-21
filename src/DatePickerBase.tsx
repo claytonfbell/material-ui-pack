@@ -1,6 +1,6 @@
 import { DatePicker, DatePickerProps } from "@mui/x-date-pickers/DatePicker"
 import dayjs, { Dayjs } from "dayjs"
-import startCase from "lodash/startCase"
+import startCase from "lodash.startcase"
 import React, { useMemo } from "react"
 import { DateTimeLocalizationProvider } from "./DateTimeLocalizationProvider"
 

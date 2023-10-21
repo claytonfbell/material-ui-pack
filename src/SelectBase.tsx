@@ -1,5 +1,5 @@
 import TextField, { TextFieldProps } from "@mui/material/TextField"
-import startCase from "lodash/startCase"
+import startCase from "lodash.startcase"
 import React from "react"
 import { OptionType } from "./SelectComboBase"
 

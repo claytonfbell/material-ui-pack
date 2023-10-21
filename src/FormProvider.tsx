@@ -1,8 +1,8 @@
-import { cloneDeep, get, set } from "lodash"
+import cloneDeep from "lodash.clonedeep"
+import get from "lodash.get"
+import set from "lodash.set"
 import React from "react"
 import { FormProps, FormSetState } from "./Form"
-
-const _ = { get, set, cloneDeep }
 
 export type FieldSizeType = "small" | "medium" | undefined
 
@@ -29,9 +29,9 @@ export function FormProvider<T extends object>(formProps: FormProps<T>) {
   const setValue = React.useCallback(
     (name: keyof T, value: FormValue) => {
       //   var newState = { ...formProps.state }
-      var newState = _.cloneDeep(formProps.state)
+      var newState = cloneDeep(formProps.state)
       if (newState !== undefined) {
-        _.set(newState, name as string, value)
+        set(newState, name as string, value)
         formProps.setState(newState)
       }
     },
@@ -40,7 +40,7 @@ export function FormProvider<T extends object>(formProps: FormProps<T>) {
 
   const getValue = React.useCallback(
     (name: keyof T) => {
-      return _.get(formProps.state, name)
+      return get(formProps.state, name)
     },
     [formProps.state]
   )

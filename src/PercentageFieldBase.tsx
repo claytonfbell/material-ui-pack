@@ -1,6 +1,6 @@
 import TextField, { TextFieldProps } from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
-import startCase from "lodash/startCase"
+import startCase from "lodash.startcase"
 import React, { useCallback, useEffect } from "react"
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

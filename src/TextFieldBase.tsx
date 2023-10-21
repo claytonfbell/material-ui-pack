@@ -4,7 +4,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff"
 import IconButton from "@mui/material/IconButton"
 import InputAdornment from "@mui/material/InputAdornment"
 import TextField, { TextFieldProps } from "@mui/material/TextField"
-import startCase from "lodash/startCase"
+import startCase from "lodash.startcase"
 import React, { useEffect } from "react"
 
 type OnChange = (value: string) => void

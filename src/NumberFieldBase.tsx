@@ -2,7 +2,7 @@ import AddIcon from "@mui/icons-material/Add"
 import RemoveIcon from "@mui/icons-material/Remove"
 import IconButton from "@mui/material/IconButton"
 import InputAdornment from "@mui/material/InputAdornment"
-import startCase from "lodash/startCase"
+import startCase from "lodash.startcase"
 import React from "react"
 import { TextFieldBase } from "./TextFieldBase"
 
