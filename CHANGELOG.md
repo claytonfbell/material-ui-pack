@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.6.4](https://github.com/claytonfbell/material-ui-pack/compare/v5.6.3...v5.6.4) (2023-10-21)
+
+
+### Bug Fixes
+
+* manage negative values better ([b2f565d](https://github.com/claytonfbell/material-ui-pack/commit/b2f565d2b6c5645795ecb51e4316d153345e0bed))
+
 ### [5.6.3](https://github.com/claytonfbell/material-ui-pack/compare/v5.6.2...v5.6.3) (2023-10-21)
 
 
