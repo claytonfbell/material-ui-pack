@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.6.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.5.9...v5.6.0) (2023-10-21)
+
+
+### Features
+
+* improved currency field component ([5ced231](https://github.com/claytonfbell/material-ui-pack/commit/5ced2314c5f2f52af2eda336a92b9a10f6674658))
+
 ### [5.5.9](https://github.com/claytonfbell/material-ui-pack/compare/v5.5.8...v5.5.9) (2023-09-21)
 
 ### [5.5.8](https://github.com/claytonfbell/material-ui-pack/compare/v5.5.7...v5.5.8) (2023-09-13)
