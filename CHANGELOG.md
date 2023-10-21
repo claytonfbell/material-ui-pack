@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.7.5](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.4...v5.7.5) (2023-10-21)
+
+
+### Bug Fixes
+
+* fixed the textfield label ([1a61fb1](https://github.com/claytonfbell/material-ui-pack/commit/1a61fb158e6dcd35ee0e6eade567fe7259e75dfa))
+
 ### [5.7.4](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.3...v5.7.4) (2023-10-21)
 
 
