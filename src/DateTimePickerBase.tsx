@@ -19,6 +19,7 @@ export type DateTimePickerBaseProps = Omit<
   clearable?: boolean
   size?: "small" | "medium"
   margin?: "none" | "dense" | "normal"
+  required?: boolean
 }
 
 export const DateTimePickerBase = React.forwardRef<
@@ -34,6 +35,7 @@ export const DateTimePickerBase = React.forwardRef<
     name,
     size,
     margin,
+    required,
     ...props
   } = originalProps
 
@@ -62,6 +64,7 @@ export const DateTimePickerBase = React.forwardRef<
             name,
             size,
             margin,
+            required,
           },
           field: { clearable, onClear: () => onChange(null) },
         }}

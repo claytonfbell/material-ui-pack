@@ -16,6 +16,7 @@ export type TimePickerBaseProps = Omit<
   clearable?: boolean
   size?: "small" | "medium"
   margin?: "none" | "dense" | "normal"
+  required?: boolean
 }
 
 export const TimePickerBase = React.forwardRef<
@@ -31,6 +32,7 @@ export const TimePickerBase = React.forwardRef<
     name,
     size,
     margin,
+    required,
     ...props
   } = originalProps
 
@@ -61,6 +63,7 @@ export const TimePickerBase = React.forwardRef<
             name,
             size,
             margin,
+            required,
           },
           field: { clearable, onClear: () => onChange(null) },
         }}
