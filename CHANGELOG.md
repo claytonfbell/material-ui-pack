@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.6.8](https://github.com/claytonfbell/material-ui-pack/compare/v5.6.7...v5.6.8) (2023-10-21)
+
+
+### Bug Fixes
+
+* always shrink select labels ([2a6ed19](https://github.com/claytonfbell/material-ui-pack/commit/2a6ed197802e806c1474c8c4b0ec44ceaed0dbda))
+* fixed dependency array in currency field hook ([0a892bf](https://github.com/claytonfbell/material-ui-pack/commit/0a892bf93eecdf3888a02596b6b4a287159e1946))
+* improvements to SelectBase component ([da7ee9b](https://github.com/claytonfbell/material-ui-pack/commit/da7ee9b1b01d79ae893bb30b1b873789c533fb95))
+* resolved some missing hook dependencies, better linting ([38677ed](https://github.com/claytonfbell/material-ui-pack/commit/38677edbe91f1a4f453c40577316a285e0b15309))
+
 ### [5.6.7](https://github.com/claytonfbell/material-ui-pack/compare/v5.6.6...v5.6.7) (2023-10-21)
 
 
