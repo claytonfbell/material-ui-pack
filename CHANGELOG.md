@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.7.3](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.2...v5.7.3) (2023-10-21)
+
+
+### Bug Fixes
+
+* added icon variant to dark mode toggle ([1adca1e](https://github.com/claytonfbell/material-ui-pack/commit/1adca1eba49a36a1c3861b78fce6b8e9dd4e21a8))
+
 ### [5.7.2](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.1...v5.7.2) (2023-10-21)
 
 
