@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.6.5](https://github.com/claytonfbell/material-ui-pack/compare/v5.6.4...v5.6.5) (2023-10-21)
+
+
+### Bug Fixes
+
+* fix to how autoDecimal defaults ([169fa1d](https://github.com/claytonfbell/material-ui-pack/commit/169fa1dfe7655b07a98bc0a3bd939257b0e2389d))
+
 ### [5.6.4](https://github.com/claytonfbell/material-ui-pack/compare/v5.6.3...v5.6.4) (2023-10-21)
 
 
