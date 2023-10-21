@@ -80,9 +80,13 @@ export const TextFieldBase = React.forwardRef<
   // label
   props.label = props.label || startCase(props.name)
   props.label =
-    error && errorMessage !== ""
-      ? `${props.label} - ${errorMessage}`
-      : props.label
+    error && errorMessage !== "" ? (
+      <>
+        {props.label} - {errorMessage}
+      </>
+    ) : (
+      props.label
+    )
 
   // autoComplete
   props.autoComplete =
