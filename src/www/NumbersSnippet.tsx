@@ -3,7 +3,7 @@ import { Snippet } from "./Snippet"
 
 export function NumbersSnippet() {
   const codeString = `
-  import { Grid } from "@mui/material"
+  import Grid from "@mui/material/Grid"
   import {
     CurrencyField,
     Form,
@@ -12,12 +12,14 @@ export function NumbersSnippet() {
   } from "material-ui-pack"
   import React, { useState } from "react"
   import { DebugBox } from "./DebugBox"
+  import Stack from "@mui/material/Stack"
   
   export function NumbersExample() {
     const [state, setState] = useState({
       percentage1: 0.255,
       percentage2: 0.25,
       currencyField: 9.99,
+      pennies: 999,
       numberField: 2,
     })
   
@@ -41,7 +43,18 @@ export function NumbersSnippet() {
             <PercentageField name="percentage2" decimals={2} />
           </Grid>
           <Grid item xs={6} sm={3} md={2}>
-            <CurrencyField name="currencyField" />
+            <Stack spacing={1}>
+              <CurrencyField name="currencyField" currency="USD" />
+              <CurrencyField name="currencyField" autoDecimal currency="EUR" />
+              <CurrencyField name="currencyField" allowNegative currency="JPY" />
+              <CurrencyField name="currencyField" allowNegative autoDecimal />
+              <CurrencyField
+                name="pennies"
+                allowNegative
+                inPennies
+                currency="USD"
+              />
+            </Stack>
           </Grid>
           <Grid item xs={6} sm={3} md={2}>
             <NumberField name="numberField" incrementBy={1} min={-5} max={50} />
@@ -50,7 +63,7 @@ export function NumbersSnippet() {
       </Form>
     )
   }
-  
+    
 `
   return <Snippet>{codeString}</Snippet>
 }

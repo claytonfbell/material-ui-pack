@@ -1,199 +1,171 @@
-import InputAdornment from "@mui/material/InputAdornment"
-import MUITextField from "@mui/material/TextField"
+import TextField, { TextFieldProps } from "@mui/material/TextField"
 import { useTheme } from "@mui/material/styles"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import startCase from "lodash/startCase"
-import React from "react"
-import { useDebounce } from "./hooks/useDebounce"
+import React, { useEffect } from "react"
 
-type OnChange = (value: string | number) => void
-type Value = string | number
-
-export interface CurrencyFieldBaseProps {
-  value?: Value
-  onChange?: OnChange
-  label?: React.ReactNode
-  disabled?: boolean
-  required?: boolean
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type CurrencyFieldBaseProps = Omit<
+  TextFieldProps,
+  "onChange" | "value"
+> & {
   allowNegative?: boolean
-  alignRight?: boolean
-  numeric?: boolean
-  blankZero?: boolean
-  inPennies?: boolean
-  fullWidth?: boolean
-  margin?: "normal" | "none" | "dense" | undefined
-  size?: "medium" | "small"
-  name?: string
-  debugNamedInput?: boolean
   autoDecimal?: boolean
+  currency?: string
+  inPennies?: boolean
+  onChange: (value: number) => void
+  value: number
 }
 
 export const CurrencyFieldBase = React.forwardRef<
   HTMLDivElement,
   CurrencyFieldBaseProps
->(
-  (
-    {
-      value: propsValue,
-      onChange: propsOnChange,
-      size = "small",
-      fullWidth = true,
-      ...props
-    },
-    ref
-  ) => {
-    // manage state if no value and onChange
-    const [state, setState] = React.useState<Value>("")
-    const value = propsValue !== undefined ? propsValue : state
-    const onChange: OnChange =
-      propsOnChange !== undefined ? propsOnChange : (x) => setState(x)
+>((originalProps, ref) => {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
 
-    const [hasFocus, setHasFocus] = React.useState(false)
+  const {
+    onChange,
+    value,
+    allowNegative = false,
+    autoDecimal = isMobile,
+    inPennies = false,
+    currency,
+    ...props
+  } = originalProps
 
-    const incoming = React.useCallback(
-      (v: string | number): string => {
-        v = props.inPennies ? Number(Number(v) / 100).toFixed(2) : v
-        v = Number(v).toFixed(2)
-        if (props.blankZero && v === "0.00") {
-          return ""
-        }
-        return String(v)
-      },
-      [props.blankZero, props.inPennies]
-    )
-
-    const [inputValue, setInputValue] = React.useState<string>(incoming(value))
-
-    const outgoing = React.useCallback(
-      (v: string): string | number => {
-        v = Number(v).toFixed(2)
-        v = props.inPennies ? v.replace(/\./g, "") : v
-        if (props.numeric) {
-          return Number(v)
-        } else {
-          return v
-        }
-      },
-      [props.inPennies, props.numeric]
-    )
-
-    React.useEffect(() => {
-      setInputValue(incoming(value))
-    }, [incoming, value])
-
-    useDebounce(
-      () => {
-        if (!hasFocus) {
-          if (Number(outgoing(inputValue)) !== Number(value)) {
-            onChange(outgoing(inputValue))
-          }
-        }
-      },
-      50,
-      [hasFocus, inputValue, outgoing, value, onChange]
-    )
-
-    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-      let str = e.target.value
-      setInputValue(fmt(str))
-    }
-
-    function handleBlur() {
-      setHasFocus(false)
-      setInputValue(formatBlur(inputValue))
-    }
-
-    function handleFocus() {
-      setHasFocus(true)
-    }
-
-    const fmt = (str: string) => {
-      // mobile uses phone numpad input that doesn't include negatives or decimals
-      // decimal is auto placed
-      if (props.autoDecimal || isXsDown) {
-        str = str.replace(/[^\d-]/g, "")
-        if (str.length > 2) {
-          str = `${str.substr(0, str.length - 2)}.${str.substr(
-            str.length - 2,
-            2
-          )}`
-        }
-        return str
-      }
-      // standard entry
-      else {
-        return str
-          .replace(/[^0-9.-]/g, "")
-          .replace(/[.]+/g, ".")
-          .replace(/[-]+/g, "-")
-          .replace(/^(-?[0-9]+)(\.[0-9]{1,2}).*/g, "$1$2")
-      }
-    }
-    const formatBlur = (s: string) => {
-      s = isNaN(Number(s)) ? "0" : s
-
-      if (s.length > 2) {
-        s = s.substr(0, 1) + s.substr(1, s.length - 1).replace(/-/g, "")
-      }
-      if (!props.allowNegative) {
-        s = s.replace(/-/g, "")
-      }
-      s = Number(fmt(s)).toFixed(2)
-      if (props.blankZero && s === "0.00") {
-        return ""
-      }
-      return s
-    }
-
-    const label =
-      props.label === undefined ? startCase(props.name) : props.label
-
-    const theme = useTheme()
-    const isXsDown = useMediaQuery(theme.breakpoints.down("sm"))
-
-    return (
-      <>
-        {props.name !== undefined ? (
-          <input
-            type={props.debugNamedInput ? "text" : "hidden"}
-            name={props.name}
-            value={outgoing(inputValue)}
-            onChange={() => {}}
-          />
-        ) : null}
-
-        <MUITextField
-          ref={ref}
-          type="text"
-          inputProps={{
-            pattern: "[0-9]*",
-            step: "0.01",
-          }}
-          value={inputValue}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          disabled={props.disabled}
-          sx={
-            props.alignRight
-              ? {
-                  "& input": {
-                    textAlign: "right",
-                  },
-                }
-              : undefined
-          }
-          margin={props.margin}
-          variant="outlined"
-          size={size}
-          required={props.required}
-          label={label}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          }}
-          fullWidth={fullWidth}
-        />
-      </>
-    )
+  function incoming(v: number): string {
+    return inPennies ? (v / 100).toFixed(2) : v.toFixed(2)
   }
-)
+  function outgoing(v: string): number {
+    v = Number(v).toFixed(2)
+    if (inPennies) {
+      v = v.replace(/\./g, "")
+    }
+    return Number(v)
+  }
+
+  const [inputState, setInputState] = React.useState<string>(
+    incoming(value || 0)
+  )
+
+  const [hasFocus, setHasFocus] = React.useState(false)
+
+  // update inputState when value changes if not focused
+  useEffect(() => {
+    if (!hasFocus) {
+      setInputState(incoming(value || 0))
+    }
+  }, [value, hasFocus])
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    let newValue = event.target.value
+    // strip out all non-numeric characters
+    newValue = newValue.replace(/[^0-9.-]/g, "")
+
+    // only allow negative as first character when allowNegative is true
+    if (allowNegative) {
+      if (newValue.length > 0 && newValue[0] === "-") {
+        newValue = "-" + newValue.replace(/-/g, "")
+      } else {
+        newValue = newValue.replace(/-/g, "")
+      }
+    } else {
+      newValue = newValue.replace(/-/g, "")
+    }
+
+    // only allow 1 decimal point
+    let parts = newValue.split(".")
+    if (parts.length > 2) {
+      newValue = parts[0] + "." + parts[1]
+    }
+
+    // auto add decimal if autoDecimal is true
+    if (autoDecimal) {
+      newValue = newValue.replace(/\./g, "")
+      newValue = newValue.padStart(3, "0")
+      newValue = Number(newValue.slice(0, -2)) + "." + newValue.slice(-2)
+    }
+
+    // cents can only be 2 digits
+    parts = newValue.split(".")
+    if (parts.length > 1) {
+      let cents = parts[1]
+      cents = cents.slice(0, 2)
+      newValue = parts[0] + "." + cents
+    }
+
+    setInputState(newValue)
+
+    const x = outgoing(newValue)
+    if (x !== value) {
+      onChange(x)
+    }
+  }
+
+  function handleFocus(event: React.FocusEvent<HTMLInputElement>) {
+    setHasFocus(true)
+    if (props.onFocus !== undefined) {
+      props.onFocus(event)
+    }
+  }
+
+  function handleBlur(event: React.FocusEvent<HTMLInputElement>) {
+    let newValue = event.target.value
+    newValue = Number(newValue).toFixed(2)
+    setInputState(newValue)
+    setHasFocus(false)
+
+    // run the original onBlur if it was passed
+    if (props.onBlur !== undefined) {
+      props.onBlur(event)
+    }
+  }
+
+  const label =
+    props.name !== undefined && props.label === undefined
+      ? startCase(props.name)
+      : props.label
+
+  return (
+    <TextField
+      label={label}
+      inputMode="decimal"
+      {...props}
+      ref={ref}
+      value={inputState}
+      onChange={handleChange}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      InputProps={{
+        // add the currency symbol as a start adornment if currency is defined
+        startAdornment:
+          currency !== undefined ? getCurrencySymbol(currency) : undefined,
+        ...props.InputProps,
+      }}
+      inputProps={{
+        pattern: "^([-0-9.]+)",
+        step: "0.01",
+        ...props.inputProps,
+        sx: {
+          // right align the text by default
+          textAlign: "right",
+          ...props.inputProps?.sx,
+        },
+      }}
+    />
+  )
+})
+
+function getCurrencySymbol(currency: string) {
+  // use Intl to get the currency symbol
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+  const parts = formatter.formatToParts(0)
+  const currencySymbol = parts.find((part) => part.type === "currency")?.value
+  return currencySymbol
+}

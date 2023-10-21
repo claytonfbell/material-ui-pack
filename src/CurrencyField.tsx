@@ -15,17 +15,17 @@ export const CurrencyField = React.forwardRef<
   CurrencyFieldProps
 >((props, ref) => {
   const { getValue, setValue, formProps } = useForm<any>()
-  const value = (React.useMemo(() => getValue(props.name), [
-    getValue,
-    props.name,
-  ]) || "") as string | number
+  const value = (React.useMemo(
+    () => getValue(props.name),
+    [getValue, props.name]
+  ) || "") as string | number
 
   return (
     <CurrencyFieldBase
       {...props}
       ref={ref}
-      value={value}
-      onChange={x => setValue(props.name, x)}
+      value={Number(value)}
+      onChange={(x) => setValue(props.name, x)}
       margin={formProps.margin}
       size={formProps.size}
       disabled={formProps.busy || props.disabled}
