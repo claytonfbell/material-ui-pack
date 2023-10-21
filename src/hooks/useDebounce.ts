@@ -8,5 +8,5 @@ export function useDebounce(
   useEffect(() => {
     const timeout = setTimeout(effect, ms)
     return () => clearTimeout(timeout)
-  }, [deps])
+  }, [deps, effect, ms])
 }

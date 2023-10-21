@@ -55,7 +55,7 @@ export function FormProvider<T extends object>(formProps: FormProps<T>) {
       state,
       setState,
     }),
-    [formProps, getValue, setValue]
+    [formProps, getValue, setState, setValue, state]
   )
   return <Context.Provider value={value} {...formProps} />
 }
