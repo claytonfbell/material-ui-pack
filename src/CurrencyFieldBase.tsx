@@ -30,7 +30,8 @@ export const CurrencyFieldBase = React.forwardRef<
     onChange,
     value,
     allowNegative = false,
-    autoDecimal = isMobile,
+    // default to autoDecimal on mobile when allowNegative is false
+    autoDecimal = isMobile && originalProps.allowNegative !== true,
     inPennies = false,
     currency,
     ...props
