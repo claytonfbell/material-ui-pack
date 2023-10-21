@@ -15,52 +15,62 @@ export type SelectRegionBaseProps = Omit<SelectComboBaseProps, "options"> & {
 export const SelectRegionBase = React.forwardRef<
   HTMLDivElement,
   SelectRegionBaseProps
->(({ country = "USA", countryIsoType = "isoAlpha3", ...props }, ref) => {
-  let countryItem = useMemo(
-    () =>
-      countryRegionData.find(c => {
-        return countryIsoType === "isoAlpha3"
-          ? c.countryShortCode === countries.alpha3ToAlpha2(country)
-          : c.countryShortCode === country
-      }),
-    [country, countryIsoType]
-  )
+>(
+  (
+    {
+      country = "USA",
+      countryIsoType = "isoAlpha3",
+      fiftyStatesAndDC,
+      ...props
+    },
+    ref
+  ) => {
+    let countryItem = useMemo(
+      () =>
+        countryRegionData.find((c) => {
+          return countryIsoType === "isoAlpha3"
+            ? c.countryShortCode === countries.alpha3ToAlpha2(country)
+            : c.countryShortCode === country
+        }),
+      [country, countryIsoType]
+    )
 
-  const options = useMemo(() => {
-    const exclude = [
-      "AA",
-      "AE",
-      "AP",
-      "AS",
-      "FM",
-      "GU",
-      "MH",
-      "MP",
-      "PW",
-      "PR",
-      "VI",
-    ]
+    const options = useMemo(() => {
+      const exclude = [
+        "AA",
+        "AE",
+        "AP",
+        "AS",
+        "FM",
+        "GU",
+        "MH",
+        "MP",
+        "PW",
+        "PR",
+        "VI",
+      ]
 
-    if (countryItem !== null && countryItem !== undefined) {
-      return countryItem.regions
-        .filter(region => {
-          return (
-            countryItem?.countryShortCode !== "US" ||
-            props.fiftyStatesAndDC !== true ||
-            !exclude.includes(region.shortCode)
-          )
-        })
-        .map(region => ({
-          value: region.shortCode,
-          label: region.name,
-        }))
-    }
-    return []
-  }, [countryItem, props.fiftyStatesAndDC])
+      if (countryItem !== null && countryItem !== undefined) {
+        return countryItem.regions
+          .filter((region) => {
+            return (
+              countryItem?.countryShortCode !== "US" ||
+              fiftyStatesAndDC !== true ||
+              !exclude.includes(region.shortCode)
+            )
+          })
+          .map((region) => ({
+            value: region.shortCode,
+            label: region.name,
+          }))
+      }
+      return []
+    }, [countryItem, fiftyStatesAndDC])
 
-  return props.fiftyStatesAndDC && countryItem?.countryShortCode === "US" ? (
-    <SelectBase {...props} ref={ref} options={options} />
-  ) : (
-    <SelectComboBase {...props} ref={ref} options={options} matchValue />
-  )
-})
+    return fiftyStatesAndDC && countryItem?.countryShortCode === "US" ? (
+      <SelectBase {...props} ref={ref} options={options} />
+    ) : (
+      <SelectComboBase {...props} ref={ref} options={options} matchValue />
+    )
+  }
+)

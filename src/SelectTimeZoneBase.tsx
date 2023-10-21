@@ -2,11 +2,11 @@ import {
   getAllTimezones,
   getTimezonesForCountry,
 } from "countries-and-timezones"
-import moment from "moment-timezone"
 import React from "react"
 import { countries } from "./countries"
 import { SelectComboBase, SelectComboBaseProps } from "./SelectComboBase"
 import { CountryIsoType } from "./SelectCountryBase"
+import dayjs from "./dayjs"
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type SelectTimeZoneBaseProps = Omit<SelectComboBaseProps, "options"> & {
@@ -33,9 +33,7 @@ export const SelectTimeZoneBase = React.forwardRef<
     return (zones === null ? getAllTimezoneNames() : zones).map((v: string) => {
       let label
       try {
-        label = `${v} ${moment()
-          .tz(v)
-          .format("(h:mm A) Z")}`
+        label = `${v} ${dayjs().tz(v).format("(h:mm A) Z")}`
       } catch {
         label = v
       }
@@ -51,11 +49,11 @@ export const SelectTimeZoneBase = React.forwardRef<
 })
 
 function getAllTimezoneNames(): string[] {
-  return Object.entries(getAllTimezones()).map(x => x[1].name)
+  return Object.entries(getAllTimezones()).map((x) => x[1].name)
 }
 
 function getTimeZonesWithCountry(countryIsoCode: string): string[] {
   const zones = getTimezonesForCountry(countryIsoCode) || []
 
-  return zones.map(x => x.name)
+  return zones.map((x) => x.name)
 }

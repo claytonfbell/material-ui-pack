@@ -1,132 +1,65 @@
-import CloseIcon from "@mui/icons-material/Close"
-import EventIcon from "@mui/icons-material/Event"
-import { MobileDatePicker } from "@mui/lab"
-import DateAdapter from "@mui/lab/AdapterMoment"
-import LocalizationProvider from "@mui/lab/LocalizationProvider"
-import IconButton from "@mui/material/IconButton"
-import TextField from "@mui/material/TextField"
+import { DatePicker, DatePickerProps } from "@mui/x-date-pickers/DatePicker"
+import dayjs, { Dayjs } from "dayjs"
 import startCase from "lodash/startCase"
-import moment, { Moment } from "moment-timezone"
-import React, { useState } from "react"
+import React, { useMemo } from "react"
+import { DateTimeLocalizationProvider } from "./DateTimeLocalizationProvider"
 
-type Value = string | null
-type OnChange = (newValue: Value) => void
-
-export interface DatePickerBaseProps {
-  value?: Value
-  onChange?: OnChange
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type DatePickerBaseProps = Omit<
+  DatePickerProps<Dayjs>,
+  "onChange" | "value"
+> & {
   name?: string
-  label?: React.ReactNode
-  disabled?: boolean
+  onChange: (value: string | null) => void
+  value: string | null
   clearable?: boolean
-  required?: boolean
-  margin?: "none" | "dense" | "normal" | undefined
-  size?: "medium" | "small"
-  debugNamedInput?: boolean
-  id?: string
+  size?: "small" | "medium"
+  margin?: "none" | "dense" | "normal"
 }
 
 export const DatePickerBase = React.forwardRef<
   HTMLDivElement,
   DatePickerBaseProps
->(
-  (
-    { value: propsValue, onChange: propsOnChange, size = "small", ...props },
-    ref
-  ) => {
-    // manage state if no value and onChange
-    const [state, setState] = React.useState<Value>(null)
-    const value = propsValue !== undefined ? propsValue : state
-    const onChange: OnChange =
-      propsOnChange !== undefined ? propsOnChange : (x) => setState(x)
+>((originalProps, ref) => {
+  const {
+    value: stringValue,
+    onChange,
+    clearable,
+    format = "LL",
+    name,
+    size,
+    margin,
+    ...props
+  } = originalProps
 
-    const dateTime = React.useMemo(
-      () => (value === null ? null : moment(value as string)),
-      [value]
-    )
-    const label =
-      props.label === undefined ? startCase(props.name) : props.label
+  const value = useMemo(() => {
+    return stringValue === null ? null : dayjs(stringValue)
+  }, [stringValue])
 
-    // control open state when clearable
-    const handleClear = () => onChange(null)
-    const [open, setOpen] = useState(false)
-    const extraProps = React.useMemo(
-      () =>
-        props.clearable
-          ? {
-              open,
-              onClose: () => setOpen(false),
-              onDoubleClick: () => setOpen(true),
-            }
-          : {},
-      [open, props.clearable]
-    )
-
-    function outgoing(v: Moment | null) {
-      return v?.format("YYYY-MM-DD") || null
-    }
-
-    return (
-      <LocalizationProvider dateAdapter={DateAdapter}>
-        {props.name !== undefined ? (
-          <input
-            type={props.debugNamedInput ? "text" : "hidden"}
-            name={props.name}
-            value={outgoing(dateTime) || ""}
-            onChange={() => {}}
-          />
-        ) : null}
-
-        {/* autoOk */}
-        {/* format={"   LL"} */}
-
-        <MobileDatePicker
-          {...extraProps}
-          ref={ref}
-          clearable={props.clearable}
-          label={label}
-          disabled={props.disabled}
-          value={dateTime}
-          onChange={(v: any) => {
-            onChange(outgoing(v))
-          }}
-          open={open}
-          onClose={() => setOpen(false)}
-          renderInput={(params: any) => (
-            <TextField
-              id={props.id}
-              fullWidth={true}
-              size={size}
-              margin={props.margin}
-              required={props.required}
-              variant="outlined"
-              {...params}
-              InputProps={{
-                ...params.InputProps,
-                endAdornment: (
-                  <>
-                    {props.clearable && dateTime !== null && (
-                      <IconButton
-                        onClick={handleClear}
-                        disabled={params.disabled}
-                      >
-                        <CloseIcon fontSize="inherit" />
-                      </IconButton>
-                    )}
-                    <IconButton
-                      onClick={() => setOpen(true)}
-                      disabled={params.disabled}
-                    >
-                      <EventIcon fontSize="inherit" />
-                    </IconButton>
-                    {params.InputProps?.endAdornment}
-                  </>
-                ),
-              }}
-            />
-          )}
-        />
-      </LocalizationProvider>
-    )
+  function handleChange(newValue: Dayjs | null) {
+    onChange(newValue === null ? null : newValue.format("YYYY-MM-DD"))
   }
-)
+
+  const label = props.label === undefined ? startCase(name) : props.label
+
+  return (
+    <DateTimeLocalizationProvider>
+      <DatePicker
+        {...props}
+        ref={ref}
+        label={label}
+        value={value}
+        onChange={handleChange}
+        format={format}
+        slotProps={{
+          textField: {
+            name,
+            size,
+            margin,
+          },
+          field: { clearable, onClear: () => onChange(null) },
+        }}
+      />
+    </DateTimeLocalizationProvider>
+  )
+})

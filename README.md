@@ -236,8 +236,6 @@ This component uses [country-region-data](https://www.npmjs.com/package/country-
 
 ![example](./demo/examples/SelectTimeZoneExample.gif)
 
-This component uses [moment-timezone](https://momentjs.com/timezone/) to build a full list of time zones.
-
 | Property       | Description                    |
 | -------------- | ------------------------------ |
 | country        | To optionall filter the zones. |

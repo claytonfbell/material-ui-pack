@@ -1,82 +1,67 @@
-import AccessTimeIcon from "@mui/icons-material/AccessTime"
-import DateAdapter from "@mui/lab/AdapterMoment"
-import LocalizationProvider from "@mui/lab/LocalizationProvider"
-import MUITimePicker from "@mui/lab/MobileTimePicker"
-import IconButton from "@mui/material/IconButton"
-import TextField from "@mui/material/TextField"
+import { TimePicker, TimePickerProps } from "@mui/x-date-pickers/TimePicker"
+import dayjs, { Dayjs } from "dayjs"
 import startCase from "lodash/startCase"
-import moment from "moment-timezone"
-import React, { useState } from "react"
+import React, { useMemo } from "react"
+import { DateTimeLocalizationProvider } from "./DateTimeLocalizationProvider"
 
-type Value = string | null
-type OnChange = (newValue: Value) => void
-
-export interface TimePickerBaseProps {
-  value: Value
-  onChange: OnChange
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type TimePickerBaseProps = Omit<
+  TimePickerProps<Dayjs>,
+  "onChange" | "value"
+> & {
   name?: string
-  label?: React.ReactNode
-  disabled?: boolean
-  required?: boolean
-  margin?: "none" | "dense" | "normal" | undefined
-  size?: "medium" | "small"
-  debugNamedInput?: boolean
-  minuteIncrements?: 1 | 5 | 10 | 15 | 20 | 30 | 60
+  onChange: (value: string | null) => void
+  value: string | null
+  clearable?: boolean
+  size?: "small" | "medium"
+  margin?: "none" | "dense" | "normal"
 }
+
 export const TimePickerBase = React.forwardRef<
   HTMLDivElement,
   TimePickerBaseProps
->((props, ref) => {
-  const [open, setOpen] = useState(false)
+>((originalProps, ref) => {
+  const {
+    value: stringValue,
+    onChange,
+    format,
+    clearable,
+    name,
+    size,
+    margin,
+    ...props
+  } = originalProps
 
-  const label = props.label === undefined ? startCase(props.name) : props.label
+  const value = useMemo(() => {
+    return stringValue === null
+      ? null
+      : dayjs(dayjs().format("YYYY-MM-DD") + " " + stringValue)
+  }, [stringValue])
+
+  function handleChange(newValue: Dayjs | null) {
+    onChange(newValue === null ? null : newValue.format("HH:mm:00"))
+  }
+
+  const label = props.label === undefined ? startCase(name) : props.label
 
   return (
-    <LocalizationProvider dateAdapter={DateAdapter}>
-      <MUITimePicker
+    <DateTimeLocalizationProvider>
+      <TimePicker
+        {...props}
         ref={ref}
         label={label}
-        disabled={props.disabled}
-        value={moment(`${moment().format("YYYY-MM-DD")} ${props.value}`)}
-        onChange={(e: any) => {
-          props.onChange(e === null ? null : e.format("HH:mm:00"))
+        value={value}
+        onChange={handleChange}
+        format={format}
+        slotProps={{
+          textField: {
+            name,
+            size,
+            margin,
+          },
+          field: { clearable, onClear: () => onChange(null) },
         }}
-        shouldDisableTime={(timeValue: any, clockType: any) => {
-          if (props.minuteIncrements === undefined) {
-            return false
-          }
-          if (clockType === "minutes" && timeValue % props.minuteIncrements) {
-            return true
-          }
-          return false
-        }}
-        open={open}
-        onClose={() => setOpen(false)}
-        renderInput={(params: any) => (
-          <TextField
-            fullWidth
-            size={props.size}
-            margin={props.margin}
-            required={props.required}
-            variant="outlined"
-            {...params}
-            InputProps={{
-              ...params.InputProps,
-              endAdornment: (
-                <>
-                  <IconButton
-                    onClick={() => setOpen(true)}
-                    disabled={params.disabled}
-                  >
-                    <AccessTimeIcon fontSize="inherit" />
-                  </IconButton>
-                  {params.InputProps?.endAdornment}
-                </>
-              ),
-            }}
-          />
-        )}
       />
-    </LocalizationProvider>
+    </DateTimeLocalizationProvider>
   )
 })

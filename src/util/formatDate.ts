@@ -1,4 +1,4 @@
-import moment from "moment-timezone"
+import dayjs from "../dayjs"
 
 export const formatDate = (ymd: string) =>
-  moment(`${ymd} 00:00:00`).tz(moment.tz.guess()).format("LL")
+  dayjs(`${ymd} 00:00:00`).tz(dayjs.tz.guess()).format("LL")

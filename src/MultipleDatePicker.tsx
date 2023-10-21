@@ -1,7 +1,3 @@
-import DateAdapter from "@mui/lab/AdapterMoment"
-import CalendarPicker from "@mui/lab/CalendarPicker"
-import LocalizationProvider from "@mui/lab/LocalizationProvider"
-import PickersDay from "@mui/lab/PickersDay"
 import Button from "@mui/material/Button"
 import Chip from "@mui/material/Chip"
 import Dialog from "@mui/material/Dialog"
@@ -9,8 +5,10 @@ import DialogContent from "@mui/material/DialogContent"
 import Grid from "@mui/material/Grid"
 import { useTheme } from "@mui/material/styles"
 import useMediaQuery from "@mui/material/useMediaQuery"
-import moment, { Moment } from "moment"
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar"
+import dayjs, { Dayjs } from "dayjs"
 import React, { useState } from "react"
+import { DateTimeLocalizationProvider } from "./DateTimeLocalizationProvider"
 import { useDebounce } from "./hooks/useDebounce"
 
 interface Props {
@@ -23,12 +21,12 @@ interface Props {
 const FORMAT = "YYYY-MM-DD"
 
 export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
-  const [latest, setLatest] = useState<Moment | null>(() => {
-    return dates.length > 0 ? moment(dates[0]) : null
+  const [latest, setLatest] = useState<Dayjs | null>(() => {
+    return dates.length > 0 ? dayjs(dates[0]) : null
   })
-  const [add, setAdd] = useState<Moment | null>(null)
+  const [add, setAdd] = useState<Dayjs | null>(null)
 
-  function handleSelect(date: Moment) {
+  function handleSelect(date: Dayjs) {
     setLatest(date)
     setAdd(date)
   }
@@ -43,9 +41,7 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
         if (isSelected) {
           onChange([...newDates])
         } else {
-          onChange(
-            [...newDates, value].sort((a, b) => moment(a).diff(moment(b)))
-          )
+          onChange([...newDates, value].sort((a, b) => dayjs(a).diff(dayjs(b))))
         }
       }
     },
@@ -71,28 +67,31 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
       <DialogContent>
         <Grid container spacing={2} justifyContent="space-between">
           <Grid item xs={12} sm={8} md={4}>
-            <LocalizationProvider dateAdapter={DateAdapter}>
-              <CalendarPicker
-                date={latest}
-                onChange={(newDate: any) => {
+            <DateTimeLocalizationProvider>
+              <DateCalendar
+                defaultCalendarMonth={latest}
+                onChange={(newDate) => {
                   console.log(newDate)
                 }}
-                renderDay={(x: any) => {
-                  return (
-                    <PickersDay
-                      day={x}
-                      selected={dates.includes(x.format(FORMAT))}
-                      onDaySelect={() => {
+                slotProps={{
+                  day: (ownerState) => {
+                    const d = ownerState.day as Dayjs
+                    return {
+                      onDaySelect: () => {
                         //
-                      }}
-                      onMouseDown={() => handleSelect(x)}
-                      onTouchStart={() => handleSelect(x)}
-                      outsideCurrentMonth={false}
-                    />
-                  )
+                      },
+                      selected: false,
+                      className: dates.includes(d.format(FORMAT))
+                        ? "MuiPickersDay-daySelected Mui-selected"
+                        : "",
+                      onMouseDown: () => handleSelect(d),
+                      onTouchStart: () => handleSelect(d),
+                      outsideCurrentMonth: false,
+                    }
+                  },
                 }}
               />
-            </LocalizationProvider>
+            </DateTimeLocalizationProvider>
           </Grid>
           <Grid item xs={12}>
             {dates.map((date) => (
@@ -102,7 +101,7 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
                   marginRight: theme.spacing(1),
                 }}
                 key={date}
-                label={moment(date).format("l")}
+                label={dayjs(date).format("l")}
                 color="primary"
                 onDelete={() => handleRemove(date)}
               />

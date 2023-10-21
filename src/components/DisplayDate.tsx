@@ -1,7 +1,7 @@
-import { styled } from "@mui/material/styles"
 import Tooltip from "@mui/material/Tooltip"
-import moment from "moment-timezone"
+import { styled } from "@mui/material/styles"
 import React from "react"
+import dayjs from "../dayjs"
 import { formatDate } from "../util/formatDate"
 
 const StyledSpan = styled("span")``
@@ -11,7 +11,7 @@ interface Props {
   fromNow?: boolean
 }
 export function DisplayDate(props: Props) {
-  const fromNow = (ymd: string) => moment(ymd).fromNow()
+  const fromNow = (ymd: string) => dayjs(ymd).fromNow()
   return (
     <StyledSpan
       sx={{

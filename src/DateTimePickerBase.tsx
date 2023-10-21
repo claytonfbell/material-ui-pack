@@ -1,150 +1,68 @@
-import CloseIcon from "@mui/icons-material/Close"
-import EventIcon from "@mui/icons-material/Event"
-import { MobileDateTimePicker } from "@mui/lab"
-import DateAdapter from "@mui/lab/AdapterMoment"
-import LocalizationProvider from "@mui/lab/LocalizationProvider"
-import IconButton from "@mui/material/IconButton"
-import TextField from "@mui/material/TextField"
+import {
+  DateTimePicker,
+  DateTimePickerProps,
+} from "@mui/x-date-pickers/DateTimePicker"
+import dayjs, { Dayjs } from "dayjs"
 import startCase from "lodash/startCase"
-import moment, { Moment } from "moment-timezone"
-import React, { useState } from "react"
-import { getTimeZone } from "./util/formatDateTime"
+import React, { useMemo } from "react"
+import { DateTimeLocalizationProvider } from "./DateTimeLocalizationProvider"
 
-type Value = string | null
-type OnChange = (newValue: Value) => void
-
-export interface DateTimePickerBaseProps {
-  value?: Value
-  onChange?: OnChange
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type DateTimePickerBaseProps = Omit<
+  DateTimePickerProps<Dayjs>,
+  "onChange" | "value"
+> & {
   name?: string
-  label?: React.ReactNode
-  disabled?: boolean
+  onChange: (value: string | null) => void
+  value: string | null
   clearable?: boolean
-  required?: boolean
-  timeZone?: string
-  margin?: "none" | "dense" | "normal" | undefined
-  size?: "medium" | "small"
-  debugNamedInput?: boolean
-  id?: string
-  minuteIncrements?: 1 | 5 | 10 | 15 | 20 | 30 | 60
+  size?: "small" | "medium"
+  margin?: "none" | "dense" | "normal"
 }
 
 export const DateTimePickerBase = React.forwardRef<
   HTMLDivElement,
   DateTimePickerBaseProps
->(
-  (
-    { value: propsValue, onChange: propsOnChange, size = "small", ...props },
-    ref
-  ) => {
-    // manage state if no value and onChange
-    const [state, setState] = React.useState<Value>(null)
-    const value = propsValue !== undefined ? propsValue : state
-    const onChange: OnChange =
-      propsOnChange !== undefined ? propsOnChange : (x) => setState(x)
+>((originalProps, ref) => {
+  const {
+    value: stringValue,
+    onChange,
+    format = "lll",
+    clearable,
+    name,
+    size,
+    margin,
+    ...props
+  } = originalProps
 
-    const label =
-      props.label === undefined ? startCase(props.name) : props.label
+  const value = useMemo(() => {
+    return stringValue === null ? null : dayjs(stringValue)
+  }, [stringValue])
 
-    const dateTime = React.useMemo(
-      () =>
-        value === null
-          ? null
-          : props.timeZone !== undefined
-          ? moment(value || undefined).tz(getTimeZone(props.timeZone))
-          : moment(value || undefined),
-      [value, props.timeZone]
-    )
-
-    // control open state when clearable
-    const handleClear = () => onChange(null)
-    const [open, setOpen] = useState(false)
-    const extraProps = React.useMemo(
-      () =>
-        props.clearable
-          ? {
-              open,
-              onClose: () => setOpen(false),
-              onDoubleClick: () => setOpen(true),
-            }
-          : {},
-      [setOpen, open, props.clearable]
-    )
-
-    function outgoing(v: Moment | null) {
-      return v?.toISOString(true) || null
-    }
-
-    return (
-      <>
-        <LocalizationProvider dateAdapter={DateAdapter}>
-          {props.name !== undefined ? (
-            <input
-              type={props.debugNamedInput ? "text" : "hidden"}
-              name={props.name}
-              value={outgoing(dateTime) || ""}
-              onChange={() => {}}
-            />
-          ) : null}
-
-          <MobileDateTimePicker
-            {...extraProps}
-            ref={ref}
-            label={label}
-            disabled={props.disabled}
-            value={dateTime || null}
-            onChange={(v: any) => {
-              onChange(outgoing(v))
-            }}
-            open={open}
-            onClose={() => setOpen(false)}
-            clearable={props.clearable}
-            inputFormat="lll z"
-            shouldDisableTime={(timeValue: any, clockType: any) => {
-              if (props.minuteIncrements === undefined) {
-                return false
-              }
-              if (
-                clockType === "minutes" &&
-                timeValue % props.minuteIncrements
-              ) {
-                return true
-              }
-              return false
-            }}
-            renderInput={(p: any) => (
-              <TextField
-                id={props.id}
-                required={p.required}
-                fullWidth
-                size={size}
-                margin={p.margin}
-                variant="outlined"
-                {...p}
-                InputProps={{
-                  ...p.InputProps,
-                  endAdornment: (
-                    <>
-                      {props.clearable && dateTime !== null && (
-                        <IconButton onClick={handleClear} disabled={p.disabled}>
-                          <CloseIcon fontSize="inherit" />
-                        </IconButton>
-                      )}
-                      <IconButton
-                        onClick={() => setOpen(true)}
-                        disabled={p.disabled}
-                      >
-                        <EventIcon fontSize="inherit" />
-                      </IconButton>
-                      {p.InputProps?.endAdornment}
-                    </>
-                  ),
-                }}
-              />
-            )}
-          />
-        </LocalizationProvider>
-      </>
-    )
+  function handleChange(newValue: Dayjs | null) {
+    onChange(newValue === null ? null : newValue.toISOString())
   }
-)
+
+  const label = props.label === undefined ? startCase(name) : props.label
+
+  return (
+    <DateTimeLocalizationProvider>
+      <DateTimePicker
+        {...props}
+        ref={ref}
+        label={label}
+        value={value}
+        onChange={handleChange}
+        format={format}
+        slotProps={{
+          textField: {
+            name,
+            size,
+            margin,
+          },
+          field: { clearable, onClear: () => onChange(null) },
+        }}
+      />
+    </DateTimeLocalizationProvider>
+  )
+})

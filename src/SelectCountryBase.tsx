@@ -14,17 +14,22 @@ export type SelectCountryBaseProps = Omit<SelectComboBaseProps, "options"> & {
 export const SelectCountryBase = React.forwardRef<
   HTMLDivElement,
   SelectCountryBaseProps
->((props, ref) => {
+>((originalProps, ref) => {
+  const {
+    isoType: originalIsoType,
+    unitedStatesAndCanadaOnly,
+    ...props
+  } = originalProps
+
   const isoType: CountryIsoType =
-    props.isoType !== undefined ? props.isoType : "isoAlpha3"
+    originalIsoType !== undefined ? originalIsoType : "isoAlpha3"
 
   function getOptions() {
     const c = countries.getNames("en")
     return Object.keys(c)
       .filter(
         (isoAlpha2) =>
-          props.unitedStatesAndCanadaOnly !== true ||
-          ["US", "CA"].includes(isoAlpha2)
+          unitedStatesAndCanadaOnly !== true || ["US", "CA"].includes(isoAlpha2)
       )
       .map((isoAlpha2) => ({
         value:
@@ -35,7 +40,7 @@ export const SelectCountryBase = React.forwardRef<
       }))
   }
 
-  return props.unitedStatesAndCanadaOnly ? (
+  return unitedStatesAndCanadaOnly ? (
     <SelectBase {...props} ref={ref} options={getOptions()} />
   ) : (
     <SelectComboBase {...props} ref={ref} options={getOptions()} matchValue />
