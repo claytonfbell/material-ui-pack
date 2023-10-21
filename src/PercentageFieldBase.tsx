@@ -12,6 +12,7 @@ export type PercentageFieldBaseProps = Omit<
   value: number
   onChange: OnChange
   decimals?: 2 | 3 | 4 | 5 | 6
+  max?: number
 }
 
 type OnChange = (newValue: number) => void
@@ -23,19 +24,20 @@ export const PercentageFieldBase = React.forwardRef(
       value,
       allowNegative = false,
       decimals = 2,
+      max = 1,
       ...props
     } = originalProps
 
     const incoming = useCallback(
       (v: number) => {
-        return (v * 100).toFixed(decimals - 2).replace(/-/g, "")
+        return (Math.min(v, max) * 100).toFixed(decimals - 2).replace(/-/g, "")
       },
-      [decimals]
+      [decimals, max]
     )
 
     function outgoing(v: string, isNegative: boolean): number {
       v = (Number(v) / 100).toFixed(decimals)
-      let x = Number(v)
+      let x = Math.min(Number(v), max)
       return allowNegative && isNegative ? -x : x
     }
 
@@ -65,12 +67,12 @@ export const PercentageFieldBase = React.forwardRef(
         newValue = parts[0] + "." + parts[1]
       }
 
-      // cents can only be 2 digits
+      // limit the number of decimal places
       parts = newValue.split(".")
       if (parts.length > 1) {
-        let cents = parts[1]
-        cents = cents.slice(0, 2)
-        newValue = parts[0] + "." + cents
+        let fraction = parts[1]
+        fraction = fraction.slice(0, decimals - 2)
+        newValue = parts[0] + "." + fraction
       }
 
       setInputState(newValue)
