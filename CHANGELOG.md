@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.7.2](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.1...v5.7.2) (2023-10-21)
+
+
+### Bug Fixes
+
+* reduced lodash dependency ([8a8857e](https://github.com/claytonfbell/material-ui-pack/commit/8a8857eb15568c3748c7f4039e30201fb0f26c45))
+
 ### [5.7.1](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.0...v5.7.1) (2023-10-21)
 
 
