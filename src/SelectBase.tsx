@@ -1,38 +1,37 @@
-import TextField from "@mui/material/TextField"
+import TextField, { TextFieldProps } from "@mui/material/TextField"
 import startCase from "lodash/startCase"
 import React from "react"
 import { OptionType } from "./SelectComboBase"
 
 export type SelectValue = string | number | boolean | null
 
-export interface SelectBaseProps {
-  name?: string
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type SelectBaseProps = Omit<TextFieldProps, "onChange" | "value"> & {
   value: SelectValue
   onChange: (value: SelectValue) => void
   options: OptionType[]
-  label?: React.ReactNode
-  fullWidth?: boolean
-  disabled?: boolean
   allowNull?: boolean
   nullLabel?: string
-  required?: boolean
-  margin?: "none" | "dense" | "normal" | undefined
-  size?: "medium" | "small"
-  /**
-   * @deprecated - uses value type of whatever is passed into options array
-   */
-  isNumeric?: boolean
 }
 
 export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
-  ({ value, disabled, size = "small", margin, ...props }, ref) => {
+  (originalProps, ref) => {
+    const {
+      value,
+      onChange,
+      options,
+      allowNull,
+      nullLabel: originalNullLabel,
+      ...props
+    } = originalProps
+
     const label =
       props.label === undefined ? startCase(props.name) : props.label
 
     const nullLabel =
-      props.nullLabel !== undefined
-        ? props.nullLabel
-        : props.allowNull
+      originalNullLabel !== undefined
+        ? originalNullLabel
+        : allowNull
         ? "NONE"
         : "SELECT"
 
@@ -43,13 +42,13 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
       }>
     ) {
       const stringValue = event.target.value as string
-      const newValue = props.options.find(
+      const newValue = options.find(
         (o) => String(o.value) === stringValue
       )?.value
-      props.onChange(newValue === undefined ? null : newValue)
+      onChange(newValue === undefined ? null : newValue)
     }
 
-    const isNullOptionDisabled = !props.allowNull && value !== null
+    const isNullOptionDisabled = !allowNull && value !== null
 
     // we use string values in the material-ui select component
     const selectedValue: string =
@@ -57,20 +56,15 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
 
     return (
       <TextField
+        label={label}
+        {...props}
         InputLabelProps={{
           shrink: true,
         }}
         select
         ref={ref}
-        label={label}
-        disabled={disabled}
         fullWidth
-        variant="outlined"
-        size={size}
-        margin={margin}
-        required={props.required}
         value={selectedValue}
-        name={props.name}
         onChange={handleChange}
         SelectProps={{
           native: true,
@@ -79,11 +73,11 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
         <option
           disabled={isNullOptionDisabled}
           value="null"
-          onSelect={() => props.onChange(null)}
+          onSelect={() => onChange(null)}
         >
           {nullLabel}
         </option>
-        {props.options.map((o, x) => (
+        {options.map((o, x) => (
           <option key={x} value={String(o.value)} disabled={o.disabled}>
             {o.label}
           </option>
