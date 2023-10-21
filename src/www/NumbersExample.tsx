@@ -13,7 +13,10 @@ export function NumbersExample() {
   const [state, setState] = useState({
     percentage1: 0.255,
     percentage2: 0.25,
-    currencyField: 9.99,
+    currencyField1: 1.99,
+    currencyField2: 2.99,
+    currencyField3: 3.99,
+    currencyField4: 4.99,
     pennies: 999,
     numberField: 2,
   })
@@ -39,10 +42,10 @@ export function NumbersExample() {
         </Grid>
         <Grid item xs={6} sm={3} md={2}>
           <Stack spacing={1}>
-            <CurrencyField name="currencyField" currency="USD" />
-            <CurrencyField name="currencyField" autoDecimal currency="EUR" />
-            <CurrencyField name="currencyField" allowNegative currency="JPY" />
-            <CurrencyField name="currencyField" allowNegative autoDecimal />
+            <CurrencyField name="currencyField1" currency="USD" />
+            <CurrencyField name="currencyField2" autoDecimal currency="EUR" />
+            <CurrencyField name="currencyField3" allowNegative currency="JPY" />
+            <CurrencyField name="currencyField4" allowNegative autoDecimal />
             <CurrencyField
               name="pennies"
               allowNegative
