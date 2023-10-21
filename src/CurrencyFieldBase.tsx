@@ -1,3 +1,5 @@
+import Box from "@mui/material/Box"
+import Stack from "@mui/material/Stack"
 import TextField, { TextFieldProps } from "@mui/material/TextField"
 import { useTheme } from "@mui/material/styles"
 import useMediaQuery from "@mui/material/useMediaQuery"
@@ -35,44 +37,36 @@ export const CurrencyFieldBase = React.forwardRef<
   } = originalProps
 
   function incoming(v: number): string {
-    return inPennies ? (v / 100).toFixed(2) : v.toFixed(2)
+    return (inPennies ? (v / 100).toFixed(2) : v.toFixed(2)).replace(/-/g, "")
   }
-  function outgoing(v: string): number {
+  function outgoing(v: string, isNegative: boolean): number {
     v = Number(v).toFixed(2)
     if (inPennies) {
       v = v.replace(/\./g, "")
     }
-    return Number(v)
+    let x = Number(v)
+    return allowNegative && isNegative ? -x : x
   }
 
   const [inputState, setInputState] = React.useState<string>(
     incoming(value || 0)
   )
+  const [isNegative, setIsNegative] = React.useState<boolean>(value < 0)
 
   const [hasFocus, setHasFocus] = React.useState(false)
 
   // update inputState when value changes if not focused
   useEffect(() => {
     if (!hasFocus) {
-      setInputState(incoming(value || 0))
+      setInputState(incoming(value))
     }
+    setIsNegative(value < 0)
   }, [value, hasFocus])
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     let newValue = event.target.value
     // strip out all non-numeric characters
-    newValue = newValue.replace(/[^0-9.-]/g, "")
-
-    // only allow negative as first character when allowNegative is true
-    if (allowNegative) {
-      if (newValue.length > 0 && newValue[0] === "-") {
-        newValue = "-" + newValue.replace(/-/g, "")
-      } else {
-        newValue = newValue.replace(/-/g, "")
-      }
-    } else {
-      newValue = newValue.replace(/-/g, "")
-    }
+    newValue = newValue.replace(/[^0-9.]/g, "")
 
     // only allow 1 decimal point
     let parts = newValue.split(".")
@@ -84,7 +78,9 @@ export const CurrencyFieldBase = React.forwardRef<
     if (autoDecimal) {
       newValue = newValue.replace(/\./g, "")
       newValue = newValue.padStart(3, "0")
-      newValue = Number(newValue.slice(0, -2)) + "." + newValue.slice(-2)
+      let dollars = newValue.slice(0, -2)
+      dollars = dollars.replace(/^0+/, "")
+      newValue = dollars + "." + newValue.slice(-2)
     }
 
     // cents can only be 2 digits
@@ -97,7 +93,7 @@ export const CurrencyFieldBase = React.forwardRef<
 
     setInputState(newValue)
 
-    const x = outgoing(newValue)
+    const x = outgoing(newValue, isNegative)
     if (x !== value) {
       onChange(x)
     }
@@ -111,14 +107,32 @@ export const CurrencyFieldBase = React.forwardRef<
   }
 
   function handleBlur(event: React.FocusEvent<HTMLInputElement>) {
-    let newValue = event.target.value
-    newValue = Number(newValue).toFixed(2)
-    setInputState(newValue)
+    setInputState(incoming(value))
     setHasFocus(false)
 
     // run the original onBlur if it was passed
     if (props.onBlur !== undefined) {
       props.onBlur(event)
+    }
+  }
+
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    // if they press minus, toggle the negative state
+    if (allowNegative && event.key === "-") {
+      event.preventDefault()
+      setIsNegative(!isNegative)
+
+      const x = outgoing(inputState, !isNegative)
+      if (x !== value) {
+        onChange(x)
+      }
+
+      return
+    }
+
+    // run the original onKeyDown if it was passed
+    if (props.onKeyDown !== undefined) {
+      props.onKeyDown(event)
     }
   }
 
@@ -129,7 +143,7 @@ export const CurrencyFieldBase = React.forwardRef<
 
   // mobile keyboard doesn't have a decimal point or negative sign
   // so we need to allow the user to type those characters unless autoDecimal is true and allowNegative is false
-  const pattern = !allowNegative && autoDecimal ? "[0-9]*" : "^([-0-9.]+)"
+  const pattern = !allowNegative && autoDecimal ? "[0-9]*" : undefined
 
   return (
     <TextField
@@ -141,10 +155,17 @@ export const CurrencyFieldBase = React.forwardRef<
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}
+      onKeyDown={handleKeyDown}
       InputProps={{
-        // add the currency symbol as a start adornment if currency is defined
-        startAdornment:
-          currency !== undefined ? getCurrencySymbol(currency) : undefined,
+        // add the minus and currency symbol as a start adornment if currency is defined
+        startAdornment: (
+          <Stack direction="row" spacing={1}>
+            {allowNegative && isNegative ? <Box>-</Box> : null}
+            {currency !== undefined ? (
+              <Box>{getCurrencySymbol(currency)}</Box>
+            ) : null}
+          </Stack>
+        ),
         ...props.InputProps,
       }}
       inputProps={{
