@@ -85,7 +85,7 @@ function AppContent() {
             </Panel>
             <br />
             <br />
-            <DarkModeToggle />
+            <DarkModeToggle variant="icon" />
           </Grid>
           <Grid>
             <Button

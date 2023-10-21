@@ -4,17 +4,36 @@ import { ThemeProvider } from "@mui/material/styles"
 import Typography from "@mui/material/Typography"
 import { DarkModeToggle, DarkModeProvider, useDarkMode } from "../index-package"
 import React from "react"
+import Stack from "@mui/material/Stack"
 
 function DarkModeExampleContent() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
-  const theme = createMuiThemeWithDarkMode({})
+  const theme = createMuiThemeWithDarkMode({
+    typography: {
+      htmlFontSize: 10,
+    },
+  })
 
   return (
     <ThemeProvider theme={theme}>
-      <DarkModeToggle labelOff="Dark Mode is OFF" labelOn="Dark Mode is ON" />
       <Paper>
         <Box padding={6}>
-          <Typography>Hello World</Typography>
+          <Stack direction="row" spacing={2}>
+            <Box>
+              <DarkModeToggle
+                labelOff="Dark Mode is OFF"
+                labelOn="Dark Mode is ON"
+              />
+            </Box>
+            <Box>
+              <DarkModeToggle
+                variant="icon"
+                labelOff="Dark Mode is OFF"
+                labelOn="Dark Mode is ON"
+              />
+            </Box>
+          </Stack>
+          <Typography fontSize={48}>Hello World</Typography>
         </Box>
       </Paper>
     </ThemeProvider>
