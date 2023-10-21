@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.6.3](https://github.com/claytonfbell/material-ui-pack/compare/v5.6.2...v5.6.3) (2023-10-21)
+
+
+### Bug Fixes
+
+* use number pad when autoDecimal and !allowNegative ([ef26db7](https://github.com/claytonfbell/material-ui-pack/commit/ef26db7767f0f1b8989d70b4cc141b0685a2475e))
+
 ### [5.6.2](https://github.com/claytonfbell/material-ui-pack/compare/v5.6.1...v5.6.2) (2023-10-21)
 
 ## [5.6.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.5.9...v5.6.0) (2023-10-21)
