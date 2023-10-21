@@ -9,6 +9,7 @@ export type TimePickerBaseProps = Omit<
   TimePickerProps<Dayjs>,
   "onChange" | "value"
 > & {
+  id?: string
   name?: string
   onChange: (value: string | null) => void
   value: string | null
@@ -26,6 +27,7 @@ export const TimePickerBase = React.forwardRef<
     onChange,
     format,
     clearable,
+    id,
     name,
     size,
     margin,
@@ -55,6 +57,7 @@ export const TimePickerBase = React.forwardRef<
         format={format}
         slotProps={{
           textField: {
+            id,
             name,
             size,
             margin,

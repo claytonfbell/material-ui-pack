@@ -9,6 +9,7 @@ export type DatePickerBaseProps = Omit<
   DatePickerProps<Dayjs>,
   "onChange" | "value"
 > & {
+  id?: string
   name?: string
   onChange: (value: string | null) => void
   value: string | null
@@ -26,6 +27,7 @@ export const DatePickerBase = React.forwardRef<
     onChange,
     clearable,
     format = "LL",
+    id,
     name,
     size,
     margin,
@@ -53,6 +55,7 @@ export const DatePickerBase = React.forwardRef<
         format={format}
         slotProps={{
           textField: {
+            id,
             name,
             size,
             margin,
