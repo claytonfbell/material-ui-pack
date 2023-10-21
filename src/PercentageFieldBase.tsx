@@ -1,134 +1,179 @@
-import InputAdornment from "@mui/material/InputAdornment"
-import React from "react"
-import { TextFieldBase } from "./TextFieldBase"
+import TextField, { TextFieldProps } from "@mui/material/TextField"
+import Typography from "@mui/material/Typography"
+import startCase from "lodash/startCase"
+import React, { useCallback, useEffect } from "react"
+
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type PercentageFieldBaseProps = Omit<
+  TextFieldProps,
+  "onChange" | "value"
+> & {
+  allowNegative?: boolean
+  value: number
+  onChange: OnChange
+  decimals?: 2 | 3 | 4 | 5 | 6
+}
 
 type OnChange = (newValue: number) => void
 
-export interface PercentageFieldBaseProps {
-  name?: string
-  value?: number
-  onChange?: OnChange
-  label?: React.ReactNode
-  disabled?: boolean
-  decimals?: 2 | 3 | 4 | 5 | 6
-  required?: boolean
-  fullWidth?: boolean
-  margin?: "none" | "dense" | "normal" | undefined
-  size?: "medium" | "small"
-  debugNamedInput?: boolean
-  max?: number
-  min?: number
-}
 export const PercentageFieldBase = React.forwardRef(
-  (
-    {
-      name,
-      value: propsValue,
-      onChange: propsOnChange,
-      debugNamedInput,
-      size = "small",
+  (originalProps: PercentageFieldBaseProps, ref: any) => {
+    const {
+      onChange,
+      value,
+      allowNegative = false,
       decimals = 2,
-      max = 1,
-      min = 0,
       ...props
-    }: PercentageFieldBaseProps,
-    ref: any
-  ) => {
-    // manage state if no value and onChange
-    const [unmanagedState, setUnmanagedState] = React.useState<number>(0)
-    const value = propsValue !== undefined ? propsValue : unmanagedState
-    const onChange: OnChange =
-      propsOnChange !== undefined ? propsOnChange : x => setUnmanagedState(x)
+    } = originalProps
 
-    const fmt = (s: string) => {
-      let str = s.replace(/[^\d.]/g, "")
-      if (decimals < 3) {
-        str = str.replace(/\./g, "")
-      }
-      let parts = str.split(".")
-      if (parts.length > 2) {
-        parts = parts.slice(0, 2)
-      }
-      if (parts.length === 2 && parts[1].length > decimals - 2) {
-        parts[1] = parts[1].substr(0, decimals - 2)
-      }
-      str = parts.join(".")
-      return str
+    const incoming = useCallback(
+      (v: number) => {
+        return (v * 100).toFixed(decimals - 2).replace(/-/g, "")
+      },
+      [decimals]
+    )
+
+    function outgoing(v: string, isNegative: boolean): number {
+      v = (Number(v) / 100).toFixed(decimals)
+      let x = Number(v)
+      return allowNegative && isNegative ? -x : x
     }
 
-    const toNumber = React.useCallback(
-      (v: string | null) => (v === null ? 0 : Number(v)),
-      []
+    const [inputState, setInputState] = React.useState<string>(
+      incoming(value || 0)
     )
+    const [isNegative, setIsNegative] = React.useState<boolean>(value < 0)
 
-    const toPercent = React.useCallback(
-      (v: string) => {
-        let newValue = parseFloat(
-          (toNumber(v) * 100).toFixed(decimals - 2)
-        ).toString()
-        if (newValue === "0") {
-          newValue = ""
+    const [hasFocus, setHasFocus] = React.useState(false)
+
+    // update inputState when value changes if not focused
+    useEffect(() => {
+      if (!hasFocus) {
+        setInputState(incoming(value))
+      }
+      setIsNegative(value < 0)
+    }, [value, hasFocus])
+
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+      let newValue = event.target.value
+      // strip out all non-numeric characters
+      newValue = newValue.replace(/[^0-9.]/g, "")
+
+      // only allow 1 decimal point
+      let parts = newValue.split(".")
+      if (parts.length > 2) {
+        newValue = parts[0] + "." + parts[1]
+      }
+
+      // cents can only be 2 digits
+      parts = newValue.split(".")
+      if (parts.length > 1) {
+        let cents = parts[1]
+        cents = cents.slice(0, 2)
+        newValue = parts[0] + "." + cents
+      }
+
+      setInputState(newValue)
+
+      const x = outgoing(newValue, isNegative)
+      if (x !== value) {
+        onChange(x)
+      }
+    }
+
+    function handleFocus(event: React.FocusEvent<HTMLInputElement>) {
+      setHasFocus(true)
+      if (props.onFocus !== undefined) {
+        props.onFocus(event)
+      }
+    }
+
+    function handleBlur(event: React.FocusEvent<HTMLInputElement>) {
+      setInputState(incoming(value))
+      setHasFocus(false)
+
+      // run the original onBlur if it was passed
+      if (props.onBlur !== undefined) {
+        props.onBlur(event)
+      }
+    }
+
+    function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+      // if they press minus, toggle the negative state
+      if (event.key === "-") {
+        event.preventDefault()
+        if (!allowNegative) {
+          return
         }
-        return newValue
-      },
-      [toNumber, decimals]
-    )
+        setIsNegative(!isNegative)
+        const x = outgoing(inputState, !isNegative)
+        if (x !== value) {
+          onChange(x)
+        }
+        return
+      }
 
-    const toDecimal = React.useCallback(
-      (v: string) =>
-        Math.min(
-          max,
-          Math.max(min, Number((toNumber(v) / 100).toFixed(decimals)))
-        ),
-      [toNumber, decimals]
-    )
+      // run the original onKeyDown if it was passed
+      if (props.onKeyDown !== undefined) {
+        props.onKeyDown(event)
+      }
+    }
 
-    const defaultValue = String(value)
+    const label =
+      props.name !== undefined && props.label === undefined
+        ? startCase(props.name)
+        : props.label
 
-    const [state, setState] = React.useState(toPercent(defaultValue))
-    React.useEffect(() => {
-      setState(toPercent(defaultValue))
-    }, [defaultValue, toPercent])
-
-    React.useEffect(() => {
-      setState(toPercent(defaultValue))
-    }, [defaultValue, toPercent])
+    // mobile keyboard doesn't have a decimal point or negative sign
+    // so we need to allow the user to type those characters unless autoDecimal is true and allowNegative is false
+    const pattern = !allowNegative && decimals === 2 ? "[0-9]*" : undefined
 
     return (
       <>
-        {name !== undefined ? (
-          <input
-            type={debugNamedInput ? "text" : "hidden"}
-            name={name}
-            value={toDecimal(state)}
-            onChange={() => {}}
-          />
-        ) : null}
-
-        <TextFieldBase
+        <TextField
+          label={label}
+          inputMode="decimal"
           {...props}
-          name={name}
-          fullWidth={props.fullWidth}
           ref={ref}
-          required={props.required}
-          label={props.label}
-          disabled={props.disabled}
-          value={state}
-          onChange={newValue => setState(fmt(newValue))}
-          onBlur={e => onChange(toDecimal(e.currentTarget.value))}
+          value={inputState}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
           InputProps={{
-            endAdornment: <InputAdornment position="end">%</InputAdornment>,
+            // add the minus and currency symbol as a start adornment if currency is defined
+            startAdornment:
+              allowNegative && isNegative ? (
+                <Typography
+                  sx={{
+                    color: isNegative ? "red" : undefined,
+                  }}
+                >
+                  -
+                </Typography>
+              ) : undefined,
+            endAdornment: (
+              <Typography
+                sx={{
+                  color: isNegative ? "red" : undefined,
+                }}
+              >
+                %
+              </Typography>
+            ),
+            ...props.InputProps,
           }}
-          inputProps={
-            decimals < 3
-              ? {
-                  pattern: "[0-9]*",
-                  step: "0.01",
-                }
-              : undefined
-          }
-          margin={props.margin}
-          size={size}
+          inputProps={{
+            pattern,
+            step: "0.01",
+            ...props.inputProps,
+            sx: {
+              // right align the text by default
+              textAlign: "right",
+              color: isNegative ? "red" : undefined,
+              ...props.inputProps?.sx,
+            },
+          }}
         />
       </>
     )

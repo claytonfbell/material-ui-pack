@@ -1,10 +1,10 @@
-import Box from "@mui/material/Box"
 import Stack from "@mui/material/Stack"
 import TextField, { TextFieldProps } from "@mui/material/TextField"
+import Typography from "@mui/material/Typography"
 import { useTheme } from "@mui/material/styles"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import startCase from "lodash/startCase"
-import React, { useEffect } from "react"
+import React, { useCallback, useEffect } from "react"
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type CurrencyFieldBaseProps = Omit<
@@ -37,9 +37,13 @@ export const CurrencyFieldBase = React.forwardRef<
     ...props
   } = originalProps
 
-  function incoming(v: number): string {
-    return (inPennies ? (v / 100).toFixed(2) : v.toFixed(2)).replace(/-/g, "")
-  }
+  const incoming = useCallback(
+    (v: number) => {
+      return (inPennies ? (v / 100).toFixed(2) : v.toFixed(2)).replace(/-/g, "")
+    },
+    [inPennies]
+  )
+
   function outgoing(v: string, isNegative: boolean): number {
     v = Number(v).toFixed(2)
     if (inPennies) {
@@ -119,15 +123,16 @@ export const CurrencyFieldBase = React.forwardRef<
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     // if they press minus, toggle the negative state
-    if (allowNegative && event.key === "-") {
+    if (event.key === "-") {
       event.preventDefault()
+      if (!allowNegative) {
+        return
+      }
       setIsNegative(!isNegative)
-
       const x = outgoing(inputState, !isNegative)
       if (x !== value) {
         onChange(x)
       }
-
       return
     }
 
@@ -161,9 +166,23 @@ export const CurrencyFieldBase = React.forwardRef<
         // add the minus and currency symbol as a start adornment if currency is defined
         startAdornment: (
           <Stack direction="row" spacing={1}>
-            {allowNegative && isNegative ? <Box>-</Box> : null}
+            {allowNegative && isNegative ? (
+              <Typography
+                sx={{
+                  color: isNegative ? "red" : undefined,
+                }}
+              >
+                -
+              </Typography>
+            ) : null}
             {currency !== undefined ? (
-              <Box>{getCurrencySymbol(currency)}</Box>
+              <Typography
+                sx={{
+                  color: isNegative ? "red" : undefined,
+                }}
+              >
+                {getCurrencySymbol(currency)}
+              </Typography>
             ) : null}
           </Stack>
         ),
@@ -176,6 +195,7 @@ export const CurrencyFieldBase = React.forwardRef<
         sx: {
           // right align the text by default
           textAlign: "right",
+          color: isNegative ? "red" : undefined,
           ...props.inputProps?.sx,
         },
       }}

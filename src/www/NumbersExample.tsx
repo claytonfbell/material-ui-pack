@@ -13,6 +13,7 @@ export function NumbersExample() {
   const [state, setState] = useState({
     percentage1: 0.255,
     percentage2: 0.25,
+    percentage3: 0.25,
     currencyField1: 1.99,
     currencyField2: 2.99,
     currencyField3: 3.99,
@@ -35,10 +36,11 @@ export function NumbersExample() {
           <DebugBox object={state} />
         </Grid>
         <Grid item xs={6} sm={3} md={2}>
-          <PercentageField name="percentage1" decimals={3} />
-        </Grid>
-        <Grid item xs={6} sm={3} md={2}>
-          <PercentageField name="percentage2" decimals={2} />
+          <Stack spacing={1}>
+            <PercentageField name="percentage2" decimals={2} />
+            <PercentageField name="percentage1" decimals={3} allowNegative />
+            <PercentageField name="percentage3" decimals={4} />
+          </Stack>
         </Grid>
         <Grid item xs={6} sm={3} md={2}>
           <Stack spacing={1}>
