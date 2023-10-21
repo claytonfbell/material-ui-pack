@@ -49,7 +49,7 @@ export const CurrencyFieldBase = React.forwardRef<
     if (inPennies) {
       v = v.replace(/\./g, "")
     }
-    let x = Number(v)
+    const x = Number(v)
     return allowNegative && isNegative ? -x : x
   }
 
@@ -66,7 +66,7 @@ export const CurrencyFieldBase = React.forwardRef<
       setInputState(incoming(value))
     }
     setIsNegative(value < 0)
-  }, [value, hasFocus])
+  }, [value, hasFocus, incoming])
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     let newValue = event.target.value

@@ -37,7 +37,7 @@ export const PercentageFieldBase = React.forwardRef(
 
     function outgoing(v: string, isNegative: boolean): number {
       v = (Number(v) / 100).toFixed(decimals)
-      let x = Math.min(Number(v), max)
+      const x = Math.min(Number(v), max)
       return allowNegative && isNegative ? -x : x
     }
 
@@ -54,7 +54,7 @@ export const PercentageFieldBase = React.forwardRef(
         setInputState(incoming(value))
       }
       setIsNegative(value < 0)
-    }, [value, hasFocus])
+    }, [value, hasFocus, incoming])
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
       let newValue = event.target.value
