@@ -29,7 +29,7 @@ export const DatePickerBase = React.forwardRef<
     value: stringValue,
     onChange,
     clearable,
-    format = "l",
+    format = "M/D/YYYY",
     id,
     name,
     size,
