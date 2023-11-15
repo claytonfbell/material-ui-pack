@@ -6,6 +6,7 @@ import dayjs, { Dayjs } from "dayjs"
 import startCase from "lodash.startcase"
 import React, { useMemo } from "react"
 import { DateTimeLocalizationProvider } from "./DateTimeLocalizationProvider"
+import { PickersActionBarAction } from "@mui/x-date-pickers/PickersActionBar"
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type DateTimePickerBaseProps = Omit<
@@ -20,6 +21,7 @@ export type DateTimePickerBaseProps = Omit<
   size?: "small" | "medium"
   margin?: "none" | "dense" | "normal"
   required?: boolean
+  adapterLocale?: string
 }
 
 export const DateTimePickerBase = React.forwardRef<
@@ -29,13 +31,14 @@ export const DateTimePickerBase = React.forwardRef<
   const {
     value: stringValue,
     onChange,
-    format = "lll",
+    format = "M/D/YYYY h:mm A",
     clearable,
     id,
     name,
     size,
     margin,
     required,
+    adapterLocale = "en",
     ...props
   } = originalProps
 
@@ -49,8 +52,13 @@ export const DateTimePickerBase = React.forwardRef<
 
   const label = props.label === undefined ? startCase(name) : props.label
 
+  const actions: PickersActionBarAction[] = ["accept"]
+  if (clearable) {
+    actions.unshift("clear")
+  }
+
   return (
-    <DateTimeLocalizationProvider>
+    <DateTimeLocalizationProvider adapterLocale={adapterLocale}>
       <DateTimePicker
         {...props}
         ref={ref}
@@ -59,6 +67,11 @@ export const DateTimePickerBase = React.forwardRef<
         onChange={handleChange}
         format={format}
         slotProps={{
+          ...props.slotProps,
+          actionBar: {
+            actions,
+            ...props.slotProps?.actionBar,
+          },
           textField: {
             id,
             name,
@@ -66,7 +79,11 @@ export const DateTimePickerBase = React.forwardRef<
             margin,
             required,
           },
-          field: { clearable, onClear: () => onChange(null) },
+          field: {
+            clearable,
+            onClear: () => onChange(null),
+            shouldRespectLeadingZeros: true,
+          },
         }}
       />
     </DateTimeLocalizationProvider>

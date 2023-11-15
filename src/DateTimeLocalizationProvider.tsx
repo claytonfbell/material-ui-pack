@@ -5,11 +5,18 @@ import React from "react"
 
 interface Props {
   children: React.ReactNode
+  adapterLocale?: string
 }
 
-export function DateTimeLocalizationProvider({ children }: Props) {
+export function DateTimeLocalizationProvider({
+  children,
+  adapterLocale,
+}: Props) {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider
+      dateAdapter={AdapterDayjs}
+      adapterLocale={adapterLocale}
+    >
       {children}
     </LocalizationProvider>
   )
