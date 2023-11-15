@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.7.8](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.7...v5.7.8) (2023-11-15)
+
+
+### Bug Fixes
+
+* changed default format on DatePicker ([531219a](https://github.com/claytonfbell/material-ui-pack/commit/531219a350d8edd4c598724d06ccee5a49db1fb3))
+
 ### [5.7.7](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.6...v5.7.7) (2023-11-15)
 
 
