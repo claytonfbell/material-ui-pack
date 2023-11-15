@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.7.7](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.6...v5.7.7) (2023-11-15)
+
+
+### Bug Fixes
+
+* Fixed missing clear buttons on date / time pickers, added adapterLocale option ([731befc](https://github.com/claytonfbell/material-ui-pack/commit/731befcad1dee8102f773dcf4580f711db723adb))
+
 ### [5.7.6](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.5...v5.7.6) (2023-10-21)
 
 
