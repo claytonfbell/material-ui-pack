@@ -49,6 +49,8 @@ export interface ResponsiveTableProps<DataItem> {
   totalRow?: React.ReactNode
   onEdit?: (dataItem: DataItem) => void
   onDelete?: (dataItem: DataItem) => void
+  displayEdit?: (dataItem: DataItem) => boolean
+  displayDelete?: (dataItem: DataItem) => boolean
   onSelectChange?: (selected: DataItem[], dataItem: DataItem | null) => void
   selectionDisabled?: (dataItem: DataItem) => boolean
   selected?: DataItem[]
@@ -309,7 +311,9 @@ export function ResponsiveTable<T extends object>({
 
                 {onEdit !== undefined || onDelete !== undefined ? (
                   <TableCell align="right" style={{ whiteSpace: "nowrap" }}>
-                    {onEdit !== undefined ? (
+                    {onEdit !== undefined &&
+                    (props.displayEdit === undefined ||
+                      props.displayEdit(dataItem)) ? (
                       <IconButton
                         aria-label="edit"
                         className="iconButton"
@@ -319,7 +323,9 @@ export function ResponsiveTable<T extends object>({
                         <EditIcon />
                       </IconButton>
                     ) : null}
-                    {onDelete !== undefined ? (
+                    {onDelete !== undefined &&
+                    (props.displayDelete === undefined ||
+                      props.displayDelete(dataItem)) ? (
                       <IconButton
                         aria-label="delete"
                         className="iconButton"
