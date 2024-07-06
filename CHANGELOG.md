@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.7.9](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.8...v5.7.9) (2024-07-06)
+
+
+### Bug Fixes
+
+* added props to conditionaly display edit and delete buttons in responsive tables ([b17a767](https://github.com/claytonfbell/material-ui-pack/commit/b17a767bdbe2df31b9b8b25a91a150f0a499671f))
+
 ### [5.7.8](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.7...v5.7.8) (2023-11-15)
 
 
