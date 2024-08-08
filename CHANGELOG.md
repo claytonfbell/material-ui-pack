@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.7.10](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.9...v5.7.10) (2024-08-08)
+
+
+### Bug Fixes
+
+* allow sx props on select components ([133b07a](https://github.com/claytonfbell/material-ui-pack/commit/133b07af49e5ab7fbd1e684a9de8c7e093598f68))
+
 ### [5.7.9](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.8...v5.7.9) (2024-07-06)
 
 
