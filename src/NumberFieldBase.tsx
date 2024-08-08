@@ -2,6 +2,7 @@ import AddIcon from "@mui/icons-material/Add"
 import RemoveIcon from "@mui/icons-material/Remove"
 import IconButton from "@mui/material/IconButton"
 import InputAdornment from "@mui/material/InputAdornment"
+import { SxProps } from "@mui/material/styles"
 import startCase from "lodash.startcase"
 import React from "react"
 import { TextFieldBase } from "./TextFieldBase"
@@ -24,6 +25,7 @@ export interface NumberFieldBaseProps {
   max?: number
   setZeroToNull?: boolean
   incrementBy?: number
+  sx?: SxProps
 }
 export const NumberFieldBase = React.forwardRef(
   (

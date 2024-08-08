@@ -1,4 +1,5 @@
 import Autocomplete from "@mui/material/Autocomplete"
+import { SxProps } from "@mui/material/styles"
 import TextField from "@mui/material/TextField"
 import startCase from "lodash.startcase"
 import React from "react"
@@ -21,6 +22,7 @@ export interface BaseSelectComboProps {
   required?: boolean
   margin?: "none" | "dense" | "normal" | undefined
   size?: "medium" | "small"
+  sx?: SxProps
 }
 
 export interface SelectComboBaseProps extends BaseSelectComboProps {
@@ -104,6 +106,7 @@ export const SelectComboBase = React.forwardRef<
               {...params}
               ref={ref}
               sx={{
+                ...props.sx,
                 "& input::-ms-clear": {
                   display: "none",
                 },

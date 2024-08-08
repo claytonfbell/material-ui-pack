@@ -1,9 +1,9 @@
+import { PickersActionBarAction } from "@mui/x-date-pickers/PickersActionBar"
 import { TimePicker, TimePickerProps } from "@mui/x-date-pickers/TimePicker"
 import dayjs, { Dayjs } from "dayjs"
 import startCase from "lodash.startcase"
 import React, { useMemo } from "react"
 import { DateTimeLocalizationProvider } from "./DateTimeLocalizationProvider"
-import { PickersActionBarAction } from "@mui/x-date-pickers/PickersActionBar"
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type TimePickerBaseProps = Omit<
@@ -72,6 +72,7 @@ export const TimePickerBase = React.forwardRef<
             ...props.slotProps?.actionBar,
           },
           textField: {
+            ...props.slotProps?.textField,
             id,
             name,
             size,
@@ -79,6 +80,7 @@ export const TimePickerBase = React.forwardRef<
             required,
           },
           field: {
+            ...props.slotProps?.field,
             clearable,
             onClear: () => onChange(null),
             shouldRespectLeadingZeros: true,
