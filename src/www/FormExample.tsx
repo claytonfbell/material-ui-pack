@@ -51,7 +51,7 @@ export function FormExample() {
               country: {
                 type: "country",
                 isoType: "isoAlpha2",
-                unitedStatesAndCanadaOnly: true,
+                unitedStatesAndCanadaOnly: false,
               },
               zip: "text",
               timeZone: {

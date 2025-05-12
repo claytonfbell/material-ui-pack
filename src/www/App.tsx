@@ -36,6 +36,7 @@ import { SubmitButtonExample } from "./SubmitButtonExample"
 import { SubmitButtonSnippet } from "./SubmitButtonSnippet"
 import { TextFieldExample } from "./TextFieldExample"
 import { TextFieldSnippet } from "./TextFieldSnippet"
+import Stack from "@mui/material/Stack"
 
 function AppContent() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -67,20 +68,29 @@ function AppContent() {
             <br />
             <Panel color="primary">
               <PanelBody>
-                <a href="https://badge.fury.io/js/material-ui-pack">
-                  <img
-                    src="https://badge.fury.io/js/material-ui-pack.svg"
-                    alt="npm version"
-                    width={126}
-                    height={20}
-                  />
-                </a>
-                <Box marginTop={2}>
-                  <Typography>
-                    <strong>Install for MUI v5</strong>
-                  </Typography>
-                  <code>npm install material-ui-pack@5</code>
-                </Box>
+                <Stack spacing={3}>
+                  <a href="https://badge.fury.io/js/material-ui-pack">
+                    <img
+                      src="https://badge.fury.io/js/material-ui-pack.svg"
+                      alt="npm version"
+                      width={126}
+                      height={20}
+                    />
+                  </a>
+                  <Box marginTop={2}>
+                    <Typography>
+                      <strong>Install for MUI v6</strong>
+                    </Typography>
+                    <code>npm install material-ui-pack@6</code>
+                  </Box>
+
+                  <Box marginTop={2}>
+                    <Typography>
+                      <strong>Install for MUI v5</strong>
+                    </Typography>
+                    <code>npm install material-ui-pack@5</code>
+                  </Box>
+                </Stack>
               </PanelBody>
             </Panel>
             <br />

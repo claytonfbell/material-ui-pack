@@ -34,7 +34,7 @@ export const SelectCountryBase = React.forwardRef<
       .map((isoAlpha2) => ({
         value:
           isoType === "isoAlpha3"
-            ? countries.alpha2ToAlpha3(isoAlpha2)
+            ? countries.alpha2ToAlpha3(isoAlpha2) ?? isoAlpha2
             : isoAlpha2,
         label: c[isoAlpha2],
       }))

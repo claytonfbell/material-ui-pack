@@ -1,4 +1,4 @@
-import countryRegionData from "country-region-data"
+import { allCountries } from "country-region-data"
 import React, { useMemo } from "react"
 import { countries } from "./countries"
 import { SelectBase } from "./SelectBase"
@@ -25,15 +25,14 @@ export const SelectRegionBase = React.forwardRef<
     },
     ref
   ) => {
-    let countryItem = useMemo(
-      () =>
-        countryRegionData.find((c) => {
-          return countryIsoType === "isoAlpha3"
-            ? c.countryShortCode === countries.alpha3ToAlpha2(country)
-            : c.countryShortCode === country
-        }),
-      [country, countryIsoType]
-    )
+    let countryItem = useMemo(() => {
+      return allCountries.find((c) => {
+        const [, countryShortCode] = c
+        return countryIsoType === "isoAlpha3"
+          ? countryShortCode === countries.alpha3ToAlpha2(country)
+          : countryShortCode === country
+      })
+    }, [country, countryIsoType])
 
     const options = useMemo(() => {
       const exclude = [
@@ -51,23 +50,28 @@ export const SelectRegionBase = React.forwardRef<
       ]
 
       if (countryItem !== null && countryItem !== undefined) {
-        return countryItem.regions
+        const [, countryShortCode, regions] = countryItem
+        return regions
           .filter((region) => {
+            const [, shortCode] = region
             return (
-              countryItem?.countryShortCode !== "US" ||
+              countryShortCode !== "US" ||
               fiftyStatesAndDC !== true ||
-              !exclude.includes(region.shortCode)
+              !exclude.includes(shortCode)
             )
           })
-          .map((region) => ({
-            value: region.shortCode,
-            label: region.name,
-          }))
+          .map((region) => {
+            const [name, shortCode] = region
+            return {
+              value: shortCode,
+              label: name,
+            }
+          })
       }
       return []
     }, [countryItem, fiftyStatesAndDC])
 
-    return fiftyStatesAndDC && countryItem?.countryShortCode === "US" ? (
+    return fiftyStatesAndDC && countryItem?.[1] === "US" ? (
       <SelectBase {...props} ref={ref} options={options} />
     ) : (
       <SelectComboBase {...props} ref={ref} options={options} matchValue />
