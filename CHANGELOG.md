@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.10...v6.0.0) (2025-05-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* only tested with mui v6
+
+### Features
+
+* package updates ([3cae909](https://github.com/claytonfbell/material-ui-pack/commit/3cae90946bc8347681bb3f940f014c975c747b52))
+
 ### [5.7.10](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.9...v5.7.10) (2024-08-08)
 
 
