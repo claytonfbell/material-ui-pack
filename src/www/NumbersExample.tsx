@@ -56,6 +56,13 @@ export function NumbersExample() {
               inPennies
               currency="USD"
             />
+            <CurrencyField
+              name="pennies"
+              allowNegative
+              inPennies
+              currency="USD"
+              allowCents={false}
+            />
           </Stack>
         </Grid>
         <Grid item xs={6} sm={3} md={2}>

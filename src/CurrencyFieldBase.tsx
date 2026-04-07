@@ -17,6 +17,7 @@ export type CurrencyFieldBaseProps = Omit<
   inPennies?: boolean
   onChange: (value: number) => void
   value: number
+  allowCents?: boolean
 }
 
 export const CurrencyFieldBase = React.forwardRef<
@@ -33,19 +34,35 @@ export const CurrencyFieldBase = React.forwardRef<
     // default to autoDecimal on mobile when allowNegative is false
     autoDecimal = isMobile && originalProps.allowNegative !== true,
     inPennies = false,
+    allowCents = true,
     currency,
     ...props
   } = originalProps
 
   const incoming = useCallback(
     (v: number) => {
-      return (inPennies ? (v / 100).toFixed(2) : v.toFixed(2)).replace(/-/g, "")
+      const decimalPlaces = allowCents ? 2 : 0
+      return (
+        inPennies
+          ? (v / 100).toLocaleString("en-US", {
+              minimumFractionDigits: decimalPlaces,
+              maximumFractionDigits: decimalPlaces,
+            })
+          : v.toLocaleString("en-US", {
+              minimumFractionDigits: decimalPlaces,
+              maximumFractionDigits: decimalPlaces,
+            })
+      ).replace(/-/g, "")
     },
-    [inPennies]
+    [inPennies, allowCents]
   )
 
   function outgoing(v: string, isNegative: boolean): number {
-    v = Number(v).toFixed(2)
+    v = Number(v.replace(/,/g, "")).toFixed(2)
+    if (!allowCents) {
+      // round to nearest whole number if cents are not allowed
+      v = Math.round(Number(v)).toFixed(2)
+    }
     if (inPennies) {
       v = v.replace(/\./g, "")
     }
@@ -71,7 +88,12 @@ export const CurrencyFieldBase = React.forwardRef<
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     let newValue = event.target.value
     // strip out all non-numeric characters
-    newValue = newValue.replace(/[^0-9.]/g, "")
+    newValue = newValue.replace(/[^0-9.,]/g, "")
+
+    // if allowCents is false, remove the decimal point and everything after it
+    if (!allowCents) {
+      newValue = newValue.split(".")[0]
+    }
 
     // only allow 1 decimal point
     let parts = newValue.split(".")
