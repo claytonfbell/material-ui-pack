@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.0.1](https://github.com/claytonfbell/material-ui-pack/compare/v6.0.0...v6.0.1) (2026-04-07)
+
+
+### Bug Fixes
+
+* improvements to CurrencyFieldBase - allowCents and format large values with commas ([308f648](https://github.com/claytonfbell/material-ui-pack/commit/308f648350bc1ceabc9bbe0872dc821fab1191b5))
+
 ## [6.0.0](https://github.com/claytonfbell/material-ui-pack/compare/v5.7.10...v6.0.0) (2025-05-12)
 
 
