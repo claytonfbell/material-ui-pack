@@ -30,7 +30,11 @@ export const PercentageFieldBase = React.forwardRef(
 
     const incoming = useCallback(
       (v: number) => {
-        return (Math.min(v, max) * 100).toFixed(decimals - 2).replace(/-/g, "")
+        return (Math.min(v, max) * 100)
+          .toLocaleString(undefined, {
+            maximumFractionDigits: decimals - 2,
+          })
+          .replace(/-/g, "")
       },
       [decimals, max]
     )
