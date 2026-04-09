@@ -162,18 +162,18 @@ export function ResponsiveTable<T extends object>({
                     spacing={2}
                     justifyContent="space-between"
                   >
-                    <Grid item>
+                    <Grid>
                       <span className="label">{x.label}</span>
                     </Grid>
-                    <Grid item>{x.render(dataItem)}</Grid>
+                    <Grid>{x.render(dataItem)}</Grid>
                   </Grid>
                 )
               })}
 
               {onEdit !== undefined || onDelete !== undefined ? (
                 <Grid container spacing={2} justifyContent="space-between">
-                  <Grid item></Grid>
-                  <Grid item>
+                  <Grid></Grid>
+                  <Grid>
                     {onEdit !== undefined ? (
                       <IconButton
                         aria-label="edit"

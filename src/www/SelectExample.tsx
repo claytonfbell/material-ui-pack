@@ -22,10 +22,10 @@ export function SelectExample() {
   return (
     <Form state={state} setState={setState} onSubmit={() => {}}>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <DebugBox object={state} />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <Select
             name="selectOne"
             options={["one", true, 1, 2, 3].map((value) => ({
@@ -35,7 +35,7 @@ export function SelectExample() {
             allowNull
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <SelectCombo
             name="selectCombo"
             options={["one", "two", "three"].map((x) => ({
@@ -44,17 +44,17 @@ export function SelectExample() {
             }))}
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <SelectCountry name="country" isoType="isoAlpha2" />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <SelectRegion
             name="region"
             countryIsoType="isoAlpha2"
             country={state.country}
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <SelectTimeZone
             name="timeZone"
             countryIsoType="isoAlpha2"

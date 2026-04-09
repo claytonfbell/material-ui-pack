@@ -33,10 +33,10 @@ export function NumbersExample() {
       onSubmit={() => setBusy(true)}
     >
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <DebugBox object={state} />
         </Grid>
-        <Grid item xs={6} sm={3} md={2}>
+        <Grid size={{ xs: 6, sm: 3, md: 2 }}>
           <Stack spacing={1}>
             <PercentageField name="percentage2" decimals={2} />
             <PercentageField name="percentage1" decimals={3} allowNegative />
@@ -44,7 +44,7 @@ export function NumbersExample() {
             <PercentageField name="percentage4" decimals={6} />
           </Stack>
         </Grid>
-        <Grid item xs={6} sm={3} md={2}>
+        <Grid size={{ xs: 6, sm: 3, md: 2 }}>
           <Stack spacing={1}>
             <CurrencyField name="currencyField1" currency="USD" />
             <CurrencyField name="currencyField2" autoDecimal currency="EUR" />
@@ -65,7 +65,7 @@ export function NumbersExample() {
             />
           </Stack>
         </Grid>
-        <Grid item xs={6} sm={3} md={2}>
+        <Grid size={{ xs: 6, sm: 3, md: 2 }}>
           <NumberField name="numberField" incrementBy={1} min={-5} max={50} />
         </Grid>
       </Grid>

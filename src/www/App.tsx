@@ -14,7 +14,7 @@ import {
   Spacer,
   useDarkMode,
 } from "../index-package"
-import "./App.css"
+// import "./App.css"
 import { CheckboxExample } from "./CheckboxExample"
 import { CheckboxSnippet } from "./CheckboxSnippet"
 import { DarkModeExample } from "./DarkModeExample"
@@ -49,9 +49,9 @@ function AppContent() {
         main: "#69757d",
       },
     },
-    typography: {
-      htmlFontSize: 10,
-    },
+    // typography: {
+    //   //   htmlFontSize: 10,
+    // },
   })
 
   return (
@@ -77,6 +77,13 @@ function AppContent() {
                       height={20}
                     />
                   </a>
+                  <Box marginTop={2}>
+                    <Typography>
+                      <strong>Install for MUI v7</strong>
+                    </Typography>
+                    <code>npm install material-ui-pack@7</code>
+                  </Box>
+
                   <Box marginTop={2}>
                     <Typography>
                       <strong>Install for MUI v6</strong>

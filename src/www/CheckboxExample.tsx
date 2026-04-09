@@ -11,10 +11,10 @@ export function CheckboxExample() {
   return (
     <Form state={state} setState={setState} onSubmit={() => {}}>
       <Grid container spacing={1}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <DebugBox object={state} />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <Checkbox name="checkTheBox" />
         </Grid>
       </Grid>

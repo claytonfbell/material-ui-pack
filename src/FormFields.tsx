@@ -135,7 +135,7 @@ export function FormFields<T extends object>() {
       {/* <Debug object={{ schema }} /> */}
       <Grid container spacing={2}>
         {error !== undefined ? (
-          <Grid item xs={12}>
+          <Grid size={12}>
             <DisplayError error={error} />
           </Grid>
         ) : null}
@@ -150,8 +150,8 @@ export function FormFields<T extends object>() {
                   typeof item === "string"
                     ? { type: item }
                     : typeof item === "function"
-                    ? { type: "custom", render: item }
-                    : item
+                      ? { type: "custom", render: item }
+                      : item
 
                 let { renderAfter, tooltip, collapse, ...gridSpans } =
                   layout !== undefined && layout[key] !== undefined
@@ -178,16 +178,16 @@ export function FormFields<T extends object>() {
                         field.type === "lowercase"
                           ? "lowercase"
                           : field.type === "phone"
-                          ? "phone"
-                          : field.type === "capitalize"
-                          ? "capitalize"
-                          : field.type === "password"
-                          ? "password"
-                          : field.type === "newPassword"
-                          ? "newPassword"
-                          : field.type === "email"
-                          ? "email"
-                          : field.formatter
+                            ? "phone"
+                            : field.type === "capitalize"
+                              ? "capitalize"
+                              : field.type === "password"
+                                ? "password"
+                                : field.type === "newPassword"
+                                  ? "newPassword"
+                                  : field.type === "email"
+                                    ? "email"
+                                    : field.formatter
                       }
                     />
                   )
@@ -249,9 +249,7 @@ export function FormFields<T extends object>() {
                 // wrap node with Grid item, inject renderAfter
                 return element !== null ? (
                   <React.Fragment key={name}>
-                    <Grid item {...gridSpans}>
-                      {element}
-                    </Grid>
+                    <Grid size={gridSpans}>{element}</Grid>
                     {typeof renderAfter === "function"
                       ? renderAfter()
                       : renderAfter}
@@ -266,22 +264,23 @@ export function FormFields<T extends object>() {
             {form.formProps.buttons === true ? (
               <>
                 <Grid
-                  item
-                  {...(layout !== undefined && layout.submitButton !== undefined
-                    ? layout.submitButton
-                    : form.formProps.onCancel !== undefined
-                    ? { xs: 12, sm: 6 } // has cancel button too
-                    : { xs: 12 })} // no cancel button
+                  size={
+                    layout !== undefined && layout.submitButton !== undefined
+                      ? layout.submitButton
+                      : form.formProps.onCancel !== undefined
+                        ? { xs: 12, sm: 6 } // has cancel button too
+                        : { xs: 12 }
+                  } // no cancel button
                 >
                   <SubmitButton />
                 </Grid>
                 {form.formProps.onCancel !== undefined ? (
                   <Grid
-                    item
-                    {...(layout !== undefined &&
-                    layout.submitButton !== undefined
-                      ? layout.cancelButton
-                      : { xs: 12, sm: 6 })}
+                    size={
+                      layout !== undefined && layout.submitButton !== undefined
+                        ? layout.cancelButton
+                        : { xs: 12, sm: 6 }
+                    }
                   >
                     <CancelButton onClick={form.formProps.onCancel} />
                   </Grid>

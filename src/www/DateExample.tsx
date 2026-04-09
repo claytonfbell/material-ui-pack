@@ -49,10 +49,10 @@ export function DateExample() {
     <>
       <Form state={state} setState={setState} onSubmit={() => {}}>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <DebugBox object={state} />
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <Stack spacing={1}>
               <DateTimePicker name="dateTime" timeSteps={{ minutes: 5 }} />
               <DateTimePicker
@@ -63,19 +63,19 @@ export function DateExample() {
               />
             </Stack>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <Stack spacing={1}>
               <DatePicker name="date" />
               <DatePicker name="dateClearable" clearable format="l" />
             </Stack>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <Stack spacing={1}>
               <TimePicker name="time" />
               <TimePicker name="time2" clearable timeSteps={{ minutes: 1 }} />
             </Stack>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <Typography>
               <DisplayDateTime
                 iso8601={state.dateTime}
@@ -83,15 +83,15 @@ export function DateExample() {
               />
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <Typography>
               <DisplayDate ymd={state.date} fromNow={state.fromNow} />
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <Checkbox name="fromNow" />
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <Stack spacing={1}>
               <Tooltip arrow title="This component is only available in v5">
                 <Button

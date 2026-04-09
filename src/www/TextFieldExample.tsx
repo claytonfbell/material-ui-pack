@@ -24,25 +24,25 @@ export function TextFieldExample() {
       onSubmit={() => setBusy(true)}
     >
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <DebugBox object={state} />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField formatter="capitalize" name="capitalize" />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField formatter="phone" name="phone" />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField formatter="lowercase" name="lowercase" />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField formatter="password" name="password" />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField formatter="newPassword" name="newPassword" />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField
             formatter={(str) =>
               Array.from(str)
@@ -54,7 +54,7 @@ export function TextFieldExample() {
             name="customFormat"
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField formatter="email" name="email" />
         </Grid>
       </Grid>

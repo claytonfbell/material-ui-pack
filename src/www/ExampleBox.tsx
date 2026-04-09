@@ -28,12 +28,12 @@ export function ExampleBox(props: ExampleProps) {
         }}
       >
         <Grid container justifyContent="space-between">
-          <Grid item>
+          <Grid>
             <Typography variant="h5" gutterBottom>
               {props.title}
             </Typography>
           </Grid>
-          <Grid item>
+          <Grid>
             <Tooltip title="Show code snippet">
               <IconButton size="small" onClick={() => setShowCode(!showCode)}>
                 <CodeIcon />

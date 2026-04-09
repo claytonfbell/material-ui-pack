@@ -21,13 +21,13 @@ interface Props {
 const FORMAT = "YYYY-MM-DD"
 
 export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
-  const [latest, setLatest] = useState<Dayjs | null>(() => {
-    return dates.length > 0 ? dayjs(dates[0]) : null
-  })
+  //   const [latest, setLatest] = useState<Dayjs | null>(() => {
+  //     return dates.length > 0 ? dayjs(dates[0]) : null
+  //   })
   const [add, setAdd] = useState<Dayjs | null>(null)
 
   function handleSelect(date: Dayjs) {
-    setLatest(date)
+    // setLatest(date)
     setAdd(date)
   }
 
@@ -66,10 +66,9 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
     >
       <DialogContent>
         <Grid container spacing={2} justifyContent="space-between">
-          <Grid item xs={12} sm={8} md={4}>
+          <Grid size={{ xs: 12, sm: 8, md: 4 }}>
             <DateTimeLocalizationProvider>
               <DateCalendar
-                defaultCalendarMonth={latest}
                 onChange={(newDate) => {
                   console.log(newDate)
                 }}
@@ -93,7 +92,7 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
               />
             </DateTimeLocalizationProvider>
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={12}>
             {dates.map((date) => (
               <Chip
                 sx={{
@@ -107,10 +106,10 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
               />
             ))}
           </Grid>
-          <Grid item>
+          <Grid>
             <Button onClick={() => onChange([])}>Clear All</Button>
           </Grid>
-          <Grid item>
+          <Grid>
             <Button onClick={props.onClose}>Close</Button>
           </Grid>
         </Grid>

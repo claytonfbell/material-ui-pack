@@ -15,10 +15,10 @@ export function SubmitButtonExample() {
       onSubmit={() => setBusy(true)}
     >
       <Grid container spacing={2}>
-        <Grid item xs={6} sm={4}>
+        <Grid size={{ xs: 6, sm: 4 }}>
           <SubmitButton>Save</SubmitButton>
         </Grid>
-        <Grid item xs={6} sm={4}>
+        <Grid size={{ xs: 6, sm: 4 }}>
           <CancelButton onClick={() => setBusy(false)}>Cancel</CancelButton>
         </Grid>
       </Grid>

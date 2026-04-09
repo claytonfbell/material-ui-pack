@@ -26,7 +26,7 @@ export function FormExample() {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <Box maxWidth={400}>
           <Form
             state={state}
@@ -69,7 +69,7 @@ export function FormExample() {
                       onChange={(e) =>
                         setState((prev) => ({
                           ...prev,
-                          custom: e.currentTarget.checked,
+                          custom: e.target.checked,
                         }))
                       }
                       name="checkedA"
@@ -95,7 +95,7 @@ export function FormExample() {
           />
         </Box>
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <DebugBox object={{ state }} />
       </Grid>
     </Grid>
