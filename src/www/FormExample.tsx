@@ -29,6 +29,7 @@ export function FormExample() {
       <Grid size={{ xs: 12, sm: 6 }}>
         <Box maxWidth={400}>
           <Form
+            buttons
             state={state}
             setState={setState}
             busy={busy}
