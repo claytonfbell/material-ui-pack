@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.1](https://github.com/claytonfbell/material-ui-pack/compare/v7.0.0...v7.0.1) (2026-04-09)
+
+
+### Bug Fixes
+
+* maximumFractionDigits on percentage field ([f548af3](https://github.com/claytonfbell/material-ui-pack/commit/f548af3aec0a3f0980b4f101cfcb05d83cff5ca8))
+* minor fix to website ([5c25fd6](https://github.com/claytonfbell/material-ui-pack/commit/5c25fd6b52ea42936464dd402d8923137681241b))
+
 ## [7.0.0](https://github.com/claytonfbell/material-ui-pack/compare/v6.0.1...v7.0.0) (2026-04-09)
 
 
