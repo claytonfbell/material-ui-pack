@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.3](https://github.com/claytonfbell/material-ui-pack/compare/v7.0.2...v7.0.3) (2026-04-10)
+
+
+### Bug Fixes
+
+* mobile keyboard can be digits only when !allowCents and !allowNegative ([01dc020](https://github.com/claytonfbell/material-ui-pack/commit/01dc0202a4b2256cae511a3aa4e0e590d1a0e631))
+
 ### [7.0.2](https://github.com/claytonfbell/material-ui-pack/compare/v7.0.1...v7.0.2) (2026-04-10)
 
 
