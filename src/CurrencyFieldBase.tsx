@@ -32,12 +32,16 @@ export const CurrencyFieldBase = React.forwardRef<
     value,
     allowNegative = false,
     // default to autoDecimal on mobile when allowNegative is false
-    autoDecimal = isMobile && originalProps.allowNegative !== true,
+    autoDecimal: autoDecimalProp = isMobile &&
+      originalProps.allowNegative !== true,
     inPennies = false,
     allowCents = true,
     currency,
     ...props
   } = originalProps
+
+  // don't do autoDecimal if not applying cents
+  const autoDecimal = autoDecimalProp && allowCents
 
   const incoming = useCallback(
     (v: number) => {
