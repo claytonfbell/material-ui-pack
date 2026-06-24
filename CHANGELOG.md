@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.4](https://github.com/claytonfbell/material-ui-pack/compare/v7.0.3...v7.0.4) (2026-06-24)
+
+
+### Bug Fixes
+
+* use inputMode instead of pattern for touch keyboard control ([535a6c5](https://github.com/claytonfbell/material-ui-pack/commit/535a6c51becf66b0391f86d0e47c0e14eceafc2b))
+
 ### [7.0.3](https://github.com/claytonfbell/material-ui-pack/compare/v7.0.2...v7.0.3) (2026-04-10)
 
 
