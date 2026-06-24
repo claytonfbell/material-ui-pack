@@ -175,8 +175,8 @@ export const CurrencyFieldBase = React.forwardRef<
 
   // mobile keyboard doesn't have a decimal point or negative sign
   // so we need to allow the user to type those characters unless autoDecimal is true and allowNegative is false
-  const pattern =
-    !allowNegative && (autoDecimal || !allowCents) ? "[0-9]*" : undefined
+  //   const pattern =
+  //     !allowNegative && (autoDecimal || !allowCents) ? "[0-9,]*" : undefined
 
   return (
     <TextField
@@ -216,7 +216,7 @@ export const CurrencyFieldBase = React.forwardRef<
         ...props.InputProps,
       }}
       inputProps={{
-        pattern,
+        inputMode: "numeric",
         step: "0.01",
         ...props.inputProps,
         sx: {
