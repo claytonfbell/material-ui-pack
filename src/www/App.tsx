@@ -7,7 +7,6 @@ import CssBaseline from "@mui/material/CssBaseline"
 import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 import { ThemeProvider } from "@mui/material/styles"
-import { Panel, PanelBody } from "material-ui-bootstrap"
 import {
   DarkModeProvider,
   DarkModeToggle,
@@ -37,6 +36,7 @@ import { SubmitButtonSnippet } from "./SubmitButtonSnippet"
 import { TextFieldExample } from "./TextFieldExample"
 import { TextFieldSnippet } from "./TextFieldSnippet"
 import Stack from "@mui/material/Stack"
+import { Paper } from "@mui/material"
 
 function AppContent() {
   const { createMuiThemeWithDarkMode } = useDarkMode()
@@ -66,40 +66,43 @@ function AppContent() {
               material-ui-pack
             </Typography>
             <br />
-            <Panel color="primary">
-              <PanelBody>
-                <Stack spacing={3}>
-                  <a href="https://badge.fury.io/js/material-ui-pack">
-                    <img
-                      src="https://badge.fury.io/js/material-ui-pack.svg"
-                      alt="npm version"
-                      width={126}
-                      height={20}
-                    />
-                  </a>
-                  <Box sx={{ marginTop: 2 }}>
-                    <Typography>
-                      <strong>Install for MUI v7</strong>
-                    </Typography>
-                    <code>npm install material-ui-pack@7</code>
-                  </Box>
+            <Paper
+              variant="outlined"
+              sx={{
+                padding: 2,
+              }}
+            >
+              <Stack spacing={3}>
+                <a href="https://badge.fury.io/js/material-ui-pack">
+                  <img
+                    src="https://badge.fury.io/js/material-ui-pack.svg"
+                    alt="npm version"
+                    width={126}
+                    height={20}
+                  />
+                </a>
+                <Box sx={{ marginTop: 2 }}>
+                  <Typography>
+                    <strong>Install for MUI v7</strong>
+                  </Typography>
+                  <code>npm install material-ui-pack@7</code>
+                </Box>
 
-                  <Box sx={{ marginTop: 2 }}>
-                    <Typography>
-                      <strong>Install for MUI v6</strong>
-                    </Typography>
-                    <code>npm install material-ui-pack@6</code>
-                  </Box>
+                <Box sx={{ marginTop: 2 }}>
+                  <Typography>
+                    <strong>Install for MUI v6</strong>
+                  </Typography>
+                  <code>npm install material-ui-pack@6</code>
+                </Box>
 
-                  <Box sx={{ marginTop: 2 }}>
-                    <Typography>
-                      <strong>Install for MUI v5</strong>
-                    </Typography>
-                    <code>npm install material-ui-pack@5</code>
-                  </Box>
-                </Stack>
-              </PanelBody>
-            </Panel>
+                <Box sx={{ marginTop: 2 }}>
+                  <Typography>
+                    <strong>Install for MUI v5</strong>
+                  </Typography>
+                  <code>npm install material-ui-pack@5</code>
+                </Box>
+              </Stack>
+            </Paper>
             <br />
             <br />
             <DarkModeToggle variant="icon" />
