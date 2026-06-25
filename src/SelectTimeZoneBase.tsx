@@ -25,10 +25,12 @@ export const SelectTimeZoneBase = React.forwardRef<
       props.countryIsoType === "isoAlpha2"
         ? getTimeZonesWithCountry(props.country)
         : props.country &&
-          props.country.length === 3 &&
-          props.countryIsoType === "isoAlpha3"
-        ? getTimeZonesWithCountry(countries.alpha3ToAlpha2(props.country) ?? "")
-        : getAllTimezoneNames()
+            props.country.length === 3 &&
+            props.countryIsoType === "isoAlpha3"
+          ? getTimeZonesWithCountry(
+              countries.alpha3ToAlpha2(props.country) ?? ""
+            )
+          : getAllTimezoneNames()
 
     return (zones === null ? getAllTimezoneNames() : zones).map((v: string) => {
       let label

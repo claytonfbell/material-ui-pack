@@ -17,17 +17,17 @@ export const PercentageField = React.forwardRef(
   (props: PercentageFieldProps, ref: any) => {
     const { getValue, setValue, formProps } = useForm<any>()
 
-    const value = (React.useMemo(() => getValue(props.name), [
-      getValue,
-      props.name,
-    ]) || 0) as number
+    const value = (React.useMemo(
+      () => getValue(props.name),
+      [getValue, props.name]
+    ) || 0) as number
 
     return (
       <PercentageFieldBase
         {...props}
         ref={ref}
         value={value}
-        onChange={x => setValue(props.name, x)}
+        onChange={(x) => setValue(props.name, x)}
         margin={formProps.margin}
         size={formProps.size}
         disabled={formProps.busy || props.disabled}

@@ -41,7 +41,7 @@ function FormComponent<T extends object>({ ...props }: FormProps<T>) {
         marginTop: theme.spacing(1),
       }}
       noValidate
-      onSubmit={e => {
+      onSubmit={(e) => {
         e.preventDefault()
         if (props.onSubmit !== undefined) {
           props.onSubmit()
@@ -50,7 +50,7 @@ function FormComponent<T extends object>({ ...props }: FormProps<T>) {
           e.stopPropagation()
         }
       }}
-      onKeyPress={e => {
+      onKeyPress={(e) => {
         // prevent form submitting on enter key
         if (e.which === 13 && props.preventSubmitOnEnterKey === true) {
           try {

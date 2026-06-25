@@ -14,17 +14,17 @@ export type SelectRegionProps = Omit<
 export const SelectRegion = React.forwardRef<HTMLDivElement, SelectRegionProps>(
   (props, ref) => {
     const { getValue, setValue, formProps } = useForm<any>()
-    const value = React.useMemo(() => getValue(props.name), [
-      getValue,
-      props.name,
-    ]) as SelectValue
+    const value = React.useMemo(
+      () => getValue(props.name),
+      [getValue, props.name]
+    ) as SelectValue
 
     return (
       <SelectRegionBase
         {...props}
         ref={ref}
         value={value}
-        onChange={x => setValue(props.name, x)}
+        onChange={(x) => setValue(props.name, x)}
         margin={formProps.margin}
         size={formProps.size}
         disabled={formProps.busy || props.disabled}

@@ -18,17 +18,17 @@ export const DateTimePicker = React.forwardRef<
   DateTimePickerProps
 >((props, ref) => {
   const { getValue, setValue, formProps } = useForm<any>()
-  const value = (React.useMemo(() => getValue(props.name), [
-    getValue,
-    props.name,
-  ]) || null) as string | null
+  const value = (React.useMemo(
+    () => getValue(props.name),
+    [getValue, props.name]
+  ) || null) as string | null
 
   return (
     <DateTimePickerBase
       {...props}
       ref={ref}
       value={value}
-      onChange={x => setValue(props.name, x)}
+      onChange={(x) => setValue(props.name, x)}
       margin={formProps.margin}
       size={formProps.size}
       disabled={formProps.busy || props.disabled}

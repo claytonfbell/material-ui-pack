@@ -19,17 +19,17 @@ export const SelectTimeZone = React.forwardRef<
   SelectTimeZoneProps
 >((props, ref) => {
   const { getValue, setValue, formProps } = useForm<any>()
-  const value = React.useMemo(() => getValue(props.name), [
-    getValue,
-    props.name,
-  ]) as SelectValue
+  const value = React.useMemo(
+    () => getValue(props.name),
+    [getValue, props.name]
+  ) as SelectValue
 
   return (
     <SelectTimeZoneBase
       {...props}
       ref={ref}
       value={value}
-      onChange={x => setValue(props.name, x)}
+      onChange={(x) => setValue(props.name, x)}
       margin={formProps.margin}
       size={formProps.size}
       disabled={formProps.busy || props.disabled}
