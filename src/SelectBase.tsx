@@ -32,8 +32,8 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
       originalNullLabel !== undefined
         ? originalNullLabel
         : allowNull
-        ? "NONE"
-        : "SELECT"
+          ? "NONE"
+          : "SELECT"
 
     function handleChange(
       event: React.ChangeEvent<{
@@ -58,16 +58,21 @@ export const SelectBase = React.forwardRef<HTMLDivElement, SelectBaseProps>(
       <TextField
         label={label}
         {...props}
-        InputLabelProps={{
-          shrink: true,
-        }}
         select
         ref={ref}
         fullWidth
         value={selectedValue}
         onChange={handleChange}
-        SelectProps={{
-          native: true,
+        slotProps={{
+          ...props.slotProps,
+          inputLabel: {
+            shrink: true,
+            ...props.slotProps?.inputLabel,
+          },
+          select: {
+            native: true,
+            ...props.slotProps?.select,
+          },
         }}
       >
         <option

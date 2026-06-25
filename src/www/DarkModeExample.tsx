@@ -17,7 +17,7 @@ function DarkModeExampleContent() {
   return (
     <ThemeProvider theme={theme}>
       <Paper>
-        <Box padding={6}>
+        <Box sx={{ padding: 6 }}>
           <Stack direction="row" spacing={2}>
             <Box>
               <DarkModeToggle
@@ -33,7 +33,7 @@ function DarkModeExampleContent() {
               />
             </Box>
           </Stack>
-          <Typography fontSize={48}>Hello World</Typography>
+          <Typography sx={{ fontSize: 48 }}>Hello World</Typography>
         </Box>
       </Paper>
     </ThemeProvider>

@@ -104,34 +104,34 @@ export const TextFieldBase = React.forwardRef<
   // variant
   props.variant = props.variant || "outlined"
 
-  // InputProps
-  props.InputProps =
-    props.InputProps === undefined
-      ? formatter === "password" || formatter === "newPassword"
-        ? {
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={() => setShowPassword(true)}
-                  onMouseDown={() => setShowPassword(false)}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }
-        : formatter === "phone"
-        ? {
-            endAdornment: (
-              <InputAdornment position="end">
-                <PhoneIcon fontSize="inherit" />
-              </InputAdornment>
-            ),
-          }
-        : undefined
-      : props.InputProps
+  // build input slot endAdornment (password toggle / phone icon)
+  let inputSlot: object | undefined = undefined
+  if (props.slotProps?.input === undefined) {
+    if (formatter === "password" || formatter === "newPassword") {
+      inputSlot = {
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton
+              aria-label="toggle password visibility"
+              onClick={() => setShowPassword(true)}
+              onMouseDown={() => setShowPassword(false)}
+              edge="end"
+            >
+              {showPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+          </InputAdornment>
+        ),
+      }
+    } else if (formatter === "phone") {
+      inputSlot = {
+        endAdornment: (
+          <InputAdornment position="end">
+            <PhoneIcon fontSize="inherit" />
+          </InputAdornment>
+        ),
+      }
+    }
+  }
 
   // error
   props.error = props.error || error
@@ -178,14 +178,18 @@ export const TextFieldBase = React.forwardRef<
       value={value}
       onBlur={handleBlur}
       onChange={handleChange}
-      inputProps={{
-        ...props.inputProps,
-        ...(formatter === "phone"
-          ? {
-              pattern: "[0-9]*",
-              step: "0.01",
-            }
-          : undefined),
+      slotProps={{
+        ...props.slotProps,
+        ...(inputSlot !== undefined ? { input: inputSlot } : undefined),
+        htmlInput: {
+          ...props.slotProps?.htmlInput,
+          ...(formatter === "phone"
+            ? {
+                pattern: "[0-9]*",
+                step: "0.01",
+              }
+            : undefined),
+        },
       }}
     />
   )

@@ -10,7 +10,7 @@ import { PickersActionBarAction } from "@mui/x-date-pickers/PickersActionBar"
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type DateTimePickerBaseProps = Omit<
-  DateTimePickerProps<Dayjs>,
+  DateTimePickerProps,
   "onChange" | "value"
 > & {
   id?: string

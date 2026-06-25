@@ -145,40 +145,40 @@ export const NumberFieldBase = React.forwardRef(
           value={state}
           onChange={(newValue) => setState(fmt(newValue))}
           onBlur={(e) => onChange(toDecimal(e.currentTarget.value))}
-          inputProps={
-            decimals === 0
-              ? {
-                  pattern: "[0-9]*",
-                  step: "0.01",
-                }
-              : undefined
-          }
-          InputProps={
-            incrementBy !== undefined
-              ? {
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="increment"
-                        disabled={disableIncrement || props.disabled}
-                        size="small"
-                        onClick={handleIncrement}
-                      >
-                        <AddIcon />
-                      </IconButton>
-                      <IconButton
-                        aria-label="decrement"
-                        disabled={disableDecrement || props.disabled}
-                        size="small"
-                        onClick={handleDecrement}
-                      >
-                        <RemoveIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }
-              : undefined
-          }
+          slotProps={{
+            htmlInput:
+              decimals === 0
+                ? {
+                    pattern: "[0-9]*",
+                    step: "0.01",
+                  }
+                : undefined,
+            input:
+              incrementBy !== undefined
+                ? {
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="increment"
+                          disabled={disableIncrement || props.disabled}
+                          size="small"
+                          onClick={handleIncrement}
+                        >
+                          <AddIcon />
+                        </IconButton>
+                        <IconButton
+                          aria-label="decrement"
+                          disabled={disableDecrement || props.disabled}
+                          size="small"
+                          onClick={handleDecrement}
+                        >
+                          <RemoveIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }
+                : undefined,
+          }}
           margin={props.margin}
           size={size}
         />

@@ -1,5 +1,5 @@
 {
-  "version": "7.0.4",
+  "version": "8.0.0",
   "license": "MIT",
   "private": false,
   "homepage": "https://material-ui-pack.xyz",
@@ -28,9 +28,9 @@
   "name": "material-ui-pack",
   "author": "Clay Bell",
   "peerDependencies": {
-    "@mui/icons-material": ">=7.3.10",
-    "@mui/material": ">=7.3.10",
-    "@mui/x-date-pickers": ">=7.29.4",
+    "@mui/icons-material": ">=9.0.0",
+    "@mui/material": ">=9.0.0",
+    "@mui/x-date-pickers": ">=9.0.0",
     "dayjs": ">=1.11.10",
     "react": ">=18",
     "react-markdown": ">=6.0.3"
@@ -38,9 +38,9 @@
   "devDependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^7.3.10",
-    "@mui/material": "^7.3.10",
-    "@mui/x-date-pickers": "^7.29.4",
+    "@mui/icons-material": "^9.1.1",
+    "@mui/material": "^9.1.2",
+    "@mui/x-date-pickers": "^9.6.0",
     "@types/lodash.clonedeep": "^4.5.9",
     "@types/lodash.get": "^4.4.9",
     "@types/lodash.set": "^4.3.9",

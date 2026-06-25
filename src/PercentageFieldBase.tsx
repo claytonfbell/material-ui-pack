@@ -146,38 +146,42 @@ export const PercentageFieldBase = React.forwardRef(
           onFocus={handleFocus}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          InputProps={{
-            // add the minus and currency symbol as a start adornment if currency is defined
-            startAdornment:
-              allowNegative && isNegative ? (
+          slotProps={{
+            ...props.slotProps,
+            input: {
+              // add the minus sign and percentage symbol as adornments
+              startAdornment:
+                allowNegative && isNegative ? (
+                  <Typography
+                    sx={{
+                      color: isNegative ? "red" : undefined,
+                    }}
+                  >
+                    -
+                  </Typography>
+                ) : undefined,
+              endAdornment: (
                 <Typography
                   sx={{
                     color: isNegative ? "red" : undefined,
                   }}
                 >
-                  -
+                  %
                 </Typography>
-              ) : undefined,
-            endAdornment: (
-              <Typography
-                sx={{
-                  color: isNegative ? "red" : undefined,
-                }}
-              >
-                %
-              </Typography>
-            ),
-            ...props.InputProps,
-          }}
-          inputProps={{
-            pattern,
-            step: "0.01",
-            ...props.inputProps,
-            sx: {
-              // right align the text by default
-              textAlign: "right",
-              color: isNegative ? "red" : undefined,
-              ...props.inputProps?.sx,
+              ),
+              ...props.slotProps?.input,
+            },
+            htmlInput: {
+              pattern,
+              step: "0.01",
+              ...(props.slotProps?.htmlInput as object | undefined),
+              sx: {
+                // right align the text by default
+                textAlign: "right",
+                color: isNegative ? "red" : undefined,
+                ...(props.slotProps?.htmlInput as { sx?: object } | undefined)
+                  ?.sx,
+              },
             },
           }}
         />

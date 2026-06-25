@@ -27,7 +27,7 @@ export function ExampleBox(props: ExampleProps) {
           paddingTop: theme.spacing(1),
         }}
       >
-        <Grid container justifyContent="space-between">
+        <Grid container sx={{ justifyContent: "space-between" }}>
           <Grid>
             <Typography variant="h5" gutterBottom>
               {props.title}
@@ -45,7 +45,7 @@ export function ExampleBox(props: ExampleProps) {
       <Collapse in={showCode}>
         <Box>{props.snippet}</Box>
       </Collapse>
-      <Box padding={2}>{props.children}</Box>
+      <Box sx={{ padding: 2 }}>{props.children}</Box>
     </Paper>
   )
 }

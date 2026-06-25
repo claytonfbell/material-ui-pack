@@ -189,41 +189,44 @@ export const CurrencyFieldBase = React.forwardRef<
       onFocus={handleFocus}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
-      InputProps={{
-        // add the minus and currency symbol as a start adornment if currency is defined
-        startAdornment: (
-          <Stack direction="row" spacing={1}>
-            {allowNegative && isNegative ? (
-              <Typography
-                sx={{
-                  color: isNegative ? "red" : undefined,
-                }}
-              >
-                -
-              </Typography>
-            ) : null}
-            {currency !== undefined ? (
-              <Typography
-                sx={{
-                  color: isNegative ? "red" : undefined,
-                }}
-              >
-                {getCurrencySymbol(currency)}
-              </Typography>
-            ) : null}
-          </Stack>
-        ),
-        ...props.InputProps,
-      }}
-      inputProps={{
-        inputMode: "numeric",
-        step: "0.01",
-        ...props.inputProps,
-        sx: {
-          // right align the text by default
-          textAlign: "right",
-          color: isNegative ? "red" : undefined,
-          ...props.inputProps?.sx,
+      slotProps={{
+        ...props.slotProps,
+        input: {
+          // add the minus and currency symbol as a start adornment if currency is defined
+          startAdornment: (
+            <Stack direction="row" spacing={1}>
+              {allowNegative && isNegative ? (
+                <Typography
+                  sx={{
+                    color: isNegative ? "red" : undefined,
+                  }}
+                >
+                  -
+                </Typography>
+              ) : null}
+              {currency !== undefined ? (
+                <Typography
+                  sx={{
+                    color: isNegative ? "red" : undefined,
+                  }}
+                >
+                  {getCurrencySymbol(currency)}
+                </Typography>
+              ) : null}
+            </Stack>
+          ),
+          ...props.slotProps?.input,
+        },
+        htmlInput: {
+          inputMode: "numeric",
+          step: "0.01",
+          ...(props.slotProps?.htmlInput as object | undefined),
+          sx: {
+            // right align the text by default
+            textAlign: "right",
+            color: isNegative ? "red" : undefined,
+            ...(props.slotProps?.htmlInput as { sx?: object } | undefined)?.sx,
+          },
         },
       }}
     />

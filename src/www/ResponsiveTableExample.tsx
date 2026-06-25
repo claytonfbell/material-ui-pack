@@ -36,7 +36,7 @@ export function ResponsiveTableExample() {
     <>
       <DebugBox object={{ selected }} />
       <Box
-        padding={5}
+        sx={{ padding: 5 }}
         style={{ backgroundColor: theme.palette.background.default }}
       >
         <ResponsiveTable

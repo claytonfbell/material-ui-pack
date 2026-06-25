@@ -65,7 +65,7 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
       fullScreen={isSmDown}
     >
       <DialogContent>
-        <Grid container spacing={2} justifyContent="space-between">
+        <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
           <Grid size={{ xs: 12, sm: 8, md: 4 }}>
             <DateTimeLocalizationProvider>
               <DateCalendar
@@ -81,7 +81,7 @@ export function MultipleDatePicker({ onChange, dates, ...props }: Props) {
                       },
                       selected: false,
                       className: dates.includes(d.format(FORMAT))
-                        ? "MuiPickersDay-daySelected Mui-selected"
+                        ? "MuiPickerDay-daySelected Mui-selected"
                         : "",
                       onMouseDown: () => handleSelect(d),
                       onTouchStart: () => handleSelect(d),

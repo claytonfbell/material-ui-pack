@@ -153,14 +153,14 @@ export function ResponsiveTable<T extends object>({
             variant={props.variant}
             elevation={props.elevation}
           >
-            <Box padding={1}>
+            <Box sx={{ padding: 1 }}>
               {props.schema.map((x, index) => {
                 return (
                   <Grid
                     key={index}
                     container
                     spacing={2}
-                    justifyContent="space-between"
+                    sx={{ justifyContent: "space-between" }}
                   >
                     <Grid>
                       <span className="label">{x.label}</span>
@@ -171,7 +171,11 @@ export function ResponsiveTable<T extends object>({
               })}
 
               {onEdit !== undefined || onDelete !== undefined ? (
-                <Grid container spacing={2} justifyContent="space-between">
+                <Grid
+                  container
+                  spacing={2}
+                  sx={{ justifyContent: "space-between" }}
+                >
                   <Grid></Grid>
                   <Grid>
                     {onEdit !== undefined ? (

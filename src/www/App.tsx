@@ -60,7 +60,7 @@ function AppContent() {
         <CssBaseline />
 
         <br />
-        <Grid container justifyContent="space-between">
+        <Grid container sx={{ justifyContent: "space-between" }}>
           <Grid>
             <Typography variant="h3" component="h1" color="dark">
               material-ui-pack
@@ -77,21 +77,21 @@ function AppContent() {
                       height={20}
                     />
                   </a>
-                  <Box marginTop={2}>
+                  <Box sx={{ marginTop: 2 }}>
                     <Typography>
                       <strong>Install for MUI v7</strong>
                     </Typography>
                     <code>npm install material-ui-pack@7</code>
                   </Box>
 
-                  <Box marginTop={2}>
+                  <Box sx={{ marginTop: 2 }}>
                     <Typography>
                       <strong>Install for MUI v6</strong>
                     </Typography>
                     <code>npm install material-ui-pack@6</code>
                   </Box>
 
-                  <Box marginTop={2}>
+                  <Box sx={{ marginTop: 2 }}>
                     <Typography>
                       <strong>Install for MUI v5</strong>
                     </Typography>

@@ -7,7 +7,7 @@ import { DateTimeLocalizationProvider } from "./DateTimeLocalizationProvider"
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type TimePickerBaseProps = Omit<
-  TimePickerProps<Dayjs>,
+  TimePickerProps,
   "onChange" | "value"
 > & {
   id?: string

@@ -27,7 +27,7 @@ export function FormExample() {
   return (
     <Grid container spacing={2}>
       <Grid size={{ xs: 12, sm: 6 }}>
-        <Box maxWidth={400}>
+        <Box sx={{ maxWidth: 400 }}>
           <Form
             buttons
             state={state}
