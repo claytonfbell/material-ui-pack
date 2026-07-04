@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.2](https://github.com/claytonfbell/material-ui-pack/compare/v9.0.1...v9.0.2) (2026-07-04)
+
+
+### Bug Fixes
+
+* inputMode decimal ([94682d3](https://github.com/claytonfbell/material-ui-pack/commit/94682d3ed2ecb81fbe4f06e321cc80d18f51bccd))
+
 ### [9.0.1](https://github.com/claytonfbell/material-ui-pack/compare/v9.0.0...v9.0.1) (2026-06-25)
 
 ## [9.0.0](https://github.com/claytonfbell/material-ui-pack/compare/v7.0.4...v9.0.0) (2026-06-25)
