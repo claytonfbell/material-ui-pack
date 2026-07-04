@@ -218,8 +218,7 @@ export const CurrencyFieldBase = React.forwardRef<
           ...props.slotProps?.input,
         },
         htmlInput: {
-          inputMode: "numeric",
-          step: "0.01",
+          inputMode: "decimal",
           ...(props.slotProps?.htmlInput as object | undefined),
           sx: {
             // right align the text by default
